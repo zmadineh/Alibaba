@@ -25,11 +25,11 @@ const HeroSlider = ({swiperRef}: Props) => {
         {id:4 , image:Hero5},
     ]
   return (
-    <Grid>
+    <Grid item>
         <Swiper className="mySwiper" ref={swiperRef} >
                     {slides.map(slide => (
                         <SwiperSlide key={slide.id}>
-                            <Grid width={'100%'} height={400} position={'relative'}>
+                            <Grid  width={'100%'} height={400} position={'relative'}>
                                 <Image style={{width: '100%', height: '100%'}} src={slide.image} alt={''}/>
                             </Grid>
                         </SwiperSlide>

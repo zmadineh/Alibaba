@@ -9,6 +9,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import SvgIcon from '@mui/material/SvgIcon';
+
 
 import TabPanel from './TabPanel'
 import HeroSlider from './HeroSlider';
@@ -55,28 +57,37 @@ const Tabview = (props: Props) => {
       },[value])
 
   return (
-    <Grid bgcolor={'grey.900'}>
-        <HeroSlider swiperRef={swiperRef}/>
-        <Box  sx={{ width: '1000px', bgcolor:'common.white' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                    {TabItem.map( (item:any) => (
-                         <Tab 
-                         key={item.id}
-                         icon={<Image src={item.icon} alt={'item.id'}/>}
-                         label={item.title} 
-                         {...a11yProps(item.id)}
-                         sx={{fontWeight:'bold',color:'grey.500'}}
-                         />
-                    ))}
-                </Tabs>
-            </Box>
-            {TabItem.map((item:any)=>(
-                <TabPanel key={item.id} value={value} index={item.id}>
-                    {item.title}
-                 </TabPanel>
-            ))}
-        </Box>
+    <Grid container display={{xs:'none',md:'block'}} p={0} m={0}>
+          <Grid position={'relative'} justifyContent={'center'}>
+                <Grid position={'relative'} >
+                  <HeroSlider  swiperRef={swiperRef}/>
+                </Grid>
+                <Grid container display={'flex'} justifyContent={'center'} position={'absolute'} zIndex={1500}bottom={'-75px'}>
+                    <Grid item>
+                          <Box  sx={{border: 2,borderRadius:'10px 10px 10px 10px',borderColor: 'divider', width: '1000px', bgcolor:'common.white' }}>
+                            <Box sx={{ borderBottom: 2, borderColor: 'divider',borderRadius:'10px 10px 0 0',display:'flex',justifyContent:'space-around'}}>
+                                <Tabs  value={value} onChange={handleChange} aria-label="basic tabs example" 
+                                textColor="secondary"indicatorColor="secondary" sx={{ borderBottom: '1px solid #e8e8e8'}}>
+                                    {TabItem.map( (item:any) => (
+                                        <Tab 
+                                        key={item.id}
+                                        icon={<Image src={item.icon} alt={'item.id'}/>}
+                                        label={item.title} 
+                                        {...a11yProps(item.id)}
+                                        sx={{fontWeight:'bold',color:'grey.500'}}
+                                        />
+                                    ))}
+                                </Tabs>
+                            </Box>
+                            {TabItem.map((item:any)=>(
+                                <TabPanel key={item.id} value={value} index={item.id}>
+                                    {item.title}
+                                </TabPanel>
+                            ))}
+                        </Box>
+                    </Grid>
+                </Grid>
+          </Grid>
     </Grid>
   )
 }
