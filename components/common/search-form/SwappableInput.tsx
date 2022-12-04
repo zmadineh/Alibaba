@@ -1,78 +1,79 @@
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import {useState} from "react";
+import React, {useCallback, useState} from "react";
+import LocationAutocomplete from "./CustomAutocomplete";
 
-// interfaces
-interface city {
-    id: number,
-    name : string,
-}
+import FlipCameraAndroidIcon from '@mui/icons-material/FlipCameraAndroid';
+import {IconButton} from "@mui/material";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/system/Box";
+import CustomAutocomplete from "./CustomAutocomplete";
+
 
 // data
-const originCities : city[] = [
-    {id: 1, name: 'tehran'},
-    {id: 2, name: 'isfahan'},
-    {id: 3, name: 'tabriz'},
+const originCities : string[] = [
+    'تهران', 'اصفهان', 'تبریز',
 ]
 
-const destinationCities  : city[] = [
-    {id: 1, name: 'tehran'},
-    {id: 2, name: 'isfahan'},
-    {id: 3, name: 'tabriz'},
+const destinationCities  : string[] = [
+   'تبریز', 'تهران', 'اصفهان',
 ]
+
 
 export default function SwappableInput() {
 
-    const [originCity,setOriginCity] = useState<city>({
-        id: 0,
-        name: '',
-    });
+    const [firstValue,setFirstValue] = useState<string | null>(originCities[0]);
+    const [secValue,setSecValue] = useState<string | null>(destinationCities[0]);
+    const [firstInput,setFirstInput] = useState<string | undefined>('');
+    const [secInput,setSecInput] = useState<string | undefined>('');
 
-    const [destCity,setDestCity] = useState<city>({
-        id: 0,
-        name: '',
-    });
+    const flipCities = useCallback(() => {
+        console.log(secValue, firstValue)
 
-    const [selected, setSelected] = useState<string>('origin');
-
+        if (secValue && firstValue) {
+            const temp = secValue;
+            setSecValue(firstValue)
+            setFirstValue(temp)
+        }
+    }, [firstValue, secValue]);
 
 
     return (
-        // <ToggleButtonGroup
-        //     value={selected}
-        //     exclusive
-        //     onChange={handleAlignment}
-        //     aria-label="text alignment"
-        // >
-        //     <ToggleButton
-        //         value="origin"
-        //         selected={selected}
-        //         onChange={() => {
-        //             setSelected(!selected);
-        //         }}
-        //     >
-        //         <Autocomplete
-        //             freeSolo
-        //             id="free-solo-2-demo"
-        //             disableClearable
-        //             options={originCity.map((option) => option.name)}
-        //             renderInput={(params) => (
-        //                 <TextField
-        //                     {...params}
-        //                     label="Search input"
-        //                     InputProps={{
-        //                         ...params.InputProps,
-        //                         type: 'search',
-        //                     }}
-        //
-        //                     size={"small"}
-        //                 />
-        //             )}
-        //         />
-        //     </ToggleButton>
-        //
-        // </ToggleButtonGroup>
+        <Grid container>
+            <Grid
+                display={"flex"}
+                flexDirection={{xs: 'column', sm: 'row'}}
+                alignItems={{xs: 'flex-end', sm: 'center'}}
+                justifyContent={"center"}
+                position={"relative"}
+            >
+                <Grid>
+                    <CustomAutocomplete
+                        value={firstValue}
+                        setValue={setFirstValue}
+                        input={firstInput}
+                        setInput={setFirstInput}
+                        dataArray={originCities}
+                        label={'مبدا'} />
+                </Grid>
+
+                <Box sx={{position: 'absolute', borderRadius: '50%', backgroundColor: '#fff',  zIndex: 100}}>
+                    <IconButton sx={{width: '30px', height: '30px'}}
+                                onClick={flipCities}
+                    >
+                        <FlipCameraAndroidIcon />
+                    </IconButton>
+                </Box>
+
+                <Grid>
+                  <CustomAutocomplete
+                      value={secValue}
+                      setValue={setSecValue}
+                      input={secInput}
+                      setInput={setSecInput}
+                      dataArray={destinationCities}
+                      label={'مقصد'} />
+                </Grid>
+
+            </Grid>
+        </Grid>
     )
 }
