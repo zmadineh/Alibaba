@@ -19,8 +19,30 @@ const destinationCities  : string[] = [
    'تبریز', 'تهران', 'اصفهان',
 ]
 
+<<<<<<< HEAD
+// interfaces
+interface passenger {
+    adult: number,
+    child: number,
+    baby: number,
+}
+
+interface searchFromValue {
+    originCity: string,
+    destinationCity: string,
+    departureDate: string,
+    passengerCount: passenger,
+}
+
+interface SwappableInputProps {
+    form: searchFromValue;
+}
+
+export default function SwappableInput({form} : SwappableInputProps) {
+=======
 
 export default function SwappableInput() {
+>>>>>>> f49780ae6b58049ca4811cca076914fa66980d99
 
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
@@ -62,6 +84,10 @@ export default function SwappableInput() {
                         label={'مبدا'}
                     />
                 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> f49780ae6b58049ca4811cca076914fa66980d99
                 {mobileMatch &&
                     <InputSelector
                         open={openFirst}

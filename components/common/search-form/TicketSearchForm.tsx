@@ -26,7 +26,11 @@ interface searchFromValue {
 
 export default function TicketSearchForm () {
 
+<<<<<<< HEAD
+    const [form, setForm] = useState<searchFromValue>({
+=======
     const [formValues,setFormValues] = useState<searchFromValue>({
+>>>>>>> f49780ae6b58049ca4811cca076914fa66980d99
         originCity: '',
         destinationCity: '',
         departureDate: '',
@@ -34,19 +38,31 @@ export default function TicketSearchForm () {
     });
 
     const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
+<<<<<<< HEAD
+        setForm({...form,[event.target.name] : event.target.value});
+=======
         setFormValues({...formValues,[event.target.name] : event.target.value});
+>>>>>>> f49780ae6b58049ca4811cca076914fa66980d99
     }
 
     const handleSubmit = (event : React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+<<<<<<< HEAD
+        console.log(form)
+=======
         console.log(formValues)
+>>>>>>> f49780ae6b58049ca4811cca076914fa66980d99
     }
 
     return (
         <Grid>
             <Typography variant={"h4"}>Form</Typography>
             <form onSubmit={(e) => handleSubmit(e)}>
+<<<<<<< HEAD
+                <SwappableInput form={form}/>
+=======
                 <SwappableInput />
+>>>>>>> f49780ae6b58049ca4811cca076914fa66980d99
 
 
                 <Button type={"submit"} variant={"contained"}>{`جستجو`}</Button>
