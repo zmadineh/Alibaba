@@ -2,6 +2,7 @@ import  Typography  from '@mui/material/Typography/Typography'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Tabview from '../Components/HomePage/Tabview/Tabview'
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
       <Typography variant={'h3'} color={'info.300'}>
             {'پرواز داخلی'}
       </Typography>
-
+      <Tabview/>
     </div>
   )
 }
