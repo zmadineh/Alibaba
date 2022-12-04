@@ -22,9 +22,10 @@ interface selectDialogProps {
     data: string[],
     selectedValue: string | null,
     onClose: (value: string | null) => void,
+    label: string,
 }
 
-export default function SelectDialog({open, data, onClose, selectedValue} : selectDialogProps) {
+export default function SelectDialog({open, data, onClose, selectedValue, label} : selectDialogProps) {
 
     const [search, setSearch] = useState<string>('');
 
@@ -50,6 +51,7 @@ export default function SelectDialog({open, data, onClose, selectedValue} : sele
                     search={search}
                     setSearch={setSearch}
                     handleClose={handleClose}
+                    label={label}
                 />
                 <div style={{overflow: "hidden", height: '1px'}}></div>
                 <List>

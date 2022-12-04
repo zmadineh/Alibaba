@@ -2,12 +2,12 @@ import React, {useCallback, useState} from "react";
 import CustomAutocomplete from "../CustomAutocomplete";
 import InputSelector from "./InputSelector";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
+import {useTheme} from "@mui/material";
 import FlipCameraAndroidIcon from '@mui/icons-material/FlipCameraAndroid';
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/system/Box";
-import {useMediaQuery, useTheme} from "@mui/material";
-
 
 
 // data
@@ -68,7 +68,9 @@ export default function SwappableInput() {
                         setOpen={setOpenFirst}
                         value={firstValue}
                         setValue={setFirstValue}
-                        data={originCities} label={'مبدا'}/>
+                        data={originCities}
+                        label={'مبدا'}
+                    />
                 }
 
                 <Box sx={{position: 'absolute', borderRadius: '50%', backgroundColor: '#fff',  zIndex: 100}}>
@@ -97,7 +99,8 @@ export default function SwappableInput() {
                         value={secValue}
                         setValue={setSecValue}
                         data={destinationCities}
-                        label={'مقصد'}/>
+                        label={'مقصد'}
+                    />
                 }
 
             </Grid>

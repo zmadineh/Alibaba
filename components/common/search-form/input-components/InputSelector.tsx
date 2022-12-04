@@ -28,11 +28,13 @@ export default function InputSelector({open, setOpen, value, setValue, data, lab
                 selectedValue={value}
                 onClose={handleClose}
                 data={data}
+                label={label}
             />
             <TextField
                 id="selectorInput"
-                label={label}
-                variant="outlined"
+                // label={label}
+                variant="standard"
+                placeholder={label}
                 onClick={() => setOpen(true)}
                 value={value}
             />
