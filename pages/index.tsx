@@ -13,6 +13,9 @@ export default function Home() {
       <Typography variant={'h3'} color={'info.300'}>
             {'پرواز داخلی'}
       </Typography>
+      <div>
+        <h3>پرواز داخلی</h3>
+      </div>
 
     </div>
   )
