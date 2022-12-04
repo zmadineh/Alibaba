@@ -1,5 +1,5 @@
 
-import React,{useState , useRef, useEffect} from 'react'
+import React,{useState , useRef, useEffect , ReactNode} from 'react'
 
 import Image from 'next/image'
 
@@ -28,11 +28,17 @@ interface TabPanelProps {
   }
 
 type Props = {}
+interface TabItemType{
+  id:number,
+  title:string,
+  icon:any,
+  component:string
+}
 
 const Tabview = (props: Props) => {
     
     const [value, setValue] = useState<number>(0);
-    const TabItem =[
+    const TabItem:TabItemType[] =[
         {id:0 , title:'پرواز داخلی' , icon:<InternalFlightIcon/>, component:'کامپوننت پرواز داخلی'},
         {id:1 , title:'پرواز خارجی' , icon:<ExternalFlightIcon/>, component:'کامپوننت پرواز خارجی '},
         {id:2 , title:'قطار' , icon:<TrainIcon/>, component:'کامپوننت قطار'},

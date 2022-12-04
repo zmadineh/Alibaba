@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import Tabview from '../Components/HomePage/Tabview/Tabview'
+import Tabview from '../components/home/tabview/Tabview'
 
 export default function Home() {
   return (
