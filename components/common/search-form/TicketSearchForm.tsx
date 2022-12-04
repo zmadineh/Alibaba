@@ -1,11 +1,11 @@
 import React, {useState} from "react";
-import CustomTextField from "./CustomTextField";
-import CustomDropDown from "./CustomDropDown";
+import CustomTextField from "./input-components/CustomTextField";
+import CustomDropDown from "./input-components/CustomDropDown";
 
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography/Typography";
-import SwappableInput from "./SwappableInput";
+import SwappableInput from "./input-components/SwappableInput";
 import Grid from "@mui/material/Grid";
 
 
