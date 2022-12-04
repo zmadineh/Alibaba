@@ -59,6 +59,7 @@ export const theme = createTheme({
         '600':'#4B5259',
         '700':'#2B2F33',
         '800':'#0A0B0C',
+        '900':'#F6F6F6'
     },
     
     

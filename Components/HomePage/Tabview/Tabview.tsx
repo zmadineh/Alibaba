@@ -55,9 +55,9 @@ const Tabview = (props: Props) => {
       },[value])
 
   return (
-    <Grid>
+    <Grid bgcolor={'grey.900'}>
         <HeroSlider swiperRef={swiperRef}/>
-        <Box sx={{ width: '100%' }}>
+        <Box  sx={{ width: '1000px', bgcolor:'common.white' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                     {TabItem.map( (item:any) => (
@@ -65,7 +65,8 @@ const Tabview = (props: Props) => {
                          key={item.id}
                          icon={<Image src={item.icon} alt={'item.id'}/>}
                          label={item.title} 
-                         {...a11yProps(item.id)} 
+                         {...a11yProps(item.id)}
+                         sx={{fontWeight:'bold',color:'grey.500'}}
                          />
                     ))}
                 </Tabs>

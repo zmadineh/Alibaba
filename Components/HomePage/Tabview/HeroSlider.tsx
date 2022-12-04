@@ -26,7 +26,7 @@ const HeroSlider = ({swiperRef}: Props) => {
     ]
   return (
     <Grid>
-        <Swiper className="mySwiper" ref={swiperRef}>
+        <Swiper className="mySwiper" ref={swiperRef} >
                     {slides.map(slide => (
                         <SwiperSlide key={slide.id}>
                             <Grid width={'100%'} height={400} position={'relative'}>
