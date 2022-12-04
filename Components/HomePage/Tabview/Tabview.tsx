@@ -1,5 +1,5 @@
 
-import React,{useState} from 'react'
+import React,{useState , useRef, useEffect} from 'react'
 
 import Image from 'next/image'
 
@@ -9,7 +9,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+
 import TabPanel from './TabPanel'
+import HeroSlider from './HeroSlider';
 
 import InternalFlightIcon from '/public/Assets/Images/Hero/InternalFlightIcon.svg'
 import ExternalFlightIcon from '/public/Assets/Images/Hero/ExternalFlightIcon.svg'
@@ -38,8 +40,16 @@ const Tabview = (props: Props) => {
           'aria-controls': `simple-tabpanel-${index}`,
         };
       }
+
+      const swiperRef = useRef<any>(null)
+      
+      useEffect(()=>{
+        swiperRef.current.swiper.slideTo(value)
+      },[value])
+
   return (
-    <Grid>
+    <Grid display={{xs:'none',md:'block'}}>
+        <HeroSlider swiperRef={swiperRef}/>
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
