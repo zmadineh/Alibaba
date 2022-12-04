@@ -17,7 +17,7 @@ export default function CustomAutocomplete({value, setValue, input, setInput, da
     return(
       <Autocomplete
           value={value}
-          onChange={(event: any, newValue: string | null) => {
+          onChange={(event, newValue) => {
               setValue(newValue);
           }}
           inputValue={input}
