@@ -33,11 +33,11 @@ const Tabview = (props: Props) => {
     
     const [value, setValue] = useState<number>(0);
     const TabItem =[
-        {id:0 , title:'پرواز داخلی' , icon:InternalFlightIcon},
-        {id:1 , title:'پرواز خارجی' , icon:ExternalFlightIcon},
-        {id:2 , title:'قطار' , icon:TrainIcon},
-        {id:3 , title:'اتوبوس', icon:BusIcon},
-        {id:4 , title:'تور' , icon:TourIcon}
+        {id:0 , title:'پرواز داخلی' , icon:<InternalFlightIcon/>, component:'کامپوننت پرواز داخلی'},
+        {id:1 , title:'پرواز خارجی' , icon:<ExternalFlightIcon/>, component:'کامپوننت پرواز خارجی '},
+        {id:2 , title:'قطار' , icon:<TrainIcon/>, component:'کامپوننت قطار'},
+        {id:3 , title:'اتوبوس', icon:<BusIcon/>, component:'کامپوننت اتوبوس '},
+        {id:4 , title:'تور' , icon:<TourIcon/>, component:'کامپوننت تور'}
     ]
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -71,7 +71,7 @@ const Tabview = (props: Props) => {
                                     {TabItem.map( (item:any) => (
                                         <Tab 
                                         key={item.id}
-                                        icon={<Image src={item.icon} alt={'item.id'}/>}
+                                        icon={item.icon}
                                         label={item.title} 
                                         {...a11yProps(item.id)}
                                         sx={{fontWeight:'bold',color:'grey.500'}}
@@ -81,7 +81,7 @@ const Tabview = (props: Props) => {
                             </Box>
                             {TabItem.map((item:any)=>(
                                 <TabPanel key={item.id} value={value} index={item.id}>
-                                    {item.title}
+                                    {item.component}
                                 </TabPanel>
                             ))}
                         </Box>
