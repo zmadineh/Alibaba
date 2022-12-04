@@ -6,7 +6,7 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-/* @font-face {
+@font-face {
   font-family: 'Alibaba';
   src: url('../public/Assets/Fonts/Alibaba-Regular.ttf') format('truetype');
   
@@ -24,7 +24,7 @@ body {
   font-weight: light;
   font-style: normal;
    }
- */
+
 
 
 a {
