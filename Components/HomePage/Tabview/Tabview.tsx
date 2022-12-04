@@ -30,8 +30,15 @@ type Props = {}
 const Tabview = (props: Props) => {
     
     const [value, setValue] = useState<number>(0);
+    const TabItem =[
+        {id:0 , title:'پرواز داخلی' , icon:InternalFlightIcon},
+        {id:1 , title:'پرواز خارجی' , icon:ExternalFlightIcon},
+        {id:2 , title:'قطار' , icon:TrainIcon},
+        {id:3 , title:'اتوبوس', icon:BusIcon},
+        {id:4 , title:'تور' , icon:TourIcon}
+    ]
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
     }
     function a11yProps(index: number) {
@@ -48,53 +55,26 @@ const Tabview = (props: Props) => {
       },[value])
 
   return (
-    <Grid display={{xs:'none',md:'block'}}>
+    <Grid>
         <HeroSlider swiperRef={swiperRef}/>
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                    <Tab 
-                    icon={<Image src={InternalFlightIcon} alt={''}/>}
-                    label="پرواز داخلی" 
-                    {...a11yProps(0)} 
-                    />
-                    <Tab
-                    icon={<Image src={ExternalFlightIcon} alt={''}/>} 
-                    label="پرواز خارجی" 
-                    {...a11yProps(1)} 
-                    />
-                    <Tab 
-                    icon={<Image src={TrainIcon} alt={''}/>}
-                    label="قطار" 
-                    {...a11yProps(2)} 
-                    />
-                    <Tab 
-                    icon={<Image src={BusIcon} alt={''}/>}
-                    label="اتوبوس" 
-                    {...a11yProps(3)} 
-                    />
-                    <Tab 
-                    icon={<Image src={TourIcon} alt={''}/>}
-                    label="تور" 
-                    {...a11yProps(4)} 
-                    />
+                    {TabItem.map( (item:any) => (
+                         <Tab 
+                         key={item.id}
+                         icon={<Image src={item.icon} alt={'item.id'}/>}
+                         label={item.title} 
+                         {...a11yProps(item.id)} 
+                         />
+                    ))}
                 </Tabs>
             </Box>
-            <TabPanel value={value} index={0}>
-                {'پرواز داخلی'}
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                {'پرواز خارجی'}
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-                {'قطار'}
-            </TabPanel>
-            <TabPanel value={value} index={3}>
-                {'اتوبوس'}
-            </TabPanel>
-            <TabPanel value={value} index={4}>
-                {'تور'}
-            </TabPanel>
+            {TabItem.map((item:any)=>(
+                <TabPanel key={item.id} value={value} index={item.id}>
+                    {item.title}
+                 </TabPanel>
+            ))}
         </Box>
     </Grid>
   )
