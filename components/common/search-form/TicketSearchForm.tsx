@@ -6,6 +6,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography/Typography";
 import SwappableInput from "./SwappableInput";
+import Grid from "@mui/material/Grid";
 
 
 // interfaces
@@ -42,19 +43,14 @@ export default function TicketSearchForm () {
     }
 
     return (
-        <Paper>
+        <Grid>
             <Typography variant={"h4"}>Form</Typography>
             <form onSubmit={(e) => handleSubmit(e)}>
-                {/*<CustomTextField changeHandler={handleChange} label={"Name"} name={"name"}/>*/}
-                {/*<CustomTextField changeHandler={handleChange} label={"Email"} name={"email"}/>*/}
-                {/*<CustomDropDown label={"Age"} name={"age"} changeHandler={handleChange} values={ages} currentValue={values.age}/>*/}
-
-
                 <SwappableInput />
 
 
                 <Button type={"submit"} variant={"contained"}>{`جستجو`}</Button>
             </form>
-        </Paper>
+        </Grid>
     );
 }
