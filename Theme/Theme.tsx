@@ -7,6 +7,9 @@ export const theme = createTheme({
         fontFamily:'Alibaba'
     },
     
+    typography:{
+        fontFamily:'Alibaba'
+    },
     palette: {
     primary: {
         light:'#FFE19C',
@@ -60,6 +63,7 @@ export const theme = createTheme({
         '600':'#4B5259',
         '700':'#2B2F33',
         '800':'#0A0B0C',
+        '900':'#F6F6F6'
     },
     
     
