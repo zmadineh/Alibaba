@@ -35,7 +35,7 @@ export default function Desk_header() {
     const handleClickOutside = () => {
         setOpen(false)
     }
-    const ref:MutableRefObject<HTMLInputElement> = useOutsideClick(handleClickOutside);
+    const ref:RefObject<HTMLLIElement> = useOutsideClick(handleClickOutside);
     return (
         <Stack direction={'row'} color={'black'} width={'100%'} padding={'0 24px'} bgcolor={'#ffffff'} justifyContent={'space-between'} height={'64px'} sx={{
             boxShadow: '0px 0px 5px 3px #00000036'
