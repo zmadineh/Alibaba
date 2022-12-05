@@ -19,7 +19,6 @@ const destinationCities  : string[] = [
    'تبریز', 'تهران', 'اصفهان',
 ]
 
-<<<<<<< HEAD
 // interfaces
 interface passenger {
     adult: number,
@@ -39,10 +38,6 @@ interface SwappableInputProps {
 }
 
 export default function SwappableInput({form} : SwappableInputProps) {
-=======
-
-export default function SwappableInput() {
->>>>>>> f49780ae6b58049ca4811cca076914fa66980d99
 
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
@@ -82,6 +77,7 @@ export default function SwappableInput() {
                         setInput={setFirstInput}
                         dataArray={originCities}
                         label={'مبدا'}
+                        borderRadius={'0 8px 8px 0'}
                     />
                 }
 
@@ -112,6 +108,7 @@ export default function SwappableInput() {
                         setInput={setSecInput}
                         dataArray={destinationCities}
                         label={'مقصد'}
+                        borderRadius={'8px 0 0 8px'}
                     />
                 }
 

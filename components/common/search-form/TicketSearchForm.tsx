@@ -47,6 +47,7 @@ export default function TicketSearchForm () {
             <Typography variant={"h4"}>Form</Typography>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <SwappableInput form={form}/>
+                <CustomTextField label={'مبدا'} name={'mabda'} changeHandler={handleChange} />
                 <Button type={"submit"} variant={"contained"}>{`جستجو`}</Button>
             </form>
         </Grid>

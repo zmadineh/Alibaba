@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
 
-    typography:{
+    typography: {
         fontFamily:'Alibaba'
     },
     
@@ -62,9 +62,25 @@ export const theme = createTheme({
         '800':'#0A0B0C',
         '900':'#F6F6F6'
     },
-    
-    
   },
-  
+
+
+    // zahra madineh
+    components: {
+
+        MuiTextField: {
+            styleOverrides: {
+                root: {
+                    '& label': {
+                        transformOrigin: "right !important",
+                        left: "inherit !important",
+                        right: "1.75rem !important",
+                        overflow: "unset",
+                    },
+                    "& legend": {textAlign: "right",},
+                }
+            }
+        }
+    },
 
 });

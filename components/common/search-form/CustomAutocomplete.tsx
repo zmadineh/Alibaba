@@ -1,10 +1,6 @@
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-<<<<<<< HEAD
 import React, {SyntheticEvent} from "react";
-=======
-import React from "react";
->>>>>>> f49780ae6b58049ca4811cca076914fa66980d99
 
 // interface
 interface autocompleteProps {
@@ -13,12 +9,12 @@ interface autocompleteProps {
     input: string | undefined,
     setInput:  React.Dispatch<React.SetStateAction<string | undefined>>,
     dataArray: string[],
-    label: string
+    label: string,
+    borderRadius: string,
 }
 
-export default function CustomAutocomplete({value, setValue, input, setInput, dataArray, label} : autocompleteProps) {
+export default function CustomAutocomplete({value, setValue, input, setInput, dataArray, label, borderRadius} : autocompleteProps) {
 
-<<<<<<< HEAD
     const onChangeValue = (event : SyntheticEvent, newValue: string | null) => {
         setValue(newValue);
     }
@@ -30,13 +26,6 @@ export default function CustomAutocomplete({value, setValue, input, setInput, da
     return(
       <Autocomplete
           value={value}
-          onChange={(event, newValue) => onChangeValue(event, newValue)}
-          inputValue={input}
-          onInputChange={(event, newValue) => onInputChange(event, newValue)}
-=======
-    return(
-      <Autocomplete
-          value={value}
           onChange={(event, newValue) => {
               setValue(newValue);
           }}
@@ -44,7 +33,6 @@ export default function CustomAutocomplete({value, setValue, input, setInput, da
           onInputChange={(event, newInputValue) => {
               setInput(newInputValue);
           }}
->>>>>>> f49780ae6b58049ca4811cca076914fa66980d99
           id='origin-autoComplete'
           // freeSolo
           fullWidth
@@ -54,11 +42,16 @@ export default function CustomAutocomplete({value, setValue, input, setInput, da
               <TextField
                   {...params}
                   label={label}
-                  InputProps={{
-                      ...params.InputProps,
-                      type: 'search',
-                  }}
+                  // InputProps={{
+                  //     ...params.InputProps,
+                  //     type: 'search',
+                  // }}
                   size={"small"}
+                  sx={{
+                      '& .MuiInputBase-root': {
+                          borderRadius: borderRadius
+                      }
+                  }}
               />
           )}
           />
