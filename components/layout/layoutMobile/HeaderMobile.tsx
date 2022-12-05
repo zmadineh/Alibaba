@@ -34,8 +34,9 @@ const HeaderMobile = () => {
             <Grid item container xs={12} sx={{ zIndex: -1, position: "fixed" }} top={0} bgcolor={"primary.main"} width={"100%"} height={display === "header1" ? "150px" : "110px"}>
                 <Grid item xs={12} display={"flex"} justifyContent={"center"} alignItems={"cnter"} sx={{ marginTop: "32px", marginBottom: "24px" }}>
                     <Link href={"/"}  >
-                        <Grid >
-                            <Image src={Logo} alt="logo" width={150} height={25} />
+                        <Grid width={display === "header1" ? "150px" : "100px"} height={display === "header1" ? "35px" : "25px"}>
+
+                            <Image src={Logo} alt="logo" style={{ width: "100%", height: "100%" }} />
                         </Grid>
                     </Link>
                 </Grid>
