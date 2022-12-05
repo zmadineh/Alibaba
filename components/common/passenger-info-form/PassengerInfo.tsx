@@ -22,6 +22,12 @@ const PassengerInfo = (props: Props) => {
              idCode:''
 
         })
+        const input =[
+                {id:0,name:'firstName',label:'نام' , value:form.firstName},
+                {id:1,name:'lastName',label:'نام خانوادگی' , value:form.lastName},
+                {id:2,name:'phone',label:'شماره ضروری' , value:form.phone},
+                {id:3,name:'idCode',label:'کد ملی' , value:form.idCode},
+        ]
 
         const handleChange = (e:any)=>{
                 setForm({...form,[e.target.name]:e.target.value})
@@ -43,23 +49,30 @@ const PassengerInfo = (props: Props) => {
                         </Grid>
                         <Grid item container display={'flex'}  p={2}>
                                 <form onSubmit={handleSubmit}>
-                                        <TextField color='secondary' sx={{margin:'8px',height:'48px',width:'264px'}} type={'text'} name='firstName' label={'نام'}value={form.firstName} onChange={handleChange}/>
-                                        <TextField color='secondary' sx={{margin:'8px',height:'48px',width:'264px'}} type={'text'} name='lastName' label={'نام خانوادگی'}value={form.lastName} onChange={handleChange}/>
-                                        <Select
-                                                name='gender'
-                                                label={'جنسیت'}
-                                                value={form.gender} 
-                                                onChange={handleChange}
-                                                sx={{margin:'8px',height:'56px',width:'264px'}}
-                                                color='secondary'
-                                                >
-                                                <MenuItem color='secondary' value={'مرد'}>مرد</MenuItem>
-                                                <MenuItem color='secondary' value={'زن'}>زن</MenuItem>
-                                                
-                                        </Select>
-                                        <TextField color='secondary' sx={{margin:'8px',height:'48px',width:'264px'}}  type={'text'} name='phone' label={'شماره ضروری'}value={form.phone} onChange={handleChange}/>
-                                        <TextField color='secondary' sx={{margin:'8px',height:'48px',width:'264px'}}  type={'text'} name='idCode' label={'کد ملی'}value={form.idCode} onChange={handleChange}/>
-                                        <Button sx={{margin:'8px',height:'56px',width:'264px'}} variant="contained" color="secondary" type={'submit'}>تایید و ادامه خرید</Button>
+                                        <Grid item container display={{md:'inline-flex',xs:'flex'}} justifyContent={{xs:'center',md:'flex-start'}}alignItems={{xs:'center',md:'flex-start'}}>
+                                                {input.map((item:any)=>(
+                                                        <Grid item key={item.id}>
+                                                                <TextField color='secondary' sx={{margin:'8px',height:'48px',width:'264px'}}  type={'text'} name={item.name} label={item.label}value={item.value} onChange={handleChange}/>    
+                                                        </Grid>
+                                                ))}
+                                                <Grid item>
+                                                        <Select
+                                                                name='gender'
+                                                                label={'جنسیت'}
+                                                                value={form.gender} 
+                                                                onChange={handleChange}
+                                                                sx={{margin:'8px',height:'56px',width:'264px'}}
+                                                                color='secondary'
+                                                                >
+                                                                <MenuItem color='secondary' value={'مرد'}>مرد</MenuItem>
+                                                                <MenuItem color='secondary' value={'زن'}>زن</MenuItem>
+                                                                
+                                                        </Select>
+                                                </Grid>
+                                                <Grid item>
+                                                        <Button sx={{margin:'8px',height:'56px',width:'264px'}} variant="contained" color="secondary" type={'submit'}>تایید و ادامه خرید</Button>
+                                                </Grid>
+                                        </Grid>
                                 </form>
                         </Grid>
                 </Grid>
