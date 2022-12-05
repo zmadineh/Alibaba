@@ -1,31 +1,18 @@
 import React, {useState} from "react";
-import CustomTextField from "./input-components/CustomTextField";
-import CustomDropDown from "./input-components/CustomDropDown";
 
-import Paper from "@mui/material/Paper";
+import {searchFromValue} from "../../../model/searchFormValue.type";
+
+import {internalCities} from "../../../data/internalCities";
+
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography/Typography";
 import SwappableInput from "./input-components/SwappableInput";
 import Grid from "@mui/material/Grid";
 
 
-// interfaces
-interface passenger {
-    adult: number,
-    child: number,
-    baby: number,
-}
-
-interface searchFromValue {
-    originCity: string,
-    destinationCity: string,
-    departureDate: string,
-    passengerCount: passenger,
-}
-
-
 export default function TicketSearchForm () {
 
+    // type f = searchFromValue
     const [form, setForm] = useState<searchFromValue>({
         originCity: '',
         destinationCity: '',
@@ -37,6 +24,10 @@ export default function TicketSearchForm () {
         setForm({...form,[event.target.name] : event.target.value});
     }
 
+    const handleChangeWithName = (name: string, value: string | null) => {
+        setForm({...form,[name] : value});
+    }
+
     const handleSubmit = (event : React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         console.log(form)
@@ -46,8 +37,17 @@ export default function TicketSearchForm () {
         <Grid>
             <Typography variant={"h4"}>Form</Typography>
             <form onSubmit={(e) => handleSubmit(e)}>
-                <SwappableInput form={form}/>
-                <CustomTextField label={'مبدا'} name={'mabda'} changeHandler={handleChange} />
+                <SwappableInput
+                    firstInputName={'originCity'}
+                    secondInputName={'destinationCity'}
+                    firstData={internalCities}
+                    secondData={internalCities}
+                    firstLabel={'مبدا'}
+                    secondLabel={'مقصد'}
+                    handleChange={handleChangeWithName}
+                    form={form}
+                    setForm={setForm}
+                />
                 <Button type={"submit"} variant={"contained"}>{`جستجو`}</Button>
             </form>
         </Grid>

@@ -5,7 +5,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import Search from "@mui/icons-material/Search";
-import {theme} from "../../../../Theme/Theme";
+
 
 const StyledOutlinedInput = styled(OutlinedInput)(({ theme }) => ({
     color: theme.palette.text.secondary,
@@ -29,7 +29,7 @@ export default function OutlinedSearchBox ({search, setSearch, borderRadius = '1
 
     return (
         <FormControl variant="standard" fullWidth dir={'rtl'}
-                     sx={{height: '100%', width: '100%', borderColor: 'divider', borderRadius: borderRadius, backgroundColor: theme.palette.secondary['100']}}>
+                     sx={{height: '100%', width: '100%', borderColor: 'divider', borderRadius: borderRadius, backgroundColor: 'secondary.100'}}>
 
             <StyledOutlinedInput id="search"
                                  value={search}

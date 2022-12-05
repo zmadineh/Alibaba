@@ -1,7 +1,21 @@
 import Grid from "@mui/material/Grid";
 import SelectDialog from "../select-dialog/SelectDialog";
 import {TextField} from "@mui/material";
-import React from "react";
+import React, {useCallback} from "react";
+
+// interfaces
+interface passenger {
+    adult: number,
+    child: number,
+    baby: number,
+}
+
+interface searchFromValue {
+    originCity: string,
+    destinationCity: string,
+    departureDate: string,
+    passengerCount: passenger,
+}
 
 interface inputSelectorProps {
     open: boolean,
@@ -9,17 +23,20 @@ interface inputSelectorProps {
     value: string | null,
     setValue: React.Dispatch<React.SetStateAction<string | null>>,
     data: string[],
-    label: string
+    label: string,
+    name: string,
+    handleChange: (name: string, value: string) => void,
 }
 
-export default function InputSelector({open, setOpen, value, setValue, data, label} : inputSelectorProps) {
+export default function InputSelector({open, setOpen, value, setValue, data, label, name, handleChange} : inputSelectorProps) {
 
-    const handleClose = (value : string | null) => {
+    const handleClose = useCallback((value : string | null) => {
         setOpen(false);
         if (value){
             setValue(value);
+            handleChange(name, value)
         }
-    };
+    }, [value]);
 
     return (
         <Grid>

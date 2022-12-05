@@ -1,8 +1,11 @@
-import Autocomplete from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
 import React, {SyntheticEvent} from "react";
 
-// interface
+import {searchFromValue} from "../../../../model/searchFormValue.type";
+
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
+
+
 interface autocompleteProps {
     value: string | null,
     setValue:  React.Dispatch<React.SetStateAction<string | null>>,
@@ -11,29 +14,30 @@ interface autocompleteProps {
     dataArray: string[],
     label: string,
     borderRadius: string,
+    name: string,
+    handleChange: (name: string, value: string | null) => void,
 }
 
-export default function CustomAutocomplete({value, setValue, input, setInput, dataArray, label, borderRadius} : autocompleteProps) {
+export default function CustomAutocomplete({value, setValue, input, setInput, dataArray, label, borderRadius, name, handleChange} : autocompleteProps) {
 
     const onChangeValue = (event : SyntheticEvent, newValue: string | null) => {
         setValue(newValue);
+        handleChange(name, newValue)
+        console.log(newValue)
     }
 
     const onInputChange = (event : SyntheticEvent, newValue: string | undefined) => {
         setInput(newValue)
+        // handleChange(name, '')
     }
 
     return(
       <Autocomplete
           value={value}
-          onChange={(event, newValue) => {
-              setValue(newValue);
-          }}
+          onChange={(event, newValue) => onChangeValue(event, newValue)}
           inputValue={input}
-          onInputChange={(event, newInputValue) => {
-              setInput(newInputValue);
-          }}
-          id='origin-autoComplete'
+          onInputChange={(event, newInputValue) => onInputChange(event, newInputValue)}
+          id='custom-autoComplete'
           // freeSolo
           fullWidth
           options={dataArray}
