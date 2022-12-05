@@ -22,9 +22,10 @@ interface SwappableInputProps {
     handleChange: (name: string, value: string | null) => void,
     form: searchFromValue,
     setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
+    iconName: string,
 }
 
-export default function SwappableInput({firstInputName, secondInputName, handleChange, firstData, secondData, firstLabel, secondLabel, form, setForm} : SwappableInputProps) {
+export default function SwappableInput({firstInputName, secondInputName, handleChange, firstData, secondData, firstLabel, secondLabel, form, setForm, iconName} : SwappableInputProps) {
 
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
@@ -33,8 +34,9 @@ export default function SwappableInput({firstInputName, secondInputName, handleC
     const [secValue,setSecValue] = useState<string | null>('');
     const [firstInput,setFirstInput] = useState<string | undefined>('');
     const [secInput,setSecInput] = useState<string | undefined>('');
-    const [openFirst, setOpenFirst] = useState(false);
-    const [openSec, setOpenSec] = useState(false);
+    const [openFirst, setOpenFirst] = useState<boolean>(false);
+    const [openSec, setOpenSec] = useState<boolean>(false);
+    const [selectInput, setSelectInput] = useState<boolean>(false)
 
     const flipCities = useCallback(() => {
         console.log(secValue, firstValue)
@@ -70,6 +72,7 @@ export default function SwappableInput({firstInputName, secondInputName, handleC
                         name={firstInputName}
                         handleChange={handleChange}
                         borderRadius={'0 8px 8px 0'}
+                        // selectInput={selectInput}
                     />
                 }
 
@@ -84,6 +87,7 @@ export default function SwappableInput({firstInputName, secondInputName, handleC
                         name={firstInputName}
                         handleChange={handleChange}
                         form={form}
+                        iconName={iconName}
                     />
                 }
 
@@ -106,6 +110,7 @@ export default function SwappableInput({firstInputName, secondInputName, handleC
                         name={secondInputName}
                         handleChange={handleChange}
                         borderRadius={'8px 0 0 8px'}
+                        // selectInput={!selectInput}
                     />
                 }
 
@@ -120,6 +125,7 @@ export default function SwappableInput({firstInputName, secondInputName, handleC
                         name={secondInputName}
                         handleChange={handleChange}
                         form={form}
+                        iconName={iconName}
                     />
                 }
 

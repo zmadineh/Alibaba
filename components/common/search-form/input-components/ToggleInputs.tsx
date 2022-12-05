@@ -1,13 +1,15 @@
 import React, {useCallback, useState} from "react";
 import CustomAutocomplete from "./CustomAutocomplete";
 import InputSelector from "./InputSelector";
+import CustomTextField from "./CustomTextField";
 
 import {searchFromValue} from "../../../../model/searchFormValue.type";
-import CustomTextField from "./CustomTextField";
+import {iconMap} from "../../../../data/iconMap";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {TextField, useTheme} from "@mui/material";
 import Grid from "@mui/material/Grid";
+import InputAdornment from "@mui/material/InputAdornment";
 
 
 interface ToggleInputsProps {
@@ -18,9 +20,10 @@ interface ToggleInputsProps {
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
     form: searchFromValue,
     setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
+    iconName: string,
 }
 
-export default function ToggleInputs({firstLabel, secondLabel, firstName, secondName, handleChange, form, setForm} : ToggleInputsProps) {
+export default function ToggleInputs({firstLabel, secondLabel, firstName, secondName, handleChange, form, setForm, iconName} : ToggleInputsProps) {
 
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
@@ -58,6 +61,14 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                            variant={"standard"}
                            size={"small"}
                            sx={{padding: 1}}
+                           fullWidth
+                           InputProps={{
+                               startAdornment: (
+                                   <InputAdornment position="start" sx={{margin: 1}}>
+                                       {iconMap.find(item => item.iconName === iconName).icon}
+                                   </InputAdornment>
+                               ),
+                           }}
                 />
             }
             {mobileMatch &&
@@ -67,6 +78,14 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                            variant={"standard"}
                            size={"small"}
                            sx={{padding: 1}}
+                           fullWidth
+                           InputProps={{
+                               startAdornment: (
+                                   <InputAdornment position="start" sx={{margin: 1}}>
+                                       {iconMap.find(item => item.iconName === iconName).icon}
+                                   </InputAdornment>
+                               ),
+                           }}
                 />
             }
 

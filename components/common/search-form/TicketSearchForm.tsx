@@ -52,6 +52,7 @@ export default function TicketSearchForm () {
                             handleChange={handleChangeWithName}
                             form={form}
                             setForm={setForm}
+                            iconName={'location'}
                         />
                     </Grid>
                     <Grid item xs={12} sm={3}>
@@ -63,6 +64,7 @@ export default function TicketSearchForm () {
                             handleChange={handleChange}
                             form={form}
                             setForm={setForm}
+                            iconName={'calender'}
                         />
                     </Grid>
                     <Grid item xs={12} sm={3}>

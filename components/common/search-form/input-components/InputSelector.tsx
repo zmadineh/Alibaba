@@ -1,7 +1,10 @@
-import Grid from "@mui/material/Grid";
 import SelectDialog from "../select-dialog/SelectDialog";
-import {TextField} from "@mui/material";
 import React, {useCallback} from "react";
+
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import {iconMap} from "../../../../data/iconMap";
 
 // interfaces
 interface passenger {
@@ -27,9 +30,10 @@ interface inputSelectorProps {
     name: string,
     handleChange: (name: string, value: string) => void,
     form: searchFromValue,
+    iconName: string,
 }
 
-export default function InputSelector({open, setOpen, value, setValue, data, label, name, handleChange, form} : inputSelectorProps) {
+export default function InputSelector({open, setOpen, value, setValue, data, label, name, handleChange, form, iconName} : inputSelectorProps) {
 
     const handleClose = useCallback((value : string | null) => {
         setOpen(false);
@@ -41,7 +45,7 @@ export default function InputSelector({open, setOpen, value, setValue, data, lab
     }, [value, form]);
 
     return (
-        <Grid>
+        <Grid width={'100%'}>
             <SelectDialog
                 open={open}
                 selectedValue={value}
@@ -52,13 +56,20 @@ export default function InputSelector({open, setOpen, value, setValue, data, lab
 
             <TextField
                 id="selectorInput"
-                // label={label}
                 variant={"standard"}
                 size={"small"}
                 placeholder={label}
                 onClick={() => setOpen(true)}
                 value={value}
                 sx={{padding: 1}}
+                fullWidth
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start" sx={{margin: 1}}>
+                            {iconMap.find(item => item.iconName === iconName).icon}
+                        </InputAdornment>
+                    ),
+                }}
             />
 
         </Grid>

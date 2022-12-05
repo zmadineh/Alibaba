@@ -16,6 +16,7 @@ interface autocompleteProps {
     borderRadius: string,
     name: string,
     handleChange: (name: string, value: string | null) => void,
+    // selectInput: boolean,
 }
 
 export default function CustomAutocomplete({value, setValue, input, setInput, dataArray, label, borderRadius, name, handleChange} : autocompleteProps) {
@@ -37,17 +38,12 @@ export default function CustomAutocomplete({value, setValue, input, setInput, da
           inputValue={input}
           onInputChange={(event, newInputValue) => onInputChange(event, newInputValue)}
           id='custom-autoComplete'
-          sx={{width: '100%'}}
           fullWidth
           options={dataArray}
           renderInput={(params) => (
               <TextField
                   {...params}
                   label={label}
-                  // InputProps={{
-                  //     ...params.InputProps,
-                  //     type: 'search',
-                  // }}
                   size={"small"}
                   sx={{
                       '& .MuiInputBase-root': {
