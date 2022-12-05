@@ -84,10 +84,7 @@ export default function SwappableInput() {
                         label={'مبدا'}
                     />
                 }
-<<<<<<< HEAD
 
-=======
->>>>>>> f49780ae6b58049ca4811cca076914fa66980d99
                 {mobileMatch &&
                     <InputSelector
                         open={openFirst}
