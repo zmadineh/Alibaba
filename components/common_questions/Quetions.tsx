@@ -3,52 +3,47 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '../../public/Assets/Images/common_question/expand.svg'
+import Question_icon from '../../public/Assets/Images/common_question/question_icon.svg'
+import getQuestion from '../../data/common_questions/Questions_data';
 
+interface propsType{
+  category:string
+}
 
-const Quetions = (id:string) => {
+const Quetions = (props:propsType) => {
+  const {category} = props;
+  const values = getQuestion(category);
    return(
+    
     <>
-      <Accordion>
+    {values.map(item=>{
+      return(
+        <Accordion disableGutters square>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
+          sx={{
+            padding:'16px',
+            '& .MuiAccordionSummary-content' : {
+              margin : 0
+            }
+          }}
         >
-          <Typography>Accordion 1</Typography>
+          <Question_icon backgorundColor='yellow' color='#17a2b8'/>
+          <Typography fontWeight={600} sx={{color:'#4b5259',marginLeft:'12px'}}>{item.title}</Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails sx={{
+            padding:'16px 64px'
+          }}>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            {item.answer}
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography>Accordion 2</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion disabled>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
-          <Typography>Disabled Accordion</Typography>
-        </AccordionSummary>
-      </Accordion>
+      )
+    })}
     </>
    )
 }
-
 export default Quetions
