@@ -10,9 +10,10 @@ export const Login = ({userName , passWord}:LoginProps)=>{
         if (userName==='09123456789' && passWord==='123456'){
             setTimeout(()=>{
                 resolve({
-                    name:'amir',
-                    age:24,
-                    country:'iran'
+                    name:'امیر پرتوی',
+                    idCode:'001234567',
+                    number:'09123456789',
+                    email:'a.partovi99@gmail.com'
                 })
             },5000)
             

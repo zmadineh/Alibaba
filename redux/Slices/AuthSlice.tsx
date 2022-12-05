@@ -5,8 +5,9 @@ interface StateType{
     isLogin : boolean
     loading : boolean
     name : string
-    age : number 
-    country : string
+    number : string 
+    email : string 
+    idCode : string 
     error ?: string
 }
 interface LoginType{
@@ -15,9 +16,9 @@ interface LoginType{
 }
 export const AuthAsyncThunk = createAsyncThunk(
     'auth/Login',
-    //authData => {userName:'amir' , passWord:'123456}
-    async(AuthData:LoginType)=>{
-        const data = await Login(AuthData.userName,AuthData.passWord);
+    //authData => {userName:'09123456789' , passWord:'123456}
+    async(auth:LoginType)=>{
+        const data = await Login(auth);
         return data
     }//1:Pendding 2:fullfilled 3:rejected
 )
@@ -26,8 +27,9 @@ const initialState ={
     isLogin:false,
     loading:false,
     name:'',
-    age:0,
-    country:''
+    number :'',
+    email :'',
+    idCode :'',
 }
 
 export const AuthSlice = createSlice({
@@ -38,8 +40,9 @@ export const AuthSlice = createSlice({
             state.isLogin = false
             state.loading = false
             state.name = ''
-            state.age = 0 
-            state.country = ''
+            state.number = '' 
+            state.email = ''
+            state.idCode = ''
         }
     },
     extraReducers:(builder)=>{
@@ -50,13 +53,14 @@ export const AuthSlice = createSlice({
             const payload = action
             state.isLogin = true
             state.name=payload.name
-            state.age=payload.age
-            state.country=payload.country
-
+            state.number=payload.number
+            state.email=payload.email
+            state.idCode=payload.idCode
+            
         })
         builder.addCase(AuthAsyncThunk.rejected,(state:StateType)=>{
             state.loading = false
-            state.error = 'invalid Username or Password'
+            state.error = 'نام کاربری یا رمز اشتباه است'
         })
     }
 })
