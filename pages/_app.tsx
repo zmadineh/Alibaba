@@ -1,7 +1,9 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from '@mui/system'
-import {theme} from '../Theme/theme'
+
+import {theme} from '../themes/theme'
+
 import { CssBaseline } from '@mui/material'
 
 import rtlPlugin from 'stylis-plugin-rtl';
