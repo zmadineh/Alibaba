@@ -9,7 +9,7 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
 
-import { store } from '../redux/Store'
+// import { store } from '../redux/store'
 // import { Provider } from 'react-redux'
 
 export default function App({ Component, pageProps }: AppProps) {
