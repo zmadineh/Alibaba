@@ -1,5 +1,10 @@
 import { createTheme } from '@mui/material/styles';
 
+declare module '@mui/material/Button' {
+    interface ButtonPropsVariantOverrides {
+        Button1: true;
+    }
+}
 
 export const theme = createTheme({
 
@@ -66,9 +71,30 @@ export const theme = createTheme({
             '700': '#2B2F33',
             '800': '#0A0B0C',
         },
-
-
     },
+    components: {
+        MuiButton: {
+            variants: [
+                {
+                    props: { variant: 'Button1' },
+                    style: {
+                        color: '#fff',
+                        backgroundColor: '#FFF',
+                        borderRadius: '5px',
+                        width: "100%",
+                        justifyContent: "flex-start",
+                        '&:hover': {
+                            backgroundColor: '#F8FAFB',
+                        },
+                        '&:active': {
+                            boxShadow: "0 0 5px 2px inset #00000026",
+                        }
+                    }
+                }
 
+            ]
+        }
+    },
+}
 
-});
+);

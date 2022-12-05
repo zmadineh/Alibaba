@@ -35,7 +35,6 @@ const HeaderMobile = () => {
                 <Grid item xs={12} display={"flex"} justifyContent={"center"} alignItems={"cnter"} sx={{ marginTop: "32px", marginBottom: "24px" }}>
                     <Link href={"/"}  >
                         <Grid >
-
                             <Image src={Logo} alt="logo" width={150} height={25} />
                         </Grid>
                     </Link>
@@ -45,8 +44,8 @@ const HeaderMobile = () => {
                     <Grid item xs={11} container display={"grid"} borderRadius={4} overflow={"hidden"} sx={theme => ({ gridTemplateColumns: "repeat(2,1fr)", gridTemplateRows: "repeat(2,1fr)", border: "solid 1px", borderColor: theme.palette.grey[200], cursor: "pointer", })} bgcolor={"white"} height={130} position={"relative"} boxShadow={1} >
                         {listOption.map(item => (
                             <Grid key={item.id} xs={12} item display={"flex"} justifyContent={"flex-start"} alignItems={"center"} sx={theme => ({ border: "1px solid", borderColor: theme.palette.grey[200] })}>
-                                <Link href={'/'} >
-                                    <Button >
+                                <Button variant='Button1' >
+                                    <Link href={'/'} >
                                         <Grid display={"flex"} sx={{ paddingRight: 2 }} gap={1} color={"common.black"} alignItems={"center"}>
                                             <Grid item >
                                                 {item.icon}
@@ -55,19 +54,19 @@ const HeaderMobile = () => {
                                                 <Typography variant='h3'>{item.title}</Typography>
                                             </Grid>
                                         </Grid>
-                                    </Button>
-                                </Link>
+                                    </Link>
+                                </Button>
                             </Grid>
                         ))}
                     </Grid>
                 </Grid>
                 {/* header2 */}
                 <Grid item container xs={12} display={display === "header1" ? "none" : "flex"} justifyContent={'center'} alignItems={"cnter"}>
-                    <Grid item xs={11} height={"50px"} display={"flex"} justifyContent={"space-between"} alignItems={"cnter"} flexDirection={"row"} bgcolor={"common.white"} borderRadius={5} boxShadow={1}>
+                    <Grid item xs={11} height={"50px"} display={"flex"} justifyContent={"space-evenly"} alignItems={"cnter"} flexDirection={"row"} bgcolor={"common.white"} borderRadius={5} boxShadow={1} gap={5}>
                         {listOption.map(item => (
-                            <Grid item color={"common.black"}>
+                            <Grid item color={"common.black"} alignItems={"center"}>
                                 <Link href={'/'}>
-                                    <Button style={{ color: "black" }}>
+                                    <Button variant='Button1' style={{ color: "black" }}>
                                         {item.icon}
                                     </Button>
                                 </Link>
