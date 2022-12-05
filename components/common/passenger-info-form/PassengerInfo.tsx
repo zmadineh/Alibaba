@@ -5,7 +5,7 @@ import PassengerIcon from '../../../public/Assets/Images/common/passenger-info/P
 import Grid from '@mui/material/Grid/Grid'
 import Typography from '@mui/material/Typography/Typography'
 import Divider from '@mui/material/Divider';
-import  Select from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button/Button';
@@ -41,7 +41,7 @@ const PassengerInfo = (props: Props) => {
                 <Grid item container display={'flex'} md={11} sm={12} m={2} border={2}borderColor={'divider'}borderRadius={2}>
                         <Grid item display={'inline-flex'} color={'grey.600'} py={2}>
                                 {/* <span style={{height:'48',width:'8px',backgroundColor:'#4b5259',borderRadius:'2px 0 0 2px'}}></span> */}
-                                <Divider sx={{height:'48',width:'8px',backgroundColor:'#4b5259',borderRadius:'0px 2px 2px 0px'}}/>
+                                <Divider sx={{height:'40px',width:'4px',backgroundColor:'#4b5259',borderRadius:'0px 2px 2px 0px'}}/>
                                 <PassengerIcon/>
                                 <Typography variant={'h5'}>
                                         {'مشخصات مسافر'}
