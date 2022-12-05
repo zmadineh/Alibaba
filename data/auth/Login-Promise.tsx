@@ -1,6 +1,6 @@
-interface LoginProps{
+export interface LoginProps{
     userName:string,
-    passWord:string
+    passWord:string,
 }
 
 
