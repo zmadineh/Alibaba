@@ -8,6 +8,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography/Typography";
 import SwappableInput from "./input-components/SwappableInput";
 import Grid from "@mui/material/Grid";
+import ToggleInputs from "./input-components/ToggleInputs";
+import PassengerCountInput from "./input-components/PassengerCountInput";
 
 
 export default function TicketSearchForm () {
@@ -17,6 +19,7 @@ export default function TicketSearchForm () {
         originCity: '',
         destinationCity: '',
         departureDate: '',
+        returnDate: '',
         passengerCount: {adult: 1, child: 0, baby: 0},
     });
 
@@ -37,18 +40,38 @@ export default function TicketSearchForm () {
         <Grid>
             <Typography variant={"h4"}>Form</Typography>
             <form onSubmit={(e) => handleSubmit(e)}>
-                <SwappableInput
-                    firstInputName={'originCity'}
-                    secondInputName={'destinationCity'}
-                    firstData={internalCities}
-                    secondData={internalCities}
-                    firstLabel={'مبدا'}
-                    secondLabel={'مقصد'}
-                    handleChange={handleChangeWithName}
-                    form={form}
-                    setForm={setForm}
-                />
-                <Button type={"submit"} variant={"contained"}>{`جستجو`}</Button>
+                <Grid container spacing={2} flexWrap={"nowrap"} flexDirection={{xs: 'column', sm: 'row'}} width={'100% '}>
+                    <Grid item xs={12} sm={4}>
+                        <SwappableInput
+                            firstInputName={'originCity'}
+                            secondInputName={'destinationCity'}
+                            firstData={internalCities}
+                            secondData={internalCities}
+                            firstLabel={'مبدا'}
+                            secondLabel={'مقصد'}
+                            handleChange={handleChangeWithName}
+                            form={form}
+                            setForm={setForm}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={3}>
+                        <ToggleInputs
+                            firstLabel={'تاریخ رفت'}
+                            secondLabel={'تاریخ برگشت'}
+                            firstName={'departureDate'}
+                            secondName={'returnDate'}
+                            handleChange={handleChange}
+                            form={form}
+                            setForm={setForm}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={3}>
+                        <PassengerCountInput />
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                        <Button type={"submit"} variant={"contained"}>{`جستجو`}</Button>
+                    </Grid>
+                </Grid>
             </form>
         </Grid>
     );

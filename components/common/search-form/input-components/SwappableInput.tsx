@@ -50,13 +50,13 @@ export default function SwappableInput({firstInputName, secondInputName, handleC
     }, [firstValue, secValue]);
 
     return (
-        <Grid container>
             <Grid
                 display={"flex"}
                 flexDirection={{xs: 'column', sm: 'row'}}
                 alignItems={{xs: 'flex-end', sm: 'center'}}
                 justifyContent={"center"}
                 position={"relative"}
+                width={'100%'}
             >
 
                 {!mobileMatch &&
@@ -83,6 +83,7 @@ export default function SwappableInput({firstInputName, secondInputName, handleC
                         label={firstLabel}
                         name={firstInputName}
                         handleChange={handleChange}
+                        form={form}
                     />
                 }
 
@@ -118,10 +119,10 @@ export default function SwappableInput({firstInputName, secondInputName, handleC
                         label={secondLabel}
                         name={secondInputName}
                         handleChange={handleChange}
+                        form={form}
                     />
                 }
 
             </Grid>
-        </Grid>
     )
 }

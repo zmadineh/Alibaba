@@ -26,17 +26,19 @@ interface inputSelectorProps {
     label: string,
     name: string,
     handleChange: (name: string, value: string) => void,
+    form: searchFromValue,
 }
 
-export default function InputSelector({open, setOpen, value, setValue, data, label, name, handleChange} : inputSelectorProps) {
+export default function InputSelector({open, setOpen, value, setValue, data, label, name, handleChange, form} : inputSelectorProps) {
 
     const handleClose = useCallback((value : string | null) => {
         setOpen(false);
         if (value){
             setValue(value);
             handleChange(name, value)
+            console.log(name, value, 'select')
         }
-    }, [value]);
+    }, [value, form]);
 
     return (
         <Grid>
@@ -47,14 +49,18 @@ export default function InputSelector({open, setOpen, value, setValue, data, lab
                 data={data}
                 label={label}
             />
+
             <TextField
                 id="selectorInput"
                 // label={label}
-                variant="standard"
+                variant={"standard"}
+                size={"small"}
                 placeholder={label}
                 onClick={() => setOpen(true)}
                 value={value}
+                sx={{padding: 1}}
             />
+
         </Grid>
     )
 }

@@ -28,7 +28,6 @@ export default function CustomAutocomplete({value, setValue, input, setInput, da
 
     const onInputChange = (event : SyntheticEvent, newValue: string | undefined) => {
         setInput(newValue)
-        // handleChange(name, '')
     }
 
     return(
@@ -38,10 +37,9 @@ export default function CustomAutocomplete({value, setValue, input, setInput, da
           inputValue={input}
           onInputChange={(event, newInputValue) => onInputChange(event, newInputValue)}
           id='custom-autoComplete'
-          // freeSolo
+          sx={{width: '100%'}}
           fullWidth
           options={dataArray}
-          sx={{ width: 220 }}
           renderInput={(params) => (
               <TextField
                   {...params}

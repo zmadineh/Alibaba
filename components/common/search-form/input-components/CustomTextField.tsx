@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 interface CustomTextFieldProps {
     label: string,
     name: string,
+    borderRadius: string,
     changeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
@@ -13,10 +14,13 @@ const CustomTextField = (props: CustomTextFieldProps) => {
             label={props.label}
             name={props.name}
             onChange={props.changeHandler}
-
             variant={"outlined"}
             size={"small"}
-            margin={"dense"}
+            sx={{
+                '& .MuiInputBase-root': {
+                    borderRadius: props.borderRadius
+                }
+            }}
         />
     );
 }
