@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid/Grid'
 
 import LayoutMobile from '../components/layout/layoutMobile/LayoutMobile'
 import Tabview from '../components/home/tabview/Tabview'
+import Footer from '../components/layout/Footer'
 
 
 
@@ -23,6 +24,7 @@ export default function Home() {
       <Grid>
 
       </Grid>
+      <Footer/>
     </div>
   )
 }
