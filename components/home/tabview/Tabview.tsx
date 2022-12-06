@@ -27,7 +27,10 @@ interface TabPanelProps {
     value: number;
   }
 
-type Props = {}
+type Props = {
+  value:number
+  setValue:React.Dispatch<React.SetStateAction<number>>
+}
 interface TabItemType{
   id:number,
   title:string,
@@ -35,9 +38,9 @@ interface TabItemType{
   component:string
 }
 
-const Tabview = (props: Props) => {
+const Tabview = ({value,setValue}: Props) => {
     
-    const [value, setValue] = useState<number>(0);
+    
     const TabItem:TabItemType[] =[
         {id:0 , title:'پرواز داخلی' , icon:<InternalFlightIcon/>, component:'کامپوننت پرواز داخلی'},
         {id:1 , title:'پرواز خارجی' , icon:<ExternalFlightIcon/>, component:'کامپوننت پرواز خارجی '},
