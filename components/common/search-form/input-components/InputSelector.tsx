@@ -1,19 +1,15 @@
-import SelectDialog from "../select-dialog/SelectDialog";
 import React, {useCallback} from "react";
+import SelectDialog from "../select-dialog/SelectDialog";
+
+import {searchFromValue} from "../../../../model/searchFormValue.type";
 
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
-import {iconMap} from "../../../../data/iconMap";
-import {passengersCount} from "../../../../model/passengerCount.type";
-import {searchFromValue} from "../../../../model/searchFormValue.type";
+import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+
 
 // interfaces
-interface valueType {
-    first: string | null,
-    second: string | null,
-}
-
 interface inputSelectorProps {
     open: boolean,
     setOpen: React.Dispatch<React.SetStateAction<boolean>>,
@@ -60,7 +56,8 @@ export default function InputSelector({open, setOpen, value, setValue, data, lab
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start" sx={{margin: 1}}>
-                            {iconMap.find(item => item.iconName === iconName).icon}
+                            <CalendarMonthOutlinedIcon />
+                            {/*{iconMap.find(item => item.iconName === iconName).icon}*/}
                         </InputAdornment>
                     ),
                 }}

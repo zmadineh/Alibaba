@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import SwappableTemplate from "./SwappableTemplate";
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import Grid from "@mui/material/Grid/Grid";
 
 
 interface SwappableInputProps {
@@ -42,9 +43,12 @@ export default function TabletSwappableInput(props : SwappableInputProps) {
 
     }
     return (
-
         <SwappableTemplate
+
             children1={
+            <Grid width={'100%'}>
+
+
                 <TextField
                    placeholder={firstLabel}
                    name={firstInputName}
@@ -66,6 +70,7 @@ export default function TabletSwappableInput(props : SwappableInputProps) {
                    }}
                    onClick={inputOnClick}
                 />
+            </Grid>
 
         }
             children2={
