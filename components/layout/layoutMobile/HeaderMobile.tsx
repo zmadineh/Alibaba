@@ -12,6 +12,7 @@ import { listOption } from './../../../data/listOption';
 import Logo from "../../../public/Assets/logo.png"
 import { useTheme } from '@emotion/react';
 import Image from 'next/image';
+import { fontFamily } from '@mui/system';
 
 
 const HeaderMobile = () => {
@@ -21,7 +22,7 @@ const HeaderMobile = () => {
         document.addEventListener("scroll", e => {
             const scrolled: number | undefined = document?.scrollingElement?.scrollTop;
             if (scrolled) {
-                if (scrolled >= 10) {
+                if (scrolled >= 15) {
                     setDisplay("header2")
                 } else {
                     setDisplay("header1")
@@ -34,7 +35,7 @@ const HeaderMobile = () => {
             <Grid item container xs={12} sx={{ zIndex: -1, position: "fixed" }} top={0} bgcolor={"primary.main"} width={"100%"} height={display === "header1" ? "150px" : "110px"}>
                 <Grid item xs={12} display={"flex"} justifyContent={"center"} alignItems={"cnter"} sx={{ marginTop: "32px", marginBottom: "24px" }}>
                     <Link href={"/"}  >
-                        <Grid width={display === "header1" ? "150px" : "100px"} height={display === "header1" ? "35px" : "25px"}>
+                        <Grid width={display === "header1" ? "125px" : "100px"} height={display === "header1" ? "20px" : "16px"}>
 
                             <Image src={Logo} alt="logo" style={{ width: "100%", height: "100%" }} />
                         </Grid>
@@ -47,12 +48,12 @@ const HeaderMobile = () => {
                             <Grid key={item.id} xs={12} item display={"flex"} justifyContent={"flex-start"} alignItems={"center"} sx={theme => ({ border: "1px solid", borderColor: theme.palette.grey[200] })}>
                                 <Button variant='Button1' >
                                     <Link href={'/'} >
-                                        <Grid display={"flex"} sx={{ paddingRight: 2 }} gap={1} color={"common.black"} alignItems={"center"}>
+                                        <Grid display={"flex"} sx={theme => ({ paddingRight: 2, color: theme.palette.grey[700] })} gap={1} alignItems={"center"}>
                                             <Grid item >
                                                 {item.icon}
                                             </Grid>
-                                            <Grid item>
-                                                <Typography variant='h3'>{item.title}</Typography>
+                                            <Grid item sx={{ marginBottom: "5px" }}>
+                                                <Typography variant='h3' sx={theme => ({ textDecoriarion: "none solid theme.palette.grey[700]" })}>{item.title}</Typography>
                                             </Grid>
                                         </Grid>
                                     </Link>
@@ -63,7 +64,7 @@ const HeaderMobile = () => {
                 </Grid>
                 {/* header2 */}
                 <Grid item container xs={12} display={display === "header1" ? "none" : "flex"} justifyContent={'center'} alignItems={"cnter"}>
-                    <Grid item xs={11} height={"50px"} display={"flex"} justifyContent={"space-evenly"} alignItems={"cnter"} flexDirection={"row"} bgcolor={"common.white"} borderRadius={5} boxShadow={1} gap={5}>
+                    <Grid item xs={11} height={"50px"} display={"flex"} justifyContent={"space-evenly"} alignItems={"cnter"} flexDirection={"row"} bgcolor={"common.white"} borderRadius={3} boxShadow={1} gap={1}>
                         {listOption.map(item => (
                             <Grid item color={"common.black"} alignItems={"center"}>
                                 <Link href={'/'}>

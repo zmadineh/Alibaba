@@ -79,6 +79,16 @@ export default function Home() {
           </div>
 
         </Grid>
+        <Grid item xs={11} >
+
+          <Typography variant={'h3'} color={'info.300'}>
+            {'پرواز داخلی'}
+          </Typography>
+          <div>
+            <h3>پرواز داخلی</h3>
+          </div>
+
+        </Grid>
       </Grid>
 
 
