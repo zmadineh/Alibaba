@@ -1,10 +1,10 @@
 export function getTicket(category:string,date:string,travelerCount:number):BusTicket_type[]|null {
-    switch (category){
+    switch(category){
         case 'bus':
-            return BusTicket.filter((item)=>{(item.ticketDate===date)&&(item.Remaining_seats>=travelerCount)});
-        default : 
-            return null
-    }
+            return BusTicket.filter(item => (item.Remaining_seats>=travelerCount)&&(item.ticketDate===date));
+        default :
+            return null;
+        }
 }
 
 export interface BusTicket_type {
