@@ -7,10 +7,9 @@ declare module '@mui/material/Button' {
 }
 
 export const theme = createTheme({
-
+    direction: 'rtl',
     typography: {
-        fontFamily: 'Alibaba',
-
+        fontFamily: 'Alibaba'
     },
 
     palette: {
