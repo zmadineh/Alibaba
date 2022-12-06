@@ -11,7 +11,7 @@ export const theme = createTheme({
     typography: {
         fontFamily: 'Alibaba',
         h3: {
-            fontSize: 22,
+            fontSize: 20,
             fontWeight: 700,
             lineHeight: "21.7px",
 
