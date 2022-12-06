@@ -1,11 +1,11 @@
 import React from 'react'
 
 import Image from 'next/image'
-import Hero1 from '/public/Assets/Images/Hero/Hero1.png'
-import Hero2 from '/public/Assets/Images/Hero/Hero2.png'
-import Hero3 from '/public/Assets/Images/Hero/Hero3.png'
-import Hero4 from '/public/Assets/Images/Hero/Hero4.png'
-import Hero5 from '/public/Assets/Images/Hero/Hero5.png'
+import Hero1 from '/public/Assets/Images/Hero/hero1.png'
+import Hero2 from '/public/Assets/Images/Hero/hero2.png'
+import Hero3 from '/public/Assets/Images/Hero/hero3.png'
+import Hero4 from '/public/Assets/Images/Hero/hero4.png'
+import Hero5 from '/public/Assets/Images/Hero/hero5.png'
 
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/css";

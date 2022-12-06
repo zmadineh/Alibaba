@@ -43,17 +43,17 @@ const HeaderMobile = () => {
                 </Grid>
                 {/* header1 */}
                 <Grid item xs={12} display={display === "header1" ? "flex" : "none"} justifyContent={"center"} alignItems={"cnter"} flexDirection={"row"} sx={{ cursor: "pointer" }}>
-                    <Grid item xs={11} container display={"grid"} borderRadius={4} overflow={"hidden"} sx={theme => ({ gridTemplateColumns: "repeat(2,1fr)", gridTemplateRows: "repeat(2,1fr)", border: "solid 1px", borderColor: theme.palette.grey[200], cursor: "pointer", })} bgcolor={"white"} height={130} position={"relative"} boxShadow={1} >
+                    <Grid item xs={11} container display={"grid"} borderRadius={4} overflow={"hidden"} sx={{ gridTemplateColumns: "repeat(2,1fr)", gridTemplateRows: "repeat(2,1fr)", border: "solid 1px", borderColor: 'grey.200', cursor: "pointer", }} bgcolor={"white"} height={130} position={"relative"} boxShadow={1} >
                         {listOption.map(item => (
-                            <Grid key={item.id} xs={12} item display={"flex"} justifyContent={"flex-start"} alignItems={"center"} sx={theme => ({ border: "1px solid", borderColor: theme.palette.grey[200] })}>
+                            <Grid key={item.id} xs={12} item display={"flex"} justifyContent={"flex-start"} alignItems={"center"} sx={{ border: "1px solid", borderColor: 'grey.200' }}>
                                 <Button variant='Button1' >
                                     <Link href={'/'} >
-                                        <Grid display={"flex"} sx={theme => ({ paddingRight: 2, color: theme.palette.grey[700] })} gap={1} alignItems={"center"}>
+                                        <Grid display={"flex"} sx={{ paddingRight: 2, color: 'grey.700' }} gap={1} alignItems={"center"}>
                                             <Grid item >
                                                 {item.icon}
                                             </Grid>
                                             <Grid item sx={{ marginBottom: "5px" }}>
-                                                <Typography variant='h6' sx={theme => ({ textDecoriarion: "none solid theme.palette.grey[700]" })}><strong>{item.title}</strong></Typography>
+                                                <Typography variant='h6' sx={{ textDecoriarion: "none solid grey.700" }}><strong>{item.title}</strong></Typography>
                                             </Grid>
                                         </Grid>
                                     </Link>
@@ -66,7 +66,7 @@ const HeaderMobile = () => {
                 <Grid item container xs={12} display={display === "header1" ? "none" : "flex"} justifyContent={'center'} alignItems={"cnter"}>
                     <Grid item xs={11} height={"50px"} display={"flex"} justifyContent={"space-evenly"} alignItems={"cnter"} flexDirection={"row"} bgcolor={"common.white"} borderRadius={3} boxShadow={1} gap={1} overflow={"hidden"}>
                         {listOption.map(item => (
-                            <Grid item color={"common.black"} alignItems={"center"}>
+                            <Grid item key={item.id} color={"common.black"} alignItems={"center"}>
                                 <Link href={'/'}>
                                     <Button variant='Button1' style={{ color: "black" }}>
                                         {item.icon}
