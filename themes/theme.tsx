@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material/styles';
 
 
 export const theme = createTheme({
-
+    direction: 'rtl',
     typography:{
         fontFamily:'Alibaba'
     },
@@ -60,6 +60,7 @@ export const theme = createTheme({
         '600':'#4B5259',
         '700':'#2B2F33',
         '800':'#0A0B0C',
+        '900':'#F6F6F6'
     },
     
     
