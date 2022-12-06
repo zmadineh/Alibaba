@@ -22,7 +22,7 @@ const HelpCard = () => {
                         </Grid>
                         <Grid item className='taypo' display={"flex"} flexDirection={"column"} sx={{ textAlign: { sx: "right", md: "center" } }} gap={2}>
                             <Grid item sx={theme => ({ color: theme.palette.grey[500] })} >
-                                <Typography variant="h4"  > <strong>{item.title}</strong></Typography>
+                                <Typography variant="h6"  > <strong>{item.title}</strong></Typography>
                             </Grid>
                             <Grid item sx={theme => ({ color: theme.palette.grey[400] })}>
                                 <Typography variant='h6' ><strong>{item.body}</strong></Typography>
