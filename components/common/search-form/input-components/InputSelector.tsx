@@ -5,19 +5,13 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import {iconMap} from "../../../../data/iconMap";
+import {passengersCount} from "../../../../model/passengerCount.type";
+import {searchFromValue} from "../../../../model/searchFormValue.type";
 
 // interfaces
-interface passenger {
-    adult: number,
-    child: number,
-    baby: number,
-}
-
-interface searchFromValue {
-    originCity: string,
-    destinationCity: string,
-    departureDate: string,
-    passengerCount: passenger,
+interface valueType {
+    first: string | null,
+    second: string | null,
 }
 
 interface inputSelectorProps {

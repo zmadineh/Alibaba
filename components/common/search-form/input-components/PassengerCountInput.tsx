@@ -14,13 +14,13 @@ import AirlineSeatReclineExtraOutlinedIcon from '@mui/icons-material/AirlineSeat
 export default function PassengerCountInput() {
 
     const theme = useTheme();
-    const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
+    const tabletMatch = useMediaQuery(theme.breakpoints.down('md'));
 
     const [count, setCount] = useState<passengersCount>({adult: 1, child: 0, baby: 0})
     const [open, setOpen] = useState<boolean>(false)
-    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+    const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(null);
 
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement, HTMLDivElement>) => {
+    const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
         setOpen(true)
         setAnchorEl(event.currentTarget);
     };
@@ -39,16 +39,15 @@ export default function PassengerCountInput() {
             position={"relative"}
             width={'100%'}
         >
-            {mobileMatch &&
-                // <PassengerCountDialog count={count} setCount={setCount} open={open} setOpen={setOpen} />
+            {tabletMatch &&
                 <SwipeableEdgeDrawer count={count} setCount={setCount} open={open} setOpen={setOpen} />
             }
 
-            {!mobileMatch &&
+            {!tabletMatch &&
                 <PassengerCountPopover count={count} setCount={setCount} open={open} setOpen={setOpen} anchorEl={anchorEl} handleClose={handleClose} />
             }
 
-            {!mobileMatch &&
+            {!tabletMatch &&
                 <TextField
                     variant={"outlined"}
                     size={"small"}
@@ -58,13 +57,13 @@ export default function PassengerCountInput() {
                 />
             }
 
-            {mobileMatch &&
+            {tabletMatch &&
                 <TextField
                     variant={'standard'}
                     size={"small"}
                     fullWidth
                     placeholder={`بزرگسال${count.adult.toString()}` + '، ' + `کودک${count.child.toString()}` + ' و ' + `نوزاد${count.baby.toString()}`}
-                    onClick={(event) => handleClick(event)}
+                    onClick={(event) =>  handleClick(event)}
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start" sx={{margin: 1}}>

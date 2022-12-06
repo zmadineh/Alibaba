@@ -16,7 +16,7 @@ interface PassengerCountPopoverProps {
     setCount: React.Dispatch<React.SetStateAction<passengersCount>>,
     open: boolean,
     setOpen: React.Dispatch<React.SetStateAction<boolean>>,
-    anchorEl: HTMLButtonElement | null,
+    anchorEl: HTMLDivElement | null,
     handleClose: () => void
 }
 

@@ -6,7 +6,7 @@ import {internalCities} from "../../../data/internalCities";
 
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography/Typography";
-import SwappableInput from "./input-components/SwappableInput";
+import SwappableInput from "./input-components/swappable-inputs/SwappableInput";
 import Grid from "@mui/material/Grid";
 import ToggleInputs from "./input-components/ToggleInputs";
 import PassengerCountInput from "./input-components/PassengerCountInput";
@@ -40,7 +40,7 @@ export default function TicketSearchForm () {
         <Grid>
             <Typography variant={"h4"}>Form</Typography>
             <form onSubmit={(e) => handleSubmit(e)}>
-                <Grid container spacing={2} flexWrap={"nowrap"} flexDirection={{xs: 'column', sm: 'row'}} width={'100% '}>
+                <Grid container spacing={2} flexWrap={"nowrap"} flexDirection={{xs: 'column', md: 'row'}} width={'100% '}>
                     <Grid item xs={12} sm={4}>
                         <SwappableInput
                             firstInputName={'originCity'}
