@@ -64,7 +64,7 @@ const HeaderMobile = () => {
                 </Grid>
                 {/* header2 */}
                 <Grid item container xs={12} display={display === "header1" ? "none" : "flex"} justifyContent={'center'} alignItems={"cnter"}>
-                    <Grid item xs={11} height={"50px"} display={"flex"} justifyContent={"space-evenly"} alignItems={"cnter"} flexDirection={"row"} bgcolor={"common.white"} borderRadius={3} boxShadow={1} gap={1}>
+                    <Grid item xs={11} height={"50px"} display={"flex"} justifyContent={"space-evenly"} alignItems={"cnter"} flexDirection={"row"} bgcolor={"common.white"} borderRadius={3} boxShadow={1} gap={1} overflow={"hidden"}>
                         {listOption.map(item => (
                             <Grid item color={"common.black"} alignItems={"center"}>
                                 <Link href={'/'}>
