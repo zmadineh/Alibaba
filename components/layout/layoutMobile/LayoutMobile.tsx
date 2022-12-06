@@ -13,7 +13,7 @@ interface LayoutMobile {
 
 const LayoutMobile = ({ children }: LayoutMobile) => {
     return (
-        <Grid xs={12} item container justifyContent={"center"} alignItems={"center"}>
+        <Grid display={{xs:'flex',md:'none'}} xs={12} item container justifyContent={"center"} alignItems={"center"}>
 
             <Grid container item>
                 <HeaderMobile />
