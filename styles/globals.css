@@ -2,29 +2,33 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Alibaba, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+
+  font-family: Alibaba, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-/* @font-face {
+@font-face {
   font-family: 'Alibaba';
   src: url('../public/Assets/Fonts/Alibaba-Regular.ttf') format('truetype');
-  
+
   font-style: normal;
-   }
+}
+
 @font-face {
   font-family: 'Alibaba';
   src: url('../public/Assets/Fonts/Alibaba-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
-   }
+}
+
 @font-face {
   font-family: 'Alibaba';
   src: url('../public/Assets/Fonts/Alibaba-Light.ttf') format('truetype');
   font-weight: light;
   font-style: normal;
-   }
- */
+}
+
 
 
 a {

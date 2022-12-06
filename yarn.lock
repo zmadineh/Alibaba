@@ -1523,11 +1523,6 @@
   "resolved" "https://registry.npmjs.org/@types/scheduler/-/scheduler-0.16.2.tgz"
   "version" "0.16.2"
 
-"@types/stylis@^4.0.2":
-  "integrity" "sha512-wtckGuk1eXUlUz0Qb1eXHG37Z7HWT2GfMdqRf8F/ifddTwadSS9Jwsqi4qtXk7cP7MtoyGVIHPElFCLc6HItbg=="
-  "resolved" "https://registry.npmjs.org/@types/stylis/-/stylis-4.0.2.tgz"
-  "version" "4.0.2"
-
 "@typescript-eslint/parser@^5.42.0":
   "integrity" "sha512-brvs/WSM4fKUmF5Ot/gEve6qYiCMjm6w4HkHPfS6ZNmxTS0m0iNN4yOChImaCkqc1hRwFGqUyanMXuGal6oyyQ=="
   "resolved" "https://registry.npmjs.org/@typescript-eslint/parser/-/parser-5.45.0.tgz"
@@ -1934,10 +1929,6 @@
   "resolved" "https://registry.npmjs.org/css-what/-/css-what-6.1.0.tgz"
   "version" "6.1.0"
 
-"cssjanus@^2.0.1":
-  "integrity" "sha512-kAijbny3GmdOi9k+QT6DGIXqFvL96aksNlGr4Rhk9qXDZYWUojU4bRc3IHWxdaLNOqgEZHuXoe5Wl2l7dxLW5g=="
-  "resolved" "https://registry.npmjs.org/cssjanus/-/cssjanus-2.1.0.tgz"
-  "version" "2.1.0"
 
 "csso@^4.2.0":
   "integrity" "sha512-wvlcdIbf6pwKEk7vHj8/Bkc0B4ylXZruLvOgs9doS5eOsOpuodOV2zJChSpkp+pRpYQLQMeF04nr3Z68Sta9jA=="
