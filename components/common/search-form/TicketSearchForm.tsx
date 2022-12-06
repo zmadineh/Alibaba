@@ -6,8 +6,9 @@ import {internalCities} from "../../../data/internalCities";
 
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography/Typography";
-import SwappableInput from "./input-components/swappable-inputs/SwappableInput";
 import Grid from "@mui/material/Grid";
+
+import SwappableInput from "./input-components/swappable-inputs/SwappableInput";
 import ToggleInputs from "./input-components/ToggleInputs";
 import PassengerCountInput from "./input-components/PassengerCountInput";
 

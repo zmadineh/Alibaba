@@ -40,67 +40,40 @@ export default function SwappableInput({firstInputName, secondInputName, handleC
 
     const [firstValue,setFirstValue] = useState<string | null>('');
     const [secValue,setSecValue] = useState<string | null>('');
-    const [firstInput,setFirstInput] = useState<string | undefined>('');
-    const [secInput,setSecInput] = useState<string | undefined>('');
-    const [openFirst, setOpenFirst] = useState<boolean>(false);
-    const [openSec, setOpenSec] = useState<boolean>(false);
-    const [selectInput, setSelectInput] = useState<boolean>(false)
 
-    const [borderRadius, setBorderRadius] = useState<{r1: string, r2: string}>({r1: "0 8px 8px 0", r2: "8px 0 0 8px"})
+    const flipData = useCallback(() => {
+        console.log(secValue, firstValue)
 
-    useEffect(() => {
-        if (tabletMatch) {
-            setBorderRadius({r1: "8px 8px 0 0px", r2: "0 0 8px 8px"})
+        if (secValue && firstValue) {
+            const temp1 = firstValue;
+            const temp2 = secValue;
+            setSecValue(temp1)
+            setFirstValue(temp2)
+            setForm({...form, [firstInputName] : temp2, [secondInputName] : temp1});
+            console.log(firstInputName, temp2, secondInputName, temp1)
         }
-        if (!tabletMatch) {
-            setBorderRadius({r1: "0 8px 8px 0", r2: "8px 0 0 8px"})
-        }
-    },[tabletMatch]);
+    }, [firstValue, secValue]);
+
+    const props = {firstInputName, secondInputName, handleChange, firstData, secondData,
+        firstLabel, secondLabel, form, setForm, iconName, firstValue, setFirstValue, secValue, setSecValue, flipData};
 
     return (
         <>
             {mobileMatch &&
                 <MobileSwappableInput
-                    firstInputName={firstInputName}
-                    secondInputName={secondInputName}
-                    firstData={firstData}
-                    secondData={secondData}
-                    firstLabel={firstLabel}
-                    secondLabel={secondLabel}
-                    handleChange={handleChange}
-                    form={form}
-                    setForm={setForm}
-                    iconName={iconName}
+                    {...props}
                     />
             }
 
             {!mobileMatch && tabletMatch &&
                 <TabletSwappableInput
-                    firstInputName={firstInputName}
-                    secondInputName={secondInputName}
-                    firstData={firstData}
-                    secondData={secondData}
-                    firstLabel={firstLabel}
-                    secondLabel={secondLabel}
-                    handleChange={handleChange}
-                    form={form}
-                    setForm={setForm}
-                    iconName={iconName}
+                    {...props}
                 />
             }
 
             {laptopMatch &&
                 <LaptopSwappableInput
-                    firstInputName={firstInputName}
-                    secondInputName={secondInputName}
-                    firstData={firstData}
-                    secondData={secondData}
-                    firstLabel={firstLabel}
-                    secondLabel={secondLabel}
-                    handleChange={handleChange}
-                    form={form}
-                    setForm={setForm}
-                    iconName={iconName}
+                    {...props}
                 />
             }
         </>
