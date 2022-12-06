@@ -7,6 +7,7 @@ import { Typography } from '@mui/material';
 
 //data
 import { hlepCardData } from './../../../data/help-card-data';
+import { fontFamily } from '@mui/system';
 
 
 const HelpCard = () => {
@@ -21,20 +22,20 @@ const HelpCard = () => {
                         </Grid>
                         <Grid item className='taypo' display={"flex"} flexDirection={"column"} sx={{ textAlign: { sx: "right", md: "center" } }} gap={2}>
                             <Grid item sx={theme => ({ color: theme.palette.grey[500] })} >
-                                <Typography sx={{ fontSize: 25, fontWeight: 700 }} >{item.title}</Typography>
+                                <Typography variant="h4"  > <strong>{item.title}</strong></Typography>
                             </Grid>
                             <Grid item sx={theme => ({ color: theme.palette.grey[400] })}>
-                                <Typography sx={{ fontSize: 18, fontWeight: 600 }} >{item.body}</Typography>
+                                <Typography variant='h6' ><strong>{item.body}</strong></Typography>
                             </Grid>
-                            <Grid item display={"flex"} gap={3} alignItems={"center"} sx={theme => ({ color: theme.palette.secondary.main, justifyContent: { xs: "flex-start", md: "center" }, cursor: "pointer" })}  >
-                                <Grid item> <Typography sx={{ fontSize: 18, fontWeight: 500 }}>{item.body2}</Typography></Grid>
-                                <Grid item sx={theme => ({ color: theme.palette.secondary.main })}>{item.icon2}</Grid>
+                            <Grid item display={"flex"} gap={3} alignItems={"center"} sx={theme => ({ color: theme.palette.secondary[300], justifyContent: { xs: "flex-start", md: "center" }, cursor: "pointer" })}  >
+                                <Grid item> <Typography variant='h6' sx={{ marginBottom: "4px" }}  > <strong>{item.body2}</strong></Typography></Grid>
+                                <Grid item sx={theme => ({ color: theme.palette.secondary.main })}> {item.icon2}</Grid>
                             </Grid>
                         </Grid>
                     </Grid>
                 ))}
             </Grid>
-        </Grid>
+        </Grid >
     )
 }
 
