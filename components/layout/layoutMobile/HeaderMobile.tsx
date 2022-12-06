@@ -53,7 +53,7 @@ const HeaderMobile = () => {
                                                 {item.icon}
                                             </Grid>
                                             <Grid item sx={{ marginBottom: "5px" }}>
-                                                <Typography variant='h3' sx={theme => ({ textDecoriarion: "none solid theme.palette.grey[700]" })}>{item.title}</Typography>
+                                                <Typography variant='h6' sx={theme => ({ textDecoriarion: "none solid theme.palette.grey[700]" })}><strong>{item.title}</strong></Typography>
                                             </Grid>
                                         </Grid>
                                     </Link>
