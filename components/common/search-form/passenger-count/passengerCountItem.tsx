@@ -40,7 +40,7 @@ export default function PassengerCountItem({count, setCount, name, currentCount}
         <Grid container item p={2} alignItems={"center"}>
             <Grid item xs={6} display={"flex"} justifyContent={"flex-start"} alignItems={"center"} gap={1}>
                 <FaceOutlinedIcon />
-                <Typography variant={'h6'}> {passengerType.find(item => item.name === name).label} </Typography>
+                <Typography variant={'h6'}> {name} </Typography>
             </Grid>
 
             <Grid item xs={6} gap={1} display={"flex"} justifyContent={"center"}>
