@@ -8,8 +8,15 @@ import PassengerCountPopover from "./PassengerCountPopover";
 import SwipeableEdgeDrawer from "./SwipeableEdgeDrawer";
 import InputAdornment from "@mui/material/InputAdornment";
 import AirlineSeatReclineExtraOutlinedIcon from '@mui/icons-material/AirlineSeatReclineExtraOutlined';
+import {searchFromValue} from "../../../../model/searchFormValue.type";
 
-export default function PassengerCountInput() {
+interface PassengerCountInput {
+    form: searchFromValue,
+    setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
+    name: string,
+}
+
+export default function PassengerCountInput({form, setForm, name}: PassengerCountInput) {
 
     const theme = useTheme();
     const tabletMatch = useMediaQuery(theme.breakpoints.down('md'));
@@ -27,6 +34,7 @@ export default function PassengerCountInput() {
     const handleClose = () => {
         setAnchorEl(null);
         setOpen(false)
+        setForm({...form, passengerCount: count})
     };
 
     return (

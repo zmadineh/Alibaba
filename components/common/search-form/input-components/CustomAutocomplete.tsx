@@ -38,7 +38,9 @@ export default function CustomAutocomplete({value, setValue, input, setInput, da
     }
 
     const handelItemClick = (newValue: string) => {
+        console.log(newValue)
         setValue(newValue)
+        handleChange(name, newValue)
     }
 
     return(

@@ -67,7 +67,11 @@ export default function TicketSearchForm () {
                         />
                     </Grid>
                     <Grid item xs={12} md={3}>
-                        <PassengerCountInput />
+                        <PassengerCountInput
+                            form={form}
+                            setForm={setForm}
+                            name={'passengerCount'}
+                        />
                     </Grid>
                     <Grid item xs={12} md={1}>
                         <Button type={"submit"} variant={"contained"} size={"medium"} sx={{height: '100%', width: '100%'}}>{`جستجو`}</Button>
