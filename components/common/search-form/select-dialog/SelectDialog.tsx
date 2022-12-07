@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 
+import {data} from "../../../../model/data.type";
+
 import SelectDialogHeader from "./SelectDialogHeader";
 
 import Dialog from '@mui/material/Dialog';
@@ -7,6 +9,11 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
+import SelectDialogListItem from "./SelectDialogListItem";
+import {getTitleArray} from "../../../../helper/getTitleArray.helper";
+import Grid from "@mui/material/Grid/Grid";
+import {Divider} from "@mui/material";
+import DataList from "./DataList";
 
 
 const Transition = React.forwardRef(function Transition(
@@ -21,7 +28,7 @@ const Transition = React.forwardRef(function Transition(
 
 interface selectDialogProps {
     open: boolean,
-    data: string[],
+    data: data[],
     selectedValue: string,
     onClose: (value: string) => void,
     label: string,
@@ -56,12 +63,8 @@ export default function SelectDialog({open, data, onClose, selectedValue, label}
                     label={label}
                 />
                 <div style={{overflow: "hidden", height: '1px'}}></div>
-                <List>
-                    {data ? data.filter(item => item.toLowerCase().includes(search)).map(item => (
-                            <Typography key={item} onClick={() => handelItemClick(item)}>{item}</Typography>
-                        ))
-                        : null}
-                </List>
+
+                <DataList data={data} search={search} handelItemClick={handelItemClick} noDescription={true}/>
             </Dialog>
         </div>
     );

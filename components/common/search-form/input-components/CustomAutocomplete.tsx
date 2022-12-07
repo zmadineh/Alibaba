@@ -4,6 +4,12 @@ import {searchFromValue} from "../../../../model/searchFormValue.type";
 
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
+import DataList from "../select-dialog/DataList";
+import SelectDialogListItem from "../select-dialog/SelectDialogListItem";
+import Divider from "@mui/material/Divider";
+import Grid from "@mui/material/Grid/Grid";
+import {data} from "../../../../model/data.type";
+import {getTitleArray} from "../../../../helper/getTitleArray.helper";
 
 
 interface autocompleteProps {
@@ -11,7 +17,7 @@ interface autocompleteProps {
     setValue:  React.Dispatch<React.SetStateAction<string>>,
     input: string,
     setInput:  React.Dispatch<React.SetStateAction<string>>,
-    dataArray: string[],
+    dataArray: data[],
     label: string,
     borderRadius: string,
     name: string,
@@ -31,6 +37,10 @@ export default function CustomAutocomplete({value, setValue, input, setInput, da
         setInput(newValue)
     }
 
+    const handelItemClick = (newValue: string) => {
+        setValue(newValue)
+    }
+
     return(
       <Autocomplete
           value={value}
@@ -39,19 +49,54 @@ export default function CustomAutocomplete({value, setValue, input, setInput, da
           onInputChange={(event, newInputValue) => onInputChange(event, newInputValue)}
           id='custom-autoComplete'
           fullWidth
-          options={dataArray}
+          options={getTitleArray(dataArray)}
           renderInput={(params) => (
               <TextField
                   {...params}
                   label={label}
-                  size={"small"}
+                  size={"medium"}
                   sx={{
+                      // '& :hover': {
+                      //     color: "grey.400",
+                      //     '& .MuiOutlinedInput-notchedOutline': {
+                      //         borderColor: "grey.400",
+                      //     },
+                      // },
+                      //
+                      // '& .Mui-focused': {
+                      //     color: "grey.400",
+                      //     '& .MuiOutlinedInput-notchedOutline': {
+                      //         borderColor: "grey.500",
+                      //         borderWidth: '0.5px',
+                      //     },
+                      // },
+
                       '& .MuiInputBase-root': {
-                          borderRadius: borderRadius
-                      }
+                            borderRadius: borderRadius,
+                            borderColor: "grey.200",
+                      },
+
+                      '& .MuiOutlinedInput-input ': {
+                          height: '1.1rem',
+                      },
+
+                      // '& .MuiOutlinedInput-input ': {
+                      //     height: '1.1rem',
+                      // },
+
                   }}
               />
           )}
+
+          // renderOption={(props, option) => {
+          //     const index = dataArray.findIndex(item => item.title === option)
+          //     return (
+          //         <Grid container px={1} key={option}>
+          //             <SelectDialogListItem dataItem={dataArray[index]} selectedValue={''} handleListItemClick={handelItemClick} noDescription={false} />
+          //             <Divider sx={{color: '#000', width: '100%'}}/>
+          //         </Grid>
+          //     );
+          // }}
           />
     )
 }

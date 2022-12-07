@@ -4,8 +4,8 @@ import {passengersCount} from "../../../../model/passengerCount.type";
 import Grid from "@mui/material/Grid";
 import {Popover, TextField, useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import PassengerCountPopover from "../passenger-count/PassengerCountPopover";
-import SwipeableEdgeDrawer from "../passenger-count/SwipeableEdgeDrawer";
+import PassengerCountPopover from "./PassengerCountPopover";
+import SwipeableEdgeDrawer from "./SwipeableEdgeDrawer";
 import InputAdornment from "@mui/material/InputAdornment";
 import AirlineSeatReclineExtraOutlinedIcon from '@mui/icons-material/AirlineSeatReclineExtraOutlined';
 
@@ -37,6 +37,7 @@ export default function PassengerCountInput() {
             justifyContent={"center"}
             position={"relative"}
             width={'100%'}
+            sx={{margin: 0}}
         >
             {tabletMatch &&
                 <SwipeableEdgeDrawer count={count} setCount={setCount} open={open} setOpen={setOpen} />
@@ -45,7 +46,7 @@ export default function PassengerCountInput() {
             {mobileMatch &&
                 <TextField
                     variant={'standard'}
-                    size={"small"}
+                    size={"medium"}
                     fullWidth
                     placeholder={`بزرگسال${count.adult.toString()}` + '، ' + `کودک${count.child.toString()}` + ' و ' + `نوزاد${count.baby.toString()}`}
                     onClick={(event) =>  handleClick(event)}
@@ -55,6 +56,21 @@ export default function PassengerCountInput() {
                                 <AirlineSeatReclineExtraOutlinedIcon />
                             </InputAdornment>
                         ),
+                    }}
+                    sx={{
+                        padding: 1,
+
+                        '& .MuiInputBase-root::before': {
+                            borderColor: "grey.200",
+                        },
+
+                        '& .MuiInput-root::after': {
+                            borderColor: "grey.300",
+                        },
+
+                        '& .MuiInput-input': {
+                            height: '2.4rem',
+                        },
                     }}
                 />
             }
@@ -66,10 +82,19 @@ export default function PassengerCountInput() {
             {!mobileMatch &&
                 <TextField
                     variant={"outlined"}
-                    size={"small"}
+                    size={"medium"}
                     fullWidth
                     placeholder={`بزرگسال${count.adult.toString()}` + '، ' + `کودک${count.child.toString()}` + ' و ' + `نوزاد${count.baby.toString()}`}
                     onClick={(event) => handleClick(event)}
+                    sx={{
+                        '& .MuiOutlinedInput-input ': {
+                            height: '1.1rem',
+                        },
+
+                        '& .MuiInputBase-root': {
+                            borderRadius: "8px"
+                        },
+                    }}
                 />
             }
         </Grid>

@@ -1,19 +1,21 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useState} from "react";
 
 import {searchFromValue} from "../../../../../model/searchFormValue.type";
+import {data} from "../../../../../model/data.type";
 
-import useMediaQuery from "@mui/material/useMediaQuery";
-import {TextField, useTheme} from "@mui/material";
 import MobileSwappableInput from "./MobileSwappableInput";
 import TabletSwappableInput from "./TabletSwappableInput";
 import LaptopSwappableInput from "./LaptopSwappableInput";
+
+import useMediaQuery from "@mui/material/useMediaQuery";
+import {useTheme} from "@mui/material";
 
 
 interface SwappableInputProps {
     firstInputName: string,
     secondInputName: string,
-    firstData: string[],
-    secondData: string[],
+    firstData: data[],
+    secondData: data[],
     firstLabel: string,
     secondLabel: string,
     handleChange: (name: string, value: string) => void,

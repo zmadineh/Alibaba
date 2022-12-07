@@ -1,13 +1,23 @@
 import React, {useCallback, useState} from "react";
+
+import {data} from "../../../../model/data.type";
+
+import SelectDialogListItem from "./SelectDialogListItem";
 import CustomTextField from "../input-components/CustomTextField";
 import SwappableTemplate from "../input-components/swappable-inputs/SwappableTemplate";
 import TabletDialogHeader from "./TabletDialogHeader";
 
 import Dialog from '@mui/material/Dialog';
 import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
+import Divider from "@mui/material/Divider";
+import {styled} from "@mui/material/styles";
+import Grid from "@mui/material/Grid/Grid";
+import {ListItem} from "@mui/material";
+import Typography from "@mui/material/Typography/Typography";
+import DataList from "./DataList";
+import InputWithPlaceholder from "../input-components/InputWithPlaceholder";
 
 
 const Transition = React.forwardRef(function Transition(
@@ -20,9 +30,20 @@ const Transition = React.forwardRef(function Transition(
 });
 
 
+const StyledDialog = styled(Dialog)(({ theme }) => ({
+    [theme.breakpoints.up('sm')]: {
+        "& .MuiPaper-root": {
+            width: '500px',
+            height: '90%',
+            maxHeight: '680px',
+            borderRadius: '12px',
+        }
+    }
+}));
+
 interface selectDialogProps {
     open: boolean,
-    data: string[],
+    data: data[],
     onClose: (value: string) => void,
     label: string,
     selectedName: string,
@@ -83,7 +104,7 @@ export default function TabletSelectDialog( props : selectDialogProps) {
 
     return (
         <div>
-            <Dialog
+            <StyledDialog
                 onClose={handleClose}
                 open={open}
                 role={"presentation"}
@@ -96,9 +117,10 @@ export default function TabletSelectDialog( props : selectDialogProps) {
                 >
                     <SwappableTemplate
                         children1={
-                            <CustomTextField
+                            <InputWithPlaceholder
                                 label={firstLabel}
                                 name={firstInputName}
+                                placeholder={firstLabel}
                                 borderRadius={borderRadius.r1}
                                 changeHandler={handleSearch}
                                 withIcon={true}
@@ -108,9 +130,10 @@ export default function TabletSelectDialog( props : selectDialogProps) {
 
                         }
                         children2={
-                            <CustomTextField
+                            <InputWithPlaceholder
                                 label={secondLabel}
                                 name={secondInputName}
+                                placeholder={secondLabel}
                                 borderRadius={borderRadius.r2}
                                 changeHandler={handleSearch}
                                 withIcon={true}
@@ -123,13 +146,9 @@ export default function TabletSelectDialog( props : selectDialogProps) {
 
                 </TabletDialogHeader>
                 <div style={{overflow: "hidden", height: '1px'}}></div>
-                <List>
-                    {data ? data.filter(item => item.toLowerCase().includes(search)).map(item => (
-                            <Typography key={item} onClick={() => handelItemClick(item)}>{item}</Typography>
-                        ))
-                        : null}
-                </List>
-            </Dialog>
+
+                <DataList data={data} search={search} handelItemClick={handelItemClick} noDescription={true}/>
+            </StyledDialog>
         </div>
     );
 }

@@ -26,7 +26,11 @@ const CustomTextField = (props: CustomTextFieldProps) => {
             sx={{
                 '& .MuiInputBase-root': {
                     borderRadius: props.borderRadius
-                }
+                },
+
+                '& .MuiOutlinedInput-input ': {
+                    height: '1.1rem',
+                },
             }}
             InputProps={{
                 startAdornment: (

@@ -2,11 +2,11 @@ import React, {useState} from "react";
 
 import {searchFromValue} from "../../../model/searchFormValue.type";
 
-import {internalCities} from "../../../data/internalCities";
+import {internalCities} from "../../../data/internalCities.data";
 
 import SwappableInput from "./input-components/swappable-inputs/SwappableInput";
 import ToggleInputs from "./input-components/ToggleInputs";
-import PassengerCountInput from "./input-components/PassengerCountInput";
+import PassengerCountInput from "./passenger-count/PassengerCountInput";
 
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography/Typography";
@@ -55,13 +55,13 @@ export default function TicketSearchForm () {
                             iconName={'location'}
                         />
                     </Grid>
-                    <Grid item xs={12} md={3}>
+                    <Grid item xs={12} md={4}>
                         <ToggleInputs
                             firstLabel={'تاریخ رفت'}
                             secondLabel={'تاریخ برگشت'}
                             firstName={'departureDate'}
                             secondName={'returnDate'}
-                            handleChange={handleChange}
+                            handleChange={handleChangeWithName}
                             form={form}
                             setForm={setForm}
                             iconName={'calender'}
@@ -70,7 +70,7 @@ export default function TicketSearchForm () {
                     <Grid item xs={12} md={3}>
                         <PassengerCountInput />
                     </Grid>
-                    <Grid item xs={12} md={2}>
+                    <Grid item xs={12} md={1}>
                         <Button type={"submit"} variant={"contained"}>{`جستجو`}</Button>
                     </Grid>
                 </Grid>

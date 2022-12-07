@@ -1,6 +1,7 @@
 import React, {useCallback, useState} from "react";
 
 import {searchFromValue} from "../../../../../model/searchFormValue.type";
+import {data} from "../../../../../model/data.type";
 
 import SwappableTemplate from "./SwappableTemplate";
 import TabletSelectDialog from "../../select-dialog/TabletSelectDialog";
@@ -14,8 +15,8 @@ interface SwappableInputProps {
     setSecValue: React.Dispatch<React.SetStateAction<string>>,
     firstInputName: string,
     secondInputName: string,
-    firstData: string[],
-    secondData: string[],
+    firstData: data[],
+    secondData: data[],
     firstLabel: string,
     secondLabel: string,
     handleChange: (name: string, value: string) => void,
@@ -34,7 +35,7 @@ export default function TabletSwappableInput(props : SwappableInputProps) {
     const [value, setValue] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [label, setLabel] = useState<string>('');
-    const [data, setData] = useState<string[]>([''])
+    const [data, setData] = useState<data[]>([])
 
     const borderRadius = {r1: "8px 8px 0 0px", r2: "0 0 8px 8px"}
 
@@ -81,7 +82,7 @@ export default function TabletSwappableInput(props : SwappableInputProps) {
                         borderRadius={borderRadius.r1}
                         onClick={inputOnClick}
                         withIcon={true}
-                        // placeholder={firstLabel}
+                        placeholder={firstLabel}
                         value={firstValue}
                     />
 
@@ -93,7 +94,7 @@ export default function TabletSwappableInput(props : SwappableInputProps) {
                         borderRadius={borderRadius.r2}
                         onClick={inputOnClick}
                         withIcon={true}
-                        // placeholder={secondLabel}
+                        placeholder={secondLabel}
                         value={secValue}
                     />
             }

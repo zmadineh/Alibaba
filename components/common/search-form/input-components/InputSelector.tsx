@@ -2,6 +2,7 @@ import React, {useCallback} from "react";
 import SelectDialog from "../select-dialog/SelectDialog";
 
 import {searchFromValue} from "../../../../model/searchFormValue.type";
+import {data} from "../../../../model/data.type";
 
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
@@ -15,7 +16,7 @@ interface inputSelectorProps {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>,
     value: string,
     setValue: React.Dispatch<React.SetStateAction<string>>,
-    data: string[],
+    data: data[],
     label: string,
     name: string,
     handleChange: (name: string, value: string) => void,
@@ -47,11 +48,10 @@ export default function InputSelector({open, setOpen, value, setValue, data, lab
             <TextField
                 id="selectorInput"
                 variant={"standard"}
-                size={"small"}
+                size={"medium"}
                 placeholder={label}
                 onClick={() => setOpen(true)}
                 value={value}
-                sx={{padding: 1}}
                 fullWidth
                 InputProps={{
                     startAdornment: (
@@ -60,6 +60,22 @@ export default function InputSelector({open, setOpen, value, setValue, data, lab
                             {/*{iconMap.find(item => item.iconName === iconName).icon}*/}
                         </InputAdornment>
                     ),
+                }}
+
+                sx={{
+                    padding: 1,
+
+                    '& .MuiInputBase-root::before': {
+                        borderColor: "grey.200",
+                    },
+
+                    '& .MuiInput-root::after': {
+                        borderColor: "grey.300",
+                    },
+
+                    '& .MuiInput-input': {
+                        height: '2.4rem',
+                    },
                 }}
             />
 

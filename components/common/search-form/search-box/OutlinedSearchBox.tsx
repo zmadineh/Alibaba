@@ -29,7 +29,7 @@ export default function OutlinedSearchBox ({search, setSearch, borderRadius = '1
 
     return (
         <FormControl variant="standard" fullWidth dir={'rtl'}
-                     sx={{height: '100%', width: '100%', borderColor: 'divider', borderRadius: borderRadius, backgroundColor: 'secondary.100'}}>
+                     sx={{height: '100%', maxHeight: '45px', width: '100%', border: 0, borderRadius: borderRadius, backgroundColor: 'grey.100'}}>
 
             <StyledOutlinedInput id="search"
                                  value={search}

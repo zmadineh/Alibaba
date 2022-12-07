@@ -1,8 +1,10 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useState} from "react";
 import CustomAutocomplete from "../CustomAutocomplete";
 import SwappableTemplate from "./SwappableTemplate";
 
 import {searchFromValue} from "../../../../../model/searchFormValue.type";
+import {data} from "../../../../../model/data.type";
+import {getTitleArray} from "../../../../../helper/getTitleArray.helper";
 
 
 interface SwappableInputProps {
@@ -12,8 +14,8 @@ interface SwappableInputProps {
     setSecValue: React.Dispatch<React.SetStateAction<string>>,
     firstInputName: string,
     secondInputName: string,
-    firstData: string[],
-    secondData: string[],
+    firstData: data[],
+    secondData: data[],
     firstLabel: string,
     secondLabel: string,
     handleChange: (name: string, value: string) => void,
