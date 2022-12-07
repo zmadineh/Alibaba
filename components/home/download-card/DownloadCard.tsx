@@ -12,7 +12,7 @@ const DownloadCard = () => {
     return (
         <Grid item container xs={12} alignItems={"center"} justifyContent={"center"}  >
             <Grid item container sx={{ border: 2, borderRadius: '10px 10px 10px 10px', borderColor: 'divider', bgcolor: 'common.white', maxWidth: "1000px" }} justifyContent={"space-around"}>
-                <Grid item sm={12} md={3} className='image' sx={{ display: { xs: "none", sm: "flex" }, marginTop: 1 }} wrap={"nowrap"} alignItems={"center"} justifyContent={"center"}>
+                <Grid item sm={12} md={3} sx={{ display: { xs: "none", sm: "flex" }, marginTop: 1 }} wrap={"nowrap"} alignItems={"center"} justifyContent={"center"}>
                     <Image src={Scan} alt="علی بابا" width={155} height={170} />
                 </Grid>
                 {/* mobile */}
