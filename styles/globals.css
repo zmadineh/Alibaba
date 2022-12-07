@@ -2,7 +2,9 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family:Alibaba ,-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+
+  font-family: Alibaba, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
@@ -11,13 +13,15 @@ body {
   src: url('../public/Assets/Fonts/Alibaba-Regular.ttf') format('truetype');
 
   font-style: normal;
-   }
+}
+
 @font-face {
   font-family: 'Alibaba';
   src: url('../public/Assets/Fonts/Alibaba-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
-   }
+}
+
 @font-face {
   font-family: 'Alibaba';
   src: url('../public/Assets/Fonts/Alibaba-Light.ttf') format('truetype');
@@ -40,8 +44,9 @@ a {
   html {
     color-scheme: dark;
   }
+
   body {
     color: white;
-    background: black;
+    background: #f6f6f6;
   }
 }
