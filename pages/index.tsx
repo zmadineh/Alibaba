@@ -11,7 +11,7 @@ import Tabview from '../components/home/tabview/Tabview';
 //     4: 'tour'
 // }
 
-export default function firtstPage() {
+export default function FirstPage() {
     const [page, setPage] = useState(0);
     return (
 
