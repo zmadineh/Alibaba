@@ -5,7 +5,7 @@ import Image from 'next/image';
 //data
 import Scan from "../../../public/Assets/Images/download-card/scan.jpg"
 import Download from "../../../public/Assets/Images/download-card/download.jpg"
-import DawnloadCardMobil from './DawnloadCardMobil';
+import DawnloadCardMobile from './DawnloadCardMobile';
 import DownloadCardPc from './DownloadCardPc';
 
 const DownloadCard = () => {
@@ -16,7 +16,7 @@ const DownloadCard = () => {
                     <Image src={Scan} alt="علی بابا" width={155} height={170} />
                 </Grid>
                 {/* mobile */}
-                <DawnloadCardMobil />
+                <DawnloadCardMobile />
                 {/* pc */}
                 <DownloadCardPc />
                 <Grid item display={"flex"} sx={{ width: { xs: 200, md: 396 }, height: { xs: 190, md: 294 }, marginLeft: "2px", marginTop: "5px" }} alignItems={"flex-end"} justifyContent={"flex-end"}>
