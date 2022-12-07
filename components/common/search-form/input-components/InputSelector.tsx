@@ -6,15 +6,15 @@ import {searchFromValue} from "../../../../model/searchFormValue.type";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
-import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 
 
 // interfaces
 interface inputSelectorProps {
     open: boolean,
     setOpen: React.Dispatch<React.SetStateAction<boolean>>,
-    value: string | null,
-    setValue: React.Dispatch<React.SetStateAction<string | null>>,
+    value: string,
+    setValue: React.Dispatch<React.SetStateAction<string>>,
     data: string[],
     label: string,
     name: string,
@@ -25,7 +25,7 @@ interface inputSelectorProps {
 
 export default function InputSelector({open, setOpen, value, setValue, data, label, name, handleChange, form, iconName} : inputSelectorProps) {
 
-    const handleClose = useCallback((value : string | null) => {
+    const handleClose = useCallback((value : string) => {
         setOpen(false);
         if (value){
             setValue(value);
@@ -56,7 +56,7 @@ export default function InputSelector({open, setOpen, value, setValue, data, lab
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start" sx={{margin: 1}}>
-                            <CalendarMonthOutlinedIcon />
+                            <LocationOnOutlinedIcon />
                             {/*{iconMap.find(item => item.iconName === iconName).icon}*/}
                         </InputAdornment>
                     ),

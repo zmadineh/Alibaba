@@ -1,26 +1,24 @@
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 
 import {searchFromValue} from "../../../../../model/searchFormValue.type";
 
-import TextField from "@mui/material/TextField";
-import InputAdornment from "@mui/material/InputAdornment";
 import SwappableTemplate from "./SwappableTemplate";
-import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
-import Grid from "@mui/material/Grid/Grid";
+import TabletSelectDialog from "../../select-dialog/TabletSelectDialog";
+import InputWithPlaceholder from "../InputWithPlaceholder";
 
 
 interface SwappableInputProps {
-    firstValue: string | null,
-    secValue: string | null,
-    setFirstValue: React.Dispatch<React.SetStateAction<string | null>>,
-    setSecValue: React.Dispatch<React.SetStateAction<string | null>>,
+    firstValue: string,
+    secValue: string,
+    setFirstValue: React.Dispatch<React.SetStateAction<string>>,
+    setSecValue: React.Dispatch<React.SetStateAction<string>>,
     firstInputName: string,
     secondInputName: string,
     firstData: string[],
     secondData: string[],
     firstLabel: string,
     secondLabel: string,
-    handleChange: (name: string, value: string | null) => void,
+    handleChange: (name: string, value: string) => void,
     form: searchFromValue,
     setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
     iconName: string,
@@ -32,73 +30,75 @@ export default function TabletSwappableInput(props : SwappableInputProps) {
     const {firstInputName, secondInputName, handleChange, firstData, secondData,
         firstLabel, secondLabel, form, setForm, iconName, firstValue, setFirstValue, secValue, setSecValue, flipData} = props
 
-    const [firstInput,setFirstInput] = useState<string | undefined>('');
-    const [secInput,setSecInput] = useState<string | undefined>('');
-    const [openFirst, setOpenFirst] = useState<boolean>(false);
-    const [openSec, setOpenSec] = useState<boolean>(false);
+    const [open, setOpen] = useState<boolean>(false);
+    const [value, setValue] = useState<string>('');
+    const [name, setName] = useState<string>('');
+    const [label, setLabel] = useState<string>('');
+    const [data, setData] = useState<string[]>([''])
 
     const borderRadius = {r1: "8px 8px 0 0px", r2: "0 0 8px 8px"}
 
-    const inputOnClick = () => {
-
+    const inputOnClick = (event: any) => {
+        setName(event.target.name);
+        if (event.target.name === firstInputName){
+            setLabel(firstLabel)
+            setData(firstData)
+            setValue(firstValue)
+        }
+        else if (event.target.name === secondInputName) {
+            setLabel(secondLabel)
+            setData(secondData)
+            setValue(secValue)
+        }
+        console.log('name: ',name)
+        setOpen(true)
     }
+
+    const onClose = useCallback((value : string) => {
+        // setOpen(false);
+        if (value){
+            if (name === firstInputName)
+                setFirstValue(value)
+            else if (name === secondInputName)
+                setSecValue(value)
+
+            handleChange(name, value)
+            console.log(name, firstValue, secValue, 'select')
+        }
+    }, [ name]);
+
+    const sendingProps = {firstLabel, firstInputName, firstValue, secondLabel, secondInputName, secValue, borderRadius, flipData, inputOnClick}
+
     return (
-        <SwappableTemplate
+        <>
+            <TabletSelectDialog open={open} data={data} onClose={onClose} label={label} selectedName={name} setOpen={setOpen} {...sendingProps}/>
 
-            children1={
-            <Grid width={'100%'}>
+            <SwappableTemplate
+                children1={
+                    <InputWithPlaceholder
+                        label={firstLabel}
+                        name={firstInputName}
+                        borderRadius={borderRadius.r1}
+                        onClick={inputOnClick}
+                        withIcon={true}
+                        // placeholder={firstLabel}
+                        value={firstValue}
+                    />
 
-
-                <TextField
-                   placeholder={firstLabel}
-                   name={firstInputName}
-                   variant={"outlined"}
-                   size={"small"}
-                   sx={{
-                       '& .MuiInputBase-root': {
-                           borderRadius: borderRadius.r1,
-                       }
-                    }}
-                   fullWidth
-                   InputProps={{
-                       startAdornment: (
-                           <InputAdornment position="start" sx={{margin: 1}}>
-                               <LocationOnOutlinedIcon />
-                               {/*{iconMap.find(item => item.iconName === iconName).icon}*/}
-                           </InputAdornment>
-                       ),
-                   }}
-                   onClick={inputOnClick}
-                />
-            </Grid>
-
-        }
-            children2={
-                <TextField
-                   placeholder={secondLabel}
-                   name={secondInputName}
-                   variant={"outlined"}
-                   size={"small"}
-                   sx={{
-                       '& .MuiInputBase-root': {
-                           borderRadius: borderRadius.r2,
-                       }
-                   }}
-                   fullWidth
-                   InputProps={{
-                       startAdornment: (
-                           <InputAdornment position="start" sx={{margin: 1}}>
-                               <LocationOnOutlinedIcon />
-                               {/*{iconMap.find(item => item.iconName === iconName).icon}*/}
-                           </InputAdornment>
-                       ),
-                   }}
-                   onClick={inputOnClick}
-                />
-        }
-            flipData={flipData}
-        />
-
-
+            }
+                children2={
+                    <InputWithPlaceholder
+                        label={secondLabel}
+                        name={secondInputName}
+                        borderRadius={borderRadius.r2}
+                        onClick={inputOnClick}
+                        withIcon={true}
+                        // placeholder={secondLabel}
+                        value={secValue}
+                    />
+            }
+                flipData={flipData}
+            />
+        </>
     )
 }

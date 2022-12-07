@@ -1,11 +1,13 @@
-import * as React from 'react';
+import React, {useState} from 'react';
+
+import SelectDialogHeader from "./SelectDialogHeader";
+
 import Dialog from '@mui/material/Dialog';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
-import {useState} from "react";
-import SelectDialogHeader from "./SelectDialogHeader";
+
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -20,8 +22,8 @@ const Transition = React.forwardRef(function Transition(
 interface selectDialogProps {
     open: boolean,
     data: string[],
-    selectedValue: string | null,
-    onClose: (value: string | null) => void,
+    selectedValue: string,
+    onClose: (value: string) => void,
     label: string,
 }
 

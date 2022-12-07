@@ -4,18 +4,17 @@ import {searchFromValue} from "../../../model/searchFormValue.type";
 
 import {internalCities} from "../../../data/internalCities";
 
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography/Typography";
-import Grid from "@mui/material/Grid";
-
 import SwappableInput from "./input-components/swappable-inputs/SwappableInput";
 import ToggleInputs from "./input-components/ToggleInputs";
 import PassengerCountInput from "./input-components/PassengerCountInput";
 
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography/Typography";
+import Grid from "@mui/material/Grid";
+
 
 export default function TicketSearchForm () {
 
-    // type f = searchFromValue
     const [form, setForm] = useState<searchFromValue>({
         originCity: '',
         destinationCity: '',
@@ -41,8 +40,8 @@ export default function TicketSearchForm () {
         <Grid>
             <Typography variant={"h4"}>Form</Typography>
             <form onSubmit={(e) => handleSubmit(e)}>
-                <Grid container spacing={2} flexWrap={"nowrap"} flexDirection={{xs: 'column', md: 'row'}} width={'100% '}>
-                    <Grid item xs={12} sm={4}>
+                <Grid container spacing={2} flexWrap={"nowrap"} flexDirection={{xs: 'column', md: 'row'}} width={'100%'}>
+                    <Grid item xs={12} md={4}>
                         <SwappableInput
                             firstInputName={'originCity'}
                             secondInputName={'destinationCity'}
@@ -56,7 +55,7 @@ export default function TicketSearchForm () {
                             iconName={'location'}
                         />
                     </Grid>
-                    <Grid item xs={12} sm={3}>
+                    <Grid item xs={12} md={3}>
                         <ToggleInputs
                             firstLabel={'تاریخ رفت'}
                             secondLabel={'تاریخ برگشت'}
@@ -68,10 +67,10 @@ export default function TicketSearchForm () {
                             iconName={'calender'}
                         />
                     </Grid>
-                    <Grid item xs={12} sm={3}>
+                    <Grid item xs={12} md={3}>
                         <PassengerCountInput />
                     </Grid>
-                    <Grid item xs={12} sm={2}>
+                    <Grid item xs={12} md={2}>
                         <Button type={"submit"} variant={"contained"}>{`جستجو`}</Button>
                     </Grid>
                 </Grid>

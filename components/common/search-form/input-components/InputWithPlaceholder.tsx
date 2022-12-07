@@ -1,25 +1,26 @@
 import React from "react";
+
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 
-interface CustomTextFieldProps {
+interface InputWithPlaceholderProps {
     label: string,
     name: string,
     borderRadius: string,
     onClick: (event: any) => void,
-    changeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void,
     withIcon: boolean,
-    value: string,
+    // placeholder: string,
+    value: string
 }
 
-const CustomTextField = (props: CustomTextFieldProps) => {
+const InputWithPlaceholder = (props: InputWithPlaceholderProps) => {
     return (
         <TextField
+            // placeholder={props.placeholder}
             label={props.label}
             name={props.name}
             value={props.value}
-            onChange={props.changeHandler}
             variant={"outlined"}
             size={"small"}
             fullWidth
@@ -38,8 +39,7 @@ const CustomTextField = (props: CustomTextFieldProps) => {
             }}
             onClick={props.onClick}
         />
-
     );
 }
 
-export default CustomTextField
+export default InputWithPlaceholder

@@ -1,15 +1,14 @@
-import React, {useCallback, useState} from "react";
-import CustomAutocomplete from "./CustomAutocomplete";
-import InputSelector from "./InputSelector";
+import React from "react";
 import CustomTextField from "./CustomTextField";
 
 import {searchFromValue} from "../../../../model/searchFormValue.type";
-import {iconMap} from "../../../../data/iconMap";
 
+import {useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import {TextField, useTheme} from "@mui/material";
 import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
+import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 
 
 interface ToggleInputsProps {
@@ -28,7 +27,7 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const onChange = () => {
+    const onClick = () => {
         console.log('onChange')
     }
 
@@ -41,31 +40,40 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
             width={'100%'}
         >
 
-            {!mobileMatch &&
-                <CustomTextField label={firstLabel}
-                                 name={firstName}
-                                 changeHandler={handleChange}
-                                 borderRadius={'0 8px 8px 0'}/>
-            }
-            {!mobileMatch &&
-                <CustomTextField label={secondLabel}
-                                 name={secondName}
-                                 changeHandler={handleChange}
-                                 borderRadius={'8px 0 0 8px'}/>
-            }
+            {/*{!mobileMatch &&*/}
+            {/*    <CustomTextField*/}
+            {/*                     label={firstLabel}*/}
+            {/*                     name={firstName}*/}
+            {/*                     changeHandler={handleChange}*/}
+            {/*                     withIcon={false}*/}
+            {/*                     borderRadius={'0 8px 8px 0'}*/}
+            {/*                     onClick={onClick}*/}
+            {/*    />*/}
+            {/*}*/}
+            {/*{!mobileMatch &&*/}
+            {/*    <CustomTextField*/}
+            {/*                     label={secondLabel}*/}
+            {/*                     name={secondName}*/}
+            {/*                     changeHandler={handleChange}*/}
+            {/*                     withIcon={false}*/}
+            {/*                     borderRadius={'8px 0 0 8px'}*/}
+            {/*                     onClick={onClick}*/}
+            {/*    />*/}
+            {/*}*/}
 
             {mobileMatch &&
                 <TextField placeholder={firstLabel}
                            name={firstName}
                            onChange={handleChange}
                            variant={"standard"}
-                           size={"small"}
+                           size={"medium"}
                            sx={{padding: 1}}
                            fullWidth
                            InputProps={{
                                startAdornment: (
                                    <InputAdornment position="start" sx={{margin: 1}}>
-                                       {iconMap.find(item => item.iconName === iconName).icon}
+                                        <CalendarMonthOutlinedIcon />
+                                       {/*{iconMap.find(item => item.iconName === iconName).icon}*/}
                                    </InputAdornment>
                                ),
                            }}
@@ -76,13 +84,14 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                            name={secondName}
                            onChange={handleChange}
                            variant={"standard"}
-                           size={"small"}
+                           size={"medium"}
                            sx={{padding: 1}}
                            fullWidth
                            InputProps={{
                                startAdornment: (
                                    <InputAdornment position="start" sx={{margin: 1}}>
-                                       {iconMap.find(item => item.iconName === iconName).icon}
+                                        <CalendarMonthOutlinedIcon />
+                                       {/*{iconMap.find(item => item.iconName === iconName).icon}*/}
                                    </InputAdornment>
                                ),
                            }}

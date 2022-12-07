@@ -5,17 +5,17 @@ import SwappableTemplate from "./SwappableTemplate";
 import {searchFromValue} from "../../../../../model/searchFormValue.type";
 
 interface SwappableInputProps {
-    firstValue: string | null,
-    secValue: string | null,
-    setFirstValue: React.Dispatch<React.SetStateAction<string | null>>,
-    setSecValue: React.Dispatch<React.SetStateAction<string | null>>,
+    firstValue: string,
+    secValue: string,
+    setFirstValue: React.Dispatch<React.SetStateAction<string>>,
+    setSecValue: React.Dispatch<React.SetStateAction<string>>,
     firstInputName: string,
     secondInputName: string,
     firstData: string[],
     secondData: string[],
     firstLabel: string,
     secondLabel: string,
-    handleChange: (name: string, value: string | null) => void,
+    handleChange: (name: string, value: string) => void,
     form: searchFromValue,
     setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
     iconName: string,

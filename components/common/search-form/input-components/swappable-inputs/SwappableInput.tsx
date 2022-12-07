@@ -1,18 +1,9 @@
 import React, {useCallback, useEffect, useState} from "react";
-import CustomAutocomplete from "../CustomAutocomplete";
-import InputSelector from "../InputSelector";
 
 import {searchFromValue} from "../../../../../model/searchFormValue.type";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {TextField, useTheme} from "@mui/material";
-import FlipCameraAndroidIcon from '@mui/icons-material/FlipCameraAndroid';
-import IconButton from "@mui/material/IconButton";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/system/Box";
-import InputAdornment from "@mui/material/InputAdornment";
-import {iconMap} from "../../../../../data/iconMap";
-import SwappableTemplate from "./SwappableTemplate";
 import MobileSwappableInput from "./MobileSwappableInput";
 import TabletSwappableInput from "./TabletSwappableInput";
 import LaptopSwappableInput from "./LaptopSwappableInput";
@@ -25,7 +16,7 @@ interface SwappableInputProps {
     secondData: string[],
     firstLabel: string,
     secondLabel: string,
-    handleChange: (name: string, value: string | null) => void,
+    handleChange: (name: string, value: string) => void,
     form: searchFromValue,
     setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
     iconName: string,
@@ -38,8 +29,8 @@ export default function SwappableInput({firstInputName, secondInputName, handleC
     const tabletMatch = useMediaQuery(theme.breakpoints.down('md'));
     const laptopMatch = useMediaQuery(theme.breakpoints.up('md'));
 
-    const [firstValue,setFirstValue] = useState<string | null>('');
-    const [secValue,setSecValue] = useState<string | null>('');
+    const [firstValue,setFirstValue] = useState<string>('');
+    const [secValue,setSecValue] = useState<string>('');
 
     const flipData = useCallback(() => {
         console.log(secValue, firstValue)
@@ -60,21 +51,15 @@ export default function SwappableInput({firstInputName, secondInputName, handleC
     return (
         <>
             {mobileMatch &&
-                <MobileSwappableInput
-                    {...props}
-                    />
+                <MobileSwappableInput  {...props}/>
             }
 
             {!mobileMatch && tabletMatch &&
-                <TabletSwappableInput
-                    {...props}
-                />
+                <TabletSwappableInput {...props}/>
             }
 
             {laptopMatch &&
-                <LaptopSwappableInput
-                    {...props}
-                />
+                <LaptopSwappableInput {...props}/>
             }
         </>
     )

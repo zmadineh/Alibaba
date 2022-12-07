@@ -1,15 +1,15 @@
 import * as React from 'react';
+
+import PassengerCountContent from "./PassengerCountContent";
+import {passengersCount} from "../../../../model/passengerCount.type";
+
 import { Global } from '@emotion/react';
 import { styled } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import { grey } from '@mui/material/colors';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import PassengerCountContent from "./PassengerCountContent";
-import {passengersCount} from "../../../../model/passengerCount.type";
 import IconButton from "@mui/material/IconButton";
 import {Close} from "@mui/icons-material";
 import {Divider} from "@mui/material";
@@ -47,7 +47,6 @@ const Puller = styled(Box)(({ theme }) => ({
 
 export default function SwipeableEdgeDrawer(props: Props) {
     const { window } = props;
-    // const [open, setOpen] = React.useState(false);
 
     const toggleDrawer = (newOpen: boolean) => () => {
         props.setOpen(newOpen);
@@ -58,7 +57,6 @@ export default function SwipeableEdgeDrawer(props: Props) {
 
     return (
         <Root>
-            {/*<CssBaseline />*/}
             <Global
                 styles={{
                     '.MuiDrawer-root > .MuiPaper-root': {

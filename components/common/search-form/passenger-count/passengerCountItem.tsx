@@ -1,14 +1,10 @@
 import Grid from "@mui/material/Grid";
 
-import React, {useState} from "react";
+import React from "react";
 import {passengersCount} from "../../../../model/passengerCount.type";
-import Dialog from "@mui/material/Dialog";
+
 import Button from "@mui/material/Button";
-import {searchFromValue} from "../../../../model/searchFormValue.type";
 import Typography from "@mui/material/Typography/Typography";
-import IconButton from "@mui/material/IconButton";
-import {Close} from "@mui/icons-material";
-import {Divider} from "@mui/material";
 import FaceOutlinedIcon from '@mui/icons-material/FaceOutlined';
 
 interface passengerCountItemProps {

@@ -6,17 +6,17 @@ import {searchFromValue} from "../../../../../model/searchFormValue.type";
 
 
 interface SwappableInputProps {
-    firstValue: string | null,
-    secValue: string | null,
-    setFirstValue: React.Dispatch<React.SetStateAction<string | null>>,
-    setSecValue: React.Dispatch<React.SetStateAction<string | null>>,
+    firstValue: string,
+    secValue: string,
+    setFirstValue: React.Dispatch<React.SetStateAction<string>>,
+    setSecValue: React.Dispatch<React.SetStateAction<string>>,
     firstInputName: string,
     secondInputName: string,
     firstData: string[],
     secondData: string[],
     firstLabel: string,
     secondLabel: string,
-    handleChange: (name: string, value: string | null) => void,
+    handleChange: (name: string, value: string) => void,
     form: searchFromValue,
     setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
     iconName: string,
@@ -28,8 +28,8 @@ export default function LaptopSwappableInput(props : SwappableInputProps) {
     const {firstInputName, secondInputName, handleChange, firstData, secondData,
         firstLabel, secondLabel, form, setForm, iconName, firstValue, setFirstValue, secValue, setSecValue, flipData} = props
 
-    const [firstInput,setFirstInput] = useState<string | undefined>('');
-    const [secInput,setSecInput] = useState<string | undefined>('');
+    const [firstInput,setFirstInput] = useState<string>('');
+    const [secInput,setSecInput] = useState<string>('');
 
     const borderRadius = {r1: "0 8px 8px 0", r2: "8px 0 0 8px"};
 
