@@ -47,7 +47,7 @@ export default function LaptopSwappableInput(props : SwappableInputProps) {
                     label={firstLabel}
                     name={firstInputName}
                     handleChange={handleChange}
-                    borderRadius={borderRadius.r1}
+                    borderRadius={borderRadius.r2}
                 />
             }
             children2={
@@ -60,7 +60,7 @@ export default function LaptopSwappableInput(props : SwappableInputProps) {
                     label={secondLabel}
                     name={secondInputName}
                     handleChange={handleChange}
-                    borderRadius={borderRadius.r2}
+                    borderRadius={borderRadius.r1}
                 />
             }
             flipData={flipData}

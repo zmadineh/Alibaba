@@ -68,7 +68,7 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                                  currentValue={firstValue}
                                  setCurrentValue={setFirstValue}
                                  changeHandler={handleChange}
-                                 borderRadius={'0 8px 8px 0'}
+                                 borderRadius={'8px 0 0 8px'}
                                  variant={"outlined"}
                                  // onClick={onClick}
                 />
@@ -81,7 +81,7 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                                  currentValue={secValue}
                                  setCurrentValue={setSecValue}
                                  changeHandler={handleChange}
-                                 borderRadius={'8px 0 0 8px'}
+                                 borderRadius={'0 8px 8px 0'}
                                  variant={"outlined"}
                                  // onClick={onClick}
                 />
