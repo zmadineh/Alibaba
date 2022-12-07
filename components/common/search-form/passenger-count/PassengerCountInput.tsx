@@ -87,9 +87,9 @@ export default function PassengerCountInput() {
                     placeholder={`بزرگسال${count.adult.toString()}` + '، ' + `کودک${count.child.toString()}` + ' و ' + `نوزاد${count.baby.toString()}`}
                     onClick={(event) => handleClick(event)}
                     sx={{
-                        '& .MuiOutlinedInput-input ': {
-                            height: '1.1rem',
-                        },
+                        // '& .MuiOutlinedInput-input ': {
+                        //     height: '1.43rem',
+                        // },
 
                         '& .MuiInputBase-root': {
                             borderRadius: "8px"

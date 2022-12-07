@@ -56,47 +56,61 @@ export default function CustomAutocomplete({value, setValue, input, setInput, da
                   label={label}
                   size={"medium"}
                   sx={{
-                      // '& :hover': {
-                      //     color: "grey.400",
-                      //     '& .MuiOutlinedInput-notchedOutline': {
-                      //         borderColor: "grey.400",
-                      //     },
-                      // },
-                      //
-                      // '& .Mui-focused': {
-                      //     color: "grey.400",
-                      //     '& .MuiOutlinedInput-notchedOutline': {
-                      //         borderColor: "grey.500",
-                      //         borderWidth: '0.5px',
-                      //     },
-                      // },
+                      color: "grey.400",
+                      borderColor: "grey.200",
+
+                      '& :hover': {
+                          color: "grey.400",
+                          '& .MuiOutlinedInput-notchedOutline': {
+                              borderColor: "grey.400",
+                              borderWidth: '0.5px',
+                          },
+                      },
+
+                      '& :focused': {
+                          color: "grey.400",
+                          '& .MuiOutlinedInput-notchedOutline': {
+                              borderColor: "grey.400",
+                              borderWidth: '0.5px',
+                          },
+                      },
+
+                      '& :selected': {
+                          color: "grey.400",
+                          '& .MuiOutlinedInput-notchedOutline': {
+                              borderColor: "grey.400",
+                              borderWidth: '0.5px',
+                          },
+                      },
+
+                      '& .MuiOutlinedInput-root.Mui-focused': {
+                          '& .MuiOutlinedInput-notchedOutline': {
+                              borderColor: "grey.400",
+                              borderWidth: '0.5px',
+                          },
+                      },
 
                       '& .MuiInputBase-root': {
                             borderRadius: borderRadius,
                             borderColor: "grey.200",
                       },
 
-                      '& .MuiOutlinedInput-input ': {
-                          height: '1.1rem',
-                      },
-
-                      // '& .MuiOutlinedInput-input ': {
-                      //     height: '1.1rem',
-                      // },
-
+                      '& .MuiInputLabel-root.Mui-focused': {
+                          color: "grey.400",
+                      }
                   }}
               />
           )}
 
-          // renderOption={(props, option) => {
-          //     const index = dataArray.findIndex(item => item.title === option)
-          //     return (
-          //         <Grid container px={1} key={option}>
-          //             <SelectDialogListItem dataItem={dataArray[index]} selectedValue={''} handleListItemClick={handelItemClick} noDescription={false} />
-          //             <Divider sx={{color: '#000', width: '100%'}}/>
-          //         </Grid>
-          //     );
-          // }}
+          renderOption={(props, option) => {
+              const index = dataArray.findIndex(item => item.title === option)
+              return (
+                  <Grid container px={1} key={option}>
+                      <SelectDialogListItem dataItem={dataArray[index]} selectedValue={''} handleListItemClick={handelItemClick} noDescription={false} />
+                      <Divider sx={{color: '#000', width: '100%'}}/>
+                  </Grid>
+              );
+          }}
           />
     )
 }

@@ -26,13 +26,13 @@ const CustomDropDown = (props: CustomDropDownProps) => {
     return (
         <TextField
             select //converts to a dropdown
-            placeholder={props.label}
+            label={props.label}
             name={props.name}
             onChange={onChange}
             value={props.currentValue}
 
             fullWidth
-            variant={props.variant}
+            variant={"outlined"}
             size={"medium"}
 
             InputProps={{
@@ -44,39 +44,49 @@ const CustomDropDown = (props: CustomDropDownProps) => {
                 ),
             }}
             sx={{
-                // padding: 1,
                 minHeight: 0,
-                // height: '100%',
 
                 '& .MuiInputBase-root': {
-                    borderRadius: props.borderRadius
+                    borderRadius: props.borderRadius,
+                    borderColor: "grey.200",
                 },
 
-                '& .MuiOutlinedInput-input ': {
-                    minHeight: 0,
-                    height: '1.1rem',
-                },
-
-                '& .MuiSelect-select': {
-                    minHeight: 0,
-                    height: '1.1rem',
-                },
-
+                // '& .MuiOutlinedInput-input ': {
+                //     minHeight: 0,
+                //     height: '1.1rem',
+                // },
+                //
+                // '& .MuiSelect-select': {
+                //     minHeight: 0,
+                //     height: '1.1rem',
+                // },
+                //
                 // '& .MuiOutlinedInput-input': {
                 //     height: '1.1rem',
                 // },
 
-                // '& .MuiInputBase-root::before': {
-                //     borderColor: "grey.200",
-                // },
-                //
-                // '& .MuiInput-root::after': {
-                //     borderColor: "grey.300",
-                // },
-                //
-                // '& .MuiInput-input': {
-                //     height: '2.4rem',
-                // },
+                '& .MuiInputBase-root::before': {
+                    borderColor: "grey.200",
+                },
+
+                '& .MuiInput-root::after': {
+                    borderColor: "grey.300",
+                },
+
+                '& .MuiOutlinedInput-root.Mui-focused': {
+                    '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: "grey.400",
+                        borderWidth: '0.5px',
+                    },
+                },
+
+                '& .MuiInputLabel-root.Mui-focused': {
+                    color: "grey.400",
+                },
+
+                '& .MuiInput-input': {
+                    height: '2.4rem',
+                },
             }}
 
         >

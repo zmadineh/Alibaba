@@ -37,8 +37,7 @@ export default function TicketSearchForm () {
     }
 
     return (
-        <Grid>
-            <Typography variant={"h4"}>Form</Typography>
+        <Grid padding={2}>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <Grid container spacing={2} flexWrap={"nowrap"} flexDirection={{xs: 'column', md: 'row'}} width={'100%'}>
                     <Grid item xs={12} md={4}>
@@ -71,7 +70,7 @@ export default function TicketSearchForm () {
                         <PassengerCountInput />
                     </Grid>
                     <Grid item xs={12} md={1}>
-                        <Button type={"submit"} variant={"contained"}>{`جستجو`}</Button>
+                        <Button type={"submit"} variant={"contained"} size={"medium"} sx={{height: '100%', width: '100%'}}>{`جستجو`}</Button>
                     </Grid>
                 </Grid>
             </form>
