@@ -25,7 +25,7 @@ body {
 @font-face {
   font-family: 'Alibaba';
   src: url('../public/Assets/Fonts/Alibaba-Light.ttf') format('truetype');
-  font-weight: light;
+  font-weight: auto;
   font-style: normal;
 }
 
