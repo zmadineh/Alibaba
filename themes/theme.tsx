@@ -90,13 +90,17 @@ export const theme = createTheme({
                     props: { variant: 'Button2' },
                     style: {
                         color: '#fff',
-                        backgroundColor: '#0077DB',
+                        backgroundColor: '#51A2E7',
                         borderRadius: '20px',
                         width: "100%",
                         justifyContent: "center",
                         border: "1px solid",
-                        borderColor: "rgba(0, 0, 0, .12)"
-                    }
+                        borderColor: "rgba(0, 0, 0, .12)",
+                        '&:hover': {
+                            backgroundColor: '#51A2E7',
+                            color: '#fff',
+                        }
+                    },
                 },
 
             ]
