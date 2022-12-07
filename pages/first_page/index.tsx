@@ -1,40 +1,23 @@
 import { Stack, Grid } from '@mui/material';
-import { Head } from 'next/document';
-import React, { useState, useRef, useEffect, ReactNode } from 'react'
+import React, { useState } from 'react';
+import { GetPages } from '../../components/get_pages_func/GetPages';
+import Tabview from '../../components/home/tabview/Tabview';
 
-const pages = {
-    0: 'inFlight',
-    1: 'outFlight',
-    2: 'train',
-    3: 'Bus',
-    4: 'tour'
-}
-
-const GetPage = (index: number) => {
-    if (index == 0) {
-        return (
-            <Stack>inFlight</Stack>
-        )
-    }
-    else if (index == 1) {
-        return (
-            <Stack>outFlight</Stack>
-        )
-    }
-    else if (index == 2) {
-        return (
-            <Stack>train</Stack>
-        )
-    }
-}
+// const pages = {
+//     0: 'inFlight',
+//     1: 'outFlight',
+//     2: 'train',
+//     3: 'Bus',
+//     4: 'tour'
+// }
 
 export default function firtstPage() {
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState(3);
     return (
 
         <Grid>
             <Grid id='layout' >
-                <Grid>Hero</Grid>
+                <Tabview value={page} setValue={setPage}/>
                 <Grid container marginX={'auto'} direction={'column'} width={'100%'} sx={{
                     maxWidth : {
                         lg:'1200px',
@@ -42,11 +25,10 @@ export default function firtstPage() {
                         sm : '100%'
                     }
                 }}>
-                    <Grid>tabView</Grid>
                     <Grid>Forms</Grid>
                     <Grid>Bimeh</Grid>
                     <Grid>Poshtibani</Grid>
-                    {GetPage(page)}
+                    {GetPages(page)}
                 </Grid>
             </Grid>
         </Grid>
