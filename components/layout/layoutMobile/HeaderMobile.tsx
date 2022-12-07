@@ -10,14 +10,14 @@ import Link from 'next/link';
 //data
 import { listOption } from './../../../data/listOption';
 import Logo from "../../../public/Assets/logo.png"
-import { useTheme } from '@emotion/react';
+
 import Image from 'next/image';
 import { fontFamily } from '@mui/system';
 
 
 const HeaderMobile = () => {
     const [display, setDisplay] = useState<string>("header1")
-    const theme = useTheme();
+
     useEffect(() => {
         document.addEventListener("scroll", e => {
             const scrolled: number | undefined = document?.scrollingElement?.scrollTop;

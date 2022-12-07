@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTheme } from '@emotion/react';
+
 //material
 import Grid from '@mui/material/Grid';
 import { Button, Typography } from '@mui/material';
@@ -11,9 +11,9 @@ import { fontFamily } from '@mui/system';
 
 
 const HelpCard = () => {
-    const theme = useTheme()
+
     return (
-        <Grid xs={12} container item justifyContent={"center"} alignItems={"center"} >
+        <Grid xs={12} container justifyContent={"center"} alignItems={"center"} >
             <Grid container item sx={{ border: 2, borderRadius: '10px 10px 10px 10px', borderColor: 'divider', bgcolor: 'common.white', maxWidth: "1000px" }} bgcolor={"common.white"} p={2} gap={2} justifyContent={"center"} alignItems={"center"} boxShadow={1}>
                 {hlepCardData.map(item => (
                     <Grid key={item.id} item xs={12} md={3.5} display={"flex"} gap={2} alignItems={"center"} sx={{ flexDirection: { xs: "row", md: "column" } }} p={"2px"}>
