@@ -47,7 +47,7 @@ const HeaderMobile = () => {
                         {listOption.map(item => (
                             <Grid key={item.id} xs={12} item display={"flex"} justifyContent={"flex-start"} alignItems={"center"} sx={{ border: "1px solid", borderColor: 'grey.200' }}>
                                 <Button variant='Button1' >
-                                    <Link href={'/'} >
+                                    <Link href={item.href} >
                                         <Grid display={"flex"} sx={{ paddingRight: 2, color: 'grey.700' }} gap={1} alignItems={"center"}>
                                             <Grid item >
                                                 {item.icon}
@@ -67,7 +67,7 @@ const HeaderMobile = () => {
                     <Grid item xs={11} height={"50px"} display={"flex"} justifyContent={"space-evenly"} alignItems={"cnter"} flexDirection={"row"} bgcolor={"common.white"} borderRadius={3} boxShadow={1} gap={1} overflow={"hidden"}>
                         {listOption.map(item => (
                             <Grid item key={item.id} color={"common.black"} alignItems={"center"}>
-                                <Link href={'/'}>
+                                <Link href={item.href}>
                                     <Button variant='Button1' style={{ color: "black" }}>
                                         {item.icon}
                                     </Button>
