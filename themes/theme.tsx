@@ -90,14 +90,14 @@ export const theme = createTheme({
                     props: { variant: 'Button2' },
                     style: {
                         color: '#fff',
-                        backgroundColor: '#51A2E7',
+                        backgroundColor: '#0077DB',
                         borderRadius: '20px',
                         width: "100%",
                         justifyContent: "center",
                         border: "1px solid",
                         borderColor: "rgba(0, 0, 0, .12)",
                         '&:hover': {
-                            backgroundColor: '#51A2E7',
+                            backgroundColor: '#0077DB',
                             color: '#fff',
                         }
                     },
