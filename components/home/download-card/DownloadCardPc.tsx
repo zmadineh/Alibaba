@@ -12,13 +12,13 @@ import Download from "../../../public/Assets/Images/download-card/download.jpg"
 const DownloadCardPc = () => {
     return (
         <Grid item md={12} sx={{ display: { xs: "none", md: "flex" }, flexDirection: { md: "column", lg: "row" }, justifyContent: { md: "center", lg: "space-between" } }} alignItems={"center"} gap={2}>
-            <Grid item md={12} display={"flex"} justifyContent={"flex-end"} height={187} sx={{ marginLeft: 6, marginTop: 1, marginRight: 2, width: { md: 146, lg: 330 } }}>
+            <Grid item md={12} display={"flex"} justifyContent={"flex-end"} height={187} sx={{ marginLeft: 6, marginTop: 1, marginRight: 2, width: { md: 146, lg: 310 } }}>
                 <Image src={Scan} alt="علی بابا" style={{ width: "100%", height: "100%" }} />
             </Grid>
             <Grid item md={12} display={'flex'} flexDirection={"column"} gap={2} >
                 <Grid item>
-                    <Typography variant='h4' sx={{ fontSize: 20, fontWeight: 700 }}>اپلیکیشن علی بابا</Typography>
-                    <Typography sx={{ fontSize: 18 }}>سریع تر و مطمئن تر به سفر بروید</Typography></Grid>
+                    <Typography variant='h6' sx={{ fontSize: "1.25rem", fontWeight: 700 }}>اپلیکیشن علی بابا</Typography>
+                    <Typography sx={{ fontSize: "1.125rem", }}>سریع تر و مطمئن تر به سفر بروید</Typography></Grid>
                 <Grid item>
                     <Button sx={{ color: "secondary.300", borderRadius: "10px", "&:hover": { backgroundColor: "secondary.100" } }}>
                         <Grid item> <Typography variant='h6' sx={{ marginBottom: "14px", fontWeight: 400, color: 'secondary.main', fontSize: 16 }}  >مشاهده لینک های دانلود</Typography></Grid>
@@ -26,7 +26,7 @@ const DownloadCardPc = () => {
                     </Button>
                 </Grid>
                 <Grid item md={12} display={"flex"} justifyContent={"flex-start"}  >
-                    <Grid item display={"flex"} alignItems={"flex-end"}  >
+                    <Grid item display={"flex"} alignItems={"flex-end"} gap={1} >
                         <Grid item width={20} height={20}>
                             <Image src={Apple} alt="علی بابا" style={{ width: "100%", height: "100%" }} />
                         </Grid>
@@ -34,7 +34,7 @@ const DownloadCardPc = () => {
                             <Image src={Android} alt="علی بابا" style={{ width: "100%", height: "100%" }} />
                         </Grid>
                         <Grid item>
-                            <Typography sx={{ fontSize: 13, fontWeight: 400, color: "grey.400" }}> قابلیت نصب روی Android و iOS </Typography>
+                            <Typography sx={{ fontSize: ".75rem", fontWeight: 400, color: "grey.400" }}> قابلیت نصب روی Android و iOS </Typography>
                         </Grid>
                     </Grid>
                 </Grid>
