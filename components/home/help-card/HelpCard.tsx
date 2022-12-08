@@ -13,7 +13,7 @@ import { fontFamily } from '@mui/system';
 const HelpCard = () => {
 
     return (
-        <Grid xs={12} container justifyContent={"center"} alignItems={"center"} >
+        <Grid xs={12} container justifyContent={"center"} alignItems={"center"} marginBottom={3} >
             <Grid container item sx={{ border: 2, borderRadius: '10px 10px 10px 10px', borderColor: 'divider', bgcolor: 'common.white', maxWidth: "1000px" }} bgcolor={"common.white"} p={2} gap={2} justifyContent={"center"} alignItems={"center"} boxShadow={1}>
                 {hlepCardData.map(item => (
                     <Grid key={item.id} item xs={12} md={3.5} display={"flex"} gap={2} alignItems={"center"} sx={{ flexDirection: { xs: "row", md: "column" } }} p={"2px"}>
