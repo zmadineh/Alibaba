@@ -19,8 +19,8 @@ const HeaderMobile = () => {
     const [display, setDisplay] = useState<string>("header1")
 
     useEffect(() => {
-        document.addEventListener("scroll", e => {
-            const scrolled: number | undefined = document?.scrollingElement?.scrollTop;
+        window.addEventListener("scroll", e => {
+            const scrolled: number | undefined = window?.scrollY;
             if (scrolled) {
                 if (scrolled >= 15) {
                     setDisplay("header2")
