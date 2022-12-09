@@ -43,8 +43,8 @@ const DownloadCardPc = (): JSX.Element => {
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid item md={12} lg={5} sx={{ marginRight: "30px" }} height={290} p={1} >
-                <Image src={Download} alt="علی بابا" style={{ width: 360, height: "100%" }} />
+            <Grid item md={12} lg={5} sx={{ marginRight: "30px" }} height={288} p={1} >
+                <Image src={Download} alt="علی بابا" style={{ width: 360, height: 290 }} />
             </Grid>
         </Grid>
 
