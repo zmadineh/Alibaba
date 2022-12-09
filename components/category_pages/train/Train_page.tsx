@@ -1,9 +1,10 @@
 import { Grid } from "@mui/material";
+import Questions from '../../common_questions/Quetions'
 
 export default function Train_page() {
     return (
         <>
-            <Grid>common questions</Grid>
+            <Grid><Questions category={'train-ticket'}/></Grid>
             <Grid>بلیط قطار ...</Grid>
             <Grid>
                 information cards 1
