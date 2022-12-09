@@ -1,4 +1,4 @@
-import { Stack, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import React, { useState } from 'react';
 import { GetPages } from '../components/get_pages_func/GetPages';
 import Tabview from '../components/home/tabview/Tabview';
