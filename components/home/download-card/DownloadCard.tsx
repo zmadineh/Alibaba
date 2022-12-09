@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid/Grid';
 import DawnloadCardMobile from './DawnloadCardMobile';
 import DownloadCardPc from './DownloadCardPc';
 
-const DownloadCard = () => {
+const DownloadCard = (): JSX.Element => {
     return (
         <Grid item container xs={12} justifyContent={"center"} alignItems={"center"} marginBottom={3}>
             <Grid xs={12} sx={{ border: 2, borderRadius: '10px 10px 10px 10px', borderColor: 'divider', maxWidth: { md: '1000px' }, bgcolor: 'common.white' }} height={{ xs: 180, md: 720, lg: 302 }}>

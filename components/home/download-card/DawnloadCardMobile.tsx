@@ -9,7 +9,7 @@ import Download from "../../../public/Assets/Images/download-card/download.jpg"
 
 
 
-const DawnloadCardMobile = () => {
+const DawnloadCardMobile = (): JSX.Element => {
     return (
         <Grid xs={12} item sx={{ display: { xs: "flex", md: "none" } }} height={175} alignItems={"flex-end"} justifyContent={"space-between"}>
             <Grid item display={"flex"} flexDirection={"column"} justifyContent={"space-evenly"} height={175} p={1}>

@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 //data
 import { listType } from './../../../../data/listOption';
 
-function HederMobileMain({ item }: { item: listType }) {
+function HederMobileMain({ item }: { item: listType }): JSX.Element {
     return (
         <Grid key={item.id} xs={12} item display={"flex"} justifyContent={"flex-start"} alignItems={"center"} sx={{ border: "1px solid", borderColor: 'grey.200' }}>
             <Button variant='Button1' >

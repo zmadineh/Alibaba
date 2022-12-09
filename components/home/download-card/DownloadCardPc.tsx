@@ -10,7 +10,7 @@ import Apple from "../../../public/Assets/Images/download-card/apple.png"
 import Scan from "../../../public/Assets/Images/download-card/scan.jpg"
 import Download from "../../../public/Assets/Images/download-card/download.jpg"
 import Link from 'next/link';
-const DownloadCardPc = () => {
+const DownloadCardPc = (): JSX.Element => {
     return (
         <Grid item md={12} sx={{ display: { xs: "none", md: "flex" }, flexDirection: { md: "column", lg: "row" }, justifyContent: { md: "center", lg: "space-between" } }} alignItems={"center"} gap={2}>
             <Grid item md={12} lg={4} display={"flex"} justifyContent={"center"} height={187} sx={{ marginLeft: 2, marginTop: 1 }}>

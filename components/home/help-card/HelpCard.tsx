@@ -9,7 +9,7 @@ import HelpCardItem from './HelpCardItem';
 
 
 
-const HelpCard = () => {
+const HelpCard = (): JSX.Element => {
 
     return (
         <Grid xs={12} container justifyContent={"center"} alignItems={"center"} marginBottom={3} >

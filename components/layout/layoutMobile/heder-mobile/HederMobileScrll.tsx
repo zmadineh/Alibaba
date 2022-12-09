@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 //data
 import { listType } from './../../../../data/listOption';
 
-const HederMobileScrll = ({ item }: { item: listType }) => {
+const HederMobileScrll = ({ item }: { item: listType }): JSX.Element => {
     return (
         <Grid item key={item.id} color={"common.black"} alignItems={"center"}>
             <Link href={item.href}>

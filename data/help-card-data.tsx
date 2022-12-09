@@ -10,7 +10,7 @@ export interface helpCardType {
     icon: any;
     icon2: any;
     href: string;
-    handleClick?: any;
+    handleClick?: JSX.Element;
 
 }
 export const hlepCardData = [

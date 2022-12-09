@@ -11,7 +11,7 @@ import HederMobileMain from './heder-mobile/HederMobileMain';
 import HederMobileScrll from './heder-mobile/HederMobileScrll';
 
 
-const HeaderMobile = () => {
+const HeaderMobile = (): JSX.Element => {
     const [display, setDisplay] = useState<string>("header1")
 
     useEffect(() => {
