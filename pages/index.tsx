@@ -2,6 +2,7 @@ import { Stack, Grid } from '@mui/material';
 import React, { useState } from 'react';
 import { GetPages } from '../components/get_pages_func/GetPages';
 import Tabview from '../components/home/tabview/Tabview';
+import Desk_header from '../components/desktop_header/Desk_header';
 
 // const pages = {
 //     0: 'inFlight',
@@ -17,6 +18,7 @@ export default function FirstPage() {
 
         <Grid>
             <Grid id='layout' >
+                <Desk_header/>
                 <Tabview value={page} setValue={setPage}/>
                 <Grid container marginX={'auto'} direction={'column'} width={'100%'} sx={{
                     maxWidth : {
