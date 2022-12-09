@@ -23,12 +23,13 @@ interface SwappableInputProps {
     setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
     iconName: string,
     flipData: () => void
+    listWidth?: string,
 }
 
 export default function LaptopSwappableInput(props : SwappableInputProps) {
 
     const {firstInputName, secondInputName, handleChange, firstData, secondData,
-        firstLabel, secondLabel, form, setForm, iconName, firstValue, setFirstValue, secValue, setSecValue, flipData} = props
+        firstLabel, secondLabel, form, setForm, iconName, firstValue, setFirstValue, secValue, setSecValue, flipData, listWidth = '100%'} = props
 
     const [firstInput,setFirstInput] = useState<string>('');
     const [secInput,setSecInput] = useState<string>('');
@@ -48,6 +49,7 @@ export default function LaptopSwappableInput(props : SwappableInputProps) {
                     name={firstInputName}
                     handleChange={handleChange}
                     borderRadius={borderRadius.r2}
+                    listWidth={listWidth}
                 />
             }
             children2={
@@ -61,6 +63,7 @@ export default function LaptopSwappableInput(props : SwappableInputProps) {
                     name={secondInputName}
                     handleChange={handleChange}
                     borderRadius={borderRadius.r1}
+                    listWidth={listWidth}
                 />
             }
             flipData={flipData}

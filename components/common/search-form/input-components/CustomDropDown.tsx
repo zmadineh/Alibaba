@@ -33,7 +33,7 @@ const CustomDropDown = (props: CustomDropDownProps) => {
 
             fullWidth
             variant={"outlined"}
-            size={"medium"}
+            size={"small"}
 
             InputProps={{
                 startAdornment: (

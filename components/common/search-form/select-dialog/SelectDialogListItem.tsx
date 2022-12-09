@@ -29,7 +29,7 @@ const SelectDialogListItem = ({dataItem, selectedValue, handleListItemClick, noD
             }}
         >
             <Grid container dir={'rtl'} sx={{padding: 0}} onClick={() => handleListItemClick(dataItem.title)}>
-                <Grid item xs={6}>
+                <Grid item xs={10}>
                     <LocationDataCard
                         icon={<LocationOnOutlinedIcon />}
                         title={dataItem.title}

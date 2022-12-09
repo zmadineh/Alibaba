@@ -22,10 +22,11 @@ interface autocompleteProps {
     borderRadius: string,
     name: string,
     handleChange: (name: string, value: string) => void,
+    listWidth?: string,
     // selectInput: boolean,
 }
 
-export default function CustomAutocomplete({value, setValue, input, setInput, dataArray, label, borderRadius, name, handleChange} : autocompleteProps) {
+export default function CustomAutocomplete({value, setValue, input, setInput, dataArray, label, borderRadius, name, handleChange, listWidth = '100%'} : autocompleteProps) {
 
     const onChangeValue = (event : SyntheticEvent, newValue: string) => {
         setValue(newValue);
@@ -56,34 +57,10 @@ export default function CustomAutocomplete({value, setValue, input, setInput, da
               <TextField
                   {...params}
                   label={label}
-                  size={"medium"}
+                  size={"small"}
                   sx={{
                       color: "grey.400",
                       borderColor: "grey.200",
-
-                      '& :hover': {
-                          color: "grey.400",
-                          '& .MuiOutlinedInput-notchedOutline': {
-                              borderColor: "grey.400",
-                              borderWidth: '0.5px',
-                          },
-                      },
-
-                      '& :focused': {
-                          color: "grey.400",
-                          '& .MuiOutlinedInput-notchedOutline': {
-                              borderColor: "grey.400",
-                              borderWidth: '0.5px',
-                          },
-                      },
-
-                      '& :selected': {
-                          color: "grey.400",
-                          '& .MuiOutlinedInput-notchedOutline': {
-                              borderColor: "grey.400",
-                              borderWidth: '0.5px',
-                          },
-                      },
 
                       '& .MuiOutlinedInput-root.Mui-focused': {
                           '& .MuiOutlinedInput-notchedOutline': {
@@ -112,6 +89,14 @@ export default function CustomAutocomplete({value, setValue, input, setInput, da
                       <Divider sx={{color: '#000', width: '100%'}}/>
                   </Grid>
               );
+          }}
+
+          componentsProps={{
+              paper: {
+                  sx: {
+                      width: listWidth
+                  }
+              }
           }}
           />
     )

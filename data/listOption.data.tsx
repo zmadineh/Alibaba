@@ -9,7 +9,7 @@ interface listType {
     href: string
 }
 
-export const listOption: listType[] = [
+export const listOptionData: listType[] = [
     {
         id: 1, title: "پرواز", icon: <Planicon />, href: "/"
     },

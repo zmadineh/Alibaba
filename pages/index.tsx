@@ -2,6 +2,7 @@ import { Stack, Grid } from '@mui/material';
 import React, { useState } from 'react';
 import { GetPages } from '../components/get_pages_func/GetPages';
 import Tabview from '../components/home/tabview/Tabview';
+import SearchForm from "../components/home/search-form/SearchForm";
 
 // const pages = {
 //     0: 'inFlight',
@@ -29,6 +30,8 @@ export default function FirstPage() {
                     <Grid>Bimeh</Grid>
                     <Grid>Poshtibani</Grid>
                     {GetPages(page)}
+
+                    <SearchForm index={page} />
                 </Grid>
             </Grid>
         </Grid>

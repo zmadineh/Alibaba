@@ -6,6 +6,8 @@ import {passengersCount} from "../../../../model/passengerCount.type";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography/Typography";
 import FaceOutlinedIcon from '@mui/icons-material/FaceOutlined';
+import IconButton from "@mui/material/IconButton";
+import {AddCircle} from "@mui/icons-material";
 
 interface passengerCountItemProps {
     name: string,
@@ -44,15 +46,15 @@ export default function PassengerCountItem({count, setCount, name, currentCount}
             </Grid>
 
             <Grid item xs={6} gap={1} display={"flex"} justifyContent={"center"}>
-                <Button variant={"contained"} color={"secondary"} sx={{width: '30px', height: '30px'}}
+                <IconButton color={"secondary"} sx={{width: '30px', height: '30px'}}
                         onClick={() => addPassenger(name, currentCount)}>
-                    <Typography variant={'h6'} color={'secondary.100'}>+</Typography>
-                </Button>
+                    <AddCircle />
+                </IconButton>
                 {currentCount}
-                <Button variant={"contained"} color={"secondary"} sx={{width: '30px', height: '30px'}}
+                <IconButton color={"secondary"} sx={{width: '30px', height: '30px'}}
                         onClick={() => decreasePassenger(name, currentCount)}>
-                    <Typography variant={'h6'}  color={'secondary.100'}>-</Typography>
-                </Button>
+                  
+                </IconButton>
             </Grid>
         </Grid>
     )

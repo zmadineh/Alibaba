@@ -22,9 +22,11 @@ interface SwappableInputProps {
     form: searchFromValue,
     setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
     iconName: string,
+    listWidth?: string,
 }
 
-export default function SwappableInput({firstInputName, secondInputName, handleChange, firstData, secondData, firstLabel, secondLabel, form, setForm, iconName} : SwappableInputProps) {
+export default function SwappableInput({firstInputName, secondInputName, handleChange, firstData,
+                                           secondData, firstLabel, secondLabel, form, setForm, iconName, listWidth = '100%'} : SwappableInputProps) {
 
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
@@ -48,7 +50,7 @@ export default function SwappableInput({firstInputName, secondInputName, handleC
     }, [firstValue, secValue]);
 
     const props = {firstInputName, secondInputName, handleChange, firstData, secondData,
-        firstLabel, secondLabel, form, setForm, iconName, firstValue, setFirstValue, secValue, setSecValue, flipData};
+        firstLabel, secondLabel, form, setForm, iconName, firstValue, setFirstValue, secValue, setSecValue, flipData, listWidth};
 
     return (
         <>

@@ -48,7 +48,7 @@ export default function InputSelector({open, setOpen, value, setValue, data, lab
             <TextField
                 id="selectorInput"
                 variant={"standard"}
-                size={"medium"}
+                size={"small"}
                 placeholder={label}
                 onClick={() => setOpen(true)}
                 value={value}
