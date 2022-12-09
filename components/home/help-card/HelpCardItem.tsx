@@ -25,7 +25,7 @@ const HelpCardItem = ({ item }: { item: helpCardType }): JSX.Element => {
                 <Grid item  >
                     <Link href={item.href}>
                         <Button sx={{ color: "secondary.300", borderRadius: "10px", "&:hover": { backgroundColor: "secondary.100" } }}>
-                            <Grid item> <Typography variant='h6' sx={{ marginBottom: "14px", fontWeight: 400, color: 'secondary.main', fontSize: 14 }}  >{item.body2}</Typography></Grid>
+                            <Grid item> <Typography variant='h6' sx={{ marginBottom: "14px", fontWeight: 400, color: 'secondary.main', fontSize: { xs: 12, md: 14 } }}  >{item.body2}</Typography></Grid>
                             <Grid item sx={{ color: 'secondary.main' }}> {item.icon2}</Grid>
                         </Button>
                     </Link>
