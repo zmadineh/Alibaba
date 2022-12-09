@@ -11,7 +11,7 @@ import { helpCardType } from "../../../data/help-card-data"
 
 const HelpCardItem = ({ item }: { item: helpCardType }): JSX.Element => {
     return (
-        <Grid key={item.id} item xs={12} md={3.5} display={"flex"} gap={2} alignItems={"center"} sx={{ flexDirection: { xs: "row", md: "column" } }} p={"2px"}>
+        <Grid item xs={12} md={3.5} display={"flex"} gap={2} alignItems={"center"} sx={{ flexDirection: { xs: "row", md: "column" } }} p={"2px"}>
             <Grid item sx={{ color: 'info.300', backgroundColor: 'info.100' }} borderRadius={"28px"} py={"8px"} px={"9px"}>
                 {item.icon}
             </Grid>

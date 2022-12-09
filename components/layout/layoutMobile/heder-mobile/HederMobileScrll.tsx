@@ -10,7 +10,7 @@ import { listType } from './../../../../data/listOption';
 
 const HederMobileScrll = ({ item }: { item: listType }): JSX.Element => {
     return (
-        <Grid item key={item.id} color={"common.black"} alignItems={"center"}>
+        <Grid item color={"common.black"} alignItems={"center"}>
             <Link href={item.href}>
                 <Button variant='Button1' style={{ color: "black" }}>
                     {item.icon}

@@ -40,14 +40,14 @@ const HeaderMobile = (): JSX.Element => {
                 {/* header1 */}
                 <Grid item xs={12} display={display === "header1" ? "flex" : "none"} justifyContent={"center"} alignItems={"cnter"} flexDirection={"row"} sx={{ cursor: "pointer" }}>
                     <Grid item xs={11} container display={"grid"} borderRadius={4} overflow={"hidden"} sx={{ gridTemplateColumns: "repeat(2,1fr)", gridTemplateRows: "repeat(2,1fr)", border: "solid 1px", borderColor: 'grey.200', cursor: "pointer", }} bgcolor={"white"} height={130} position={"relative"} boxShadow={1} >
-                        {listOption.map((item) => (<HederMobileMain item={item} />
+                        {listOption.map((item) => (<HederMobileMain item={item} key={item.id} />
                         ))}
                     </Grid>
                 </Grid>
                 {/* header2 */}
                 <Grid item container xs={12} display={display === "header1" ? "none" : "flex"} justifyContent={'center'} alignItems={"cnter"}>
                     <Grid item xs={11} height={"50px"} display={"flex"} justifyContent={"space-evenly"} alignItems={"cnter"} flexDirection={"row"} bgcolor={"common.white"} borderRadius={3} boxShadow={1} gap={1} overflow={"hidden"}>
-                        {listOption.map(item => (<HederMobileScrll item={item} />
+                        {listOption.map(item => (<HederMobileScrll item={item} key={item.id} />
 
                         ))}
                     </Grid>
