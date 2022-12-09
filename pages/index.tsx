@@ -2,6 +2,8 @@ import { Stack, Grid } from '@mui/material';
 import React, { useState } from 'react';
 import { GetPages } from '../components/get_pages_func/GetPages';
 import Tabview from '../components/home/tabview/Tabview';
+import HelpCard from './../components/home/help-card/HelpCard';
+import DownloadCard from './../components/home/download-card/DownloadCard';
 
 // const pages = {
 //     0: 'inFlight',
@@ -17,21 +19,23 @@ export default function FirstPage() {
 
         <Grid>
             <Grid id='layout' >
-                <Tabview value={page} setValue={setPage}/>
+                <Tabview value={page} setValue={setPage} />
                 <Grid container marginX={'auto'} direction={'column'} width={'100%'} sx={{
-                    maxWidth : {
-                        lg:'1200px',
-                        md : '800px',
-                        sm : '100%'
+                    maxWidth: {
+                        lg: '1200px',
+                        md: '800px',
+                        sm: '100%'
                     }
                 }}>
-                    <Grid>Forms</Grid>
-                    <Grid>Bimeh</Grid>
-                    <Grid>Poshtibani</Grid>
+                    <Grid>
+                        <HelpCard />
+                        <DownloadCard />
+                    </Grid>
                     {GetPages(page)}
                 </Grid>
+
             </Grid>
         </Grid>
     )
-    
+
 }
