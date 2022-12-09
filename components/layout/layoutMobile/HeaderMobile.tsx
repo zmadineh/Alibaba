@@ -1,18 +1,14 @@
 import React from 'react'
 import { useState, useEffect } from "react"
+import Link from 'next/link';
 //materialui
 import Grid from '@mui/material/Grid';
-
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Link from 'next/link';
-
 //data
 import { listOption } from './../../../data/listOption';
 import Logo from "../../../public/Assets/logo.png"
-
 import Image from 'next/image';
-import { fontFamily } from '@mui/system';
+import HederMobileMain from './heder-mobile/HederMobileMain';
+import HederMobileScrll from './heder-mobile/HederMobileScrll';
 
 
 const HeaderMobile = () => {
@@ -44,35 +40,15 @@ const HeaderMobile = () => {
                 {/* header1 */}
                 <Grid item xs={12} display={display === "header1" ? "flex" : "none"} justifyContent={"center"} alignItems={"cnter"} flexDirection={"row"} sx={{ cursor: "pointer" }}>
                     <Grid item xs={11} container display={"grid"} borderRadius={4} overflow={"hidden"} sx={{ gridTemplateColumns: "repeat(2,1fr)", gridTemplateRows: "repeat(2,1fr)", border: "solid 1px", borderColor: 'grey.200', cursor: "pointer", }} bgcolor={"white"} height={130} position={"relative"} boxShadow={1} >
-                        {listOption.map(item => (
-                            <Grid key={item.id} xs={12} item display={"flex"} justifyContent={"flex-start"} alignItems={"center"} sx={{ border: "1px solid", borderColor: 'grey.200' }}>
-                                <Button variant='Button1' >
-                                    <Link href={item.href} >
-                                        <Grid display={"flex"} sx={{ paddingRight: 2, color: 'grey.700' }} gap={1} alignItems={"center"}>
-                                            <Grid item >
-                                                {item.icon}
-                                            </Grid>
-                                            <Grid item sx={{ marginBottom: "5px" }}>
-                                                <Typography variant='h6' sx={{ textDecoriarion: "none solid grey.700" }}><strong>{item.title}</strong></Typography>
-                                            </Grid>
-                                        </Grid>
-                                    </Link>
-                                </Button>
-                            </Grid>
+                        {listOption.map((item) => (<HederMobileMain item={item} />
                         ))}
                     </Grid>
                 </Grid>
                 {/* header2 */}
                 <Grid item container xs={12} display={display === "header1" ? "none" : "flex"} justifyContent={'center'} alignItems={"cnter"}>
                     <Grid item xs={11} height={"50px"} display={"flex"} justifyContent={"space-evenly"} alignItems={"cnter"} flexDirection={"row"} bgcolor={"common.white"} borderRadius={3} boxShadow={1} gap={1} overflow={"hidden"}>
-                        {listOption.map(item => (
-                            <Grid item key={item.id} color={"common.black"} alignItems={"center"}>
-                                <Link href={item.href}>
-                                    <Button variant='Button1' style={{ color: "black" }}>
-                                        {item.icon}
-                                    </Button>
-                                </Link>
-                            </Grid>
+                        {listOption.map(item => (<HederMobileScrll item={item} />
+
                         ))}
                     </Grid>
                 </Grid>
