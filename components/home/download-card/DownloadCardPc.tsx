@@ -9,6 +9,7 @@ import Android from "../../../public/Assets/Images/download-card/android.png"
 import Apple from "../../../public/Assets/Images/download-card/apple.png"
 import Scan from "../../../public/Assets/Images/download-card/scan.jpg"
 import Download from "../../../public/Assets/Images/download-card/download.jpg"
+import Link from 'next/link';
 const DownloadCardPc = () => {
     return (
         <Grid item md={12} sx={{ display: { xs: "none", md: "flex" }, flexDirection: { md: "column", lg: "row" }, justifyContent: { md: "center", lg: "space-between" } }} alignItems={"center"} gap={2}>
@@ -20,10 +21,13 @@ const DownloadCardPc = () => {
                     <Typography variant='h6' sx={{ fontSize: "1.25rem", fontWeight: 700 }}>اپلیکیشن علی بابا</Typography>
                     <Typography sx={{ fontSize: "1.125rem", }}>سریع تر و مطمئن تر به سفر بروید</Typography></Grid>
                 <Grid item>
-                    <Button sx={{ color: "secondary.300", borderRadius: "10px", "&:hover": { backgroundColor: "secondary.100" } }}>
-                        <Grid item> <Typography variant='h6' sx={{ marginBottom: "14px", fontWeight: 400, color: 'secondary.main', fontSize: 16 }}  >مشاهده لینک های دانلود</Typography></Grid>
-                        <Grid item sx={{ color: 'secondary.main' }}> <Arrow /></Grid>
-                    </Button>
+                    <Link href={"/"}>
+                        <Button sx={{ color: "secondary.300", borderRadius: "10px", "&:hover": { backgroundColor: "secondary.100" } }}>
+                            <Grid item> <Typography variant='h6' sx={{ marginBottom: "14px", fontWeight: 400, color: 'secondary.main', fontSize: 16 }}  >مشاهده لینک های دانلود</Typography></Grid>
+                            <Grid item sx={{ color: 'secondary.main' }}> <Arrow /></Grid>
+                        </Button>
+                    </Link>
+
                 </Grid>
                 <Grid item md={12} display={"flex"} justifyContent={"flex-start"}  >
                     <Grid item display={"flex"} alignItems={"flex-end"} gap={1} >
