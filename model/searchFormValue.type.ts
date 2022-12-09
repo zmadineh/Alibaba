@@ -7,4 +7,7 @@ export interface searchFromValue {
     returnDate: string,
     passengerCount: passengersCount,
     formType: number,
+    oneWayRoad?: boolean,
+    flightClass?: string,
+    numOfRoom?: number,
 }

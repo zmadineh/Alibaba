@@ -24,11 +24,12 @@ interface SwappableInputProps {
     iconName: string,
     flipData: () => void
     listWidth?: string,
+    noDescription?: boolean,
 }
 
 export default function LaptopSwappableInput(props : SwappableInputProps) {
 
-    const {firstInputName, secondInputName, handleChange, firstData, secondData,
+    const {firstInputName, secondInputName, handleChange, firstData, secondData, noDescription,
         firstLabel, secondLabel, form, setForm, iconName, firstValue, setFirstValue, secValue, setSecValue, flipData, listWidth = '100%'} = props
 
     const [firstInput,setFirstInput] = useState<string>('');
@@ -50,6 +51,7 @@ export default function LaptopSwappableInput(props : SwappableInputProps) {
                     handleChange={handleChange}
                     borderRadius={borderRadius.r2}
                     listWidth={listWidth}
+                    noDescription={noDescription}
                 />
             }
             children2={
@@ -64,6 +66,7 @@ export default function LaptopSwappableInput(props : SwappableInputProps) {
                     handleChange={handleChange}
                     borderRadius={borderRadius.r1}
                     listWidth={listWidth}
+                    noDescription={noDescription}
                 />
             }
             flipData={flipData}

@@ -43,6 +43,7 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
 
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
+    const tabletMatch = useMediaQuery(theme.breakpoints.down('md'));
 
     const [firstValue,setFirstValue] = useState('');
     const [secValue,setSecValue] = useState('');
@@ -70,6 +71,7 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                                  changeHandler={handleChange}
                                  borderRadius={'8px 0 0 8px'}
                                  variant={"outlined"}
+                                 bgColor={(tabletMatch ? 'grey.100' : '#fff')}
                                  // onClick={onClick}
                 />
             }
@@ -83,6 +85,7 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                                  changeHandler={handleChange}
                                  borderRadius={'0 8px 8px 0'}
                                  variant={"outlined"}
+                                 bgColor={(tabletMatch ? 'grey.100' : '#fff')}
                                  // onClick={onClick}
                 />
             }

@@ -14,6 +14,7 @@ interface CustomDropDownProps {
     setCurrentValue: React.Dispatch<React.SetStateAction<string>>,
     borderRadius: string,
     variant: "standard" | "filled" | "outlined" | undefined,
+    bgColor?: string,
 }
 
 const CustomDropDown = (props: CustomDropDownProps) => {
@@ -49,21 +50,8 @@ const CustomDropDown = (props: CustomDropDownProps) => {
                 '& .MuiInputBase-root': {
                     borderRadius: props.borderRadius,
                     borderColor: "grey.200",
+                    backgroundColor: props.bgColor,
                 },
-
-                // '& .MuiOutlinedInput-input ': {
-                //     minHeight: 0,
-                //     height: '1.1rem',
-                // },
-                //
-                // '& .MuiSelect-select': {
-                //     minHeight: 0,
-                //     height: '1.1rem',
-                // },
-                //
-                // '& .MuiOutlinedInput-input': {
-                //     height: '1.1rem',
-                // },
 
                 '& .MuiInputBase-root::before': {
                     borderColor: "grey.200",

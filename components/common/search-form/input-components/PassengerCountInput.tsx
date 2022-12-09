@@ -96,12 +96,9 @@ export default function PassengerCountInput({form, setForm, name}: PassengerCoun
                     value={`${count.adult.toString()}بزرگسال` + '، ' + `${count.child.toString()}کودک` + ' و ' + `${count.baby.toString()}نوزاد`}
                     onClick={(event) => handleClick(event)}
                     sx={{
-                        // '& .MuiOutlinedInput-input ': {
-                        //     height: '1.43rem',
-                        // },
-
                         '& .MuiInputBase-root': {
-                            borderRadius: "8px"
+                            borderRadius: "8px",
+                            backgroundColor: (tabletMatch ? 'grey.100' : '#fff')
                         },
                     }}
                 />

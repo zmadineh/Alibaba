@@ -58,6 +58,7 @@ export default function InternalFlightSearchForm({mainForm, setMainForm} : Inter
                             form={form}
                             setForm={setForm}
                             iconName={'location'}
+                            noDescription={true}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
