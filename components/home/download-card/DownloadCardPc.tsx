@@ -12,7 +12,7 @@ import Download from "../../../public/Assets/Images/download-card/download.jpg"
 const DownloadCardPc = () => {
     return (
         <Grid item md={12} sx={{ display: { xs: "none", md: "flex" }, flexDirection: { md: "column", lg: "row" }, justifyContent: { md: "center", lg: "space-between" } }} alignItems={"center"} gap={2}>
-            <Grid item md={12} display={"flex"} justifyContent={"flex-end"} height={187} sx={{ marginLeft: 6, marginTop: 1, marginRight: 2, width: { md: 146, lg: 300 } }}>
+            <Grid item md={12} display={"flex"} justifyContent={"flex-end"} height={187} sx={{ marginLeft: 6, marginTop: 1, marginRight: 2, width: { md: 146, lg: 150 } }}>
                 <Image src={Scan} alt="علی بابا" style={{ width: "100%", height: "100%" }} />
             </Grid>
             <Grid item md={12} display={'flex'} flexDirection={"column"} gap={2} >
@@ -39,7 +39,7 @@ const DownloadCardPc = () => {
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid item sx={{ width: { md: 400, lg: 700 }, marginRight: 5 }} height={305} p={1} >
+            <Grid item sx={{ width: { md: 400, lg: 410 }, marginRight: 5 }} height={305} p={1} >
                 <Image src={Download} alt="علی بابا" style={{ width: "100%", height: "100%" }} />
             </Grid>
         </Grid>
