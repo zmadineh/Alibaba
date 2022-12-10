@@ -99,7 +99,7 @@ const Footer = (props: Props) => {
             {id:5,icon:<LinkedinIcon  />},
     ]
   return (
-    <Grid container display={'flex'} direction={'column'} xs={12} justifyContent={'center'} alignItems={'center'} borderTop={1} borderColor={'divider'}>
+    <Grid container display={'flex'} direction={'column'}  justifyContent={'center'} alignItems={'center'} borderTop={1} borderColor={'divider'}>
             <Grid item container display={'flex'} direction={{xs:'column',md:'row'}} xs={12}maxWidth={'1126px'} width={{md:'900px',xs:'auto'}} py={8}>
                     {footerArr1.map((item:any)=>(
                         <Grid item container display={'flex'} flexDirection={{xs:'column',md:'row'}} alignItems={{xs:'center',md:'center'}} md={4}xs={12}  justifyContent={{xs:'center',md:'flex-start'}} key={item.id}>
