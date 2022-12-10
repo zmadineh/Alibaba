@@ -16,7 +16,6 @@ import FlightDetails from '../components/common/flight-details/FlightDetails'
 
 
 import LayoutMobile from '../components/layout/layoutMobile/LayoutMobile'
-import Tabview from '../components/home/tabview/Tabview'
 import Footer from '../components/layout/Footer'
 
 export default function FirstPage() {
@@ -45,5 +44,4 @@ export default function FirstPage() {
             </Grid>
         </Grid>
     )
-
-
+ }
