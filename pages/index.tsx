@@ -4,7 +4,7 @@ import { GetPages } from '../components/get_pages_func/GetPages';
 import Tabview from '../components/home/tabview/Tabview';
 import HelpCard from './../components/home/help-card/HelpCard';
 import DownloadCard from './../components/home/download-card/DownloadCard';
-
+import TrainCard from '../components/home/train-card/TrainCard';
 // const pages = {
 //     0: 'inFlight',
 //     1: 'outFlight',
@@ -30,6 +30,7 @@ export default function FirstPage() {
                     <Grid>
                         <HelpCard />
                         <DownloadCard />
+                        <TrainCard />
                     </Grid>
                     {GetPages(page)}
                 </Grid>
