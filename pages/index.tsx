@@ -4,6 +4,7 @@ import { GetPages } from '../components/get_pages_func/GetPages';
 import Tabview from '../components/home/tabview/Tabview';
 import HelpCard from './../components/home/help-card/HelpCard';
 import DownloadCard from './../components/home/download-card/DownloadCard';
+import SearchCardContainer from "../components/common/recent-searchs/SearchCardContainer";
 
 // const pages = {
 //     0: 'inFlight',
@@ -28,6 +29,8 @@ export default function FirstPage() {
                     }
                 }}>
                     <Grid>
+                        <SearchCardContainer />
+
                         <HelpCard />
                         <DownloadCard />
                     </Grid>
