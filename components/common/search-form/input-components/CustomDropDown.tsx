@@ -46,6 +46,14 @@ const CustomDropDown = (props: CustomDropDownProps) => {
             }}
             sx={{
                 minHeight: 0,
+                '& .MuiSelect-icon' :{
+                    display: 'none',
+                    width: 0,
+                },
+
+                '& .MuiOutlinedInput-input': {
+                    padding: '8.5px 6px',
+                },
 
                 '& .MuiInputBase-root': {
                     borderRadius: props.borderRadius,

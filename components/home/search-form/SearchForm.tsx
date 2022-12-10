@@ -25,7 +25,7 @@ export default function SearchForm({index} : SearchFormProps) {
     const [mainForm, setMainForm] = useState<searchFromValue>(emptySearchFormData)
 
     return (
-        <Grid zIndex={1000}>
+        <Grid zIndex={1000} py={2}>
             {index === 0 && <InternalFlightSearchForm mainForm={mainForm} setMainForm={setMainForm} />}
             {index === 1 && <InternationalFlightSearchForm mainForm={mainForm} setMainForm={setMainForm}/>}
             {index === 2 && <TrainTicketSearchForm mainForm={mainForm} setMainForm={setMainForm}/>}

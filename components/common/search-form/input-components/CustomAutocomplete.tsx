@@ -14,7 +14,6 @@ import Grid from "@mui/material/Grid/Grid";
 interface autocompleteProps {
     detail: swappableInputsDetailType,
     values: any,
-    setValues: React.Dispatch<React.SetStateAction<any>>,
     borderRadius: string,
     listWidth?: string,
     error: boolean,
@@ -22,7 +21,7 @@ interface autocompleteProps {
     validationData: (name:string, value: string) => boolean,
 }
 
-export default function CustomAutocomplete({values, setValues, borderRadius, errorMessage,
+export default function CustomAutocomplete({values, borderRadius, errorMessage,
                                                listWidth = '100%', detail, error, validationData} : autocompleteProps) {
 
     const [input, setInput] = useState<string>('');
@@ -48,28 +47,31 @@ export default function CustomAutocomplete({values, setValues, borderRadius, err
 
     return(
       <Autocomplete
+          id={detail.name}
           value={values[detail.name]}
           onChange={(event, newValue) => onChangeValue(event, (newValue === null ? '' : newValue))}
           inputValue={input}
           onInputChange={(event, newInputValue) => onInputChange(event, newInputValue)}
-          id={detail.name}
           fullWidth
+          disableClearable
+          forcePopupIcon={false}
+          sx={{
+              height: '2.5rem',
+            }}
           options={getTitleArray(detail.data)}
           renderInput={(params) => (
               <TextField
                   {...params}
-                  label={detail.label + ' ' + detail.subLabel}
-                  // required
+                  label={detail.label + ' ' + '(' + detail.subLabel + ')'}
                   error={error}
                   helperText={(error ? errorMessage : '')}
                   size={"small"}
                   sx={{
                       color: "grey.400",
                       borderColor: "grey.200",
-
                       "& .MuiOutlinedInput-root.Mui-error": {
                           '& .MuiOutlinedInput-notchedOutline': {
-                              borderColor: 'error.300'
+                              borderColor: 'error.300',
                           }
                       },
 
@@ -100,7 +102,7 @@ export default function CustomAutocomplete({values, setValues, borderRadius, err
                           dataItem={ detail.data[index]}
                           selectedValue={''}
                           handleListItemClick={handelItemClick}
-                          noDescription={detail.listDescription}
+                          listDescription={detail.listDescription}
                       />
                       <Divider sx={{width: '100%'}}/>
                   </Grid>

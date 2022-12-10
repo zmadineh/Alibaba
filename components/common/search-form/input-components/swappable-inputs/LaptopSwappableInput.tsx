@@ -31,7 +31,6 @@ export default function LaptopSwappableInput(props : SwappableInputProps) {
                 <CustomAutocomplete
                     detail={details[0]}
                     values={values}
-                    setValues={setValues}
                     borderRadius={borderRadius.r2}
                     listWidth={listWidth}
                     error={error[details[0].name]}
@@ -43,7 +42,6 @@ export default function LaptopSwappableInput(props : SwappableInputProps) {
                 <CustomAutocomplete
                     detail={details[1]}
                     values={values}
-                    setValues={setValues}
                     borderRadius={borderRadius.r1}
                     listWidth={listWidth}
                     error={error[details[1].name]}

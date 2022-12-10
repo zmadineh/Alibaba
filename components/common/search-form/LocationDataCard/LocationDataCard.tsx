@@ -9,10 +9,10 @@ interface LocationDataCardProps {
     title: string,
     description: string,
     icon: ReactNode,
-    noDescription: boolean,
+    withDescription: boolean,
 }
 
-const LocationDataCard = ({title, description, icon, noDescription} : LocationDataCardProps) => {
+const LocationDataCard = ({title, description, icon, withDescription} : LocationDataCardProps) => {
 
     return(
         <Grid container item justifyContent={"flex-start"} wrap={"nowrap"}>
@@ -23,7 +23,7 @@ const LocationDataCard = ({title, description, icon, noDescription} : LocationDa
             <Grid container item px={1} flexDirection={"column"} alignItems={'flex-start'} justifyContent={"center"} wrap={"nowrap"}>
 
                 <Typography variant={"body1"} textOverflow={"ellipsis"}>{title}</Typography>
-                {!noDescription && <Typography variant={"body1"} color={'text.secondary'} textOverflow={"ellipsis"}>{description}</Typography>}
+                {withDescription && <Typography variant={"body1"} color={'text.secondary'} textOverflow={"ellipsis"}>{description}</Typography>}
 
             </Grid>
         </Grid>

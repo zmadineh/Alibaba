@@ -19,7 +19,7 @@ const swappableInputsDetails: swappableInputsDetailType[] = [
         subLabel: 'شهر',
         data: internalCities,
         iconName: 'location',
-        listDescription: true,
+        listDescription: false,
     },
     {
         name: 'destination',
@@ -27,7 +27,7 @@ const swappableInputsDetails: swappableInputsDetailType[] = [
         subLabel: 'شهر',
         data: internalCities,
         iconName: 'location',
-        listDescription: true,
+        listDescription: false,
     }
 ]
 

@@ -16,7 +16,7 @@ const swappableInputsDetails: swappableInputsDetailType[] = [
     {
         name: 'origin',
         label: 'مبدا',
-        subLabel: '(شهر و فرودگاه)',
+        subLabel: 'شهر و فرودگاه',
         data: externalAirports,
         iconName: 'location',
         listDescription: true,
@@ -24,7 +24,7 @@ const swappableInputsDetails: swappableInputsDetailType[] = [
     {
         name: 'destination',
         label: 'مقصد',
-        subLabel: '(شهر و فرودگاه)',
+        subLabel: 'شهر و فرودگاه',
         data: externalAirports,
         iconName: 'location',
         listDescription: true,
