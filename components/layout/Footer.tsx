@@ -15,6 +15,14 @@ import namad3 from '../../public/Assets/Images/footer/namad3.png'
 import namad4 from '../../public/Assets/Images/footer/namad4.png'
 import namad5 from '../../public/Assets/Images/footer/namad5.png'
 import namad6 from '../../public/Assets/Images/footer/namad6.png'
+import AparatIcon from '../../public/Assets/Images/footer/AparatIcon.svg'
+import InstagramIcon from '../../public/Assets/Images/footer/InstagramIcon.svg'
+import LinkedinIcon from '../../public/Assets/Images/footer/LinkedinIcon.svg'
+import TelegramIcon from '../../public/Assets/Images/footer/TelegramIcon.svg'
+import TwitterIcon from '../../public/Assets/Images/footer/TwitterIcon.svg'
+import YoutubeIcon from '../../public/Assets/Images/footer/YoutubeIcon.svg'
+
+
 
 import {  Divider, Typography } from '@mui/material'
 import List from '@mui/material/List';
@@ -76,27 +84,25 @@ const Footer = (props: Props) => {
         {id:5,image:namad6}
     ]
   return (
-    <Grid container display={'flex'} direction={'column'} xs={12} justifyContent={'center'} alignItems={'center'}px={4}>
-            <Grid item container display={'flex'} direction={{xs:'column',md:'row'}} md={10} xs={12}>
+    <Grid container display={'flex'} direction={'column'} xs={12} justifyContent={'center'} alignItems={'center'}px={4} borderTop={1} borderColor={'divider'}>
+            <Grid item container display={'flex'} direction={{xs:'column',md:'row'}} md={10} xs={12}width={'1126px'} py={8}>
                     {footerArr1.map((item:any)=>(
-                        <Grid item container display={'flex'} direction={{xs:'column',md:'row'}} alignItems={{xs:'center',md:'center'}} md={4}xs={12}  justifyContent={{xs:'center',md:'flex-start'}} key={item.id}>
-                            <Grid  item justifyContent={'center'} alignItems={'center'}md={4}xs={12} p={2}>
-                            <Image src={item.image}alt='' width={80} height={80}/>
+                        <Grid item container display={'flex'} flexDirection={{xs:'column',md:'row'}} alignItems={{xs:'center',md:'center'}} md={4}xs={12}  justifyContent={{xs:'center',md:'flex-start'}} key={item.id}>
+                            <Grid  item md={4}xs={12}p={1} >
+                            <Image src={item.image}alt='' width={64} height={64}/>
                             </Grid>
-                            <Grid item justifyContent={'center'} alignItems={'center'} py={2}px={2}maxWidth={'200px'}>
+                            <Grid item md={8}xs={12}p={1}>
                                     <Typography textAlign={{xs:'center',md:'start'}} variant={'h6'}>{item.title}</Typography>
                                     <Typography variant={'body1'}fontSize={'16px'} color={'grey.600'}>{item.subtitle}</Typography>
                             </Grid>
                         </Grid>
                     ))}
             </Grid>
-            <Grid item py={4}>
-            <Divider variant='fullWidth' color='divider' />
-            </Grid>
-            <Grid item container xs={10} display={{xs:'none',md:'flex'}} justifyContent={'center'}pt={4} direction={{xs:'column',md:'row'}}>
+            
+            <Grid item container xs={10} display={{xs:'none',md:'flex'}} justifyContent={'center'}pt={4} direction={{xs:'column',md:'row'}}borderTop={1} borderColor={'divider'}width={'1126px'}py={8}>
                     <Grid item container xs={12} md={6} display={'inline-flex'}>
                         {footerArr2.map((item:any)=>(
-                            <Grid key={item.id} item xs={4}>
+                            <Grid key={item.id} item xs={4} >
                                     <Typography variant={'body1'} fontWeight={'bold'} px={1} py={2}>{item.title}</Typography>
                                     {item.sub.map((item:any)=>(
                                         <Typography sx={{cursor:'pointer'}} key={item.id} variant={'body2'} p={1}>{item.title}</Typography>
@@ -118,7 +124,7 @@ const Footer = (props: Props) => {
                             </Grid>
                             <Grid item container pt={3} display={'flex'}alignItems={'end'}>
                                 {footerarr3.map((item:any)=>(
-                                    <Grid key={item.id} item border='1px solid grey.300'borderRadius={2}p={2}>
+                                    <Grid key={item.id} item border={1}borderColor={'divider'}borderRadius={2}my={2}mx={1}height={72}width={72}sx={{cursor:'pointer'}}>
                                         <Image src={item.image}alt=''width={64}/>
                                     </Grid>
                                 ))}
@@ -146,6 +152,21 @@ const Footer = (props: Props) => {
                                 </Collapse>
                             </List>
                         ))}
+            </Grid>
+            <Grid item container xs={10} display={{xs:'none',md:'flex'}} justifyContent={'center'}pt={4} direction={{xs:'column',md:'row'}}borderTop={1} borderColor={'divider'}width={'1126px'}py={8}>
+                        <Grid item xs={12}md={6}>
+                                    <Typography variant='caption'color={'grey.500'}>
+                                        {'کلیه حقوق این سرویس (وب‌سایت و اپلیکیشن‌های موبایل) محفوظ و متعلق به شرکت سفرهای علی‌بابا می‌باشد. (نسخه 1.185.4)'}
+                                    </Typography>
+                        </Grid>
+                        <Grid item xs={12}md={6}>
+                                        <TelegramIcon  style={{bgColor:'grey.500'}} />
+                                        <YoutubeIcon   style={{bgColor:'grey.500'}} />
+                                        <TwitterIcon   style={{bgColor:'grey.500'}} />
+                                        <AparatIcon    style={{bgColor:'grey.500'}} />
+                                        <InstagramIcon style={{bgColor:'grey.500'}} />
+                                        <LinkedinIcon  style={{bgColor:'grey.500'}} />
+                        </Grid>
             </Grid>
     </Grid>
   )
