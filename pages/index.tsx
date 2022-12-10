@@ -14,9 +14,15 @@ import FlightDetails from '../components/common/flight-details/FlightDetails'
 //     4: 'tour'
 // }
 
+
+import LayoutMobile from '../components/layout/layoutMobile/LayoutMobile'
+import Tabview from '../components/home/tabview/Tabview'
+import Footer from '../components/layout/Footer'
+
 export default function FirstPage() {
     const [page, setPage] = useState(0);
     return (
+
 
         <Grid>
             <Grid id='layout' >
@@ -40,4 +46,4 @@ export default function FirstPage() {
         </Grid>
     )
 
-}
+
