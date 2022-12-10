@@ -4,13 +4,32 @@ import {searchFromValue} from "../../../model/searchFormValue.type";
 import {internalCities} from "../../../data/internalCities.data";
 
 import SwappableInput from "../../common/search-form/input-components/swappable-inputs/SwappableInput";
-import ToggleInputs from "../../common/search-form/input-components/ToggleInputs";
-import PassengerCountInput from "../../common/search-form/input-components/PassengerCountInput";
 
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import CustomDropDown from "../../common/search-form/input-components/CustomDropDown";
 import SingleDropDown from "../../common/search-form/input-components/SingleDropDown";
+import {swappableInputsDetailType} from "../../../model/swappableInputsDetail.type";
+import {externalAirports} from "../../../data/externalAirports.data";
+import {emptySearchFormData} from "../../../data/emptySearchForm.data";
+
+const swappableInputsDetails: swappableInputsDetailType[] = [
+    {
+        name: 'origin',
+        label: 'مبدا',
+        subLabel: '(شهر، پایانه)',
+        data: internalCities,
+        iconName: 'location',
+        listDescription: true,
+    },
+    {
+        name: 'destination',
+        label: 'مقصد',
+        subLabel: '(شهر، پایانه)',
+        data: internalCities,
+        iconName: 'location',
+        listDescription: true,
+    }
+]
 
 
 interface InternalFlightSearchFormProps {
@@ -20,20 +39,8 @@ interface InternalFlightSearchFormProps {
 
 export default function BusTicketSearchForm({mainForm, setMainForm} : InternalFlightSearchFormProps) {
 
-    const inputData = internalCities;
+    const [form, setForm] = useState<searchFromValue>(emptySearchFormData);
 
-    const [form, setForm] = useState<searchFromValue>({
-        origin: '',
-        destination: '',
-        departureDate: '',
-        returnDate: '',
-        passengerCount: {adult: 1, child: 0, baby: 0},
-        formType: 3,
-    });
-
-    const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
-        setForm({...form,[event.target.name] : event.target.value});
-    }
 
     const handleChangeWithName = (name: string, value: string) => {
         setForm({...form,[name] : value});
@@ -51,16 +58,10 @@ export default function BusTicketSearchForm({mainForm, setMainForm} : InternalFl
                 <Grid container spacing={2} flexWrap={"nowrap"} flexDirection={{xs: 'column', md: 'row'}} width={'100%'}>
                     <Grid item xs={12} md={6}>
                         <SwappableInput
-                            firstInputName={'origin'}
-                            secondInputName={'destination'}
-                            firstData={inputData}
-                            secondData={inputData}
-                            firstLabel={'مبدا (شهر، پایانه)'}
-                            secondLabel={'مقصد (شهر، پایانه)'}
+                            details={swappableInputsDetails}
                             handleChange={handleChangeWithName}
                             form={form}
                             setForm={setForm}
-                            iconName={'location'}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
@@ -73,14 +74,6 @@ export default function BusTicketSearchForm({mainForm, setMainForm} : InternalFl
                             iconName={'calender'}
                         />
                     </Grid>
-
-                    {/*<Grid item xs={12} md={3}>*/}
-                    {/*    <PassengerCountInput*/}
-                    {/*        form={form}*/}
-                    {/*        setForm={setForm}*/}
-                    {/*        name={'passengerCount'}*/}
-                    {/*    />*/}
-                    {/*</Grid>*/}
                     <Grid item xs={12} md={2}>
                         <Button type={"submit"} variant={"contained"} size={"medium"} sx={{height: '100%', width: '100%'}}>{`جستجو`}</Button>
                     </Grid>

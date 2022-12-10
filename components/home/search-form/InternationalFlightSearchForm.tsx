@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 
 import {searchFromValue} from "../../../model/searchFormValue.type";
+import {swappableInputsDetailType} from "../../../model/swappableInputsDetail.type";
 import {externalAirports} from "../../../data/externalAirports.data";
 
 import SwappableInput from "../../common/search-form/input-components/swappable-inputs/SwappableInput";
@@ -9,6 +10,26 @@ import PassengerCountInput from "../../common/search-form/input-components/Passe
 
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
+import {emptySearchFormData} from "../../../data/emptySearchForm.data";
+
+const swappableInputsDetails: swappableInputsDetailType[] = [
+    {
+        name: 'origin',
+        label: 'مبدا',
+        subLabel: '(شهر و فرودگاه)',
+        data: externalAirports,
+        iconName: 'location',
+        listDescription: true,
+    },
+    {
+        name: 'destination',
+        label: 'مقصد',
+        subLabel: '(شهر و فرودگاه)',
+        data: externalAirports,
+        iconName: 'location',
+        listDescription: true,
+    }
+]
 
 interface InternalFlightSearchFormProps {
     mainForm: searchFromValue,
@@ -17,20 +38,7 @@ interface InternalFlightSearchFormProps {
 
 export default function InternationalFlightSearchForm({mainForm, setMainForm} : InternalFlightSearchFormProps) {
 
-    const inputData = externalAirports;
-
-    const [form, setForm] = useState<searchFromValue>({
-        origin: '',
-        destination: '',
-        departureDate: '',
-        returnDate: '',
-        passengerCount: {adult: 1, child: 0, baby: 0},
-        formType: 1,
-    });
-
-    const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
-        setForm({...form,[event.target.name] : event.target.value});
-    }
+    const [form, setForm] = useState<searchFromValue>(emptySearchFormData);
 
     const handleChangeWithName = (name: string, value: string) => {
         setForm({...form,[name] : value});
@@ -48,16 +56,10 @@ export default function InternationalFlightSearchForm({mainForm, setMainForm} : 
                 <Grid container spacing={2} flexWrap={"nowrap"} flexDirection={{xs: 'column', md: 'row'}} width={'100%'}>
                     <Grid item xs={12} md={4}>
                         <SwappableInput
-                            firstInputName={'origin'}
-                            secondInputName={'destination'}
-                            firstData={inputData}
-                            secondData={inputData}
-                            firstLabel={'مبدا (شهر و فرودگاه)'}
-                            secondLabel={'مقصد (شهر و فرودگاه)'}
+                            details={swappableInputsDetails}
                             handleChange={handleChangeWithName}
                             form={form}
                             setForm={setForm}
-                            iconName={'location'}
                             listWidth={'200%'}
                         />
                     </Grid>

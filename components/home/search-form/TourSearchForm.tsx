@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 
 import {searchFromValue} from "../../../model/searchFormValue.type";
+import {swappableInputsDetailType} from "../../../model/swappableInputsDetail.type";
+
+import {emptySearchFormData} from "../../../data/emptySearchForm.data";
 import {internalCities} from "../../../data/internalCities.data";
 
 import SwappableInput from "../../common/search-form/input-components/swappable-inputs/SwappableInput";
@@ -10,6 +13,24 @@ import PassengerCountInput from "../../common/search-form/input-components/Passe
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 
+const swappableInputsDetails: swappableInputsDetailType[] = [
+    {
+        name: 'origin',
+        label: 'مبدا',
+        subLabel: 'شهر',
+        data: internalCities,
+        iconName: 'location',
+        listDescription: true,
+    },
+    {
+        name: 'destination',
+        label: 'مقصد',
+        subLabel: 'شهر',
+        data: internalCities,
+        iconName: 'location',
+        listDescription: true,
+    }
+]
 
 interface InternalFlightSearchFormProps {
     mainForm: searchFromValue,
@@ -18,20 +39,7 @@ interface InternalFlightSearchFormProps {
 
 export default function TourSearchForm({mainForm, setMainForm} : InternalFlightSearchFormProps) {
 
-    const inputData = internalCities;
-
-    const [form, setForm] = useState<searchFromValue>({
-        origin: '',
-        destination: '',
-        departureDate: '',
-        returnDate: '',
-        passengerCount: {adult: 1, child: 0, baby: 0},
-        formType: 3,
-    });
-
-    const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
-        setForm({...form,[event.target.name] : event.target.value});
-    }
+    const [form, setForm] = useState<searchFromValue>(emptySearchFormData);
 
     const handleChangeWithName = (name: string, value: string) => {
         setForm({...form,[name] : value});
@@ -49,16 +57,10 @@ export default function TourSearchForm({mainForm, setMainForm} : InternalFlightS
                 <Grid container spacing={2} flexWrap={"nowrap"} flexDirection={{xs: 'column', md: 'row'}} width={'100%'}>
                     <Grid item xs={12} md={5}>
                         <SwappableInput
-                            firstInputName={'origin'}
-                            secondInputName={'destination'}
-                            firstData={inputData}
-                            secondData={inputData}
-                            firstLabel={'مبدا (شهر)'}
-                            secondLabel={'مقصد (شهر)'}
+                            details={swappableInputsDetails}
                             handleChange={handleChangeWithName}
                             form={form}
                             setForm={setForm}
-                            iconName={'location'}
                         />
                     </Grid>
                     <Grid item xs={12} md={5}>

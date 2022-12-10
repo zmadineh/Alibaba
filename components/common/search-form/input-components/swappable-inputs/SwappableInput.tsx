@@ -50,7 +50,8 @@ export default function SwappableInput(props : SwappableInputProps) {
             return false;
         }
         else {
-            setValues({...values, [name]: value})
+            const newV = value
+            setValues({...values, [name]: newV})
             setError({[name]: false, [otherName]: false})
             setErrorMessage('')
             return true;
