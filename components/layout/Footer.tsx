@@ -41,15 +41,11 @@ type Props = {}
 
 const Footer = (props: Props) => {
    
-        const [open, setOpen] =useState(false);
-        const [open1, setOpen1] =useState(false);
-        const [open2, setOpen2] =useState(false);
+
       
         const handleClick = (id:number) => {
             setFooterArr2(footerArr2.map(item => item.id === id ?{...item, open:(!item.open)}:{...item}))
-            
-           
-           console.log(footerArr2); 
+
         };
 
     const footerArr1 =[
