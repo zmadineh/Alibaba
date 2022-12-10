@@ -18,6 +18,7 @@ import {ListItem} from "@mui/material";
 import Typography from "@mui/material/Typography/Typography";
 import DataList from "./DataList";
 import InputWithPlaceholder from "../input-components/InputWithPlaceholder";
+import {swappableInputsDetailType} from "../../../../model/swappableInputsDetail.type";
 
 
 const Transition = React.forwardRef(function Transition(
@@ -42,6 +43,12 @@ const StyledDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 interface selectDialogProps {
+    details: swappableInputsDetailType[],
+    values: {[key: string]: string},
+    setValues: React.Dispatch<React.SetStateAction<{[key: string]: string}>>,
+    error: {[key: string]: boolean},
+    validationData: (name:string, value: string) => boolean,
+
     open: boolean,
     data: data[],
     onClose: (value: string) => void,
@@ -57,17 +64,17 @@ interface selectDialogProps {
     firstLabel: string,
     secondLabel: string,
     flipData: () => void,
-    inputOnClick: (e: any) => void,
+    setDialogDetails: (e: any) => void,
 }
 
 export default function TabletSelectDialog( props : selectDialogProps) {
 
     const {open, setOpen, data, onClose, label, selectedName, firstLabel, firstInputName,
-        firstValue, secondLabel, secondInputName, secValue, borderRadius, flipData, inputOnClick} = props
+        firstValue, secondLabel, secondInputName, secValue, borderRadius, flipData, setDialogDetails, values, setValues, details, error, validationData} = props
 
     const [search, setSearch] = useState<string>('');
-    const [inputFirst, setInputFirst] = useState<string>(firstValue);
-    const [inputSecond, setInputSecond] = useState<string>(secValue);
+    const [inputFirst, setInputFirst] = useState<string>(values[details[0].name]);
+    const [inputSecond, setInputSecond] = useState<string>(values[details[1].name]);
 
     const closeDialog = () => {
         setOpen(false)
@@ -78,8 +85,22 @@ export default function TabletSelectDialog( props : selectDialogProps) {
     };
 
     const handelItemClick = (value : string) => {
-        if(selectedName === firstInputName) setInputFirst(value)
-        else if(selectedName === secondInputName) setInputSecond(value)
+        setValues({...values, [selectedName]: value})
+        const validate = validationData(selectedName, value)
+        if(!validate && error)
+            console.log('error', error)
+
+        if(selectedName === firstInputName){
+            if(value === inputSecond)
+                setInputSecond('')
+            setInputFirst(value)
+        }
+        else if(selectedName === secondInputName) {
+            if(value === inputFirst)
+                setInputFirst('')
+            setInputSecond(value)
+        }
+
         setSearch('')
         onClose(value);
     };
@@ -91,16 +112,16 @@ export default function TabletSelectDialog( props : selectDialogProps) {
         else if(selectedName === secondInputName) setInputSecond(currentSearch)
     }
 
-    const flipData_ = useCallback(() => {
-
-        if (inputFirst && inputSecond) {
-            const temp1 = inputFirst;
-            const temp2 = inputSecond;
-            setInputFirst(temp2)
-            setInputSecond(temp1)
-        }
-        flipData();
-    }, [inputFirst, inputSecond]);
+    // const flipData_ = useCallback(() => {
+    //
+    //     if (inputFirst && inputSecond) {
+    //         const temp1 = inputFirst;
+    //         const temp2 = inputSecond;
+    //         setInputFirst(temp2)
+    //         setInputSecond(temp1)
+    //     }
+    //     flipData();
+    // }, [inputFirst, inputSecond]);
 
     return (
         <div>
@@ -124,7 +145,7 @@ export default function TabletSelectDialog( props : selectDialogProps) {
                                 borderRadius={borderRadius.r1}
                                 changeHandler={handleSearch}
                                 withIcon={true}
-                                onClick={inputOnClick}
+                                onClick={setDialogDetails}
                                 value={inputFirst}
                             />
 
@@ -137,11 +158,11 @@ export default function TabletSelectDialog( props : selectDialogProps) {
                                 borderRadius={borderRadius.r2}
                                 changeHandler={handleSearch}
                                 withIcon={true}
-                                onClick={inputOnClick}
+                                onClick={setDialogDetails}
                                 value={inputSecond}
                             />
                         }
-                        flipData={flipData_}
+                        flipData={flipData}
                     />
 
                 </TabletDialogHeader>

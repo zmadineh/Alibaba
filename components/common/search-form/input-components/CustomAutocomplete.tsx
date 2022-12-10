@@ -1,39 +1,34 @@
-import React, {SyntheticEvent} from "react";
+import React, {SyntheticEvent, useCallback, useState} from "react";
 
-import {searchFromValue} from "../../../../model/searchFormValue.type";
+import {getTitleArray} from "../../../../helper/getTitleArray.helper";
+import {swappableInputsDetailType} from "../../../../model/swappableInputsDetail.type";
+
+import SelectDialogListItem from "../select-dialog/SelectDialogListItem";
 
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import DataList from "../select-dialog/DataList";
-import SelectDialogListItem from "../select-dialog/SelectDialogListItem";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid/Grid";
-import {data} from "../../../../model/data.type";
-import {getTitleArray} from "../../../../helper/getTitleArray.helper";
 
 
 interface autocompleteProps {
-    value: string,
-    setValue:  React.Dispatch<React.SetStateAction<string>>,
-    input: string,
-    setInput:  React.Dispatch<React.SetStateAction<string>>,
-    dataArray: data[],
-    label: string,
+    detail: swappableInputsDetailType,
+    values: any,
+    setValues: React.Dispatch<React.SetStateAction<any>>,
     borderRadius: string,
-    name: string,
-    handleChange: (name: string, value: string) => void,
     listWidth?: string,
-    noDescription?: boolean,
-    // selectInput: boolean,
+    error: boolean,
+    errorMessage: string,
+    validationData: (name:string, value: string) => boolean,
 }
 
-export default function CustomAutocomplete({value, setValue, input, setInput, dataArray,
-                                               label, borderRadius, name, handleChange, listWidth = '100%', noDescription = false} : autocompleteProps) {
+export default function CustomAutocomplete({values, setValues, borderRadius, errorMessage,
+                                               listWidth = '100%', detail, error, validationData} : autocompleteProps) {
+
+    const [input, setInput] = useState<string>('');
 
     const onChangeValue = (event : SyntheticEvent, newValue: string) => {
-        setValue(newValue);
-        handleChange(name, newValue)
-        console.log(newValue)
+        console.log('onChangeValue')
     }
 
     const onInputChange = (event : SyntheticEvent, newValue: string) => {
@@ -41,28 +36,42 @@ export default function CustomAutocomplete({value, setValue, input, setInput, da
     }
 
     const handelItemClick = (newValue: string) => {
-        console.log(newValue)
-        setValue(newValue)
-        handleChange(name, newValue)
+        const validate = validationData(detail.name, newValue)
+        if(!validate){
+            console.log('error')
+        }
+        else {
+            setInput(newValue)
+            console.log('validate')
+        }
     }
 
     return(
       <Autocomplete
-          value={value}
+          value={values[detail.name]}
           onChange={(event, newValue) => onChangeValue(event, (newValue === null ? '' : newValue))}
           inputValue={input}
           onInputChange={(event, newInputValue) => onInputChange(event, newInputValue)}
-          id='custom-autoComplete'
+          id={detail.name}
           fullWidth
-          options={getTitleArray(dataArray)}
+          options={getTitleArray(detail.data)}
           renderInput={(params) => (
               <TextField
                   {...params}
-                  label={label}
+                  label={detail.label + ' ' + detail.subLabel}
+                  // required
+                  error={error}
+                  helperText={(error ? errorMessage : '')}
                   size={"small"}
                   sx={{
                       color: "grey.400",
                       borderColor: "grey.200",
+
+                      "& .MuiOutlinedInput-root.Mui-error": {
+                          '& .MuiOutlinedInput-notchedOutline': {
+                              borderColor: 'error.300'
+                          }
+                      },
 
                       '& .MuiOutlinedInput-root.Mui-focused': {
                           '& .MuiOutlinedInput-notchedOutline': {
@@ -84,14 +93,14 @@ export default function CustomAutocomplete({value, setValue, input, setInput, da
           )}
 
           renderOption={(props, option) => {
-              const index = dataArray.findIndex(item => item.title === option)
+              const index = detail.data.findIndex(item => item.title === option)
               return (
                   <Grid container px={1} key={option}>
                       <SelectDialogListItem
-                          dataItem={dataArray[index]}
+                          dataItem={ detail.data[index]}
                           selectedValue={''}
                           handleListItemClick={handelItemClick}
-                          noDescription={noDescription}
+                          noDescription={detail.listDescription}
                       />
                       <Divider sx={{width: '100%'}}/>
                   </Grid>

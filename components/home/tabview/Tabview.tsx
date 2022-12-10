@@ -92,7 +92,11 @@ const Tabview = ({value,setValue}: Props) => {
               {TabItem.map((item: any) => (
                 <TabPanel key={item.id} value={value} index={item.id}>
                   {/*{item.component}*/}
+
+
                   <SearchForm index={value} />
+
+
                 </TabPanel>
               ))}
             </Box>

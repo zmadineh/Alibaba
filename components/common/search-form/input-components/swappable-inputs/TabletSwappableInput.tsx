@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from "react";
 
-import {searchFromValue} from "../../../../../model/searchFormValue.type";
 import {data} from "../../../../../model/data.type";
+import {swappableInputsDetailType} from "../../../../../model/swappableInputsDetail.type";
 
 import SwappableTemplate from "./SwappableTemplate";
 import TabletSelectDialog from "../../select-dialog/TabletSelectDialog";
@@ -9,27 +9,21 @@ import InputWithPlaceholder from "../InputWithPlaceholder";
 
 
 interface SwappableInputProps {
-    firstValue: string,
-    secValue: string,
-    setFirstValue: React.Dispatch<React.SetStateAction<string>>,
-    setSecValue: React.Dispatch<React.SetStateAction<string>>,
-    firstInputName: string,
-    secondInputName: string,
-    firstData: data[],
-    secondData: data[],
-    firstLabel: string,
-    secondLabel: string,
-    handleChange: (name: string, value: string) => void,
-    form: searchFromValue,
-    setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
-    iconName: string,
+    details: swappableInputsDetailType[],
+    values: {[key: string]: string},
+    setValues: React.Dispatch<React.SetStateAction<{[key: string]: string}>>,
     flipData: () => void
+    listWidth?: string,
+    error: {[key: string]: boolean},
+    validationData: (name:string, value: string) => boolean,
 }
 
 export default function TabletSwappableInput(props : SwappableInputProps) {
 
-    const {firstInputName, secondInputName, handleChange, firstData, secondData,
-        firstLabel, secondLabel, form, setForm, iconName, firstValue, setFirstValue, secValue, setSecValue, flipData} = props
+    const {details, flipData, listWidth = '100%', error, validationData, values, setValues} = props
+
+    const firstInputName = details[0].name
+    const secondInputName = details[1].name
 
     const [open, setOpen] = useState<boolean>(false);
     const [value, setValue] = useState<string>('');
@@ -39,63 +33,60 @@ export default function TabletSwappableInput(props : SwappableInputProps) {
 
     const borderRadius = {r1: "8px 8px 0 0px", r2: "0 0 8px 8px"}
 
-    const inputOnClick = (event: any) => {
+    const setDialogDetails = (event: any) => {
+
         setName(event.target.name);
         if (event.target.name === firstInputName){
-            setLabel(firstLabel)
-            setData(firstData)
-            setValue(firstValue)
+            setLabel(details[0].label)
+            setData(details[0].data)
+            setValue(values[firstInputName])
         }
         else if (event.target.name === secondInputName) {
-            setLabel(secondLabel)
-            setData(secondData)
-            setValue(secValue)
+            setLabel(details[1].label)
+            setData(details[1].data)
+            setValue(values[secondInputName])
         }
         console.log('name: ',name)
         setOpen(true)
     }
 
-    const onClose = useCallback((value : string) => {
-        // setOpen(false);
-        if (value){
-            if (name === firstInputName)
-                setFirstValue(value)
-            else if (name === secondInputName)
-                setSecValue(value)
-
-            handleChange(name, value)
-            console.log(name, firstValue, secValue, 'select')
-        }
+     const onClose = useCallback((value : string) => {
+            console.log(name, values[firstInputName], values[secondInputName], 'select')
     }, [ name]);
 
-    const sendingProps = {firstLabel, firstInputName, firstValue, secondLabel, secondInputName, secValue, borderRadius, flipData, inputOnClick}
+    const sendingProps = {values, setValues, validationData, error, details, borderRadius, flipData, setDialogDetails}
 
     return (
         <>
-            <TabletSelectDialog open={open} data={data} onClose={onClose} label={label} selectedName={name} setOpen={setOpen} {...sendingProps}/>
+            <TabletSelectDialog firstValue={values[firstInputName]} secValue={values[secondInputName]}
+                                firstInputName={details[0].name}
+                                secondInputName={details[1].name}
+                                firstLabel={details[0].label} secondLabel={details[1].label} open={open}
+                                data={data} onClose={onClose} label={label} selectedName={name}
+                                setOpen={setOpen} {...sendingProps}/>
 
             <SwappableTemplate
                 children1={
                     <InputWithPlaceholder
-                        label={firstLabel}
-                        name={firstInputName}
+                        label={details[0].label}
+                        name={details[0].name}
                         borderRadius={borderRadius.r1}
-                        onClick={inputOnClick}
+                        onClick={setDialogDetails}
                         withIcon={true}
-                        placeholder={firstLabel}
-                        value={firstValue}
+                        placeholder={details[0].label}
+                        value={values[firstInputName]}
                     />
 
             }
                 children2={
                     <InputWithPlaceholder
-                        label={secondLabel}
-                        name={secondInputName}
+                        label={details[1].label}
+                        name={details[1].name}
                         borderRadius={borderRadius.r2}
-                        onClick={inputOnClick}
+                        onClick={setDialogDetails}
                         withIcon={true}
-                        placeholder={secondLabel}
-                        value={secValue}
+                        placeholder={details[1].label}
+                        value={values[secondInputName]}
                     />
             }
                 flipData={flipData}
