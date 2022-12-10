@@ -75,13 +75,21 @@ const Footer = (props: Props) => {
 
         ]}
     ]
-    const footerarr3=[
+    const footerArr3=[
         {id:0,image:namad1},
         {id:1,image:namad2},
         {id:2,image:namad3},
         {id:3,image:namad4},
         {id:4,image:namad5},
         {id:5,image:namad6}
+    ]
+    const footerIcon=[
+            {id:0,icon:<TelegramIcon  />},
+            {id:1,icon:<YoutubeIcon   />},
+            {id:2,icon:<TwitterIcon   />},
+            {id:3,icon:<AparatIcon    />},
+            {id:4,icon:<InstagramIcon />},
+            {id:5,icon:<LinkedinIcon  />},
     ]
   return (
     <Grid container display={'flex'} direction={'column'} xs={12} justifyContent={'center'} alignItems={'center'}px={4} borderTop={1} borderColor={'divider'}>
@@ -122,8 +130,8 @@ const Footer = (props: Props) => {
                             <Grid item py={1}>
                                 <Typography variant={'body2'}>دفتر پشتیبانی: اکباتان، نبش اتوبان لشگری، کوی بیمه، خیابان بیمه چهارم، بن‌بست گل‌ها، پلاک 1</Typography>
                             </Grid>
-                            <Grid item container pt={3} display={'flex'}alignItems={'end'}>
-                                {footerarr3.map((item:any)=>(
+                            <Grid item container pt={3} display={'flex'}alignItems={'center'}justifyContent={'flex-end'}>
+                                {footerArr3.map((item:any)=>(
                                     <Grid key={item.id} item border={1}borderColor={'divider'}borderRadius={2}my={2}mx={1}height={72}width={72}sx={{cursor:'pointer'}}>
                                         <Image src={item.image}alt=''width={64}/>
                                     </Grid>
@@ -159,13 +167,12 @@ const Footer = (props: Props) => {
                                         {'کلیه حقوق این سرویس (وب‌سایت و اپلیکیشن‌های موبایل) محفوظ و متعلق به شرکت سفرهای علی‌بابا می‌باشد. (نسخه 1.185.4)'}
                                     </Typography>
                         </Grid>
-                        <Grid item xs={12}md={6}>
-                                        <TelegramIcon  style={{bgColor:'grey.500'}} />
-                                        <YoutubeIcon   style={{bgColor:'grey.500'}} />
-                                        <TwitterIcon   style={{bgColor:'grey.500'}} />
-                                        <AparatIcon    style={{bgColor:'grey.500'}} />
-                                        <InstagramIcon style={{bgColor:'grey.500'}} />
-                                        <LinkedinIcon  style={{bgColor:'grey.500'}} />
+                        <Grid item xs={12}md={6} container color={'grey.500'} display={'flex'} justifyContent={'flex-end'} alignItems={'center'}>
+                                    {footerIcon.map((item:any)=>(
+                                        <Grid key={item.id} item mx={2} sx={{cursor:'pointer'}}>
+                                            {item.icon}
+                                        </Grid>
+                                    ))}
                         </Grid>
             </Grid>
     </Grid>
