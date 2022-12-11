@@ -51,12 +51,24 @@ export default function TabletSwappableInput(props : SwappableInputProps) {
             console.log(name, values[firstInputDetail.name], values[secondInputDetail.name], 'select')
     }, [ name]);
 
-    const sendingProps = {values, setValues, validationData, error, details, borderRadius, flipData, setDialogDetails}
-
     return (
         <>
-            <TabletSelectDialog  open={open} data={data} onClose={onClose} label={label} selectedName={name}
-                                setOpen={setOpen} {...sendingProps}/>
+            <TabletSelectDialog
+                details={details}
+                values={values}
+                setValues={setValues}
+                error={error}
+                validationData={validationData}
+                open={open}
+                data={data}
+                onClose={onClose}
+                label={label}
+                selectedName={name}
+                setOpen={setOpen}
+                borderRadius={borderRadius}
+                flipData={flipData}
+                setDialogDetails={setDialogDetails}
+            />
 
             <SwappableTemplate
                 children1={
