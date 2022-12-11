@@ -44,10 +44,10 @@ export default function SearchCardContainer() {
     }, []);
 
     return (
-        <Grid item container flexDirection={"column"} spacing={1} my={3}>
+        <Grid container flexDirection={"column"} spacing={1} my={3}>
 
             {counter > 0 &&
-                <Grid item container color={'grey.800'} width={'100%'}>
+                <Grid item container color={'grey.800'} justifyContent={"space-between"}>
                     <Button variant={"text"}><Typography variant={'body1'} fontWeight={'600'} color={'grey.800'}>جستجوهای اخیر ({counter})</Typography></Button>
                     <Button variant={"text"}><Typography variant={'body2'} color={'secondary'}
                                                          onClick={removeAllSearches}>پاک کردن همه</Typography></Button>
@@ -58,6 +58,7 @@ export default function SearchCardContainer() {
                     {searches.map((search , index) => (
                         <SearchCard key={index} {...search}/>
                     ))}
+
                 </Grid>
         </Grid>
     )
