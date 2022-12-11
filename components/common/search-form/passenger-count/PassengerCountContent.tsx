@@ -17,9 +17,9 @@ export default function PassengerCountContent({count, setCount, open, setOpen}: 
 
     return (
         <Grid container flexDirection={"column"} spacing={2}>
-            <PassengerCountItem name={'adult'} currentCount={count.adult} count={count} setCount={setCount} />
-            <PassengerCountItem name={'child'} currentCount={count.child} count={count} setCount={setCount} />
-            <PassengerCountItem name={'baby'} currentCount={count.baby} count={count} setCount={setCount} />
+            <PassengerCountItem name={'adult'} title={'بزرگسال'} label={'۱۲ سال به بالا'} currentCount={count.adult} count={count} setCount={setCount} />
+            <PassengerCountItem name={'child'} title={'کودک'} label={'۲ تا ۱۲ سال'} currentCount={count.child} count={count} setCount={setCount} />
+            <PassengerCountItem name={'baby'} title={'نوزاد'} label={'۱۰ روز تا ۲ سال'} currentCount={count.baby} count={count} setCount={setCount} />
         </Grid>
     )
 }

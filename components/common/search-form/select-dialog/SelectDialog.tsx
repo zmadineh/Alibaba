@@ -64,7 +64,12 @@ export default function SelectDialog({open, data, onClose, selectedValue, label}
                 />
                 <div style={{overflow: "hidden", height: '1px'}}></div>
 
-                <DataList data={data} search={search} handelItemClick={handelItemClick} noDescription={true}/>
+                <DataList
+                    data={data}
+                    search={search}
+                    handelItemClick={handelItemClick}
+                    listDescription={false}
+                />
             </Dialog>
         </div>
     );

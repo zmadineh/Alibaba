@@ -96,12 +96,14 @@ export default function SwipeableEdgeDrawer(props: Props) {
 
                     <Divider />
 
-                    <PassengerCountContent count={props.count} setCount={props.setCount} open={props.open} setOpen={props.setOpen} />
+                    <Grid container width={'90%'}>
+                        <PassengerCountContent count={props.count} setCount={props.setCount} open={props.open} setOpen={props.setOpen} />
 
-                    <Button sx={{backgroundColor: 'secondary.700', width: '80%', height: '40px', borderRadius: '10px'}}
-                            onClick={() => props.setOpen(false)}>
-                        تایید
-                    </Button>
+                        <Button sx={{backgroundColor: 'secondary.main', color: '#fff', width: '100%', height: '40px', borderRadius: '10px'}}
+                                onClick={() => props.setOpen(false)}>
+                            تایید
+                        </Button>
+                    </Grid>
                 </Grid>
 
             </SwipeableDrawer>
