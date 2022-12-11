@@ -82,15 +82,15 @@ export default function InternalFlightSearchForm({submit} : InternalFlightSearch
                             iconName={'calender'}
                         />
                     </Grid>
-                    <Grid item xs={12} md={3}>
+                    <Grid item xs={12} md={2.5}>
                         <PassengerCountInput
                             form={form}
                             setForm={setForm}
                             name={'passengerCount'}
                         />
                     </Grid>
-                    <Grid item xs={12} md={1}>
-                        <Button type={"submit"} variant={"contained"} size={"medium"} sx={{height: '100%', width: '100%'}}>{`جستجو`}</Button>
+                    <Grid item xs={12} md={1.5}>
+                        <Button type={"submit"} variant={"contained"} size={"medium"} sx={{height: '100%', width: '100%', borderRadius: '10px'}}>{`جستجو`}</Button>
                     </Grid>
                 </Grid>
             </form>
