@@ -99,7 +99,7 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
               return (
                   <Grid container px={1} key={option}>
                       <SelectDialogListItem
-                          dataItem={ detail.data[index]}
+                          dataItem={detail.data[index]}
                           selectedValue={''}
                           handleListItemClick={handelItemClick}
                           listDescription={detail.listDescription}
