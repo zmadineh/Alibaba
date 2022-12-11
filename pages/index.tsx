@@ -18,7 +18,6 @@ export default function FirstPage() {
 
         <Grid>
             <Grid id='layout' >
-                <Desk_header/>
                 <Tabview value={page} setValue={setPage}/>
                 <Grid container marginX={'auto'} direction={'column'} width={'100%'} sx={{
                     maxWidth : {
