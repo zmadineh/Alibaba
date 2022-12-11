@@ -48,7 +48,7 @@ const BooleanSelector = (props: CustomDropDownProps) => {
                     //     },
                     // },
                 // },
-                
+
                 '& .MuiInputBase-root': {
                     borderRadius: '20px',
                     borderColor: "grey.200",

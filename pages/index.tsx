@@ -51,6 +51,8 @@ export default function FirstPage() {
                     {GetPages(page)}
                 </Grid>
 
+                <Footer/>
+
             </Grid>
         </Grid>
     )
