@@ -75,7 +75,7 @@ const Tabview = ({value,setValue}: Props) => {
         </Grid>
         <Grid container display={'flex'} justifyContent={'center'} position={'absolute'} zIndex={1000} bottom={'-75px'}>
           <Grid item container justifyContent={"center"}>
-            <Box sx={{ border: 2, borderRadius: '10px 10px 10px 10px', borderColor: 'divider', width: '100%', maxWidth: '1300px', bgcolor: 'common.white' }}>
+            <Box sx={{ border: 2, borderRadius: '10px 10px 10px 10px', borderColor: 'divider', width: '100%', maxWidth: '1200px', bgcolor: 'common.white' }}>
               <Box sx={{ borderBottom: 2, borderColor: 'divider', borderRadius: '10px 10px 0 0', display: 'flex', justifyContent: 'space-around' }}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example"
                   textColor="secondary" indicatorColor="secondary" sx={{ borderBottom: '1px solid #e8e8e8' }}>
