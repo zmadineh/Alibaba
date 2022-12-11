@@ -166,7 +166,12 @@ export default function TabletSelectDialog( props : selectDialogProps) {
                 </TabletDialogHeader>
                 <div style={{overflow: "hidden", height: '1px'}}></div>
 
-                <DataList data={data} search={search} handelItemClick={handelItemClick} noDescription={true}/>
+                <DataList
+                    data={data}
+                    search={search}
+                    handelItemClick={handelItemClick}
+                    listDescription={false}
+                />
             </StyledDialog>
         </div>
     );
