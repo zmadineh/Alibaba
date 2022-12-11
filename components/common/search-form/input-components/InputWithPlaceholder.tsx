@@ -24,7 +24,7 @@ const InputWithPlaceholder = (props: InputWithPlaceholderProps) => {
             value={props.value}
             onChange={props.changeHandler}
             variant={"outlined"}
-            size={"medium"}
+            size={"small"}
             fullWidth
             sx={{
                 '& .Mui-focused': {

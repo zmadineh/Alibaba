@@ -56,6 +56,7 @@ export const theme = createTheme({
             '300': '#DC3545',
             '400': '#871722',
             '500': '#410B10',
+            // main: '#410B10',
         },
         grey: {
             '100': '#F8FAFB',
@@ -66,6 +67,7 @@ export const theme = createTheme({
             '600': '#4B5259',
             '700': '#2B2F33',
             '800': '#0A0B0C',
+            '900': '#F6F6F6',
         },
     },
     components: {

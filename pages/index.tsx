@@ -4,6 +4,9 @@ import { GetPages } from '../components/get_pages_func/GetPages';
 import Tabview from '../components/home/tabview/Tabview';
 import HelpCard from './../components/home/help-card/HelpCard';
 import DownloadCard from './../components/home/download-card/DownloadCard';
+import FlightDetails from '../components/common/flight-details/FlightDetails'
+import LayoutMobile from '../components/layout/layoutMobile/LayoutMobile'
+import Footer from '../components/layout/Footer'
 import SearchCardContainer from "../components/common/recent-searchs/SearchCardContainer";
 
 // const pages = {
@@ -31,14 +34,15 @@ export default function FirstPage() {
                     <Grid>
                         <SearchCardContainer />
 
-                         <HelpCard />
-                         <DownloadCard />
-                     </Grid>
-                     {GetPages(page)}
-                 </Grid>
+                        <HelpCard />
+                        <DownloadCard />
+                        <FlightDetails/>
+                    </Grid>
+                    {GetPages(page)}
+                </Grid>
 
-             </Grid>
-         </Grid>
+            </Grid>
+        </Grid>
     )
 
 }

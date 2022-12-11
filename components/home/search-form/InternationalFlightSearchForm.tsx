@@ -1,39 +1,53 @@
 import React, {useState} from "react";
 
 import {searchFromValue} from "../../../model/searchFormValue.type";
+import {swappableInputsDetailType} from "../../../model/swappableInputsDetail.type";
+import {externalAirports} from "../../../data/externalAirports.data";
 
-import {internalCities} from "../../../data/internalCities.data";
-
-import SwappableInput from "./input-components/swappable-inputs/SwappableInput";
-import ToggleInputs from "./input-components/ToggleInputs";
-import PassengerCountInput from "./passenger-count/PassengerCountInput";
+import SwappableInput from "../../common/search-form/input-components/swappable-inputs/SwappableInput";
+import ToggleInputs from "../../common/search-form/input-components/ToggleInputs";
+import PassengerCountInput from "../../common/search-form/input-components/PassengerCountInput";
 
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography/Typography";
 import Grid from "@mui/material/Grid";
+import {emptySearchFormData} from "../../../data/emptySearchForm.data";
 
-
-export default function TicketSearchForm () {
-
-    const [form, setForm] = useState<searchFromValue>({
-        originCity: '',
-        destinationCity: '',
-        departureDate: '',
-        returnDate: '',
-        passengerCount: {adult: 1, child: 0, baby: 0},
-    });
-
-    const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
-        setForm({...form,[event.target.name] : event.target.value});
+const swappableInputsDetails: swappableInputsDetailType[] = [
+    {
+        name: 'origin',
+        label: 'مبدا',
+        subLabel: 'شهر و فرودگاه',
+        data: externalAirports,
+        iconName: 'location',
+        listDescription: true,
+    },
+    {
+        name: 'destination',
+        label: 'مقصد',
+        subLabel: 'شهر و فرودگاه',
+        data: externalAirports,
+        iconName: 'location',
+        listDescription: true,
     }
+]
 
-    const handleChangeWithName = (name: string, value: string | null) => {
+interface InternalFlightSearchFormProps {
+    mainForm: searchFromValue,
+    setMainForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
+}
+
+export default function InternationalFlightSearchForm({mainForm, setMainForm} : InternalFlightSearchFormProps) {
+
+    const [form, setForm] = useState<searchFromValue>(emptySearchFormData);
+
+    const handleChangeWithName = (name: string, value: string) => {
         setForm({...form,[name] : value});
     }
 
     const handleSubmit = (event : React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         console.log(form)
+        setMainForm(form)
     }
 
     return (
@@ -42,16 +56,11 @@ export default function TicketSearchForm () {
                 <Grid container spacing={2} flexWrap={"nowrap"} flexDirection={{xs: 'column', md: 'row'}} width={'100%'}>
                     <Grid item xs={12} md={4}>
                         <SwappableInput
-                            firstInputName={'originCity'}
-                            secondInputName={'destinationCity'}
-                            firstData={internalCities}
-                            secondData={internalCities}
-                            firstLabel={'مبدا'}
-                            secondLabel={'مقصد'}
+                            details={swappableInputsDetails}
                             handleChange={handleChangeWithName}
                             form={form}
                             setForm={setForm}
-                            iconName={'location'}
+                            listWidth={'200%'}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
