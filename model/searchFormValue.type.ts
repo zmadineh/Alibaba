@@ -1,8 +1,9 @@
 import {passengersCount} from "./passengerCount.type";
 
 export interface searchFromValue {
-    originCity: string,
-    destinationCity: string,
+    origin: string,
+    destination: string,
+    oneWayRoad?: boolean,
     departureDate: string,
     returnDate: string,
     passengerCount: passengersCount,

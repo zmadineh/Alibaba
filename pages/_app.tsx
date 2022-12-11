@@ -25,6 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <CacheProvider value={cacheRtl}>
           {/* <Provider store={store}> */}
                <ThemeProvider theme={theme}>
+                   <CssBaseline />
                    <Component {...pageProps} />
                </ThemeProvider>
           {/* </Provider> */}

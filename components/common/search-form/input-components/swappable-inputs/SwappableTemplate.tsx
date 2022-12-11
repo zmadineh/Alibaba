@@ -2,7 +2,7 @@ import Grid from "@mui/material/Grid/Grid";
 import React, {ReactNode} from "react";
 import Box from "@mui/system/Box";
 import IconButton from "@mui/material/IconButton";
-import FlipCameraAndroidIcon from "@mui/icons-material/FlipCameraAndroid";
+import FlipIcon from "../../../../../public/svg/Flip-icon.svg";
 
 interface swappableTemplateProps {
     children1: ReactNode,
@@ -27,7 +27,7 @@ export default function SwappableTemplate({children1, children2, flipData} : swa
                 <IconButton sx={{width: '30px', height: '30px'}}
                             onClick={flipData}
                 >
-                    <FlipCameraAndroidIcon />
+                    <FlipIcon />
                 </IconButton>
             </Box>
 

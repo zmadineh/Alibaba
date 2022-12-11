@@ -31,14 +31,14 @@ export default function FirstPage() {
                     <Grid>
                         <SearchCardContainer />
 
-                        <HelpCard />
-                        <DownloadCard />
-                    </Grid>
-                    {GetPages(page)}
-                </Grid>
+                         <HelpCard />
+                         <DownloadCard />
+                     </Grid>
+                     {GetPages(page)}
+                 </Grid>
 
-            </Grid>
-        </Grid>
+             </Grid>
+         </Grid>
     )
 
 }
