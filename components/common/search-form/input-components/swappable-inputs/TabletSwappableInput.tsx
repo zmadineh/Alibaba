@@ -28,28 +28,27 @@ export default function TabletSwappableInput(props : SwappableInputProps) {
     const [open, setOpen] = useState<boolean>(false);
     const [name, setName] = useState<string>('');
     const [label, setLabel] = useState<string>('');
-    const [data, setData] = useState<data[]>([])
+    const [data, setData] = useState<data[]>([]);
 
     const borderRadius = {r1: "8px 8px 0 0px", r2: "0 0 8px 8px"}
 
     const setDialogDetails = (event: any) => {
         console.log('in set dialog ', JSON.stringify(values))
         setName(event.target.name);
-        if (event.target.name === firstInputDetail.name){
+        if (event.target.name === firstInputDetail.name) {
             setLabel(details[0].label)
             setData(details[0].data)
-        }
-        else if (event.target.name === secondInputDetail.name) {
+        } else if (event.target.name === secondInputDetail.name) {
             setLabel(details[1].label)
             setData(details[1].data)
         }
-        console.log('name: ',name)
+        console.log('name: ', name)
         setOpen(true)
     }
 
-     const onClose = useCallback((value : string) => {
-            console.log(name, values[firstInputDetail.name], values[secondInputDetail.name], 'select')
-    }, [ name]);
+    const onClose = useCallback((value: string) => {
+        // console.log(name, values[firstInputDetail.name], values[secondInputDetail.name], 'select')
+    }, []);
 
     return (
         <>
@@ -82,7 +81,7 @@ export default function TabletSwappableInput(props : SwappableInputProps) {
                         value={values[firstInputDetail.name]}
                     />
 
-            }
+                }
                 children2={
                     <InputWithPlaceholder
                         label={details[1].label}
@@ -93,9 +92,9 @@ export default function TabletSwappableInput(props : SwappableInputProps) {
                         placeholder={details[1].label}
                         value={values[secondInputDetail.name]}
                     />
-            }
+                }
                 flipData={flipData}
             />
         </>
-    )
+    );
 }
