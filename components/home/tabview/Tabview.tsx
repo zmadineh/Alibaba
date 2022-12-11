@@ -31,6 +31,7 @@ interface TabPanelProps {
 type Props = { 
   value : number,
   setValue : Dispatch<React.SetStateAction<number>>,
+  children: ReactNode,
 }
 interface TabItemType {
   id: number,
@@ -39,7 +40,7 @@ interface TabItemType {
   component: string
 }
 
-const Tabview = ({value,setValue}: Props) => {
+const Tabview = ({children, value, setValue,}: Props) => {
 
   //const [value, setValue] = useState<number>(0);
   const TabItem: TabItemType[] = [
@@ -90,16 +91,17 @@ const Tabview = ({value,setValue}: Props) => {
                   ))}
                 </Tabs>
               </Box>
-              {TabItem.map((item: any) => (
-                <TabPanel key={item.id} value={value} index={item.id}>
-                  {/*{item.component}*/}
+              {/*{TabItem.map((item: any) => (*/}
+              {/*  <TabPanel key={item.id} value={value} index={item.id}>*/}
+              {/*    /!*{item.component}*!/*/}
 
 
-                  <SearchForm index={value} />
+              {/*    <SearchForm index={value} />*/}
 
 
-                </TabPanel>
-              ))}
+              {/*  </TabPanel>*/}
+              {/*))}*/}
+              {children}
             </Box>
           </Grid>
         </Grid>

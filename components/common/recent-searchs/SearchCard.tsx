@@ -56,7 +56,7 @@ export default function SearchCard({origin, destination, oneWayRoad = false, dep
                             </Typography>
                             {!oneWayRoad &&
                                 <Typography variant="body2" noWrap textOverflow={'ellipsis'}>
-                                    تا
+                                    تا {oneWayRoad}
                                 </Typography>
                             }
                             {!oneWayRoad &&

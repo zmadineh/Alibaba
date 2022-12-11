@@ -1,9 +1,12 @@
 import React, {useCallback, useState} from "react";
+
+import {searchFromValue} from "../../../model/searchFormValue.type";
+
+import SearchCard from "./SearchCard";
+
 import Grid from "@mui/material/Grid/Grid";
 import Button from "@mui/material/Button/Button";
 import Typography from "@mui/material/Typography/Typography";
-import SearchCard from "./SearchCard";
-import {searchFromValue} from "../../../model/searchFormValue.type";
 
 const input = [
     {
@@ -32,15 +35,19 @@ const input = [
     }
 ]
 
-export default function SearchCardContainer() {
+interface SearchCardContainerProps {
+    categoryIndex: number,
+    searches: searchFromValue[],
+    setSearches: React.Dispatch<React.SetStateAction<searchFromValue[]>>,
+}
 
+export default function SearchCardContainer({categoryIndex, searches, setSearches} : SearchCardContainerProps) {
 
-    const [searches, setSearches] = useState<searchFromValue[]>(input)
-    const [counter, setCounter] = useState(input.length)
+    const counter = searches.filter(search => search.formType === categoryIndex).length
+    console.log(categoryIndex)
 
     const removeAllSearches = useCallback(() => {
         setSearches([])
-        setCounter(0)
     }, []);
 
     return (
@@ -55,7 +62,7 @@ export default function SearchCardContainer() {
             }
 
                 <Grid item container flexDirection={"column"} overflow={"scroll"} alignContent={"flex-start"} maxHeight={'250px'} gap={2} mt={4}>
-                    {searches.map((search , index) => (
+                    {searches.filter(search => search.formType === categoryIndex).map((search , index) => (
                         <SearchCard key={index} {...search}/>
                     ))}
 

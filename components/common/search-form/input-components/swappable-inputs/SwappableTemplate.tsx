@@ -23,7 +23,7 @@ export default function SwappableTemplate({children1, children2, flipData} : swa
         >
             {children1}
 
-            <Box sx={{position: 'absolute', borderRadius: '50%', backgroundColor: '#fff',  zIndex: 100}}>
+            <Box sx={{position: 'absolute', borderRadius: '50%', backgroundColor: 'grey.100',  zIndex: 100, border: '0.6px solid', borderColor: 'grey.300'}}>
                 <IconButton sx={{width: '30px', height: '30px'}}
                             onClick={flipData}
                 >

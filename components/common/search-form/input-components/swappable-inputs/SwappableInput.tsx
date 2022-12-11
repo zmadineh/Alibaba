@@ -1,6 +1,5 @@
 import React, {useCallback, useState} from "react";
 
-import {searchFromValue} from "../../../../../model/searchFormValue.type";
 import {swappableInputsDetailType} from "../../../../../model/swappableInputsDetail.type";
 
 import LaptopSwappableInput from "./LaptopSwappableInput";
@@ -11,16 +10,15 @@ import {useTheme} from "@mui/material";
 
 
 interface SwappableInputProps {
+    setFirstValue: React.Dispatch<React.SetStateAction<string>>,
+    setSecValue: React.Dispatch<React.SetStateAction<string>>,
     details: swappableInputsDetailType[],
-    handleChange: (name: string, value: string) => void,
-    form: searchFromValue,
-    setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
     listWidth?: string,
 }
 
 export default function SwappableInput(props : SwappableInputProps) {
 
-    const {form, setForm, details} = props;
+    const {details, setFirstValue, setSecValue} = props;
 
     const firstInputName = details[0].name
     const secondInputName = details[1].name
@@ -36,17 +34,19 @@ export default function SwappableInput(props : SwappableInputProps) {
 
     const validationData = useCallback((name: string, value: string) => {
         let otherName: string = '';
-        if (name === firstInputName)
+        if (name === firstInputName){
             otherName = secondInputName;
-        else otherName = firstInputName;
-
-        props.handleChange(name, value)
+            setFirstValue(value)
+        }
+        else{
+            otherName = firstInputName;
+            setSecValue(value)
+        }
 
         if(values[otherName] === value && values[otherName] !== '') {
             setError({[name]: false, [otherName]: true})
             setValues({[name]: value, [otherName]: ''})
             setErrorMessage(`${details[0].label} و ${details[1].label} نمیتوانند یکسان باشند.`)
-            // props.handleChange(otherName, '')
             return false;
         }
         else {
@@ -63,7 +63,8 @@ export default function SwappableInput(props : SwappableInputProps) {
             const temp1 = values[firstInputName];
             const temp2 = values[secondInputName];
             setValues({...values, [firstInputName] : temp2, [secondInputName] : temp1})
-            setForm({...form, [firstInputName] : temp2, [secondInputName] : temp1});
+            setFirstValue(temp2)
+            setSecValue(temp1)
         }
     }, [values]);
 

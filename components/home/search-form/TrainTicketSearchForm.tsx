@@ -33,22 +33,21 @@ const swappableInputsDetails: swappableInputsDetailType[] = [
 
 
 interface InternalFlightSearchFormProps {
-    mainForm: searchFromValue,
-    setMainForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
+    submit: (form: searchFromValue) => void
 }
 
-export default function TrainTicketSearchForm({mainForm, setMainForm} : InternalFlightSearchFormProps) {
+export default function TrainTicketSearchForm({submit} : InternalFlightSearchFormProps) {
 
-    const [form, setForm] = useState<searchFromValue>(emptySearchFormData);
-
-    const handleChangeWithName = (name: string, value: string) => {
-        setForm({...form,[name] : value});
-    }
+    const [form, setForm] = useState<searchFromValue>({...emptySearchFormData, formType: 2});
+    const [origin, setOrigin] = useState<string>('');
+    const [destination, setDestination] = useState<string>('');
+    const [oneWayRoad, setOneWayRoad] = useState<boolean>(true);
+    const [departureDate, setDepartureDate] = useState<string>('');
+    const [returnDate, setReturnDate] = useState<string>('');
 
     const handleSubmit = (event : React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(form)
-        setMainForm(form)
+        submit({...form, origin: origin, destination: destination, oneWayRoad: oneWayRoad, departureDate: departureDate, returnDate:returnDate})
     }
 
     return (
@@ -58,20 +57,20 @@ export default function TrainTicketSearchForm({mainForm, setMainForm} : Internal
                     <Grid item xs={12} md={4}>
                         <SwappableInput
                             details={swappableInputsDetails}
-                            handleChange={handleChangeWithName}
-                            form={form}
-                            setForm={setForm}
+                            setFirstValue={setOrigin}
+                            setSecValue={setDestination}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
                         <ToggleInputs
+                            firstValue={departureDate}
+                            setFirstValue={setDepartureDate}
+                            secValue={returnDate}
+                            setSecValue={setReturnDate}
                             firstLabel={'تاریخ رفت'}
                             secondLabel={'تاریخ برگشت'}
                             firstName={'departureDate'}
                             secondName={'returnDate'}
-                            handleChange={handleChangeWithName}
-                            form={form}
-                            setForm={setForm}
                             iconName={'calender'}
                         />
                     </Grid>

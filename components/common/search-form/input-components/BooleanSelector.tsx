@@ -1,61 +1,61 @@
-import React, {SyntheticEvent} from "react";
+import React, {SyntheticEvent, useState} from "react";
 import {MenuItem, TextField} from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
+import {searchFromValue} from "../../../../model/searchFormValue.type";
 
 interface CustomDropDownProps {
     label: string,
     name: string,
-    values : Array<{value : string,label : string}>,
-    currentValue : string,
-    setCurrentValue: React.Dispatch<React.SetStateAction<string>>,
-    borderRadius: string,
-    variant: "standard" | "filled" | "outlined" | undefined,
-    bgColor?: string,
+    options: string[],
+    form: searchFromValue,
+    setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
+    value: boolean,
+    setValue: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
-const CustomDropDown = (props: CustomDropDownProps) => {
+const BooleanSelector = (props: CustomDropDownProps) => {
+
+    const {options, form, setForm, label, name, setValue, value} = props;
+    const [selectedLabel, setSelectedLabel] = useState(options[0])
 
     const onChange = (event: any) => {
-        console.log('select : ', event.target.value)
-        props.setCurrentValue(event.target.value)
+        console.log('select : ', event.target.value,  (event.target.value === options[0]))
+        setSelectedLabel(event.target.value)
+
+        setValue((event.target.value === options[0]))
+
+        // setForm({...form, [name]: (event.target.value === options[0])})
     }
 
     return (
         <TextField
             select
-            label={props.label}
-            name={props.name}
+            // label={label}
+            name={name}
             onChange={onChange}
-            value={props.currentValue}
+            value={selectedLabel}
 
             fullWidth
             variant={"outlined"}
             size={"small"}
 
-            InputProps={{
-                startAdornment: (
-                    <InputAdornment position="start" >
-                        <CalendarMonthOutlinedIcon />
-                        {/*{iconMap.find(item => item.iconName === iconName).icon}*/}
-                    </InputAdornment>
-                ),
-            }}
             sx={{
+                // borderRadius: '10px',
                 minHeight: 0,
-                '& .MuiSelect-icon' :{
-                    display: 'none',
-                    width: 0,
-                },
+                // '& .MuiSelect-icon' :{
+                //     display: 'none',
+                //     width: 0,
+                // },
 
                 '& .MuiOutlinedInput-input': {
                     padding: '8.5px 6px',
                 },
 
                 '& .MuiInputBase-root': {
-                    borderRadius: props.borderRadius,
+                    borderRadius: '20px',
                     borderColor: "grey.200",
-                    backgroundColor: props.bgColor,
+                    // backgroundColor: props.bgColor,
                 },
 
                 '& .MuiInputBase-root::before': {
@@ -83,15 +83,15 @@ const CustomDropDown = (props: CustomDropDownProps) => {
             }}
 
         >
-            {props.values.map(option => (
-                <MenuItem key={option.value} value={option.value}>
-                    {option.label}
+            {options.map((option, index) => (
+                <MenuItem key={index} value={option}>
+                    {option}
                 </MenuItem>
             ))}
         </TextField>
     );
 }
 
-export default CustomDropDown;
+export default BooleanSelector;
 
 
