@@ -55,12 +55,8 @@ export default function InternalFlightSearchForm({submit} : InternalFlightSearch
             <form onSubmit={(e) => handleSubmit(e)}>
                 <Grid container maxWidth={'150px'} mb={3} mt={0}>
                     <BooleanSelector
-                        label={'مسیر'}
                         name={'oneWayRoad'}
-                        options={['مسیر یک طرفه', 'رفت و برگشت']}
-                        form={form}
-                        setForm={setForm}
-                        value={oneWayRoad}
+                        options={['یک طرفه', 'رفت و برگشت']}
                         setValue={setOneWayRoad}
                     />
                 </Grid>

@@ -5,18 +5,14 @@ import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined
 import {searchFromValue} from "../../../../model/searchFormValue.type";
 
 interface CustomDropDownProps {
-    label: string,
     name: string,
     options: string[],
-    form: searchFromValue,
-    setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
-    value: boolean,
     setValue: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 const BooleanSelector = (props: CustomDropDownProps) => {
 
-    const {options, form, setForm, label, name, setValue, value} = props;
+    const {options, name, setValue} = props;
     const [selectedLabel, setSelectedLabel] = useState(options[0])
 
     const onChange = (event: any) => {
@@ -24,8 +20,6 @@ const BooleanSelector = (props: CustomDropDownProps) => {
         setSelectedLabel(event.target.value)
 
         setValue((event.target.value === options[0]))
-
-        // setForm({...form, [name]: (event.target.value === options[0])})
     }
 
     return (
@@ -41,17 +35,20 @@ const BooleanSelector = (props: CustomDropDownProps) => {
             size={"small"}
 
             sx={{
-                // borderRadius: '10px',
                 minHeight: 0,
                 // '& .MuiSelect-icon' :{
                 //     display: 'none',
                 //     width: 0,
                 // },
+                // '& .MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input': { //MuiInputBase-input-MuiOutlinedInput-input
+                    // '& .MuiInputBase-input': {
+                    //     '& .MuiOutlinedInput-input': {
+                    //         padding: '8.5px 40px',
 
-                '& .MuiOutlinedInput-input': {
-                    padding: '8.5px 6px',
-                },
-
+                    //     },
+                    // },
+                // },
+                
                 '& .MuiInputBase-root': {
                     borderRadius: '20px',
                     borderColor: "grey.200",
