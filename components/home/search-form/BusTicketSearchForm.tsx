@@ -69,9 +69,8 @@ export default function BusTicketSearchForm({submit} : InternalFlightSearchFormP
                         <SingleDropDown
                             firstLabel={'تاریخ حرکت'}
                             firstName={'departureDate'}
-                            handleChange={handleChangeWithName}
-                            form={form}
-                            setForm={setForm}
+                            value={departureDate}
+                            setValue={setDepartureDate}
                             iconName={'calender'}
                         />
                     </Grid>

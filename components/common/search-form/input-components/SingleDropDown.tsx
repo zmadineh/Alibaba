@@ -16,20 +16,18 @@ import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined
 interface SingleDropDownProps {
     firstLabel: string,
     firstName: string,
-    // handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-    handleChange: (name: string, value: string) => void,
-    form: searchFromValue,
-    setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
+    value: string,
+    setValue: React.Dispatch<React.SetStateAction<string>>,
     iconName: string,
 }
 
 
-export default function SingleDropDown({firstLabel, firstName, handleChange, form, setForm, iconName} : SingleDropDownProps) {
+export default function SingleDropDown({firstLabel, firstName, value , setValue, iconName} : SingleDropDownProps) {
 
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const [firstValue,setFirstValue] = useState('');
+    // const [firstValue,setFirstValue] = useState('');
 
     const onClick = () => {
         console.log('onChange')
@@ -49,9 +47,8 @@ export default function SingleDropDown({firstLabel, firstName, handleChange, for
                     label={firstLabel}
                     name={firstName}
                     values={dateOptions}
-                    currentValue={firstValue}
-                    setCurrentValue={setFirstValue}
-                    changeHandler={handleChange}
+                    currentValue={value}
+                    setCurrentValue={setValue}
                     borderRadius={'8px'}
                     variant={"outlined"}
                     // onClick={onClick}
