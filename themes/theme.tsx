@@ -3,6 +3,7 @@ import { createTheme } from '@mui/material/styles';
 declare module '@mui/material/Button' {
     interface ButtonPropsVariantOverrides {
         Button1: true;
+        Button2: true;
     }
 }
 
@@ -66,6 +67,7 @@ export const theme = createTheme({
             '600': '#4B5259',
             '700': '#2B2F33',
             '800': '#0A0B0C',
+            '900': '#F6F6F6',
         },
     },
     components: {
@@ -86,7 +88,22 @@ export const theme = createTheme({
                             boxShadow: "0 0 5px 2px inset #00000026",
                         }
                     }
-                }
+                }, {
+                    props: { variant: 'Button2' },
+                    style: {
+                        color: '#fff',
+                        backgroundColor: '#0077DB',
+                        borderRadius: '20px',
+                        width: "100%",
+                        justifyContent: "center",
+                        border: "1px solid",
+                        borderColor: "rgba(0, 0, 0, .12)",
+                        '&:hover': {
+                            backgroundColor: '#0077DB',
+                            color: '#fff',
+                        }
+                    },
+                },
 
             ]
         }
