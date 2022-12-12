@@ -36,7 +36,7 @@ const LoginHeader = (props: Props) => {
             userName:'',passWord:''
         })
         const dispatch = useAuthDispatch()
-        const auth = useAuthSelector(state => state.Auth)
+        const auth:AuthStateType = useAuthSelector(state => state.Auth)
         
         const handleChange = (e: { target: { name: string; value: string; }; }) =>{
             setForm({...form,[e.target.name]:e.target.value})
@@ -50,7 +50,7 @@ const LoginHeader = (props: Props) => {
         const handleLogOut = () =>{
             dispatch(logout())
         }
-        const [open, setOpen] = React.useState(false);
+        const [open, setOpen] = useState(false);
 
         const handleClickOpen = () => {
             setOpen(true);
@@ -63,9 +63,9 @@ const LoginHeader = (props: Props) => {
       
       if (auth.isLogin) {
         return (
-        <Button sx={{ padding: '8px 12px' }}>
+        <Button sx={{width:'200px', padding: '8px 12px' }}>
             <SvgIcon sx={{ color: 'grey.700' }}><path d="M17.25 12.75A3.75 3.75 0 0 1 21 16.5v3.75a.75.75 0 0 1-.75.75H3.75a.75.75 0 0 1-.75-.75V16.5a3.75 3.75 0 0 1 3.75-3.75h10.5Zm0 1.5H6.75A2.25 2.25 0 0 0 4.5 16.5v3h15v-3a2.25 2.25 0 0 0-2.118-2.246l-.132-.004ZM12 3a4.5 4.5 0 1 1 0 9 4.5 4.5 0 1 1 0-9Zm0 1.5a3 3 0 1 0-.001 5.999A3 3 0 0 0 12 4.5Z" fill-rule="evenodd"></path></SvgIcon>
-            <Typography marginLeft={1} variant="body1" color={'grey.700'}> {auth.number}</Typography>
+            <Typography marginLeft={1} variant="body1" color={'grey.700'}>{auth.number}</Typography>
         </Button>
         );
       }
@@ -80,17 +80,16 @@ const LoginHeader = (props: Props) => {
                 
                 open={open}
                 TransitionComponent={Transition}
-                keepMounted
+                
                 onClose={handleClose}
-                aria-describedby="alert-dialog-slide-description"
             >
-               <Grid px={'128px'}py={'72px'}>
+               <Grid mx={'128px'}mt={'48px'}mb={'16px'}>
                 <DialogTitle>
                         <Grid textAlign={'center'}>
                             <Typography  variant='h6' fontWeight={'bold'}color={'grey.700'}>
                                     {'ورود یا ثبت نام'}
                             </Typography>
-                            <Typography  variant={'body2'} fontWeight={'bold'}pt={2}color={'grey.500'}>
+                            <Typography  variant={'caption'} fontWeight={'bold'}pt={2}color={'grey.500'}>
                                     {'شماره موبایل یا آدرس ایمیل به همراه کلمه عبور خود را وارد کنید.'}
                             </Typography>
                         </Grid>    
@@ -98,9 +97,9 @@ const LoginHeader = (props: Props) => {
                     <DialogContent>
                         <form onSubmit={handleSubmit}>
                             <Grid display={'flex'} flexDirection={'column'} alignItems={'center'} justifyContent={'center'}pt={1}>
-                                <TextField color={'info'} type={'text'} sx={{width:'326px',marginBottom:2,paddingTop:1}} label={'آدرس ایمیل یا شماره موبایل'} variant='outlined' name='userName'value={form.userName} onChange={handleChange}/>
-                                <TextField color={'info'} type={'password'} sx={{width:'326px',marginBottom:2}} label={'رمز عبور'} variant='outlined' name='passWord'value={form.passWord} onChange={handleChange}/>
-                                <Button variant='contained'type='submit' color={'secondary'} sx={{width:'326px',marginTop:4}}>ورود به علی بابا</Button>
+                                <TextField  color={'info'} type={'text'} sx={{width:'326px',marginBottom:2,paddingTop:1}} label={'آدرس ایمیل یا شماره موبایل'} variant='outlined' name='userName'value={form.userName} onChange={handleChange}/>
+                                <TextField  color={'info'} type={'password'} sx={{width:'326px',marginBottom:2}} label={'رمز عبور'} variant='outlined' name='passWord'value={form.passWord} onChange={handleChange}/>
+                                <Button disabled={auth.loading} variant='contained'type='submit' color={'secondary'} sx={{width:'326px',marginTop:4}}>ورود به علی بابا</Button>
                             </Grid>
                         </form>
                     </DialogContent>

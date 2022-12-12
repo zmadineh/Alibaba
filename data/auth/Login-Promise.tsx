@@ -15,7 +15,7 @@ export const Login = ({userName , passWord}:LoginProps)=>{
                     number:'09123456789',
                     email:'a.partovi99@gmail.com'
                 })
-            },5000)
+            },4000)
             
         }else{
             reject('invalid Username or Password')
