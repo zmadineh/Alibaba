@@ -3,11 +3,7 @@ import { useState } from "react";
 import Flight_box from "./Flight_box";
 import Logo from '../../public/Assets/Images/desktop_header/logo_deskNav.svg'
 import Logo1 from '../../public/Assets/Images/desktop_header/logo_deskNav1.svg'
-import { useDispatch, useSelector } from 'react-redux';
-import { useAuthDispatch, useAuthSelector } from "../../redux/AuthHooks";
-import AuthSlice, { AuthAsyncThunk } from '../../redux/Slices/AuthSlice';
-import { logout } from '../../redux/Slices/AuthSlice';
-import { AuthStateType,LoginType } from "../../model/AuthType";
+import LoginHeader from "./LoginHeader";
 
 interface Props {
     children: React.ReactElement;
@@ -31,24 +27,7 @@ export default function Desk_header() {
         setOpen(!open);
     };
 
-    const [form,setForm] = useState<LoginType>({
-        userName:'',passWord:''
-      })
-      const dispatch = useAuthDispatch()
-      const auth = useAuthSelector(state => state.Auth)
-    
-      const handleChange = e =>{
-          setForm({...form,[e.target.name]:e.target.value})
-      }
-    
-      const handleSubmit = e =>{
-        e.preventDefault()
-        dispatch(AuthAsyncThunk(form))
-        
-      }
-      const handleLogOut = () =>{
-        dispatch(logout())
-      }
+   
     
     return (
         <HideOnScroll>
@@ -108,10 +87,12 @@ export default function Desk_header() {
                         </Grid>
                     </Grid>
                     <Grid display={'flex'} gap={3} direction={'row'} justifyContent={'center'} alignItems={'center'}>
-                        <Button sx={{ padding: '8px 12px' }}>
+                        <LoginHeader/>
+                        
+                        {/* <Button sx={{ padding: '8px 12px' }}>
                             <SvgIcon sx={{ color: 'grey.700' }}><path d="M17.25 12.75A3.75 3.75 0 0 1 21 16.5v3.75a.75.75 0 0 1-.75.75H3.75a.75.75 0 0 1-.75-.75V16.5a3.75 3.75 0 0 1 3.75-3.75h10.5Zm0 1.5H6.75A2.25 2.25 0 0 0 4.5 16.5v3h15v-3a2.25 2.25 0 0 0-2.118-2.246l-.132-.004ZM12 3a4.5 4.5 0 1 1 0 9 4.5 4.5 0 1 1 0-9Zm0 1.5a3 3 0 1 0-.001 5.999A3 3 0 0 0 12 4.5Z" fill-rule="evenodd"></path></SvgIcon>
                             <Typography marginLeft={1} variant="body1" color={'grey.700'}> ورود یا ثبت‌نام </Typography>
-                        </Button>
+                        </Button> */}
                     </Grid>
                 </Grid>
             </Grid>
