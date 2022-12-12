@@ -1,7 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { Login , LoginProps } from "../../data/auth/Login-Promise";
+import { RootState } from "../Store";
 
 interface StateType{
+    value: any;
     isLogin : boolean
     loading : boolean
     name : string
@@ -23,13 +25,14 @@ export const AuthAsyncThunk = createAsyncThunk(
     }//1:Pendding 2:fullfilled 3:rejected
 )
 
-const initialState ={
-    isLogin:false,
-    loading:false,
-    name:'',
-    number :'',
-    email :'',
-    idCode :'',
+const initialState : StateType ={
+    isLogin: false,
+    loading: false,
+    name: '',
+    number: '',
+    email: '',
+    idCode: '',
+    value: undefined
 }
 
 export const AuthSlice = createSlice({
@@ -66,4 +69,7 @@ export const AuthSlice = createSlice({
 })
 
 export const {logout} =AuthSlice.actions
+export const selectCount = (state: RootState) => state.Auth.value
 export default AuthSlice.reducer
+
+
