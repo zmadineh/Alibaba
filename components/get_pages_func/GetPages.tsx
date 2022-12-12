@@ -3,40 +3,36 @@ import Train_page from "../category_pages/train/Train_page";
 import InFlights_page from "../category_pages/in-flights/InFlights_page";
 import OutFlights_page from "../category_pages/out-flights/OutFlights_page";
 import Tour_page from "../category_pages/tour/Tour_page";
-import { useTheme } from "@emotion/react";
-import { useMediaQuery } from "@mui/material";
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-interface propsType{
-    index:number
-}
-
-const GetPages = (props:propsType) => {
+const GetPages = (props:{index:number}) => {
     const {index} = props;
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('sm'));
     if (index == 0) {
         return (
-            <InFlights_page/>
+            <InFlights_page matches={matches}/>
         )
     }
     else if (index == 1) {
         return (
-            <OutFlights_page/>
+            <OutFlights_page matches={matches}/>
         )
     }
     else if (index == 2) {
         return (
-            <Train_page/>
+            <Train_page matches={matches}/>
         )
     }
     else if (index == 3) {
         return (
-            <Bus_page/>
+            <Bus_page matches={matches}/>
         )
     }
     else if (index == 4) {
         return (
-            <Tour_page/>
+            <Tour_page matches={matches}/>
         )
     }
     else{

@@ -11,7 +11,7 @@ import SearchCardContainer from "../components/common/recent-searchs/SearchCardC
 import {searchFromValue} from "../model/searchFormValue.type";
 import SearchForm from "../components/home/search-form/SearchForm";
 import TabPanel from "../components/home/tabview/TabPanel";
-
+import HeaderMobile from '../components/layout/layoutMobile/HeaderMobile'
 // const pages = {
 //     0: 'inFlight',
 //     1: 'outFlight',
@@ -21,7 +21,7 @@ import TabPanel from "../components/home/tabview/TabPanel";
 // }
 
 export default function FirstPage() {
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState(3);
     const [searches, setSearches] = useState<searchFromValue[]>([])
 
     return (
@@ -39,7 +39,8 @@ export default function FirstPage() {
                         lg: '1200px',
                         md: '800px',
                         sm: '100%'
-                    }
+                    },
+                    paddingX: '16px'
                 }}>
                     <Grid>
                         <SearchCardContainer categoryIndex={page} searches={searches} setSearches={setSearches}/>

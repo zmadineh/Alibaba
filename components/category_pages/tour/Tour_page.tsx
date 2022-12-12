@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 
-export default function Tour_page() {
+export default function Tour_page(props:{matches:boolean}) {
     return (
         <>
             
