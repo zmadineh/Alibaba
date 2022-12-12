@@ -3,6 +3,11 @@ import { useState } from "react";
 import Flight_box from "./Flight_box";
 import Logo from '../../public/Assets/Images/desktop_header/logo_deskNav.svg'
 import Logo1 from '../../public/Assets/Images/desktop_header/logo_deskNav1.svg'
+import { useDispatch, useSelector } from 'react-redux';
+import { useAuthDispatch, useAuthSelector } from "../../redux/AuthHooks";
+import AuthSlice, { AuthAsyncThunk } from '../../redux/Slices/AuthSlice';
+import { logout } from '../../redux/Slices/AuthSlice';
+import { AuthStateType,LoginType } from "../../model/AuthType";
 
 interface Props {
     children: React.ReactElement;
@@ -18,12 +23,33 @@ function HideOnScroll(props: Props) {
         </Slide>
     );
 }
+    
 
 export default function Desk_header() {
     const [open, setOpen] = useState(false)
     const handleClick = () => {
         setOpen(!open);
     };
+
+    const [form,setForm] = useState<LoginType>({
+        userName:'',passWord:''
+      })
+      const dispatch = useAuthDispatch()
+      const auth = useAuthSelector(state => state.Auth)
+    
+      const handleChange = e =>{
+          setForm({...form,[e.target.name]:e.target.value})
+      }
+    
+      const handleSubmit = e =>{
+        e.preventDefault()
+        dispatch(AuthAsyncThunk(form))
+        
+      }
+      const handleLogOut = () =>{
+        dispatch(logout())
+      }
+    
     return (
         <HideOnScroll>
             <AppBar>

@@ -11,6 +11,7 @@ import SearchCardContainer from "../components/common/recent-searchs/SearchCardC
 import {searchFromValue} from "../model/searchFormValue.type";
 import SearchForm from "../components/home/search-form/SearchForm";
 import TabPanel from "../components/home/tabview/TabPanel";
+import Desk_header from '../components/desktop_header/Desk_header';
 
 // const pages = {
 //     0: 'inFlight',
@@ -28,6 +29,7 @@ export default function FirstPage() {
 
         <Grid>
             <Grid id='layout' >
+                <Desk_header/>
                 <Tabview value={page} setValue={setPage}>
                     <TabPanel value={page} index={page}>
                         <SearchForm searches={searches} setSearches={setSearches} index={page} />
