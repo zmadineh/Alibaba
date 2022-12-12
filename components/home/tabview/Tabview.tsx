@@ -20,6 +20,7 @@ import ExternalFlightIcon from '/public/Assets/Images/Hero/ExternalFlightIcon.sv
 import TrainIcon from '/public/Assets/Images/Hero/TrainIcon.svg'
 import BusIcon from '/public/Assets/Images/Hero/BusIcon.svg'
 import TourIcon from '/public/Assets/Images/Hero/TourIcon.svg'
+import SearchForm from "../search-form/SearchForm";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -30,6 +31,7 @@ interface TabPanelProps {
 type Props = { 
   value : number,
   setValue : Dispatch<React.SetStateAction<number>>,
+  children: ReactNode,
 }
 interface TabItemType {
   id: number,
@@ -38,7 +40,7 @@ interface TabItemType {
   component: string
 }
 
-const Tabview = ({value,setValue}: Props) => {
+const Tabview = ({children, value, setValue,}: Props) => {
 
   //const [value, setValue] = useState<number>(0);
   const TabItem: TabItemType[] = [
@@ -66,14 +68,15 @@ const Tabview = ({value,setValue}: Props) => {
   }, [value])
 
   return (
+
     <Grid container display={{ xs: 'none', md: 'block' }} p={0} m={0} pb={12}>
       <Grid position={'relative'} justifyContent={'center'}>
         <Grid position={'relative'} >
           <HeroSlider swiperRef={swiperRef} />
         </Grid>
-        <Grid container display={'flex'} justifyContent={'center'} position={'absolute'} zIndex={1500} bottom={'-75px'}>
-          <Grid item>
-            <Box sx={{ border: 2, borderRadius: '10px 10px 10px 10px', borderColor: 'divider', width: '1000px', bgcolor: 'common.white' }}>
+        <Grid container display={'flex'} justifyContent={'center'} position={'absolute'} zIndex={1000} bottom={'-75px'}>
+          <Grid item container justifyContent={"center"}>
+            <Box sx={{ border: 2, borderRadius: '10px 10px 10px 10px', borderColor: 'divider', width: '100%', maxWidth: '1200px', bgcolor: 'common.white' }}>
               <Box sx={{ borderBottom: 2, borderColor: 'divider', borderRadius: '10px 10px 0 0', display: 'flex', justifyContent: 'space-around' }}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example"
                   textColor="secondary" indicatorColor="secondary" sx={{ borderBottom: '1px solid #e8e8e8' }}>
@@ -88,11 +91,17 @@ const Tabview = ({value,setValue}: Props) => {
                   ))}
                 </Tabs>
               </Box>
-              {TabItem.map((item: any) => (
-                <TabPanel key={item.id} value={value} index={item.id}>
-                  {item.component}
-                </TabPanel>
-              ))}
+              {/*{TabItem.map((item: any) => (*/}
+              {/*  <TabPanel key={item.id} value={value} index={item.id}>*/}
+              {/*    /!*{item.component}*!/*/}
+
+
+              {/*    <SearchForm index={value} />*/}
+
+
+              {/*  </TabPanel>*/}
+              {/*))}*/}
+              {children}
             </Box>
           </Grid>
         </Grid>

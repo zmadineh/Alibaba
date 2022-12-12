@@ -3,30 +3,22 @@ import Grid from "@mui/material/Grid";
 import React from "react";
 import {passengersCount} from "../../../../model/passengerCount.type";
 
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography/Typography";
 import FaceOutlinedIcon from '@mui/icons-material/FaceOutlined';
+import IconButton from "@mui/material/IconButton";
+import AddCircle from "@mui/icons-material/AddCircle";
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
 interface passengerCountItemProps {
     name: string,
+    title: string,
+    label: string,
     currentCount: number,
     count: passengersCount,
     setCount: React.Dispatch<React.SetStateAction<passengersCount>>,
 }
 
-interface person {
-    name: string,
-    label: string,
-    icon: any,
-}
-
-const passengerType : person[] = [
-    {name: 'adult', label: 'تعداد برزگسال', icon: <FaceOutlinedIcon />},
-    {name: 'child', label: 'تعداد کودک', icon: <FaceOutlinedIcon />},
-    {name: 'baby', label: 'تعداد نوزاد', icon: <FaceOutlinedIcon />},
-]
-
-export default function PassengerCountItem({count, setCount, name, currentCount}: passengerCountItemProps ) {
+export default function PassengerCountItem({count, setCount, name, title, label, currentCount}: passengerCountItemProps ) {
 
     const addPassenger = (name: string, current: number) => {
         setCount({...count, [name] : current+1})
@@ -37,22 +29,23 @@ export default function PassengerCountItem({count, setCount, name, currentCount}
     }
 
     return (
-        <Grid container item p={2} alignItems={"center"}>
-            <Grid item xs={6} display={"flex"} justifyContent={"flex-start"} alignItems={"center"} gap={1}>
+        <Grid container item p={2} alignItems={"center"} justifyContent={"space-between"} gap={1}>
+            <Grid item display={"flex"} justifyContent={"flex-start"} alignItems={"center"} gap={1} flexWrap={"nowrap"}>
                 <FaceOutlinedIcon />
-                <Typography variant={'h6'}> {name} </Typography>
+                <Typography variant={'body1'}> {title} </Typography>
+                <Typography variant={'body2'} color={'grey.500'}> ({label}) </Typography>
             </Grid>
 
-            <Grid item xs={6} gap={1} display={"flex"} justifyContent={"center"}>
-                <Button variant={"contained"} color={"secondary"} sx={{width: '30px', height: '30px'}}
+            <Grid item gap={1} display={"flex"} justifyContent={"center"}>
+                <IconButton color={"secondary"} sx={{width: '30px', height: '30px', color: 'secondary.400'}}
                         onClick={() => addPassenger(name, currentCount)}>
-                    <Typography variant={'h6'} color={'secondary.100'}>+</Typography>
-                </Button>
+                    <AddCircle />
+                </IconButton>
                 {currentCount}
-                <Button variant={"contained"} color={"secondary"} sx={{width: '30px', height: '30px'}}
+                <IconButton color={"secondary"} sx={{width: '30px', height: '30px', color: 'secondary.400', opacity: '0.525'}}
                         onClick={() => decreasePassenger(name, currentCount)}>
-                    <Typography variant={'h6'}  color={'secondary.100'}>-</Typography>
-                </Button>
+                    <RemoveCircleIcon />
+                </IconButton>
             </Grid>
         </Grid>
     )
