@@ -1,37 +1,27 @@
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import CustomAutocomplete from "../CustomAutocomplete";
 import SwappableTemplate from "./SwappableTemplate";
 
 import {searchFromValue} from "../../../../../model/searchFormValue.type";
 import {data} from "../../../../../model/data.type";
 import {getTitleArray} from "../../../../../helper/getTitleArray.helper";
+import {swappableInputsDetailType} from "../../../../../model/swappableInputsDetail.type";
 
 
 interface SwappableInputProps {
-    firstValue: string,
-    secValue: string,
-    setFirstValue: React.Dispatch<React.SetStateAction<string>>,
-    setSecValue: React.Dispatch<React.SetStateAction<string>>,
-    firstInputName: string,
-    secondInputName: string,
-    firstData: data[],
-    secondData: data[],
-    firstLabel: string,
-    secondLabel: string,
-    handleChange: (name: string, value: string) => void,
-    form: searchFromValue,
-    setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
-    iconName: string,
+    details: swappableInputsDetailType[],
+    values: {[key: string]: string},
+    setValues: React.Dispatch<React.SetStateAction<{[key: string]: string}>>,
     flipData: () => void
+    listWidth?: string,
+    error: {[key: string]: boolean},
+    errorMessage: string,
+    validationData: (name:string, value: string) => boolean,
 }
 
 export default function LaptopSwappableInput(props : SwappableInputProps) {
 
-    const {firstInputName, secondInputName, handleChange, firstData, secondData,
-        firstLabel, secondLabel, form, setForm, iconName, firstValue, setFirstValue, secValue, setSecValue, flipData} = props
-
-    const [firstInput,setFirstInput] = useState<string>('');
-    const [secInput,setSecInput] = useState<string>('');
+    const {details, flipData, listWidth = '100%', error, errorMessage, validationData, values, setValues} = props
 
     const borderRadius = {r1: "0 8px 8px 0", r2: "8px 0 0 8px"};
 
@@ -39,28 +29,24 @@ export default function LaptopSwappableInput(props : SwappableInputProps) {
         <SwappableTemplate
             children1={
                 <CustomAutocomplete
-                    value={firstValue}
-                    setValue={setFirstValue}
-                    input={firstInput}
-                    setInput={setFirstInput}
-                    dataArray={firstData}
-                    label={firstLabel}
-                    name={firstInputName}
-                    handleChange={handleChange}
+                    detail={details[0]}
+                    values={values}
                     borderRadius={borderRadius.r2}
+                    listWidth={listWidth}
+                    error={error[details[0].name]}
+                    errorMessage={errorMessage}
+                    validationData={validationData}
                 />
             }
             children2={
                 <CustomAutocomplete
-                    value={secValue}
-                    setValue={setSecValue}
-                    input={secInput}
-                    setInput={setSecInput}
-                    dataArray={secondData}
-                    label={secondLabel}
-                    name={secondInputName}
-                    handleChange={handleChange}
+                    detail={details[1]}
+                    values={values}
                     borderRadius={borderRadius.r1}
+                    listWidth={listWidth}
+                    error={error[details[1].name]}
+                    errorMessage={errorMessage}
+                    validationData={validationData}
                 />
             }
             flipData={flipData}

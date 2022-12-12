@@ -8,30 +8,32 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import {swappableInputsDetailType} from "../../../../model/swappableInputsDetail.type";
 
 
 // interfaces
 interface inputSelectorProps {
+    detail: swappableInputsDetailType,
     open: boolean,
     setOpen: React.Dispatch<React.SetStateAction<boolean>>,
     value: string,
     setValue: React.Dispatch<React.SetStateAction<string>>,
-    data: data[],
-    label: string,
-    name: string,
+    // data: data[],
+    // label: string,
+    // name: string,
     handleChange: (name: string, value: string) => void,
     form: searchFromValue,
-    iconName: string,
+    // iconName: string,
 }
 
-export default function InputSelector({open, setOpen, value, setValue, data, label, name, handleChange, form, iconName} : inputSelectorProps) {
+export default function InputSelector({open, setOpen, value, setValue, handleChange, form, detail} : inputSelectorProps) {
 
     const handleClose = useCallback((value : string) => {
         setOpen(false);
         if (value){
             setValue(value);
-            handleChange(name, value)
-            console.log(name, value, 'select')
+            handleChange(detail.name, value)
+            console.log(detail.name, value, 'select')
         }
     }, [value, form]);
 
@@ -41,15 +43,15 @@ export default function InputSelector({open, setOpen, value, setValue, data, lab
                 open={open}
                 selectedValue={value}
                 onClose={handleClose}
-                data={data}
-                label={label}
+                data={detail.data}
+                label={detail.label}
             />
 
             <TextField
                 id="selectorInput"
                 variant={"standard"}
-                size={"medium"}
-                placeholder={label}
+                size={"small"}
+                placeholder={detail.label}
                 onClick={() => setOpen(true)}
                 value={value}
                 fullWidth
