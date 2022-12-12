@@ -17,6 +17,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
+import TextField from '@mui/material/TextField';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -70,28 +71,40 @@ const LoginHeader = (props: Props) => {
       }
       return (
         <>
-            <Button sx={{ padding: '8px 12px' }}>
+            <Button sx={{ padding: '8px 12px' }}onClick={handleClickOpen}>
                 <SvgIcon sx={{ color: 'grey.700' }}><path d="M17.25 12.75A3.75 3.75 0 0 1 21 16.5v3.75a.75.75 0 0 1-.75.75H3.75a.75.75 0 0 1-.75-.75V16.5a3.75 3.75 0 0 1 3.75-3.75h10.5Zm0 1.5H6.75A2.25 2.25 0 0 0 4.5 16.5v3h15v-3a2.25 2.25 0 0 0-2.118-2.246l-.132-.004ZM12 3a4.5 4.5 0 1 1 0 9 4.5 4.5 0 1 1 0-9Zm0 1.5a3 3 0 1 0-.001 5.999A3 3 0 0 0 12 4.5Z" fill-rule="evenodd"></path></SvgIcon>
                 <Typography marginLeft={1} variant="body1" color={'grey.700'}> ورود یا ثبت‌نام </Typography>
             </Button>
             <Dialog
+                sx={{padding:'128px'}}
+                
                 open={open}
                 TransitionComponent={Transition}
                 keepMounted
                 onClose={handleClose}
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle>{"Use Google's location service?"}</DialogTitle>
-                <DialogContent>
-                <DialogContentText id="alert-dialog-slide-description">
-                    Let Google help apps determine location. This means sending anonymous
-                    location data to Google, even when no apps are running.
-                </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                <Button onClick={handleClose}>Disagree</Button>
-                <Button onClick={handleClose}>Agree</Button>
-                </DialogActions>
+               <Grid px={'128px'}py={'72px'}>
+                <DialogTitle>
+                        <Grid textAlign={'center'}>
+                            <Typography  variant='h6' fontWeight={'bold'}color={'grey.700'}>
+                                    {'ورود یا ثبت نام'}
+                            </Typography>
+                            <Typography  variant={'body2'} fontWeight={'bold'}pt={2}color={'grey.500'}>
+                                    {'شماره موبایل یا آدرس ایمیل به همراه کلمه عبور خود را وارد کنید.'}
+                            </Typography>
+                        </Grid>    
+                    </DialogTitle>
+                    <DialogContent>
+                        <form onSubmit={handleSubmit}>
+                            <Grid display={'flex'} flexDirection={'column'} alignItems={'center'} justifyContent={'center'}pt={1}>
+                                <TextField color={'info'} type={'text'} sx={{width:'326px',marginBottom:2,paddingTop:1}} label={'آدرس ایمیل یا شماره موبایل'} variant='outlined' name='userName'value={form.userName} onChange={handleChange}/>
+                                <TextField color={'info'} type={'password'} sx={{width:'326px',marginBottom:2}} label={'رمز عبور'} variant='outlined' name='passWord'value={form.passWord} onChange={handleChange}/>
+                                <Button variant='contained'type='submit' color={'secondary'} sx={{width:'326px',marginTop:4}}>ورود به علی بابا</Button>
+                            </Grid>
+                        </form>
+                    </DialogContent>
+               </Grid>
             </Dialog>
         </>
         );
