@@ -1,6 +1,6 @@
 import { Stack, Grid } from '@mui/material';
 import React, { useState } from 'react';
-import { GetPages } from '../components/get_pages_func/GetPages';
+import GetPages from '../components/get_pages_func/GetPages';
 import Tabview from '../components/home/tabview/Tabview';
 import HelpCard from './../components/home/help-card/HelpCard';
 import DownloadCard from './../components/home/download-card/DownloadCard';
@@ -48,7 +48,7 @@ export default function FirstPage() {
                         <DownloadCard />
                         <FlightDetails/>
                     </Grid>
-                    {GetPages(page)}
+                    <GetPages index={page}/>
                 </Grid>
 
                 <Footer/>
