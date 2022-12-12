@@ -12,6 +12,8 @@ interface propsType{
 
 const GetPages = (props:propsType) => {
     const {index} = props;
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up('sm'));
     if (index == 0) {
         return (
             <InFlights_page/>
