@@ -22,13 +22,13 @@ export default function App({ Component, pageProps }: AppProps) {
   });
 
   return (
-    <CacheProvider value={cacheRtl}>
+     <CacheProvider value={cacheRtl}>
           {/* <Provider store={store}> */}
                <ThemeProvider theme={theme}>
                    <CssBaseline />
                    <Component {...pageProps} />
                </ThemeProvider>
           {/* </Provider> */}
-    </CacheProvider>
+     </CacheProvider>
   )
 }
