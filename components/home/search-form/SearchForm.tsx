@@ -29,10 +29,11 @@ export default function SearchForm({index, searches, setSearches} : SearchFormPr
     const mainHandleSubmit = (form : searchFromValue) => {
         setMainForm(form);
         const searchesTemp = searches
-        const repeatedDataIndex = searchesTemp.findIndex(item => item === form)
+        const repeatedDataIndex = searchesTemp.findIndex(item => JSON.stringify(item) === JSON.stringify(form) )
         if (repeatedDataIndex !== -1){
             searchesTemp.splice(repeatedDataIndex, 1)
         }
+        console.log('repeated ', repeatedDataIndex)
         searchesTemp.unshift(form)
         setSearches(searchesTemp)
         console.log('search', JSON.stringify(searches))
