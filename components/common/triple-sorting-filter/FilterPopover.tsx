@@ -18,12 +18,14 @@ interface FilterDataType {
 }
 
 interface TripleSortingFilterProps {
-    inputs: FilterDataType[]
+    inputs: FilterDataType[],
+    checked: number,
+    setChecked: React.Dispatch<React.SetStateAction<number>>,
 }
 
-export default function FilterPopover({inputs} : TripleSortingFilterProps) {
+export default function FilterPopover({inputs, checked, setChecked} : TripleSortingFilterProps) {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-    const [checked, setChecked] = React.useState(0);
+    // const [checked, setChecked] = React.useState(0);
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
