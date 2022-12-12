@@ -69,6 +69,7 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
                   sx={{
                       color: "grey.400",
                       borderColor: "grey.200",
+
                       "& .MuiOutlinedInput-root.Mui-error": {
                           '& .MuiOutlinedInput-notchedOutline': {
                               borderColor: 'error.300',
@@ -89,7 +90,13 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
 
                       '& .MuiInputLabel-root.Mui-focused': {
                           color: "grey.400",
+                          padding: 0,
+                      },
+
+                      '& .MuiInputLabel-root': {
+                          padding: '0 10px',
                       }
+
                   }}
               />
           )}

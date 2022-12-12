@@ -33,23 +33,25 @@ const swappableInputsDetails: swappableInputsDetailType[] = [
 
 
 interface InternalFlightSearchFormProps {
-    mainForm: searchFromValue,
-    setMainForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
+    submit: (form: searchFromValue) => void
 }
 
-export default function BusTicketSearchForm({mainForm, setMainForm} : InternalFlightSearchFormProps) {
+export default function BusTicketSearchForm({submit} : InternalFlightSearchFormProps) {
 
-    const [form, setForm] = useState<searchFromValue>(emptySearchFormData);
-
-
-    const handleChangeWithName = (name: string, value: string) => {
-        setForm({...form,[name] : value});
-    }
+    const [form, setForm] = useState<searchFromValue>({...emptySearchFormData, formType: 3});
+    const [origin, setOrigin] = useState<string>('');
+    const [destination, setDestination] = useState<string>('');
+    const [oneWayRoad, setOneWayRoad] = useState<boolean>(true);
+    const [departureDate, setDepartureDate] = useState<string>('');
+    const [returnDate, setReturnDate] = useState<string>('');
 
     const handleSubmit = (event : React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(form)
-        setMainForm(form)
+        submit({...form, origin: origin, destination: destination, oneWayRoad: oneWayRoad, departureDate: departureDate, returnDate:returnDate})
+    }
+
+    const handleChangeWithName = (name: string, value: string) => {
+        setForm({...form,[name] : value});
     }
 
     return (
@@ -59,18 +61,16 @@ export default function BusTicketSearchForm({mainForm, setMainForm} : InternalFl
                     <Grid item xs={12} md={6}>
                         <SwappableInput
                             details={swappableInputsDetails}
-                            handleChange={handleChangeWithName}
-                            form={form}
-                            setForm={setForm}
+                            setFirstValue={setOrigin}
+                            setSecValue={setDestination}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
                         <SingleDropDown
                             firstLabel={'تاریخ حرکت'}
                             firstName={'departureDate'}
-                            handleChange={handleChangeWithName}
-                            form={form}
-                            setForm={setForm}
+                            value={departureDate}
+                            setValue={setDepartureDate}
                             iconName={'calender'}
                         />
                     </Grid>

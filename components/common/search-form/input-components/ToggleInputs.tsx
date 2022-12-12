@@ -13,44 +13,33 @@ import CustomDropDown from "./CustomDropDown";
 
 
 interface ToggleInputsProps {
+    firstValue: string,
+    setFirstValue: React.Dispatch<React.SetStateAction<string>>,
+    secValue: string,
+    setSecValue: React.Dispatch<React.SetStateAction<string>>,
     firstLabel: string,
     secondLabel: string,
     firstName: string,
     secondName: string,
-    // handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-    handleChange: (name: string, value: string) => void,
-    form: searchFromValue,
-    setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
     iconName: string,
 }
 
-interface dateOption {
-    label: string,
-    value: string,
-}
 const dateOptions = [
-    {label: '1401/10/01', value: '1401/10/01'},
-    {label: '1401/10/02', value: '1401/10/02'},
-    {label: '1401/10/03', value: '1401/10/03'},
-    {label: '1401/10/04', value: '1401/10/04'},
-    {label: '1401/10/05', value: '1401/10/05'},
-    {label: '1401/10/06', value: '1401/10/06'},
-    {label: '1401/10/07', value: '1401/10/07'},
+    {label: '1 دی', value: ' 1 دی'},
+    {label: '2 دی', value: '2 دی'},
+    {label: '3 دی', value: '3 دی'},
+    {label: '4 دی', value: '4 دی'},
+    {label: '5 دی', value: '5 دی'},
+    {label: '6 دی', value: '6 دی'},
+    {label: '7 دی', value: '7 دی'},
 ]
 
-
-export default function ToggleInputs({firstLabel, secondLabel, firstName, secondName, handleChange, form, setForm, iconName} : ToggleInputsProps) {
+export default function ToggleInputs({firstLabel, secondLabel, firstName, secondName,
+                                         iconName, firstValue, setFirstValue, setSecValue, secValue} : ToggleInputsProps) {
 
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
     const tabletMatch = useMediaQuery(theme.breakpoints.down('md'));
-
-    const [firstValue,setFirstValue] = useState('');
-    const [secValue,setSecValue] = useState('');
-
-    const onClick = () => {
-        console.log('onChange')
-    }
 
     return (
         <Grid
@@ -68,11 +57,9 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                                  values={dateOptions}
                                  currentValue={firstValue}
                                  setCurrentValue={setFirstValue}
-                                 changeHandler={handleChange}
                                  borderRadius={'8px 0 0 8px'}
                                  variant={"outlined"}
                                  bgColor={(tabletMatch ? 'grey.100' : '#fff')}
-                                 // onClick={onClick}
                 />
             }
             {!mobileMatch &&
@@ -82,11 +69,9 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                                  values={dateOptions}
                                  currentValue={secValue}
                                  setCurrentValue={setSecValue}
-                                 changeHandler={handleChange}
                                  borderRadius={'0 8px 8px 0'}
                                  variant={"outlined"}
                                  bgColor={(tabletMatch ? 'grey.100' : '#fff')}
-                                 // onClick={onClick}
                 />
             }
 

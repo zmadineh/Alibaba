@@ -5,6 +5,12 @@ import Tabview from '../components/home/tabview/Tabview';
 import HelpCard from './../components/home/help-card/HelpCard';
 import DownloadCard from './../components/home/download-card/DownloadCard';
 import FlightDetails from '../components/common/flight-details/FlightDetails'
+import LayoutMobile from '../components/layout/layoutMobile/LayoutMobile'
+import Footer from '../components/layout/Footer'
+import SearchCardContainer from "../components/common/recent-searchs/SearchCardContainer";
+import {searchFromValue} from "../model/searchFormValue.type";
+import SearchForm from "../components/home/search-form/SearchForm";
+import TabPanel from "../components/home/tabview/TabPanel";
 
 // const pages = {
 //     0: 'inFlight',
@@ -14,18 +20,20 @@ import FlightDetails from '../components/common/flight-details/FlightDetails'
 //     4: 'tour'
 // }
 
-
-import LayoutMobile from '../components/layout/layoutMobile/LayoutMobile'
-import Footer from '../components/layout/Footer'
-
 export default function FirstPage() {
     const [page, setPage] = useState(0);
-    return (
+    const [searches, setSearches] = useState<searchFromValue[]>([])
 
+    return (
 
         <Grid>
             <Grid id='layout' >
-                <Tabview value={page} setValue={setPage} />
+                <Tabview value={page} setValue={setPage}>
+                    <TabPanel value={page} index={page}>
+                        <SearchForm searches={searches} setSearches={setSearches} index={page} />
+                    </TabPanel>
+                </Tabview>
+
                 <Grid container marginX={'auto'} direction={'column'} width={'100%'} sx={{
                     maxWidth: {
                         lg: '1200px',
@@ -34,6 +42,8 @@ export default function FirstPage() {
                     }
                 }}>
                     <Grid>
+                        <SearchCardContainer categoryIndex={page} searches={searches} setSearches={setSearches}/>
+
                         <HelpCard />
                         <DownloadCard />
                         <FlightDetails/>
@@ -41,7 +51,10 @@ export default function FirstPage() {
                     {GetPages(page)}
                 </Grid>
 
+                <Footer/>
+
             </Grid>
         </Grid>
     )
- }
+
+}

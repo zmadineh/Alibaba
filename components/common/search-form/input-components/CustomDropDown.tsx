@@ -2,13 +2,10 @@ import React, {SyntheticEvent} from "react";
 import {MenuItem, TextField} from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
-import {searchFromValue} from "../../../../model/searchFormValue.type";
 
 interface CustomDropDownProps {
     label: string,
     name: string,
-    // changeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void,
-    changeHandler: (name: string, value: string) => void,
     values : Array<{value : string,label : string}>,
     currentValue : string,
     setCurrentValue: React.Dispatch<React.SetStateAction<string>>,
@@ -20,13 +17,13 @@ interface CustomDropDownProps {
 const CustomDropDown = (props: CustomDropDownProps) => {
 
     const onChange = (event: any) => {
+        console.log('select : ', event.target.value)
         props.setCurrentValue(event.target.value)
-        props.changeHandler(props.name, event.target.value)
     }
 
     return (
         <TextField
-            select //converts to a dropdown
+            select
             label={props.label}
             name={props.name}
             onChange={onChange}
