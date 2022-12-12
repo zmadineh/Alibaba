@@ -11,6 +11,7 @@ import SearchCardContainer from "../components/common/recent-searchs/SearchCardC
 import { searchFromValue } from "../model/searchFormValue.type";
 import SearchForm from "../components/home/search-form/SearchForm";
 import TabPanel from "../components/home/tabview/TabPanel";
+import TrainDetails from './../components/home/train-card/TrainDetails';
 
 // const pages = {
 //     0: 'inFlight',
@@ -47,10 +48,11 @@ export default function FirstPage() {
                         <HelpCard />
                         <DownloadCard />
                         <FlightDetails />
+                        <TrainDetails />
                     </Grid>
                     {GetPages(page)}
                 </Grid>
-
+               
                 <Footer />
 
             </Grid>
