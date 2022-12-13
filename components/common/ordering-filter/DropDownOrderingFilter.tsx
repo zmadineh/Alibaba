@@ -11,6 +11,11 @@ interface FilterDataType {
 
 interface TripleSortingFilterProps {
     inputs: FilterDataType[]
+    value: number,
+    setValue: React.Dispatch<React.SetStateAction<number>>,
+}
+
+export default function DropDownOrderingFilter({inputs, value, setValue} : TripleSortingFilterProps) {
 
     const onChange = (event: any) => {
         console.log(value)
