@@ -52,7 +52,7 @@ const FilterSidebar = () => {
                     <AccordionDetails>
                         <FormGroup>
                             <FormControlLabel control={<Checkbox defaultChecked />} label="سیستمی" />
-                            <FormControlLabel disabled control={<Checkbox />} label="چارتر" />
+                            <FormControlLabel control={<Checkbox />} label="چارتر" />
                         </FormGroup>
 
                     </AccordionDetails>
