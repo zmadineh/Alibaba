@@ -108,8 +108,8 @@ export default function SearchPage() {
                 <Grid item container bgcolor={'#fff'} height={'60px'} position={"fixed"} bottom={0}>
                     <Grid item display={"flex"} xs={6}>
                         <Grid item display={"flex"} justifyContent={"center"} alignItems={"center"} xs={6}>
-
-                            <FilterPopover checked={filterIndex} setChecked={setFilterIndex} inputs={tripleSortingFilterData} />
+                            
+                            <OrderingFilter value={filterIndex} setValue={setFilterIndex} inputs={tripleSortingFilterData}/>
 
                         </Grid>
                         <Grid item xs={6} bgcolor={'blue'}>
