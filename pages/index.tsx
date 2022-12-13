@@ -1,20 +1,18 @@
-import { Dialog, DialogContent, DialogTitle, Grid, IconButton, SvgIcon, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Dialog, DialogContent, Grid, IconButton, SvgIcon, Typography, useMediaQuery, useTheme } from '@mui/material';
 import React, { useState } from 'react';
 import { GetPages } from '../components/get_pages_func/GetPages';
 import Tabview from '../components/home/tabview/Tabview';
 import HelpCard from './../components/home/help-card/HelpCard';
 import DownloadCard from './../components/home/download-card/DownloadCard';
-import FlightDetails from '../components/common/flight-details/FlightDetails'
-import Footer from '../components/layout/Footer'
+import FlightDetails from '../components/common/flight-details/FlightDetails';
+import Footer from '../components/layout/Footer';
 import SearchCardContainer from "../components/common/recent-searchs/SearchCardContainer";
 import { searchFromValue } from "../model/searchFormValue.type";
 import SearchForm from "../components/home/search-form/SearchForm";
 import TabPanel from "../components/home/tabview/TabPanel";
-
 const pagesFaName = ['پرواز داخلی', 'پرواز خارجی', 'قطار', 'اتوبوس', 'تور']
-
 export default function FirstPage() {
-    const [page, setPage] = useState<number>(2);
+    const [page, setPage] = useState<number>(3);
     const [searches, setSearches] = useState<searchFromValue[]>([])
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('sm'));
@@ -54,14 +52,10 @@ export default function FirstPage() {
                                 {GetPages(page)}
                             </Grid>
                         </DialogContent>
-
                     </Dialog >
                 )}
                 <Footer />
             </Grid>
         </Grid>
     )
-
-
-
 }
