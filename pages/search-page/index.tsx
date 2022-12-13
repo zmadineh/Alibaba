@@ -12,8 +12,9 @@ export default function SearchPage() {
 
     return (
         <Grid container flexDirection={"column"} alignItems={"center"}>
-            <Grid item container bgcolor={"gray"} height={`${headerHeight}px`} position={"fixed"} top={0}>
+            <Grid item container bgcolor={"gray"} height={`${headerHeight}px`} position={"fixed"} top={0} zIndex={2000}>
                 HEADER
+                {/*--------------------------------------------------------*/}
             </Grid>
 
             <Grid item container
@@ -28,29 +29,40 @@ export default function SearchPage() {
                 >
                     {!mobileMatch &&
                         <Grid item xs={12} sm={4} bgcolor={'blue'}>
-                            SIDE FILTER
+                            <Grid position={"sticky"} top={`${headerHeight+10}px`} bottom={'100px'} bgcolor={'magenta'} height={'400px'}>
+                                SIDE FILTER
+                                {/*--------------------------------------------------------*/}
+                            </Grid>
                         </Grid>
                     }
 
                     <Grid item container gap={1} pl={{xs: 0, sm: 1}} flexDirection={"column"} xs={12} sm={8}>
-                        <Grid item height={'100px'} bgcolor={'yellow'}> date </Grid>
+                        <Grid item height={'100px'} bgcolor={'yellow'}>
+                            date
+                            {/*--------------------------------------------------------*/}
+                        </Grid>
 
                         {!mobileMatch &&
-                            <Grid item height={'100px'} bgcolor={'red'}> order filter</Grid>
+                            <Grid item height={'100px'} bgcolor={'red'}>
+                                order filter
+                                {/*--------------------------------------------------------*/}
+                            </Grid>
                         }
 
                         <Grid item height={'800px'} bgcolor={'green'}>
                             tickets
+                            {/*--------------------------------------------------------*/}
                         </Grid>
                     </Grid>
                 </Grid>
 
                 {!mobileMatch &&
-                    <Grid item container width={'100%'} height={'400px'}
+                    <Grid item container width={'100%'} height={'700px'}
                           px={{xs: 0, sm: 1}} mt={1}
                           justifyContent={"center"} bgcolor={'purple'}
                     >
                         common questions
+                        {/*--------------------------------------------------------*/}
                     </Grid>
                 }
             </Grid>
@@ -58,6 +70,7 @@ export default function SearchPage() {
             {/* desktop footer */}
             <Grid item container bgcolor={"gray"} minHeight={'60px'}>
                 footer
+                {/*--------------------------------------------------------*/}
             </Grid>
 
             {/* mobile footer */}
@@ -66,13 +79,16 @@ export default function SearchPage() {
                     <Grid item display={"flex"} xs={6}>
                         <Grid item xs={6} bgcolor={'red'}>
                             popover filter
+                            {/*--------------------------------------------------------*/}
                         </Grid>
                         <Grid item xs={6} bgcolor={'blue'}>
                             dialog filter
+                            {/*--------------------------------------------------------*/}
                         </Grid>
                     </Grid>
                     <Grid item xs={6} bgcolor={'orange'}>
                         next and prev day
+                    {/*--------------------------------------------------------*/}
                     </Grid>
                 </Grid>
             }
