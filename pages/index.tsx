@@ -8,7 +8,6 @@ import FlightDetails from '../components/common/flight-details/FlightDetails';
 import Footer from '../components/layout/Footer';
 import SearchCardContainer from "../components/common/recent-searchs/SearchCardContainer";
 import { searchFromValue } from "../model/searchFormValue.type";
-import { searchFromValue } from "../model/searchFormValue.type";
 import SearchForm from "../components/home/search-form/SearchForm";
 import TabPanel from "../components/home/tabview/TabPanel";
 const pagesFaName = ['پرواز داخلی', 'پرواز خارجی', 'قطار', 'اتوبوس', 'تور']
