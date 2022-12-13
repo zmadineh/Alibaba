@@ -39,7 +39,7 @@ export default function SearchPage() {
     const [filterIndex, setFilterIndex] = useState(0)
 
     return (
-        <Grid container flexDirection={"column"} alignItems={"center"}>
+        <Grid container flexDirection={"column"} alignItems={"center"} bgcolor={'background.default'}>
             <Grid item container bgcolor={"gray"} height={`${headerHeight}px`} position={"fixed"} top={0} zIndex={2000}>
                 HEADER
                 {/*--------------------------------------------------------*/}
@@ -72,15 +72,10 @@ export default function SearchPage() {
 
                         {!mobileMatch &&
                             <Grid item display={"flex"} alignItems={"center"} gap={2}>
-                                {/*/<Grid item xs={2}>*/}
-                                    <Typography fontSize={'14px'} fontWeight={'600'}>مرتب سازی: </Typography>
-                                {/*</Grid>*/}
-                                {/*<Grid item>*/}
-                                    <TripleSortingFilter value={filterIndex} setValue={setFilterIndex} inputs={tripleSortingFilterData}/>
-                                {/*</Grid>*/}
 
-                                {/*order filter*/}
-                                {/*--------------------------------------------------------*/}
+                                <Typography fontSize={'14px'} fontWeight={'600'}>مرتب سازی: </Typography>
+                                <TripleSortingFilter value={filterIndex} setValue={setFilterIndex} inputs={tripleSortingFilterData}/>
+
                             </Grid>
                         }
 
@@ -113,9 +108,9 @@ export default function SearchPage() {
                 <Grid item container bgcolor={'#fff'} height={'60px'} position={"fixed"} bottom={0}>
                     <Grid item display={"flex"} xs={6}>
                         <Grid item display={"flex"} justifyContent={"center"} alignItems={"center"} xs={6}>
+
                             <FilterPopover checked={filterIndex} setChecked={setFilterIndex} inputs={tripleSortingFilterData} />
-                            {/*popover filter*/}
-                            {/*/!*--------------------------------------------------------*!/*/}
+                            
                         </Grid>
                         <Grid item xs={6} bgcolor={'blue'}>
                             dialog filter

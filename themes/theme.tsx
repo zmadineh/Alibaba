@@ -69,6 +69,11 @@ export const theme = createTheme({
             '800': '#0A0B0C',
             '900': '#F6F6F6',
         },
+
+        background: {
+            default: '#f6f6f6',
+            // main: '#f6f6f6',
+        }
     },
     components: {
         MuiCssBaseline: {
