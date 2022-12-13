@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid';
 import React, {useState} from 'react';
-import TripleSortingFilter from "../../components/common/triple-sorting-filter/TripleSortingFilter";
-import FilterPopover from "../../components/common/triple-sorting-filter/FilterPopover";
+import OrderingFilter from "../../components/common/ordering-filter/OrderingFilter";
+import FilterPopover from "../../components/common/ordering-filter/FilterPopover";
 
 const tripleSortingFilterData = [
     {
@@ -29,7 +29,7 @@ export default function Filter() {
     return (
 
         <Grid container flexDirection={"column"} justifyContent={"center"} alignItems={"center"} gap={10}>
-           <TripleSortingFilter value={filterIndex} setValue={setFilterIndex} inputs={tripleSortingFilterData}/>
+           <OrderingFilter value={filterIndex} setValue={setFilterIndex} inputs={tripleSortingFilterData}/>
             <FilterPopover checked={filterIndex} setChecked={setFilterIndex} inputs={tripleSortingFilterData} />
         </Grid>
     )

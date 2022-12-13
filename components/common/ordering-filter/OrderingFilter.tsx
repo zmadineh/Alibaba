@@ -18,7 +18,7 @@ interface TripleSortingFilterProps {
     setValue: React.Dispatch<React.SetStateAction<number>>,
 }
 
-export default function TripleSortingFilter({inputs, value, setValue} : TripleSortingFilterProps) {
+export default function OrderingFilter({inputs, value, setValue} : TripleSortingFilterProps) {
 
     const tempArray = Array.from({length: inputs.length*2},  (elm, index) => {
         return index;

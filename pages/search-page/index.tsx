@@ -2,9 +2,9 @@ import React, {useState} from "react";
 import Grid from "@mui/material/Grid";
 import {useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import TripleSortingFilter from "../../components/common/triple-sorting-filter/TripleSortingFilter";
+import OrderingFilter from "../../components/common/ordering-filter/OrderingFilter";
 import Typography from "@mui/material/Typography/Typography";
-import FilterPopover from "../../components/common/triple-sorting-filter/FilterPopover";
+import FilterPopover from "../../components/common/ordering-filter/FilterPopover";
 
 
 const tripleSortingFilterData = [
@@ -74,7 +74,7 @@ export default function SearchPage() {
                             <Grid item display={"flex"} alignItems={"center"} gap={2}>
 
                                 <Typography fontSize={'14px'} fontWeight={'600'}>مرتب سازی: </Typography>
-                                <TripleSortingFilter value={filterIndex} setValue={setFilterIndex} inputs={tripleSortingFilterData}/>
+                                <OrderingFilter value={filterIndex} setValue={setFilterIndex} inputs={tripleSortingFilterData}/>
 
                             </Grid>
                         }
@@ -110,7 +110,7 @@ export default function SearchPage() {
                         <Grid item display={"flex"} justifyContent={"center"} alignItems={"center"} xs={6}>
 
                             <FilterPopover checked={filterIndex} setChecked={setFilterIndex} inputs={tripleSortingFilterData} />
-                            
+
                         </Grid>
                         <Grid item xs={6} bgcolor={'blue'}>
                             dialog filter
