@@ -12,6 +12,7 @@ import { searchFromValue } from "../model/searchFormValue.type";
 import SearchForm from "../components/home/search-form/SearchForm";
 import TabPanel from "../components/home/tabview/TabPanel";
 import TrainDetails from './../components/home/train-card/TrainDetails';
+import FilterSidebar from './../components/filter-Sidebar/FilterSidebar';
 
 // const pages = {
 //     0: 'inFlight',
@@ -28,34 +29,7 @@ export default function FirstPage() {
     return (
 
         <Grid>
-            <Grid id='layout' >
-                <Tabview value={page} setValue={setPage}>
-                    <TabPanel value={page} index={page}>
-                        <SearchForm searches={searches} setSearches={setSearches} index={page} />
-                    </TabPanel>
-                </Tabview>
-
-                <Grid container marginX={'auto'} direction={'column'} width={'100%'} sx={{
-                    maxWidth: {
-                        lg: '1200px',
-                        md: '800px',
-                        sm: '100%'
-                    }
-                }}>
-                    <Grid>
-                        <SearchCardContainer categoryIndex={page} searches={searches} setSearches={setSearches} />
-
-                        <HelpCard />
-                        <DownloadCard />
-                        <FlightDetails />
-                        <TrainDetails />
-                    </Grid>
-                    {GetPages(page)}
-                </Grid>
-               
-                <Footer />
-
-            </Grid>
+            <FilterSidebar />
         </Grid>
     )
 
