@@ -1,21 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { Login , LoginProps } from "../../data/auth/Login-Promise";
+import { LoginType, AuthStateType } from "../../model/AuthType";
 
 
-interface StateType{
-    value: any;
-    isLogin : boolean
-    loading : boolean
-    name : string
-    number : string 
-    email : string 
-    idCode : string 
-    error ?: string
-}
-interface LoginType{
-    userName:string,
-    passWord:string,
-}
+
 export const AuthAsyncThunk = createAsyncThunk(
     'auth/Login',
     //authData => {userName:'09123456789' , passWord:'123456}
@@ -25,34 +13,37 @@ export const AuthAsyncThunk = createAsyncThunk(
     }//1:Pendding 2:fullfilled 3:rejected
 )
 
-const initialState : StateType ={
+const initialState : AuthStateType ={
     isLogin: false,
     loading: false,
     name: '',
     number: '',
     email: '',
     idCode: '',
-    value: undefined
+    error:'',
+    value: ''
 }
 
 export const AuthSlice = createSlice({
     name:'Auth',
     initialState,
     reducers:{
-        logout:(state)=>{
+        logout:(state:AuthStateType)=>{
             state.isLogin = false
             state.loading = false
             state.name = ''
             state.number = '' 
             state.email = ''
             state.idCode = ''
+            state.error = ''
+            state.value = ''
         }
     },
     extraReducers:(builder)=>{
         builder.addCase(AuthAsyncThunk.pending,(state)=>{
             state.loading = true;
         })
-        builder.addCase(AuthAsyncThunk.fulfilled,(state:StateType,action:any)=>{
+        builder.addCase(AuthAsyncThunk.fulfilled,(state:AuthStateType,action:any)=>{
             const payload = action
             state.isLogin = true
             state.name=payload.name
@@ -61,7 +52,7 @@ export const AuthSlice = createSlice({
             state.idCode=payload.idCode
             
         })
-        builder.addCase(AuthAsyncThunk.rejected,(state:StateType)=>{
+        builder.addCase(AuthAsyncThunk.rejected,(state:AuthStateType)=>{
             state.loading = false
             state.error = 'نام کاربری یا رمز اشتباه است'
         })

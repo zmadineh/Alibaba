@@ -1,5 +1,4 @@
 export interface AuthStateType{
-    value: any;
     isLogin : boolean
     loading : boolean
     name : string
@@ -7,6 +6,7 @@ export interface AuthStateType{
     email : string 
     idCode : string 
     error ?: string
+    value?:string
 }
 export interface LoginType{
     userName:string,

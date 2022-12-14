@@ -1,4 +1,4 @@
-import React ,{useState} from 'react'
+import React ,{useState,useEffect} from 'react'
 
 import { useAuthDispatch, useAuthSelector } from "../../redux/AuthHooks";
 import AuthSlice, { AuthAsyncThunk } from '../../redux/Slices/AuthSlice';
@@ -41,6 +41,9 @@ const LoginHeader = (props: Props) => {
         const handleChange = (e: { target: { name: string; value: string; }; }) =>{
             setForm({...form,[e.target.name]:e.target.value})
         }
+        useEffect(() => {
+          console.log(auth)
+        }, [auth])
         
         const handleSubmit = (e: { preventDefault: () => void; }) =>{
             e.preventDefault()

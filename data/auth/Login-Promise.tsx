@@ -3,7 +3,7 @@ export interface LoginProps{
     passWord:string,
 }
 
-
+import { AuthStateType } from "../../model/AuthType"
 
 export const Login = ({userName , passWord}:LoginProps)=>{
     return new Promise((resolve,reject)=>{
