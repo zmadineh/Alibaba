@@ -19,7 +19,7 @@ export default function FirstPage() {
     const matches = useMediaQuery(theme.breakpoints.up('sm'));
     return (
         <Grid>
-            <Grid id='layout' >
+            <Grid id='layout' bgcolor='grey.900' >
                 <Desk_header/>
                 <Tabview value={page} setValue={setPage}>
                     <TabPanel value={page} index={page}>
