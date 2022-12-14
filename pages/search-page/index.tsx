@@ -35,6 +35,7 @@ export default function SearchPage() {
     const headerHeight = 70;
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
+    const tabletMatch = useMediaQuery(theme.breakpoints.down('md'));
 
     const [filterIndex, setFilterIndex] = useState(0)
 
@@ -73,7 +74,7 @@ export default function SearchPage() {
                         {!mobileMatch &&
                             <Grid item display={"flex"} alignItems={"center"} gap={2}>
 
-                                <Typography fontSize={'14px'} fontWeight={'600'}>مرتب سازی: </Typography>
+                                {!tabletMatch && <Typography fontSize={'14px'} fontWeight={'600'}>مرتب سازی: </Typography> }
                                 <OrderingFilter value={filterIndex} setValue={setFilterIndex} inputs={tripleSortingFilterData}/>
 
                             </Grid>
@@ -98,17 +99,19 @@ export default function SearchPage() {
             </Grid>
 
             {/* desktop footer */}
-            <Grid item container bgcolor={"gray"} minHeight={'60px'}>
-                footer
-                {/*--------------------------------------------------------*/}
-            </Grid>
+            {!mobileMatch &&
+                <Grid item container bgcolor={"gray"} minHeight={'60px'}>
+                    footer
+                    {/*--------------------------------------------------------*/}
+                </Grid>
+            }
 
             {/* mobile footer */}
             {mobileMatch &&
                 <Grid item container bgcolor={'#fff'} height={'60px'} position={"fixed"} bottom={0}>
                     <Grid item display={"flex"} xs={6}>
                         <Grid item display={"flex"} justifyContent={"center"} alignItems={"center"} xs={6}>
-                            
+
                             <OrderingFilter value={filterIndex} setValue={setFilterIndex} inputs={tripleSortingFilterData}/>
 
                         </Grid>

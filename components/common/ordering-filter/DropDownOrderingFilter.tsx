@@ -38,21 +38,20 @@ export default function DropDownOrderingFilter({inputs, value, setValue} : Tripl
                 minHeight: 0,
                 '& .MuiInputBase-root': {
                     borderRadius: '20px',
-                    borderColor: "grey.200",
-                    // backgroundColor: props.bgColor,
+                    borderColor: "secondary.main",
                 },
 
                 '& .MuiInputBase-root::before': {
-                    borderColor: "grey.200",
+                    borderColor: "secondary.main",
                 },
 
                 '& .MuiInput-root::after': {
-                    borderColor: "grey.300",
+                    borderColor: "secondary.main",
                 },
 
                 '& .MuiOutlinedInput-root.Mui-focused': {
                     '& .MuiOutlinedInput-notchedOutline': {
-                        borderColor: "grey.400",
+                        borderColor: "secondary.main",
                         borderWidth: '0.5px',
                     },
                 },
