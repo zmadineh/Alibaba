@@ -36,23 +36,10 @@ const BooleanSelector = (props: CustomDropDownProps) => {
 
             sx={{
                 minHeight: 0,
-                // '& .MuiSelect-icon' :{
-                //     display: 'none',
-                //     width: 0,
-                // },
-                // '& .MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input': { //MuiInputBase-input-MuiOutlinedInput-input
-                    // '& .MuiInputBase-input': {
-                    //     '& .MuiOutlinedInput-input': {
-                    //         padding: '8.5px 40px',
-
-                    //     },
-                    // },
-                // },
 
                 '& .MuiInputBase-root': {
                     borderRadius: '20px',
                     borderColor: "grey.200",
-                    // backgroundColor: props.bgColor,
                 },
 
                 '& .MuiInputBase-root::before': {
@@ -81,7 +68,12 @@ const BooleanSelector = (props: CustomDropDownProps) => {
 
         >
             {options.map((option, index) => (
-                <MenuItem key={index} value={option}>
+                <MenuItem key={index} value={option}
+                          sx={{
+                              '&:hover, &.Mui-selected:hover, &.Mui-selected ': {
+                                  backgroundColor: 'secondary.100',
+                              },
+                          }}>
                     {option}
                 </MenuItem>
             ))}

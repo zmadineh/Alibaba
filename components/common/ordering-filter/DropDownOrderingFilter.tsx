@@ -2,6 +2,9 @@ import React from 'react';
 
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
+import InputAdornment from "@mui/material/InputAdornment";
+import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
+import VerticalFlip from "../../../public/svg/VerticalFlip-icon.svg";
 
 
 interface FilterDataType {
@@ -34,11 +37,28 @@ export default function DropDownOrderingFilter({inputs, value, setValue} : Tripl
             variant={"outlined"}
             size={"small"}
 
+            InputProps={{
+                startAdornment: (
+                    <InputAdornment position="start">
+                        <VerticalFlip />
+                        {/*{iconMap.find(item => item.iconName === iconName).icon}*/}
+                    </InputAdornment>
+                ),
+            }}
+
             sx={{
                 minHeight: 0,
+                borderColor: "secondary.main",
+                backgroundColor: 'secondary.100',
+                color: 'secondary.main',
+
+                '& .MuiSelect-icon': {
+                    color: 'secondary.main',
+                },
                 '& .MuiInputBase-root': {
                     borderRadius: '20px',
                     borderColor: "secondary.main",
+                    color: 'secondary.main',
                 },
 
                 '& .MuiInputBase-root::before': {
@@ -57,7 +77,7 @@ export default function DropDownOrderingFilter({inputs, value, setValue} : Tripl
                 },
 
                 '& .MuiInputLabel-root.Mui-focused': {
-                    color: "grey.400",
+                    color: 'secondary.100',
                 },
 
                 '& .MuiInput-input': {
@@ -67,7 +87,16 @@ export default function DropDownOrderingFilter({inputs, value, setValue} : Tripl
 
         >
             {inputs.map((option, index) => (
-                <MenuItem key={index} value={index}>
+                <MenuItem key={index} value={index}
+                sx={{
+                    '&:hover, &.Mui-selected:hover': {
+                        backgroundColor: 'secondary.100',
+                    },
+                    '&.Mui-selected ': {
+                        backgroundColor: 'secondary.100',
+                        color: 'secondary.main'
+                    },
+                }}>
                     {option.label}
                 </MenuItem>
             ))}
