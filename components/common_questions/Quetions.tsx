@@ -16,9 +16,9 @@ const Quetions = (props:propsType) => {
    return(
     
     <>
-    {values.map(item=>{
+    {values.map( (item,index) =>{
       return(
-        <Accordion disableGutters square>
+        <Accordion key={index} disableGutters square>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
