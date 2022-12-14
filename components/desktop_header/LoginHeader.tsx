@@ -63,7 +63,7 @@ const LoginHeader = (props: Props) => {
       
       if (auth.isLogin) {
         return (
-        <Button sx={{width:'200px', padding: '8px 12px' }}>
+        <Button sx={{ padding: '8px 12px' }}>
             <SvgIcon sx={{ color: 'grey.700' }}><path d="M17.25 12.75A3.75 3.75 0 0 1 21 16.5v3.75a.75.75 0 0 1-.75.75H3.75a.75.75 0 0 1-.75-.75V16.5a3.75 3.75 0 0 1 3.75-3.75h10.5Zm0 1.5H6.75A2.25 2.25 0 0 0 4.5 16.5v3h15v-3a2.25 2.25 0 0 0-2.118-2.246l-.132-.004ZM12 3a4.5 4.5 0 1 1 0 9 4.5 4.5 0 1 1 0-9Zm0 1.5a3 3 0 1 0-.001 5.999A3 3 0 0 0 12 4.5Z" fill-rule="evenodd"></path></SvgIcon>
             <Typography marginLeft={1} variant="body1" color={'grey.700'}>{auth.number}</Typography>
         </Button>
