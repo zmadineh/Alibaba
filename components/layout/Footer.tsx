@@ -96,7 +96,7 @@ const Footer = (props: Props) => {
     ]
   return (
     <Grid bgcolor={'common.white'} container display={'flex'} direction={'column'}  justifyContent={'center'} alignItems={'center'} borderTop={1} borderColor={'divider'}>
-            <Grid item container display={'flex'} direction={{xs:'column',md:'row'}} xs={12}maxWidth={'1200px'} width={{xs:'auto'}} py={8}>
+            <Grid item container display={'flex'} direction={{xs:'column',md:'row'}} xs={12}maxWidth={'1200px'} width={{md:'900px',xs:'auto'}} py={8}>
                     {footerArr1.map((item:any)=>(
                         <Grid item container display={'flex'} flexDirection={{xs:'column',md:'row'}} alignItems={{xs:'center',md:'center'}} md={4}xs={12}  justifyContent={{xs:'center',md:'flex-start'}} key={item.id}>
                             <Grid  item md={4}xs={12}p={1} >
@@ -110,7 +110,7 @@ const Footer = (props: Props) => {
                     ))}
             </Grid>
             
-            <Grid item container xs={10} display={{xs:'none',md:'flex'}} justifyContent={'center'}pt={4} direction={{xs:'column',md:'row'}}borderTop={1} borderColor={'divider'}maxWidth={'1200px'}width={{xs:'auto'}}py={8}>
+            <Grid item container xs={10} display={{xs:'none',md:'flex'}} justifyContent={'center'}pt={4} direction={{xs:'column',md:'row'}}borderTop={1} borderColor={'divider'}maxWidth={'1200px'}width={{md:'900px',xs:'auto'}}py={8}>
                     <Grid item container xs={12} md={6} display={'inline-flex'}>
                         {footerArr2.map((item:any)=>(
                             <Grid key={item.id} item xs={4} >
@@ -163,7 +163,7 @@ const Footer = (props: Props) => {
                             </List>
                         ))}
             </Grid>
-            <Grid item container xs={10} display={'flex'} justifyContent={'center'}pt={4} flexDirection={{xs:'column-reverse',md:'row'}}borderTop={1} borderColor={'divider'}width={{xs:'auto'}}py={8}>
+            <Grid item container xs={10} display={'flex'} justifyContent={'center'}pt={4} flexDirection={{xs:'column-reverse',md:'row'}}borderTop={1} borderColor={'divider'}width={{md:'900px',xs:'auto'}}py={8}>
                         <Grid item xs={12}md={6} justifyContent={{md:'flex-end',xs:'center'}}>
                                     <Typography variant='caption'color={'grey.500'}>
                                         {'کلیه حقوق این سرویس (وب‌سایت و اپلیکیشن‌های موبایل) محفوظ و متعلق به شرکت سفرهای علی‌بابا می‌باشد. (نسخه 1.185.4)'}
