@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 
 import {data} from "../../../../model/data.type";
 
@@ -18,6 +18,7 @@ import {ListItem} from "@mui/material";
 import Typography from "@mui/material/Typography/Typography";
 import DataList from "./DataList";
 import InputWithPlaceholder from "../input-components/InputWithPlaceholder";
+import {swappableInputsDetailType} from "../../../../model/swappableInputsDetail.type";
 
 
 const Transition = React.forwardRef(function Transition(
@@ -42,32 +43,35 @@ const StyledDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 interface selectDialogProps {
+    details: swappableInputsDetailType[],
+    values: {[key: string]: string},
+    setValues: React.Dispatch<React.SetStateAction<{[key: string]: string}>>,
+    error: {[key: string]: boolean},
+    validationData: (name:string, value: string) => boolean,
     open: boolean,
     data: data[],
     onClose: (value: string) => void,
     label: string,
     selectedName: string,
     setOpen:  React.Dispatch<React.SetStateAction<boolean>>,
-
     borderRadius: {r1: string, r2: string},
-    firstValue: string,
-    secValue: string,
-    firstInputName: string,
-    secondInputName: string,
-    firstLabel: string,
-    secondLabel: string,
     flipData: () => void,
-    inputOnClick: (e: any) => void,
+    setDialogDetails: (e: any) => void,
 }
 
 export default function TabletSelectDialog( props : selectDialogProps) {
 
-    const {open, setOpen, data, onClose, label, selectedName, firstLabel, firstInputName,
-        firstValue, secondLabel, secondInputName, secValue, borderRadius, flipData, inputOnClick} = props
+    const {open, setOpen, data, onClose, label, selectedName,
+        borderRadius, flipData, setDialogDetails,
+        values, setValues, details, error, validationData} = props
+
+    const firstInputDetail = details[0]
+    const secondInputDetail = details[1]
 
     const [search, setSearch] = useState<string>('');
-    const [inputFirst, setInputFirst] = useState<string>(firstValue);
-    const [inputSecond, setInputSecond] = useState<string>(secValue);
+    const [inputFirst, setInputFirst] = useState<string>(values[firstInputDetail.name]);
+    const [inputSecond, setInputSecond] = useState<string>(values[secondInputDetail.name]);
+
 
     const closeDialog = () => {
         setOpen(false)
@@ -78,8 +82,23 @@ export default function TabletSelectDialog( props : selectDialogProps) {
     };
 
     const handelItemClick = (value : string) => {
-        if(selectedName === firstInputName) setInputFirst(value)
-        else if(selectedName === secondInputName) setInputSecond(value)
+        console.log(JSON.stringify(values))
+        setValues({...values, [selectedName]: value})
+        const validate = validationData(selectedName, value)
+        if(!validate && error)
+            console.log('error', error)
+
+        if(selectedName === firstInputDetail.name){
+            if(value === inputSecond)
+                setInputSecond('')
+            setInputFirst(value)
+        }
+        else if(selectedName === secondInputDetail.name) {
+            if(value === inputFirst)
+                setInputFirst('')
+            setInputSecond(value)
+        }
+
         setSearch('')
         onClose(value);
     };
@@ -87,8 +106,8 @@ export default function TabletSelectDialog( props : selectDialogProps) {
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         const currentSearch = e.target.value.toString().toLowerCase();
         setSearch(currentSearch)
-        if(selectedName === firstInputName) setInputFirst(currentSearch)
-        else if(selectedName === secondInputName) setInputSecond(currentSearch)
+        if(selectedName === firstInputDetail.name) setInputFirst(currentSearch)
+        else if(selectedName === secondInputDetail.name) setInputSecond(currentSearch)
     }
 
     const flipData_ = useCallback(() => {
@@ -118,26 +137,26 @@ export default function TabletSelectDialog( props : selectDialogProps) {
                     <SwappableTemplate
                         children1={
                             <InputWithPlaceholder
-                                label={firstLabel}
-                                name={firstInputName}
-                                placeholder={firstLabel}
+                                label={firstInputDetail.label}
+                                name={firstInputDetail.name}
+                                placeholder={firstInputDetail.label}
                                 borderRadius={borderRadius.r1}
                                 changeHandler={handleSearch}
                                 withIcon={true}
-                                onClick={inputOnClick}
+                                onClick={setDialogDetails}
                                 value={inputFirst}
                             />
 
                         }
                         children2={
                             <InputWithPlaceholder
-                                label={secondLabel}
-                                name={secondInputName}
-                                placeholder={secondLabel}
+                                label={secondInputDetail.label}
+                                name={secondInputDetail.name}
+                                placeholder={secondInputDetail.label}
                                 borderRadius={borderRadius.r2}
                                 changeHandler={handleSearch}
                                 withIcon={true}
-                                onClick={inputOnClick}
+                                onClick={setDialogDetails}
                                 value={inputSecond}
                             />
                         }
@@ -147,7 +166,12 @@ export default function TabletSelectDialog( props : selectDialogProps) {
                 </TabletDialogHeader>
                 <div style={{overflow: "hidden", height: '1px'}}></div>
 
-                <DataList data={data} search={search} handelItemClick={handelItemClick} noDescription={true}/>
+                <DataList
+                    data={data}
+                    search={search}
+                    handelItemClick={handelItemClick}
+                    listDescription={false}
+                />
             </StyledDialog>
         </div>
     );

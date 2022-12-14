@@ -12,10 +12,10 @@ interface SelectDialogListItemProps {
     dataItem: data,
     selectedValue: string,
     handleListItemClick: (value: string) => void,
-    noDescription: boolean,
+    listDescription: boolean,
 }
 
-const SelectDialogListItem = ({dataItem, selectedValue, handleListItemClick, noDescription} : SelectDialogListItemProps) => {
+const SelectDialogListItem = ({dataItem, selectedValue, handleListItemClick, listDescription} : SelectDialogListItemProps) => {
     return (
         <ListItemButton
             key={dataItem.id} selected={(selectedValue === dataItem.title)}
@@ -29,12 +29,12 @@ const SelectDialogListItem = ({dataItem, selectedValue, handleListItemClick, noD
             }}
         >
             <Grid container dir={'rtl'} sx={{padding: 0}} onClick={() => handleListItemClick(dataItem.title)}>
-                <Grid item xs={6}>
+                <Grid item xs={10}>
                     <LocationDataCard
                         icon={<LocationOnOutlinedIcon />}
                         title={dataItem.title}
                         description={dataItem.description}
-                        noDescription={noDescription}
+                        withDescription={listDescription}
                     />
                 </Grid>
             </Grid>

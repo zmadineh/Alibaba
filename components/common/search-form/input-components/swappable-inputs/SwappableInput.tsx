@@ -1,67 +1,107 @@
 import React, {useCallback, useState} from "react";
 
-import {searchFromValue} from "../../../../../model/searchFormValue.type";
-import {data} from "../../../../../model/data.type";
+import {swappableInputsDetailType} from "../../../../../model/swappableInputsDetail.type";
 
-import MobileSwappableInput from "./MobileSwappableInput";
-import TabletSwappableInput from "./TabletSwappableInput";
 import LaptopSwappableInput from "./LaptopSwappableInput";
+import TabletSwappableInput from "./TabletSwappableInput";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {useTheme} from "@mui/material";
 
 
 interface SwappableInputProps {
-    firstInputName: string,
-    secondInputName: string,
-    firstData: data[],
-    secondData: data[],
-    firstLabel: string,
-    secondLabel: string,
-    handleChange: (name: string, value: string) => void,
-    form: searchFromValue,
-    setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
-    iconName: string,
+    setFirstValue: React.Dispatch<React.SetStateAction<string>>,
+    setSecValue: React.Dispatch<React.SetStateAction<string>>,
+    details: swappableInputsDetailType[],
+    listWidth?: string,
 }
 
-export default function SwappableInput({firstInputName, secondInputName, handleChange, firstData, secondData, firstLabel, secondLabel, form, setForm, iconName} : SwappableInputProps) {
+export default function SwappableInput(props : SwappableInputProps) {
+
+    const {details, setFirstValue, setSecValue} = props;
+
+    const firstInputName = details[0].name
+    const secondInputName = details[1].name
 
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
     const tabletMatch = useMediaQuery(theme.breakpoints.down('md'));
     const laptopMatch = useMediaQuery(theme.breakpoints.up('md'));
 
-    const [firstValue,setFirstValue] = useState<string>('');
-    const [secValue,setSecValue] = useState<string>('');
+    const [values, setValues] = useState({[firstInputName]: '', [secondInputName]: ''})
+    const [error, setError] = useState({[firstInputName]: false, [secondInputName]: false})
+    const [errorMessage, setErrorMessage] = useState<string>('');
+
+    const validationData = useCallback((name: string, value: string) => {
+        let otherName: string = '';
+        if (name === firstInputName){
+            otherName = secondInputName;
+            setFirstValue(value)
+        }
+        else{
+            otherName = firstInputName;
+            setSecValue(value)
+        }
+
+        if(values[otherName] === value && values[otherName] !== '') {
+            setError({[name]: false, [otherName]: true})
+            setValues({[name]: value, [otherName]: ''})
+            setErrorMessage(`${details[0].label} و ${details[1].label} نمیتوانند یکسان باشند.`)
+            return false;
+        }
+        else {
+            const newV = value
+            setValues({...values, [name]: newV})
+            setError({[name]: false, [otherName]: false})
+            setErrorMessage('')
+            return true;
+        }
+    }, [values, error]);
 
     const flipData = useCallback(() => {
-        console.log(secValue, firstValue)
-
-        if (secValue && firstValue) {
-            const temp1 = firstValue;
-            const temp2 = secValue;
-            setSecValue(temp1)
+        if (values[firstInputName] && values[secondInputName]) {
+            const temp1 = values[firstInputName];
+            const temp2 = values[secondInputName];
+            setValues({...values, [firstInputName] : temp2, [secondInputName] : temp1})
             setFirstValue(temp2)
-            setForm({...form, [firstInputName] : temp2, [secondInputName] : temp1});
-            console.log(firstInputName, temp2, secondInputName, temp1)
+            setSecValue(temp1)
         }
-    }, [firstValue, secValue]);
-
-    const props = {firstInputName, secondInputName, handleChange, firstData, secondData,
-        firstLabel, secondLabel, form, setForm, iconName, firstValue, setFirstValue, secValue, setSecValue, flipData};
+    }, [values]);
 
     return (
         <>
-            {mobileMatch &&
-                <MobileSwappableInput  {...props}/>
-            }
+            {/*{mobileMatch &&*/}
+            {/*    <MobileSwappableInput*/}
+            {/*        {...props}*/}
+            {/*        firstValue={firstValue}*/}
+            {/*        setFirstValue={setFirstValue}*/}
+            {/*        secValue={secValue}*/}
+            {/*        setSecValue={setSecValue}*/}
+            {/*        flipData={flipData}*/}
+            {/*    />*/}
+            {/*}*/}
 
             {!mobileMatch && tabletMatch &&
-                <TabletSwappableInput {...props}/>
+                <TabletSwappableInput
+                    {...props}
+                    values={values}
+                    setValues={setValues}
+                    flipData={flipData}
+                    error={error}
+                    validationData={validationData}
+                />
             }
 
             {laptopMatch &&
-                <LaptopSwappableInput {...props}/>
+                <LaptopSwappableInput
+                    {...props}
+                    values={values}
+                    setValues={setValues}
+                    flipData={flipData}
+                    error={error}
+                    errorMessage={errorMessage}
+                    validationData={validationData}
+                />
             }
         </>
     )
