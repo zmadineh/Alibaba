@@ -69,12 +69,12 @@ const Tabview = ({children, value, setValue,}: Props) => {
 
   return (
 
-    <Grid container display={{ xs: 'none', md: 'block' }} p={0} m={0} pb={12}>
+    <Grid container display={{ xs: 'none', md: 'block' }} p={0} m={0} pb={17}>
       <Grid position={'relative'} justifyContent={'center'}>
         <Grid position={'relative'} >
           <HeroSlider swiperRef={swiperRef} />
         </Grid>
-        <Grid container display={'flex'} justifyContent={'center'} position={'absolute'} zIndex={1000} bottom={'-75px'}>
+        <Grid container display={'flex'} justifyContent={'center'} position={'absolute'} zIndex={1000} top={'318px'}>
           <Grid item container justifyContent={"center"}>
             <Box sx={{ border: 2, borderRadius: '10px 10px 10px 10px', borderColor: 'divider', width: '100%', maxWidth: '1200px', bgcolor: 'common.white' }}>
               <Box sx={{ borderBottom: 2, borderColor: 'divider', borderRadius: '10px 10px 0 0', display: 'flex', justifyContent: 'space-around' }}>
