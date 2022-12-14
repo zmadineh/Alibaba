@@ -28,7 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
                    <CssBaseline />
                    <Component {...pageProps} />
                </ThemeProvider>
-          </Provider>
+          {/* </Provider> */}
     </CacheProvider>
   )
 }
