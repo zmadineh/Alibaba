@@ -10,7 +10,7 @@ type Props = {}
 
 const FlightDetails = (props: Props) => {
   return (
-    <Grid container bgcolor={'grey.900'}maxWidth={'1200px'} display={'flex'}justifyContent={'space-between'} flexDirection={'row-reverse'}pt={2}>
+    <Grid container bgcolor={'grey.900'}maxWidth={'1200px'} display={'flex'}justifyContent={'space-between'} flexDirection={'row-reverse'}py={8}>
           <Grid container item display={{md:'flex',xs:'none'}} md={4}width={'auto'} direction={'row-reverse'} >
               <Image src={FlightDetailsImage}alt='' width={400}/>
           </Grid>
