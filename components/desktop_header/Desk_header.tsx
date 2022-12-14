@@ -34,14 +34,14 @@ export default function Desk_header() {
             <AppBar>
             <Grid zIndex={1501}>
                 <Grid position={'absolute'} zIndex={1502} display={open ? 'flex' : 'none'} width={'100vw'} height={'100vh'} onClick={handleClick} sx={{ backgroundColor: 'transparent' }}></Grid>
-                <Grid display={'flex'} direction={'row'} width={'100%'} padding={'0 24px'} bgcolor={'#ffffff'} justifyContent={'space-between'} height={'64px'} sx={{
+                <Grid display={'flex'}  width={'100%'} padding={'0 24px'} bgcolor={'#ffffff'} justifyContent={'space-between'} height={'64px'} sx={{
                     boxShadow: '0px 0px 5px 3px #00000036'
                 }}>
 
-                    <Grid display={'flex'} direction={'row'} gap={6}>
-                        <Grid display={'flex'} gap={1} direction={'row'} justifyContent={'center'} alignItems={'center'}>
+                    <Grid display={'flex'}  gap={6}>
+                        <Grid display={'flex'} gap={1}  justifyContent={'center'} alignItems={'center'}>
                             <Logo />
-                            <Grid display={'flex'} direction={'column'} alignItems={'center'} sx={{
+                            <Grid display={'flex'}  alignItems={'center'} sx={{
                                 display: {
                                     xs: 'none',
                                     lg: 'flex'
@@ -51,7 +51,7 @@ export default function Desk_header() {
                                 <Typography fontWeight={'400'} sx={{ color: 'grey.700', fontSize: '.625rem', paddingTop: '4px' }}> خرید بلیط، هتل، تور </Typography>
                             </Grid>
                         </Grid>
-                        <Grid display={'flex'} direction={'row'} justifyContent={'center'} alignItems={'center'} sx={{
+                        <Grid display={'flex'}  justifyContent={'center'} alignItems={'center'} sx={{
                             display: {
                                 xs: 'none',
                                 md: 'flex'
@@ -86,7 +86,7 @@ export default function Desk_header() {
                             </List>
                         </Grid>
                     </Grid>
-                    <Grid display={'flex'} gap={3} direction={'row'} justifyContent={'center'} alignItems={'center'}>
+                    <Grid display={'flex'} gap={3}  justifyContent={'center'} alignItems={'center'}>
                         <LoginHeader/>
                         
                         {/* <Button sx={{ padding: '8px 12px' }}>
