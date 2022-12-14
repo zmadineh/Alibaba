@@ -11,8 +11,8 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
 
-// import { store } from '../redux/store'
-// import { Provider } from 'react-redux'
+import { store } from '../redux/Store'
+import { Provider } from 'react-redux'
 
 export default function App({ Component, pageProps }: AppProps) {
 
@@ -22,13 +22,13 @@ export default function App({ Component, pageProps }: AppProps) {
   });
 
   return (
-     <CacheProvider value={cacheRtl}>
-          {/* <Provider store={store}> */}
+    <CacheProvider value={cacheRtl}>
+          <Provider store={store}>
                <ThemeProvider theme={theme}>
                    <CssBaseline />
                    <Component {...pageProps} />
                </ThemeProvider>
-          {/* </Provider> */}
-     </CacheProvider>
+          </Provider>
+    </CacheProvider>
   )
 }

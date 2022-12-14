@@ -10,6 +10,7 @@ import SearchCardContainer from "../components/common/recent-searchs/SearchCardC
 import { searchFromValue } from "../model/searchFormValue.type";
 import SearchForm from "../components/home/search-form/SearchForm";
 import TabPanel from "../components/home/tabview/TabPanel";
+import Desk_header from '../components/desktop_header/Desk_header';
 const pagesFaName = ['پرواز داخلی', 'پرواز خارجی', 'قطار', 'اتوبوس', 'تور']
 export default function FirstPage() {
     const [page, setPage] = useState<number>(3);
@@ -18,7 +19,8 @@ export default function FirstPage() {
     const matches = useMediaQuery(theme.breakpoints.up('sm'));
     return (
         <Grid>
-            <Grid id='layout' >
+            <Grid id='layout' bgcolor='grey.900' >
+                <Desk_header/>
                 <Tabview value={page} setValue={setPage}>
                     <TabPanel value={page} index={page}>
                         <SearchForm searches={searches} setSearches={setSearches} index={page} />
@@ -34,7 +36,7 @@ export default function FirstPage() {
                         <SearchCardContainer categoryIndex={page} searches={searches} setSearches={setSearches} />
                         <HelpCard />
                         <DownloadCard />
-                        <FlightDetails />
+                        
                     </Grid>
                     {GetPages(page)}
                 </Grid>
