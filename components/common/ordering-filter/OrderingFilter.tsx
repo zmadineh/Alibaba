@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography/Typography";
 import DropDownOrderingFilter from "./DropDownOrderingFilter";
-import FilterPopover from "./FilterPopover";
+import PopoverOrderingFilter from "./PopoverOrderingFilter";
 import {useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -75,7 +75,7 @@ export default function OrderingFilter({inputs, value, setValue} : TripleSorting
             }
 
             {mobileMatch &&
-                <FilterPopover inputs={inputs} checked={value} setChecked={setValue} />
+                <PopoverOrderingFilter inputs={inputs} checked={value} setChecked={setValue} />
             }
         </Box>
     );

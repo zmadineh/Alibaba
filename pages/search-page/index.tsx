@@ -4,7 +4,7 @@ import {useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import OrderingFilter from "../../components/common/ordering-filter/OrderingFilter";
 import Typography from "@mui/material/Typography/Typography";
-import FilterPopover from "../../components/common/ordering-filter/FilterPopover";
+import PopoverOrderingFilter from "../../components/common/ordering-filter/PopoverOrderingFilter";
 
 
 const tripleSortingFilterData = [

@@ -23,7 +23,7 @@ interface TripleSortingFilterProps {
     setChecked: React.Dispatch<React.SetStateAction<number>>,
 }
 
-export default function FilterPopover({inputs, checked, setChecked} : TripleSortingFilterProps) {
+export default function PopoverOrderingFilter({inputs, checked, setChecked} : TripleSortingFilterProps) {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
     // const [checked, setChecked] = React.useState(0);
     const open = Boolean(anchorEl);
