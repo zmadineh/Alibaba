@@ -6,7 +6,9 @@ export default function OutFlights_page() {
     return (
         <>
             <Grid><Questions category={'iranout'}/></Grid>
-            
+            <Grid>
+                <FlightDetails/>
+            </Grid>
         </>
     )
 

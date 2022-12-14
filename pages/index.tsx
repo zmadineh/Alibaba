@@ -36,7 +36,7 @@ export default function FirstPage() {
                         <SearchCardContainer categoryIndex={page} searches={searches} setSearches={setSearches} />
                         <HelpCard />
                         <DownloadCard />
-                        <FlightDetails />
+                        
                     </Grid>
                     {GetPages(page)}
                 </Grid>

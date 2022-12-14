@@ -6,7 +6,9 @@ export default function InFlights_page() {
     return (
         <>
             <Grid><Questions category={'inFlight'}/></Grid>
-            
+            <Grid>
+                <FlightDetails/>
+            </Grid>
         </>
     )
 
