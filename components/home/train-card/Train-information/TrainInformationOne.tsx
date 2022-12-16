@@ -20,7 +20,7 @@ function TrainInformationOne({ item }: { item: trainInformationType }) {
 
     return (
         <Grid item container xs={12} justifyContent={"center"} alignItems={"center"} marginBottom={3} >
-            <Grid item container xs={12} sx={{ maxWidth: { md: '1200px' }, bgcolor: 'common.white' }} justifyContent={"flex-start"} p={1} >
+            <Grid item container xs={12} sx={{ maxWidth: { md: '1200px' }, }} justifyContent={"flex-start"} p={1} >
                 <Grid item>
                     <Grid item>
                         <Typography sx={{ color: "grey.800", fontSize: "1.4rem", fontWeight: 700, marginY: "0.67rem" }}>{item.title}</Typography>
