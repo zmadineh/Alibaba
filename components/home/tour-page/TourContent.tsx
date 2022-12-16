@@ -1,35 +1,49 @@
-import React, {useCallback, useEffect, useRef, useState} from "react";
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React from "react";
+import { SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 import CustomParagraph from "./CustomParagraph";
-import SwiperButtonContainer from "./swiper-component/SwiperButtonContainer";
 
 import {tourData} from "../../../data/tour-page/tour-page-description.data";
+import {SlideType} from "../../../model/slideType";
 
 import Grid from "@mui/material/Grid";
 
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import tourImage from '../../../public/Assets/Images/tour-page/Tour-Homepage-PriceGuarantee.jpg';
+import tourImage1 from '../../../public/Assets/Images/tour-page/tour_page_image1.jpg';
 
-
-import image1 from '../../../public/Assets/Images/footer/footer1.png';
-import image2 from '../../../public/Assets/Images/footer/footer2.png'
-import image3 from '../../../public/Assets/Images/footer/footer3.png'
-import {SlideType} from "../../../model/slideType";
 import Image from "next/image";
 import BaseSwiper from "./swiper-component/BaseSwiper";
+import PriceCard from "../cards/PriceCard";
+import {useTheme} from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import ActionCard from "../cards/ActionCard";
+
 export const slides: SlideType[] = [
-    {id: 1, image: image1, title: 'the flash'},
-    {id: 2, image: image2, title: 'batman'},
-    {id: 3, image: image3, title: 'spider man'},
+    {id: 1, image: tourImage, title: 'تور شیراز به کیش', price: 15540000},
+    {id: 2, image: tourImage, title: 'تور تهران به قشم', price: 15540000},
+    {id: 3, image: tourImage, title: 'تور تهران به استانبول', price: 15540000},
+    {id: 4, image: tourImage, title: 'تور تهران به اصقهان', price: 15540000},
+    {id: 5, image: tourImage, title: 'تور تهران به شیراز', price: 15540000},
+    {id: 6, image: tourImage, title: 'تور تهران به تبریز', price: 15540000},
+]
+
+export const slides1: SlideType[] = [
+    {id: 1, image: tourImage1, title: 'هتل میراژ کیش', price: 15540000},
+    {id: 2, image: tourImage1, title: 'هتل میراژ کیش', price: 15540000},
+    {id: 3, image: tourImage1, title: 'هتل میراژ کیش', price: 15540000},
+    {id: 4, image: tourImage1, title: 'هتل میراژ کیش', price: 15540000},
+    {id: 5, image: tourImage1, title: 'هتل میراژ کیش', price: 15540000},
+    {id: 6, image: tourImage1, title: 'هتل میراژ کیش', price: 15540000},
 ]
 
 export default function TourContent(){
+
+    const theme = useTheme();
+    const tabletMatch = useMediaQuery(theme.breakpoints.down('md'))
 
     return (
         <Grid container spacing={4}>
@@ -41,15 +55,32 @@ export default function TourContent(){
                         readMore={tourData[0].readMoreLink} />
                 </Grid>
                 <Grid item xs={12} md={6}>
-                    <BaseSwiper slidePreView={3}>
-                        {slides.map(slide => (
-                            <SwiperSlide key={slide.id}>
-                                <Grid width={'100%'} height={400}>
-                                    <Image style={{width: '33%', height: '33%'}} src={slide.image} alt={slide.title}/>
-                                </Grid>
-                            </SwiperSlide>
-                        ))}
-                    </BaseSwiper>
+                    {!tabletMatch &&
+                        <BaseSwiper slidePreView={2} length={slides.length/2 }>
+                            {slides.map((slide, index) => (
+                                <SwiperSlide key={slide.id}>
+                                    <Grid display={"flex"} alignItems={"center"} width={'100%'} height={300}>
+                                        <Grid display={"flex"} flexDirection={"column"} width={'100%'} gap={2}>
+                                            <PriceCard title={slides[index].title} price={slides[index].price} img={slides[index].image}/>
+                                            {index + 1 < slides.length ?
+                                                <PriceCard title={slides[index + 1].title}
+                                                           price={slides[index + 1].price}
+                                                           img={slides[index + 1].image}/>
+                                                : null
+                                            }
+                                        </Grid>
+                                    </Grid>
+                                </SwiperSlide>
+                            ))}
+                        </BaseSwiper>
+                    }
+                    {tabletMatch &&
+                        <Grid display={"flex"} overflow={"scroll"}>
+                            {slides.map(slide => (
+                                <PriceCard key={slide.id} title={slide.title} price={slide.price} img={slide.image}/>
+                            ))}
+                        </Grid>
+                    }
                 </Grid>
             </Grid>
 
@@ -64,11 +95,11 @@ export default function TourContent(){
 
             <Grid item container>
                 <Grid item xs={12}>
-                    <BaseSwiper slidePreView={3}>
+                    <BaseSwiper slidePreView={3} length={slides.length}>
                         {slides.map(slide => (
                             <SwiperSlide key={slide.id}>
                                 <Grid width={'100%'} height={400}>
-                                    <Image style={{width: '33%', height: '33%'}} src={slide.image} alt={slide.title}/>
+                                    <ActionCard title={slide.title} price={slide.price} img={slide.image}/>
                                 </Grid>
                             </SwiperSlide>
                         ))}

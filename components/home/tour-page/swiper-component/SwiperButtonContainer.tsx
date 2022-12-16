@@ -22,7 +22,7 @@ export default function SwiperButtonContainer({onClick, top, left, right, childr
             zIndex={'1000'}
             display={"flex"}
             justifyContent={"center"} alignItems={"center"}
-            sx={{border: '1px solid', borderColor: 'grey.400', backgroundColor: 'grey.100', borderRadius: '50%', width:'40px', height: '40px'}}
+            sx={{border: '1px solid', borderColor: 'grey.300', backgroundColor: '#fff', borderRadius: '50%', width:'40px', height: '40px'}}
             onClick={onClick}
         >
             <IconButton>
