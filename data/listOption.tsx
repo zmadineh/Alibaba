@@ -6,20 +6,22 @@ export interface listType {
     id: number;
     title: string;
     icon: any;
-    href: string
+    setPage?: any;
 }
 
 export const listOption: listType[] = [
     {
-        id: 1, title: "پرواز", icon: <Planicon />, href: "/"
+        id: 1, title: "پرواز", icon: <Planicon />,
     },
     {
-        id: 2, title: "قطار", icon: <Traincon />, href: "/"
+        id: 2, title: "قطار", icon: <Traincon />,
     },
     {
-        id: 3, title: "اتوبوس", icon: <Busicon />, href: "/"
+        id: 3, title: "اتوبوس", icon: <Busicon />,
     },
-    { id: 4, title: "تور", icon: <Tour />, href: "/" },
+    {
+        id: 4, title: "تور", icon: <Tour />,
+    }
 
 
 ]

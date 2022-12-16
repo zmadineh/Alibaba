@@ -11,9 +11,8 @@ import HederMobileMain from './heder-mobile/HederMobileMain';
 import HederMobileScrll from './heder-mobile/HederMobileScrll';
 
 
-const HeaderMobile = (): JSX.Element => {
+const HeaderMobile = ({setPage}): JSX.Element => {
     const [display, setDisplay] = useState<string>("header1")
-
     useEffect(() => {
         window.addEventListener("scroll", e => {
             const scrolled: number | undefined = window?.scrollY;
@@ -26,12 +25,13 @@ const HeaderMobile = (): JSX.Element => {
             }
         })
     }, [])
+
     return (
-        <Grid xs={12} height={200} container flexDirection={"column"} alignItems={"center"} justifyContent={"center"} sx={{ marginBottom: 2, zIndex: 1 }} >
+        <Grid xs={12} item height={200} container flexDirection={"column"} alignItems={"center"} justifyContent={"center"} sx={{ marginBottom: 16, zIndex: 1,display:{xs:"flex",md:"none"} }} >
             <Grid item container xs={12} sx={{ zIndex: -1, position: "fixed" }} top={0} bgcolor={"primary.main"} width={"100%"} height={display === "header1" ? "150px" : "110px"}>
                 <Grid item xs={12} display={"flex"} justifyContent={"center"} alignItems={"cnter"} sx={{ marginTop: "32px", marginBottom: "24px" }}>
                     <Link href={"/"}  >
-                        <Grid width={display === "header1" ? "125px" : "100px"} height={display === "header1" ? "20px" : "16px"}>
+                        <Grid item xs={12} width={display === "header1" ? "125px" : "100px"} height={display === "header1" ? "20px" : "16px"}>
 
                             <Image src={Logo} alt="logo" style={{ width: "100%", height: "100%" }} />
                         </Grid>
@@ -40,14 +40,14 @@ const HeaderMobile = (): JSX.Element => {
                 {/* header1 */}
                 <Grid item xs={12} display={display === "header1" ? "flex" : "none"} justifyContent={"center"} alignItems={"cnter"} flexDirection={"row"} sx={{ cursor: "pointer" }}>
                     <Grid item xs={11} container display={"grid"} overflow={"hidden"} sx={{ gridTemplateColumns: "repeat(2,1fr)", gridTemplateRows: "repeat(2,1fr)", border: "solid 1px", cursor: "pointer", borderRadius: '10px 10px 10px 10px', borderColor: 'divider' }} bgcolor={"white"} height={130} position={"relative"} boxShadow={1} >
-                        {listOption.map((item) => (<HederMobileMain item={item} key={item.id} />
+                        {listOption.map((item) => (<HederMobileMain item={item} key={item.id} setPage={setPage}/>
                         ))}
                     </Grid>
                 </Grid>
                 {/* header2 */}
                 <Grid item container xs={12} display={display === "header1" ? "none" : "flex"} justifyContent={'center'} alignItems={"cnter"}>
                     <Grid item xs={11} height={"50px"} display={"flex"} justifyContent={"space-evenly"} alignItems={"cnter"} flexDirection={"row"} bgcolor={"common.white"} sx={{ borderRadius: '10px 10px 10px 10px', borderColor: 'divider' }} boxShadow={1} gap={1} overflow={"hidden"}>
-                        {listOption.map(item => (<HederMobileScrll item={item} key={item.id} />
+                        {listOption.map(item => (<HederMobileScrll item={item} key={item.id} setPage={setPage}/>
 
                         ))}
                     </Grid>
