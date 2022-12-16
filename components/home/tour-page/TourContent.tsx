@@ -46,7 +46,7 @@ export default function TourContent(){
     const tabletMatch = useMediaQuery(theme.breakpoints.down('md'))
 
     return (
-        <Grid container spacing={4}>
+        <Grid container spacing={10} p={2}>
             <Grid item container spacing={5}>
                 <Grid item xs={12} md={6}>
                     <CustomParagraph
@@ -56,7 +56,22 @@ export default function TourContent(){
                 </Grid>
                 <Grid item xs={12} md={6}>
                     {!tabletMatch &&
-                        <BaseSwiper slidePreView={2} length={slides.length/2 }>
+                        <BaseSwiper
+                            slidePreView={2}
+                            length={slides.length/2 }
+                            breakpoints={{
+                                // when window width is >= 640px
+                                640: {
+                                    width: 640,
+                                    slidesPerView: 2,
+                                },
+                                // when window width is >= 768px
+                                768: {
+                                    width: 768,
+                                    slidesPerView: 2,
+                                },
+                            }}
+                        >
                             {slides.map((slide, index) => (
                                 <SwiperSlide key={slide.id}>
                                     <Grid display={"flex"} alignItems={"center"} width={'100%'} height={300}>
@@ -90,20 +105,46 @@ export default function TourContent(){
                     description={tourData[1].description}
                     readMore={tourData[1].readMoreLink}
                     maxWidth={'36rem'}
-                    textCenter={true}/>
+                    textCenter={true}
+                    alignItems={'center'}
+                />
             </Grid>
 
             <Grid item container>
                 <Grid item xs={12}>
-                    <BaseSwiper slidePreView={3} length={slides.length}>
-                        {slides.map(slide => (
-                            <SwiperSlide key={slide.id}>
-                                <Grid width={'100%'} height={400}>
-                                    <ActionCard title={slide.title} price={slide.price} img={slide.image}/>
-                                </Grid>
-                            </SwiperSlide>
-                        ))}
-                    </BaseSwiper>
+                    {!tabletMatch &&
+                        <BaseSwiper
+                            slidePreView={4.5}
+                            length={slides.length}
+                            breakpoints={{
+                                // when window width is >= 640px
+                                640: {
+                                    width: 640,
+                                    slidesPerView: 1,
+                                },
+                                // when window width is >= 768px
+                                768: {
+                                    width: 768,
+                                    slidesPerView: 2,
+                                },
+                            }}
+                        >
+                            {slides1.map(slide => (
+                                <SwiperSlide key={slide.id}>
+                                    <Grid width={'100%'} height={400}>
+                                        <ActionCard title={slide.title} price={slide.price} img={slide.image}/>
+                                    </Grid>
+                                </SwiperSlide>
+                            ))}
+                        </BaseSwiper>
+                    }
+                    {tabletMatch &&
+                        <Grid display={"flex"} overflow={"scroll"} height={380}>
+                            {slides1.map(slide => (
+                                <ActionCard key={slide.id} title={slide.title} price={slide.price} img={slide.image}/>
+                            ))}
+                        </Grid>
+                    }
                 </Grid>
             </Grid>
 

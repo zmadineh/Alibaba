@@ -9,10 +9,11 @@ interface CustomParagraphProps {
     readMore: string,
     maxWidth?: string,
     textCenter?: boolean,
+    alignItems?: string
 }
-export default function CustomParagraph({title, description, readMore, maxWidth, textCenter=false}: CustomParagraphProps){
+export default function CustomParagraph({title, description, readMore, maxWidth, textCenter=false, alignItems}: CustomParagraphProps){
     return (
-        <Grid display={"flex"} flexDirection={"column"} alignItems={"center"} textAlign={(textCenter ? 'center' : "unset")}>
+        <Grid display={"flex"} flexDirection={"column"} alignItems={alignItems} textAlign={(textCenter ? 'center' : "unset")}>
             <Typography variant={'h5'} fontWeight={'600'} my={'1.5rem'}>{title}</Typography>
             <Typography variant={'body1'} maxWidth={maxWidth}>{description}</Typography>
             {readMore !== '' ?

@@ -18,10 +18,11 @@ interface BaseSwiperProps {
     slidePreView: number,
     scrollbar?: boolean,
     length: number,
+    breakpoints?: {640: {width: number, slidesPerView: number}, 768: {width: number, slidesPerView: number}, }
     children: ReactNode
 }
 
-export default function BaseSwiper({slidePreView, children, scrollbar = false, length} : BaseSwiperProps){
+export default function BaseSwiper({slidePreView, children, scrollbar = false, length, breakpoints} : BaseSwiperProps){
 
     const [page, setPage] = useState(0)
     const swiperRef = useRef<any>(null)
@@ -46,9 +47,10 @@ export default function BaseSwiper({slidePreView, children, scrollbar = false, l
                 <ArrowForwardIcon />
             </SwiperButtonContainer>
             <Swiper className="mySwiper" ref={swiperRef}
+                    breakpoints={breakpoints}
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    spaceBetween={50}
-                    slidesPerView={slidePreView}
+                    // spaceBetween={10}
+                    // slidesPerView={slidePreView}
                     // navigation
                     scrollbar={scrollbar ? { draggable: true } : false}
                     onSwiper={(swiper) => console.log(swiper)}
