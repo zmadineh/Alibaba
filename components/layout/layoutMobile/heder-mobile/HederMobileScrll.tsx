@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Dispatch } from 'react'
 
 
 //material ui
@@ -7,16 +7,16 @@ import Button from '@mui/material/Button';
 
 //data
 import { listType } from './../../../../data/listOption';
-interface HederMobileMainPtops{
-    item:listType;
-    setPage:Dispatch<React.SetStateAction<number>>,
+interface HederMobileMainPtops {
+    item: listType;
+    setPage: Dispatch<React.SetStateAction<number>>,
 }
 
-const HederMobileScrll = ({ item ,setPage}:HederMobileMainPtops): JSX.Element => {
+const HederMobileScrll = ({ item, setPage }: HederMobileMainPtops): JSX.Element => {
     return (
         <Grid item color={"common.black"} alignItems={"center"}>
 
-            <Button variant='Button1' style={{ color: "black" }}  onClick={()=>setPage(item.id)}>
+            <Button variant='Button1' style={{ color: "black" }} onClick={() => setPage(item.id)}>
                 {item.icon}
             </Button>
 
