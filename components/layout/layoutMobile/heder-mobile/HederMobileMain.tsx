@@ -1,5 +1,5 @@
-import React from 'react'
-import Link from 'next/link';
+import React,{Dispatch} from 'react'
+
 //material ui
 
 import Grid from '@mui/material/Grid';
@@ -8,7 +8,12 @@ import Typography from '@mui/material/Typography';
 //data
 import { listType } from './../../../../data/listOption';
 
-function HederMobileMain({ item,setPage }: { item: listType }): JSX.Element {
+interface HederMobileMain{
+    item:listType;
+    setPage:Dispatch<React.SetStateAction<number>>
+}
+
+function HederMobileMain({ item,setPage }:HederMobileMain): JSX.Element {
 
 
     return (

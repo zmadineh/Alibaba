@@ -6,7 +6,7 @@ export interface listType {
     id: number;
     title: string;
     icon: any;
-    setPage?: any;
+
 }
 
 export const listOption: listType[] = [

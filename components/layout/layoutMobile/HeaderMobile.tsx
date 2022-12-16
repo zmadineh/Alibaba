@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{Dispatch} from 'react'
 import { useState, useEffect } from "react"
 import Link from 'next/link';
 //materialui
@@ -9,9 +9,11 @@ import Logo from "../../../public/Assets/logo.png"
 import Image from 'next/image';
 import HederMobileMain from './heder-mobile/HederMobileMain';
 import HederMobileScrll from './heder-mobile/HederMobileScrll';
+ interface Props{
+    setPage:Dispatch<React.SetStateAction<number>>
+ }
 
-
-const HeaderMobile = ({setPage}): JSX.Element => {
+const HeaderMobile = ({setPage}:Props): JSX.Element => {
     const [display, setDisplay] = useState<string>("header1")
     useEffect(() => {
         window.addEventListener("scroll", e => {

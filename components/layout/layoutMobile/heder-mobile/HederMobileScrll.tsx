@@ -1,5 +1,5 @@
-import React from 'react'
-import Link from 'next/link';
+import React,{Dispatch} from 'react'
+
 
 //material ui
 import Grid from '@mui/material/Grid';
@@ -8,7 +8,12 @@ import Button from '@mui/material/Button';
 //data
 import { listType } from './../../../../data/listOption';
 
-const HederMobileScrll = ({ item,setPage }: { item: listType }): JSX.Element => {
+interface HederMobilescrolltype{
+    item:listType;
+    setPage:Dispatch<React.SetStateAction<number>>
+}
+
+const HederMobileScrll = ({ item ,setPage }:HederMobilescrolltype): JSX.Element => {
     return (
         <Grid item color={"common.black"} alignItems={"center"}>
                 <Button variant='Button1' style={{ color: "black" }} onClick={()=>{setPage(item.id)}}>

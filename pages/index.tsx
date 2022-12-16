@@ -19,33 +19,34 @@ export default function FirstPage() {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('sm'));
     return (
-    
-     
+
+
         <Grid>
-       
+
             <Grid id='layout' >
-          
+           
                 <Tabview value={page} setValue={setPage}>
                     <TabPanel value={page} index={page}>
                         <SearchForm searches={searches} setSearches={setSearches} index={page} />
                     </TabPanel>
                 </Tabview>
+             
                 <Grid container marginX={'auto'} direction={'column'} width={'100%'} sx={{
                     maxWidth: {
                         lg: '1200px',
                         md: '800px'
                     }
                 }}>
-               <HeaderMobile setPage={setPage}/>
-                    <Grid> 
-                  
+                  <HeaderMobile setPage={setPage} />
+                    <Grid>
+
                         <SearchCardContainer categoryIndex={page} searches={searches} setSearches={setSearches} />
                         <HelpCard />
                         <DownloadCard />
                         <FlightDetails />
-                    
+
                     </Grid>
-                  
+
                     {GetPages(page)}
                 </Grid>
                 {!matches && (
@@ -65,9 +66,9 @@ export default function FirstPage() {
                     </Dialog >
                 )}
                 <Footer />
-             
+
             </Grid>
         </Grid>
- 
+
     )
 }
