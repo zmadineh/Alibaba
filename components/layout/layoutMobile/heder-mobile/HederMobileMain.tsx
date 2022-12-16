@@ -1,5 +1,5 @@
-import React,{Dispatch} from 'react'
-
+import React from 'react'
+import Link from 'next/link';
 //material ui
 
 import Grid from '@mui/material/Grid';
@@ -8,18 +8,11 @@ import Typography from '@mui/material/Typography';
 //data
 import { listType } from './../../../../data/listOption';
 
-interface HederMobileMain{
-    item:listType;
-    setPage:Dispatch<React.SetStateAction<number>>
-}
-
-function HederMobileMain({ item,setPage }:HederMobileMain): JSX.Element {
-
-
+function HederMobileMain({ item }: { item: listType }): JSX.Element {
     return (
         <Grid key={item.id} xs={12} item display={"flex"} justifyContent={"flex-start"} alignItems={"center"} sx={{ border: "0.1px solid", borderColor: 'divider' }}>
-            <Button variant='Button1'  onClick={()=>{setPage(item.id)}}>
-               
+            <Button variant='Button1' >
+                <Link href={item.href} >
                     <Grid display={"flex"} sx={{ paddingRight: 2, color: 'grey.700' }} gap={1} alignItems={"center"}>
                         <Grid item >
                             {item.icon}
@@ -28,7 +21,7 @@ function HederMobileMain({ item,setPage }:HederMobileMain): JSX.Element {
                             <Typography variant='h6' sx={{ textDecoriarion: "none solid grey.700", fontSize: 16 }}><strong>{item.title}</strong></Typography>
                         </Grid>
                     </Grid>
-            
+                </Link>
             </Button>
         </Grid>
     )
