@@ -8,15 +8,15 @@ import Typography from '@mui/material/Typography';
 //data
 import { listType } from './../../../../data/listOption';
 
-interface HederMobileMainPtops{
-    item:listType;
-    setPage:Dispatch<React.SetStateAction<number>>,
+interface HederMobileMainPtops {
+    item: listType;
+    setPage: Dispatch<React.SetStateAction<number>>;
 }
 
-function HederMobileMain({ item ,setPage}:HederMobileMainPtops): JSX.Element {
+function HederMobileMain({ item, setPage }: HederMobileMainPtops): JSX.Element {
     return (
         <Grid key={item.id} xs={12} item display={"flex"} justifyContent={"flex-start"} alignItems={"center"} sx={{ border: "0.1px solid", borderColor: 'divider' }}>
-            <Button variant='Button1' onClick={()=>setPage(item.id)} >
+            <Button variant='Button1' onClick={() => setPage(item.id)} >
 
                 <Grid display={"flex"} sx={{ paddingRight: 1, color: 'grey.700' }} gap={1} alignItems={"center"}>
                     <Grid item >
