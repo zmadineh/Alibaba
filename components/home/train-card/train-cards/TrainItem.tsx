@@ -12,7 +12,7 @@ const TrainItem = ({ item }: { item: trainCardType }) => {
 
     return (
         <Grid item width={"100%"} >
-            <Grid item display={"flex"} justifyContent={"flex-start"} alignItems={"flex-end"} position={"relative"} width={400} >
+            <Grid item display={"flex"} justifyContent={"flex-start"} alignItems={"flex-end"} position={"relative"} sx={{width:{xs:250,md:400}}} overflow={"hidden"}>
                 <Image src={item.image} alt="قطار" width={400} height={200} />
                 <Grid display={item.title ? "block" : "none"} position={"absolute"} item width={"100%"} sx={{ backgroundImage: "linear-gradient(to top,black,rgba(0,0,0,0))", color: "common.white", }}><Typography sx={{ fontWeight: 700, px: 1, fontSize: 16 }} variant='h6'>{item.title}</Typography></Grid>
             </Grid>
