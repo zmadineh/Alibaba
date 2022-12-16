@@ -2,6 +2,8 @@ import Grid from '@mui/material/Grid';
 import React, {useState} from 'react';
 import TripleSortingFilter from "../../components/common/triple-sorting-filter/TripleSortingFilter";
 import FilterPopover from "../../components/common/triple-sorting-filter/FilterPopover";
+import DateInput from "../../components/common/search-form/input-components/DateInput";
+import TourContent from "../../components/home/tour-page/TourContent";
 
 const tripleSortingFilterData = [
     {
@@ -27,11 +29,13 @@ export default function Filter() {
     const [filterIndex, setFilterIndex] = useState(0)
 
     return (
-
-        <Grid container flexDirection={"column"} justifyContent={"center"} alignItems={"center"} gap={10}>
-           <TripleSortingFilter value={filterIndex} setValue={setFilterIndex} inputs={tripleSortingFilterData}/>
-            <FilterPopover checked={filterIndex} setChecked={setFilterIndex} inputs={tripleSortingFilterData} />
-        </Grid>
+        <TourContent />
+        // <Grid container flexDirection={"column"} justifyContent={"center"} alignItems={"center"} gap={10}>
+        //    {/*<TripleSortingFilter value={filterIndex} setValue={setFilterIndex} inputs={tripleSortingFilterData}/>*/}
+        //    {/* <FilterPopover checked={filterIndex} setChecked={setFilterIndex} inputs={tripleSortingFilterData} />*/}
+        //
+        //     <DateInput />
+        // </Grid>
     )
 
 }
