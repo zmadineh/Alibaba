@@ -1,4 +1,4 @@
-import { Button, Typography, Stack, List, ListItem, ListItemButton, Divider, SvgIcon, useScrollTrigger, Slide, AppBar, Grid } from "@mui/material";
+import { Typography, List, ListItem, ListItemButton, Divider, SvgIcon, useScrollTrigger, Slide, AppBar, Grid } from "@mui/material";
 import { useState } from "react";
 import Flight_box from "./Flight_box";
 import Logo from '../../public/Assets/Images/desktop_header/logo_deskNav.svg'
@@ -21,17 +21,15 @@ function HideOnScroll(props: Props) {
 }
     
 
-export default function Desk_header() {
-    const [open, setOpen] = useState(false)
+export default function Desk_header(props:{res:boolean}) {
+    if(props.res==true){
+        const [open, setOpen] = useState(false)
     const handleClick = () => {
         setOpen(!open);
     };
-
-   
-    
     return (
         <HideOnScroll>
-            <AppBar>
+            <AppBar >
             <Grid zIndex={1501}>
                 <Grid position={'absolute'} zIndex={1502} display={open ? 'flex' : 'none'} width={'100vw'} height={'100vh'} onClick={handleClick} sx={{ backgroundColor: 'transparent' }}></Grid>
                 <Grid display={'flex'}  width={'100%'} padding={'0 24px'} bgcolor={'#ffffff'} justifyContent={'space-between'} height={'64px'} sx={{
@@ -99,4 +97,9 @@ export default function Desk_header() {
             </AppBar>
         </HideOnScroll>
     )
+    }else{
+        return(
+            <></>
+        )
+    }
 }
