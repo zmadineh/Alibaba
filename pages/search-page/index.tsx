@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import Grid from "@mui/material/Grid";
 import {useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import OrderingFilter from "../../components/common/ordering-filter/OrderingFilter";
 import Typography from "@mui/material/Typography/Typography";
+import {string} from "prop-types";
 
 
 const orderingFilterTitleData = [
@@ -17,7 +18,7 @@ const orderingFilterTitleData = [
     },
     {
         label: 'دیرترین',
-        filterLabel: 'earliest_departure_time'
+        filterLabel: 'latest_departure_time'
     },
     {
         label: 'گرانترین',
@@ -29,14 +30,78 @@ const orderingFilterTitleData = [
     },
 ]
 
-export default function SearchPage() {
+const defaultFilterValue = {
+    orderFilterIndex: 0,
+    allCompanies: true,
+    companies: [],
+    showAvailable: true,
+    showDuplicate: false,
+    shoppingType: 'all', // systematic or chartered or all
+    priceRange: {min: 0, max: 1000000000},
+    departureTime: {min: {hours: 0, minutes: 0}, max: {hours: 23, minutes: 59}},
+    departureDate: new Date(),
+}
+/////////////////////////////////////////////////////////////////////////
+
+interface priceRangeType {
+    min: number,
+    max: number,
+}
+
+interface timeRangeType {
+    min: {hours: number, minutes: number},
+    max: {hours: number, minutes: number},
+}
+
+interface SearchPageProps {
+    transportTypeId: number
+}
+
+export default function SearchPage({transportTypeId} : SearchPageProps) {
 
     const headerHeight = 70;
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
     const tabletMatch = useMediaQuery(theme.breakpoints.down('md'));
 
-    const [filterIndex, setFilterIndex] = useState(0)
+    // states:
+    // order ->
+    const [orderFilterIndex, setOrderFilterIndex] = useState(defaultFilterValue.orderFilterIndex)
+
+    // company ->
+    const [allCompanies, setAllCompanies] = useState(defaultFilterValue.allCompanies)
+    const [companies, setCompanies] = useState<string[]>(defaultFilterValue.companies)
+
+    //  available tickets ->
+    const [showAvailable, setShowAvailable] = useState(defaultFilterValue.showAvailable)
+
+    // duplicate tickets ->
+    const [showDuplicate, setShowDuplicate] = useState(defaultFilterValue.showDuplicate)
+
+    // shopping type ->
+    const [shoppingType, setShoppingType] = useState(defaultFilterValue.shoppingType) // systematic or chartered or all
+
+    // price ->
+    const [priceRange, setPriceRange] = useState<priceRangeType>(defaultFilterValue.priceRange)
+
+    // departure time ->
+    const [departureTime, setDepartureTime] = useState<timeRangeType>(defaultFilterValue.departureTime)
+
+    // departure date ->
+    const [departureDate, setDepartureDate] = useState<Date>(defaultFilterValue.departureDate)
+
+
+    const resetFilters = useCallback(() => {
+        setOrderFilterIndex(defaultFilterValue.orderFilterIndex)
+        setAllCompanies(defaultFilterValue.allCompanies)
+        setCompanies(defaultFilterValue.companies)
+        setShowAvailable(defaultFilterValue.showAvailable)
+        setShowDuplicate(defaultFilterValue.showDuplicate)
+        setShoppingType(defaultFilterValue.shoppingType)
+        setPriceRange(defaultFilterValue.priceRange)
+        setDepartureTime(defaultFilterValue.departureTime)
+        setDepartureDate(defaultFilterValue.departureDate)
+    }, [])
 
     return (
         <Grid container flexDirection={"column"} alignItems={"center"} bgcolor={'background.default'}>
@@ -74,7 +139,7 @@ export default function SearchPage() {
                             <Grid item display={"flex"} alignItems={"center"} gap={2}>
 
                                 {!tabletMatch && <Typography fontSize={'14px'} fontWeight={'600'}>مرتب سازی: </Typography> }
-                                <OrderingFilter value={filterIndex} setValue={setFilterIndex} inputs={orderingFilterTitleData}/>
+                                <OrderingFilter value={orderFilterIndex} setValue={setOrderFilterIndex} inputs={orderingFilterTitleData}/>
 
                             </Grid>
                         }
@@ -111,7 +176,7 @@ export default function SearchPage() {
                     <Grid item display={"flex"} xs={6}>
                         <Grid item display={"flex"} justifyContent={"center"} alignItems={"center"} xs={6}>
 
-                            <OrderingFilter value={filterIndex} setValue={setFilterIndex} inputs={orderingFilterTitleData}/>
+                            <OrderingFilter value={orderFilterIndex} setValue={setOrderFilterIndex} inputs={orderingFilterTitleData}/>
 
                         </Grid>
                         <Grid item xs={6} bgcolor={'blue'}>
