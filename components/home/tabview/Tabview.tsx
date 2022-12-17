@@ -69,7 +69,7 @@ const Tabview = ({children, value, setValue,}: Props) => {
 
   return (
 
-    <Grid container display={{ xs: 'none', md: 'block' }} p={0} m={0} pb={17}>
+    <Grid container display={{ xs: 'none', md: 'block' }} p={0} m={0}mt={'64px'} pb={17}>
       <Grid position={'relative'} justifyContent={'center'}>
         <Grid position={'relative'} >
           <HeroSlider swiperRef={swiperRef} />
