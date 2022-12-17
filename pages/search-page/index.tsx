@@ -41,6 +41,9 @@ const defaultFilterValue = {
     departureTime: {min: {hours: 0, minutes: 0}, max: {hours: 23, minutes: 59}},
     departureDate: new Date(),
 }
+
+const headerHeight = 70;
+
 /////////////////////////////////////////////////////////////////////////
 
 interface priceRangeType {
@@ -59,10 +62,11 @@ interface SearchPageProps {
 
 export default function SearchPage({transportTypeId} : SearchPageProps) {
 
-    const headerHeight = 70;
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
     const tabletMatch = useMediaQuery(theme.breakpoints.down('md'));
+
+    const currentTrips = [] //trips.filter(trip => trip.transport_type_id === transportTypeId);
 
     // states:
     // order ->
@@ -70,10 +74,10 @@ export default function SearchPage({transportTypeId} : SearchPageProps) {
 
     // company ->
     const [allCompanies, setAllCompanies] = useState(defaultFilterValue.allCompanies)
-    const [companies, setCompanies] = useState<string[]>(defaultFilterValue.companies)
+    const [companies, setCompanies] = useState<number[]>(defaultFilterValue.companies)
 
     //  available tickets ->
-    const [showAvailable, setShowAvailable] = useState(defaultFilterValue.showAvailable)
+    const [showAvailable, setShowAvailable] = useState(defaultFilterValue.showAvailable) // remaining_seats > 0
 
     // duplicate tickets ->
     const [showDuplicate, setShowDuplicate] = useState(defaultFilterValue.showDuplicate)
@@ -101,6 +105,31 @@ export default function SearchPage({transportTypeId} : SearchPageProps) {
         setPriceRange(defaultFilterValue.priceRange)
         setDepartureTime(defaultFilterValue.departureTime)
         setDepartureDate(defaultFilterValue.departureDate)
+    }, [])
+
+    const filter = useCallback(() => {
+        let filteredData = currentTrips
+        if (filteredData.length > 0) {
+
+            filteredData = filteredData.filter(data =>
+                data.price > priceRange.min &&
+                data.price < priceRange.max &&
+                data.departure_date === departureDate &&
+                data.departure_time > departureTime.min &&
+                data.departure_time < departureTime.max
+            );
+
+            if (!allCompanies)
+                filteredData = filteredData.filter(data => companies.findIndex(data.transport_company_id) !== -1)
+
+            if (showAvailable)
+                filteredData = filteredData.filter(data => data.remaining_seats > 0)
+
+            if (shoppingType !== 'all')
+                filteredData = filteredData.filter(data => data.shopping_type === shoppingType)
+        }
+
+        return filteredData
     }, [])
 
     return (
