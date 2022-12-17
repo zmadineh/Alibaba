@@ -4,10 +4,9 @@ import {useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import OrderingFilter from "../../components/common/ordering-filter/OrderingFilter";
 import Typography from "@mui/material/Typography/Typography";
-import PopoverOrderingFilter from "../../components/common/ordering-filter/PopoverOrderingFilter";
 
 
-const tripleSortingFilterData = [
+const orderingFilterTitleData = [
     {
         label: 'پیشنهاد علی بابا',
         filterLabel: 'alibaba_offer'
@@ -75,7 +74,7 @@ export default function SearchPage() {
                             <Grid item display={"flex"} alignItems={"center"} gap={2}>
 
                                 {!tabletMatch && <Typography fontSize={'14px'} fontWeight={'600'}>مرتب سازی: </Typography> }
-                                <OrderingFilter value={filterIndex} setValue={setFilterIndex} inputs={tripleSortingFilterData}/>
+                                <OrderingFilter value={filterIndex} setValue={setFilterIndex} inputs={orderingFilterTitleData}/>
 
                             </Grid>
                         }
@@ -112,7 +111,7 @@ export default function SearchPage() {
                     <Grid item display={"flex"} xs={6}>
                         <Grid item display={"flex"} justifyContent={"center"} alignItems={"center"} xs={6}>
 
-                            <OrderingFilter value={filterIndex} setValue={setFilterIndex} inputs={tripleSortingFilterData}/>
+                            <OrderingFilter value={filterIndex} setValue={setFilterIndex} inputs={orderingFilterTitleData}/>
 
                         </Grid>
                         <Grid item xs={6} bgcolor={'blue'}>
