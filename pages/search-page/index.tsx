@@ -4,8 +4,8 @@ import {useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import OrderingFilter from "../../components/common/ordering-filter/OrderingFilter";
 import Typography from "@mui/material/Typography/Typography";
-import {string} from "prop-types";
-
+import {trips} from "../../data/database.data";
+import {typeParameter} from "@babel/types";
 
 const orderingFilterTitleData = [
     {
@@ -35,11 +35,10 @@ const defaultFilterValue = {
     allCompanies: true,
     companies: [],
     showAvailable: true,
-    showDuplicate: false,
     shoppingType: 'all', // systematic or chartered or all
     priceRange: {min: 0, max: 1000000000},
     departureTime: {min: {hours: 0, minutes: 0}, max: {hours: 23, minutes: 59}},
-    departureDate: new Date(),
+    departureDate: new Date(1401,9,29,11,23,0)
 }
 
 const headerHeight = 70;
@@ -57,16 +56,21 @@ interface timeRangeType {
 }
 
 interface SearchPageProps {
-    transportTypeId: number
+    transportTypeId: number,
 }
 
-export default function SearchPage({transportTypeId} : SearchPageProps) {
+export default function SearchPage() {
+
+    const transportTypeId = 0;
+    const startPoint = 1;
+    const destination = 2;
 
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
     const tabletMatch = useMediaQuery(theme.breakpoints.down('md'));
 
-    const currentTrips = [] //trips.filter(trip => trip.transport_type_id === transportTypeId);
+    const currentTrips = trips.filter(trip => trip.transport_type_id === transportTypeId);
+    console.log(currentTrips)
 
     // states:
     // order ->
@@ -78,9 +82,6 @@ export default function SearchPage({transportTypeId} : SearchPageProps) {
 
     //  available tickets ->
     const [showAvailable, setShowAvailable] = useState(defaultFilterValue.showAvailable) // remaining_seats > 0
-
-    // duplicate tickets ->
-    const [showDuplicate, setShowDuplicate] = useState(defaultFilterValue.showDuplicate)
 
     // shopping type ->
     const [shoppingType, setShoppingType] = useState(defaultFilterValue.shoppingType) // systematic or chartered or all
@@ -94,33 +95,42 @@ export default function SearchPage({transportTypeId} : SearchPageProps) {
     // departure date ->
     const [departureDate, setDepartureDate] = useState<Date>(defaultFilterValue.departureDate)
 
-
     const resetFilters = useCallback(() => {
         setOrderFilterIndex(defaultFilterValue.orderFilterIndex)
         setAllCompanies(defaultFilterValue.allCompanies)
         setCompanies(defaultFilterValue.companies)
         setShowAvailable(defaultFilterValue.showAvailable)
-        setShowDuplicate(defaultFilterValue.showDuplicate)
         setShoppingType(defaultFilterValue.shoppingType)
         setPriceRange(defaultFilterValue.priceRange)
         setDepartureTime(defaultFilterValue.departureTime)
         setDepartureDate(defaultFilterValue.departureDate)
     }, [])
 
-    const filter = useCallback(() => {
+    const filter = () => {// useCallback(() => {
         let filteredData = currentTrips
         if (filteredData.length > 0) {
 
             filteredData = filteredData.filter(data =>
+                data.start_point_city_id === startPoint &&
+                data.destination_city_id === destination &&
+
                 data.price > priceRange.min &&
                 data.price < priceRange.max &&
-                data.departure_date === departureDate &&
-                data.departure_time > departureTime.min &&
-                data.departure_time < departureTime.max
+
+                data.departure_date.getFullYear() === departureDate.getFullYear() &&
+                data.departure_date.getMonth() === departureDate.getMonth() &&
+                data.departure_date.getDay() === departureDate.getDay() &&
+
+                (data.departure_date.getHours() > departureTime.min.hours ||
+                    (data.departure_date.getHours() === departureTime.min.hours &&
+                        data.departure_date.getMinutes() > departureTime.min.minutes)) &&
+                (data.departure_date.getHours() < departureTime.max.hours ||
+                    (data.departure_date.getHours() === departureTime.max.hours &&
+                        data.departure_date.getMinutes() < departureTime.max.minutes))
             );
 
             if (!allCompanies)
-                filteredData = filteredData.filter(data => companies.findIndex(data.transport_company_id) !== -1)
+                filteredData = filteredData.filter(data => companies.findIndex(company => company === data.transport_company_id) !== -1)
 
             if (showAvailable)
                 filteredData = filteredData.filter(data => data.remaining_seats > 0)
@@ -129,8 +139,29 @@ export default function SearchPage({transportTypeId} : SearchPageProps) {
                 filteredData = filteredData.filter(data => data.shopping_type === shoppingType)
         }
 
+        console.log('filters: ', departureDate)
         return filteredData
-    }, [])
+    } //, [currentTrips])
+
+
+    const stateProps = {
+        allCompanies,
+        setAllCompanies,
+        companies,
+        setCompanies,
+        showAvailable,
+        setShowAvailable,
+        shoppingType,
+        setShoppingType,
+        priceRange,
+        setPriceRange,
+        departureTime,
+        setDepartureTime
+    }
+
+    // array of trips and transport type id
+    // {data: filterdata, type_id: type}
+
 
     return (
         <Grid container flexDirection={"column"} alignItems={"center"} bgcolor={'background.default'}>
@@ -153,6 +184,8 @@ export default function SearchPage({transportTypeId} : SearchPageProps) {
                         <Grid item xs={12} sm={3} bgcolor={'blue'}>
                             <Grid position={"sticky"} top={`${headerHeight+10}px`} bottom={'100px'} bgcolor={'magenta'} height={'400px'}>
                                 SIDE FILTER
+
+                                {/*<SideFilter {...stateProps}*/}
                                 {/*--------------------------------------------------------*/}
                             </Grid>
                         </Grid>
@@ -173,8 +206,17 @@ export default function SearchPage({transportTypeId} : SearchPageProps) {
                             </Grid>
                         }
 
-                        <Grid item height={'800px'} bgcolor={'green'}>
+                        <Grid item container height={'800px'} bgcolor={'green'}>
                             tickets
+                            <Grid item width={'100%'} p={2}>
+                                {filter().map(data => (
+                                    <Grid key={data.id}>
+                                        {data.id}
+                                    </Grid>
+                                ))}
+                            </Grid>
+
+                            {/*<Tickets data={filter()} transportTypeId={transportTypeId} />*/}
                             {/*--------------------------------------------------------*/}
                         </Grid>
                     </Grid>
