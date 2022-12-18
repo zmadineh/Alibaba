@@ -185,7 +185,7 @@ export default function SearchPage() {
                             <Grid position={"sticky"} top={`${headerHeight+10}px`} bottom={'100px'} bgcolor={'magenta'} height={'400px'}>
                                 SIDE FILTER
 
-                                {/*<SideFilter {...stateProps}*/}
+                                {/*<SideFilter {...stateProps} resetFunction={resetFilters}*/}
                                 {/*--------------------------------------------------------*/}
                             </Grid>
                         </Grid>
