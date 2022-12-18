@@ -22,6 +22,28 @@ export interface BusTicket_type {
     Remaining_seats: number,
     price: number
 }
+export interface Trip_type {
+    transport_type_id: number,
+    departure_date: Date,
+    receive_date: Date | null,
+    transport_company_id: number,
+    start_point_city_id: number,
+    //terminal_id:number
+    destination_city_id: number,
+    //terminal_id:number
+    round_trip: boolean,
+    Remaining_seats: number,
+    price: number,
+    shopping_type: string | null
+}
+
+export interface ReturnTrip_type extends Trip_type {
+    return_date: Date,
+    return_receive_date: Date,
+    return_transport_company_id: number
+}
+
+
 export interface trainTicket_type {
     ticketDate: Date,
     company_name: string,
