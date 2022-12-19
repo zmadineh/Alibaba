@@ -106,8 +106,9 @@ export default function SearchPage() {
         setDepartureDate(defaultFilterValue.departureDate)
     }, [])
 
-    const filter = () => {// useCallback(() => {
+    const filter = useCallback(() => {
         let filteredData = currentTrips
+        console.log('filters: 1 ', filteredData)
         if (filteredData.length > 0) {
 
             filteredData = filteredData.filter(data =>
@@ -137,11 +138,23 @@ export default function SearchPage() {
 
             if (shoppingType !== 'all')
                 filteredData = filteredData.filter(data => data.shopping_type === shoppingType)
+
+            if (orderingFilterTitleData[orderFilterIndex].filterLabel === 'earliest_departure_time')
+                filteredData = filteredData.sort((a,b) => (a.departure_date.getHours() - b.departure_date.getHours()))
+
+            else if (orderingFilterTitleData[orderFilterIndex].filterLabel === 'latest_departure_time')
+                filteredData = filteredData.sort((a,b) => (b.departure_date.getHours() - a.departure_date.getHours()))
+
+            else if (orderingFilterTitleData[orderFilterIndex].filterLabel === 'highest_price')
+                filteredData = filteredData.sort((a,b) => (b.price - a.price))
+
+            else if (orderingFilterTitleData[orderFilterIndex].filterLabel === 'lowest_price')
+                filteredData = filteredData.sort((a,b) =>  (a.price - b.price))
         }
 
-        console.log('filters: ', departureDate)
+        console.log('filters: ', filteredData, orderingFilterTitleData[orderFilterIndex].filterLabel)
         return filteredData
-    } //, [currentTrips])
+    } , [currentTrips, orderFilterIndex])
 
 
     const stateProps = {
@@ -211,7 +224,7 @@ export default function SearchPage() {
                             <Grid item width={'100%'} p={2}>
                                 {filter().map(data => (
                                     <Grid key={data.id}>
-                                        {data.id}
+                                        {data.price}
                                     </Grid>
                                 ))}
                             </Grid>
