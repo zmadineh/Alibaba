@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 import {searchFromValue} from "../../../model/searchFormValue.type";
-import {internalCities} from "../../../data/internalCities.data";
+import {internalCities} from "../../../data/form/internalCities.data";
 
 import SwappableInput from "../../common/search-form/input-components/swappable-inputs/SwappableInput";
 
@@ -9,8 +9,8 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import SingleDropDown from "../../common/search-form/input-components/SingleDropDown";
 import {swappableInputsDetailType} from "../../../model/swappableInputsDetail.type";
-import {externalAirports} from "../../../data/externalAirports.data";
-import {emptySearchFormData} from "../../../data/emptySearchForm.data";
+import {externalAirports} from "../../../data/form/externalAirports.data";
+import {emptySearchFormData} from "../../../data/form/emptySearchForm.data";
 
 const swappableInputsDetails: swappableInputsDetailType[] = [
     {

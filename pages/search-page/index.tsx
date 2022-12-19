@@ -4,8 +4,8 @@ import {useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import OrderingFilter from "../../components/common/ordering-filter/OrderingFilter";
 import Typography from "@mui/material/Typography/Typography";
-import {trips} from "../../data/database.data";
-import {typeParameter} from "@babel/types";
+// import {trips} from "../../data/database.data";
+import {trips} from "../../data/database/trips.data";
 
 const orderingFilterTitleData = [
     {
@@ -172,7 +172,7 @@ export default function SearchPage() {
         setDepartureTime
     }
 
-    // array of trips and transport type id
+    // array of tripsData and transport type id
     // {data: filterdata, type_id: type}
 
 
