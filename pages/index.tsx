@@ -23,7 +23,7 @@ export default function FirstPage() {
           
             <Grid id='layout' bgcolor='grey.900' >
        
-                <Desk_header />
+                <Desk_header res={matches}/>
                 
                 <Tabview value={page} setValue={setPage}>
                     <TabPanel value={page} index={page}>
@@ -34,7 +34,8 @@ export default function FirstPage() {
                     maxWidth: {
                         lg: '1200px',
                         md: '800px'
-                    }
+                    },
+                    padding:'0 16px',
                 }}>
                       
                       <HeaderMobile setPage={setPage}/>
@@ -42,7 +43,6 @@ export default function FirstPage() {
                         <SearchCardContainer categoryIndex={page} searches={searches} setSearches={setSearches} />
                         <HelpCard />
                         <DownloadCard />
-
                     </Grid>
                     {GetPages(page)}
                 </Grid>
