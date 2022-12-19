@@ -86,7 +86,9 @@ const Tabview = ({children, value, setValue,}: Props) => {
                       icon={item.icon}
                       label={item.title}
                       {...a11yProps(item.id)}
-                      sx={{ fontWeight: 'bold', color: 'grey.500' }}
+                      sx={{width:'144px',height:'80px',padding:'8px 24px', fontWeight: 'bold', color: 'grey.500',
+                      '&.Mui-selected':{borderBottom:'3px solid',borderColor:'secondary'}
+                    }}
                     />
                   ))}
                 </Tabs>
