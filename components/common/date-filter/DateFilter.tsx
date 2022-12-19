@@ -26,7 +26,7 @@ const DateFilter = (props: Props) => {
   };
 
   return (
-    <Box sx={{ bgcolor: 'background.paper',display:'flex',justifyContent:'center' }}>
+    <Box sx={{ bgcolor:'grey.900',display:'flex',justifyContent:'center' }}>
       <Tabs
           value={value}
           variant="scrollable"
@@ -35,7 +35,7 @@ const DateFilter = (props: Props) => {
           aria-label="scrollable force tabs example"
           textColor="secondary" 
           indicatorColor="secondary"
-          sx={{width:'850px',height:'62px',border:'1px solid', borderColor:'divider',borderRadius:'10px',
+          sx={{ bgcolor:'common.white',width:'850px',height:'62px',border:'1px solid', borderColor:'divider',borderRadius:'10px',
           [`& .${tabsClasses.scrollButtons}`]: {'&.Mui-disabled': { opacity: 0.3 }},
           }}
         
