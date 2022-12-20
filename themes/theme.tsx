@@ -4,6 +4,7 @@ declare module '@mui/material/Button' {
     interface ButtonPropsVariantOverrides {
         Button1: true;
         Button2: true;
+
     }
 }
 
@@ -75,7 +76,7 @@ export const theme = createTheme({
             styleOverrides: {
                 body: {
                     scrollbarColor: "#6b6b6b #2b2b2b",
-                    "&::-webkit-scrollbar" : {
+                    "&::-webkit-scrollbar": {
                         backgroundColor: "#b0b0b0",
                         width: '1px',
                         height: '1px',

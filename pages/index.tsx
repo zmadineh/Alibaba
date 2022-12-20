@@ -12,7 +12,7 @@ import { searchFromValue } from "../model/searchFormValue.type";
 import SearchForm from "../components/home/search-form/SearchForm";
 import TabPanel from "../components/home/tabview/TabPanel";
 import TrainDetails from './../components/home/train-card/TrainDetails';
-import FilterSidebar from './../components/filter-Sidebar/FilterSidebar';
+import FilterSidebar from '../components/filter-Sidebar/FilterSidebar';
 
 // const pages = {
 //     0: 'inFlight',
