@@ -5,10 +5,12 @@ import Link from 'next/link';
 import { filterd_TripData } from '../../data/tickets_data/DataTickets';
 import Image from "next/image";
 import { numberWithCommas } from "../../utils/functions/numberWithCommas";
+import { getTicket } from '../../data/tickets_data/DataTickets';
+import TicketIcon from './TicketIcon';
 
-export default function TicketComponent(props: { filteredData: filterd_TripData[], TripType: number }) {
-
-    const {filteredData,TripType} = props;
+export default function TicketComponent(props:{filteredData:filterd_TripData[],tripType:number}) {
+    //const filteredData = getTicket('bus',new Date(1401, 3, 24, 18, 26),5)
+    const {filteredData,tripType} = props;
     if (filteredData) {
         const theme = useTheme();
         const matches = useMediaQuery(theme.breakpoints.up('sm'));
@@ -40,12 +42,18 @@ export default function TicketComponent(props: { filteredData: filterd_TripData[
                                                     )}
                                                     <Typography sx={{ color: "grey.500", fontSize: '14px' }}>{item.company_name}</Typography>
                                                 </Grid>
-                                                <Typography variant="h2" sx={{ color: "grey.700", fontSize: '12px', fontWeight: '700', marginBottom: '8px' }}>{item.Bus_des}</Typography>
+                                                <Grid display={'flex'}>
+                                                {item.trip_des.map((des,index)=>(
+                                                    <Typography key={index} variant="h2" sx={{ color: "grey.700", fontSize: '9px', fontWeight: '700', marginBottom: '8px',marginLeft:'8px',backgroundColor:'grey.200',padding:'8px', borderRadius:'10px' }}>{des}</Typography>
+                                                ))}
+                                                </Grid>
                                                 <Grid gap={2} display={matches ? 'flex' : 'none'} alignItems={'center'}>
                                                     <Typography variant="h2" sx={{ color: "grey.700", fontSize: matches ? '20px' : '18px', fontWeight: '700' }}>{`${item.departure_date.getHours()}:${item.departure_date.getMinutes()}`}</Typography>
                                                     <Typography sx={{ color: "grey.800", fontSize: '15px' }}>{item.start_point_city}</Typography>
                                                     <Grid display={'flex'} alignItems={'center'} sx={{ maxWidth: '150px', minWidth: '100px', flexGrow: '1' }}>
-                                                        <SvgIcon sx={{ width: '14px', height: '14px', color: 'grey.400' }}><path d="M5.873 20.031c.212.095.462.15.729.15h2.773v.86c0 .749-.54 1.365-1.237 1.45l-.163.009h-.7c-.718 0-1.31-.563-1.39-1.288l-.01-.17-.002-1.01Zm12.252.123v.888c0 .748-.54 1.364-1.237 1.448l-.163.01h-.7c-.718 0-1.31-.563-1.39-1.288l-.01-.17v-.861h3.177l.163-.007c.055-.004.108-.011.16-.02ZM15.702 1.5a3.702 3.702 0 0 1 3.702 3.702L19.396 5h1.651c.778 0 1.418.604 1.478 1.374V9.68c0 .368-.41.727-.927.727-.473 0-.866-.324-.919-.648l-.009-.079v-3.2h-1.268l.002 10.57a2.221 2.221 0 0 1-2.007 2.21l-.214.01H6.817a2.221 2.221 0 0 1-2.22-2.22L4.596 6.48H3.355v3.2l-.009.079c-.052.324-.446.647-.918.647-.517 0-.928-.358-.928-.726V6.374C1.56 5.604 2.2 5 2.978 5h1.624a3.702 3.702 0 0 1 3.696-3.5h7.404Zm1.151 13.65h-1.931a.984.984 0 1 0 0 1.969h1.931a.984.984 0 0 0 0-1.969Zm-7.8 0H7.122a.984.984 0 1 0 0 1.969h1.931a.984.984 0 0 0 0-1.969Zm5.908-10.688H9.038l-.086.005a.74.74 0 0 0 .086 1.475h5.923l.087-.005a.74.74 0 0 0-.087-1.475Z" fill-rule="evenodd"></path></SvgIcon>
+                                                        <SvgIcon sx={{ width: '14px', height: '14px', color: 'grey.400' }}>
+                                                            <TicketIcon tripType={tripType}/>
+                                                        </SvgIcon>
                                                         <Divider sx={{ border: '0 0 6px 0', borderColor: 'grey.400', flexGrow: '1' }} />
                                                         <Grid sx={{ width: '0.5rem', height: '0.5rem', borderRadius: '50%', margin: '0.5rem 1px 0.5rem 0', border: 'solid 1px', borderColor: 'grey.500' }} />
                                                     </Grid>
