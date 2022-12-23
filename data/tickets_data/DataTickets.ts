@@ -1,19 +1,24 @@
 import { companies_list } from "./CompaniesData";
 
-interface returnType{
-    filteredData : filterd_TripData[],
-    tripType:number
+interface returnType {
+    filteredData: filterd_TripData[],
+   
 }
-export function getTicket(category: string, date: Date, travelerCount: number): returnType {
+export function getTicket(category: string, date: Date, travelerCount: number): filterd_TripData[] {
+    let filteredData: filterd_TripData[];
     switch (category) {
         case 'bus':
-            const retOb : returnType;
-            retOb[filteredData] = BusTicket.filter(item => (item.Remaining_seats >= travelerCount) && (item.departure_date.getDate() === date.getDate()) && (item.departure_date.getFullYear() === date.getFullYear()) && (item.departure_date.getMonth() === date.getMonth()))
-            
-        case 'train':
-            return {TarinTicket.filter(item => (item.Remaining_seats >= travelerCount) && (item.departure_date.getDate() === date.getDate()) && (item.departure_date.getFullYear() === date.getFullYear()) && (item.departure_date.getMonth() === date.getMonth())),2};
+
+            filteredData = BusTicket.filter(item => (item.Remaining_seats >= travelerCount) && (item.departure_date.getDate() === date.getDate()) && (item.departure_date.getFullYear() === date.getFullYear()) && (item.departure_date.getMonth() === date.getMonth()));
+            return filteredData
+
+        // case 'train':
+        //     const filteredData: filterd_TripData[] = BusTicket.filter(item => (item.Remaining_seats >= travelerCount) && (item.departure_date.getDate() === date.getDate()) && (item.departure_date.getFullYear() === date.getFullYear()) && (item.departure_date.getMonth() === date.getMonth()));
+        //     const tripType = 3;
+        //     return {filteredData,tripType}
         default:
-            return null;
+            filteredData = [];
+            return filteredData
     }
 }
 
@@ -31,7 +36,7 @@ export interface BusTicket_type {
     price: number
 }
 interface Trip_type {
-    id : number,
+    id: number,
     transport_type_id: number,
     departure_date: Date,
     receive_date?: Date,
@@ -44,10 +49,10 @@ interface Trip_type {
     Remaining_seats: number,
     price: number,
     shopping_type: string | null,
-    trip_des : string[]
+    trip_des: string[]
 }
 
-export interface filterd_TripData{
+export interface filterd_TripData {
     company_name: string,
     company_Score?: number,
     company_image: string,
@@ -58,7 +63,7 @@ export interface filterd_TripData{
     Remaining_seats: number,
     price: number,
     shopping_type?: string,
-    trip_des : string[]
+    trip_des: string[]
 }
 
 export interface ReturnTrip_type extends Trip_type {
@@ -79,7 +84,7 @@ export interface trainTicket_type {
     destination_terminal: string,
     Remaining_seats: number,
     price: number,
-    
+
 }
 let BusTicket: filterd_TripData[] = [
     {
