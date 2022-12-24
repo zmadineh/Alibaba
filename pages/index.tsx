@@ -31,9 +31,6 @@ export default function FirstPage() {
                         <SearchForm searches={searches} setSearches={setSearches} index={page} />
                     </TabPanel>
                 </Tabview>
-                <Grid item my={10}>
-                <DateFilter/>
-                </Grid>
                 <Grid container marginX={'auto'} direction={'column'} width={'100%'} flexWrap={"nowrap"} sx={{
                     maxWidth: {
                         lg: '1200px',
