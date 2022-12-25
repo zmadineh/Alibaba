@@ -22,13 +22,14 @@ export interface filterSideType {
 const getCompanies = (type: number) => {
     // promise ====>
     const base_trips = trips.filter(trip => (trip.transport_type_id === type )).map(item => item.transport_company_id)
-    const companies = transport_companies.filter(company => company.transport_type_id === type).filter(company => {
-        return base_trips.includes(company.id)
-    }).map((company, index) => {
-        return {id: index, type: 'company', label: company.id.toString(), body: company.name, check: false}
-    })
-
-    return companies
+    return transport_companies
+        .filter(company => company.transport_type_id === type)
+        .filter(company => {
+                return base_trips.includes(company.id)
+            })
+        .map((company, index) => {
+                return {id: index, type: 'company', label: company.id.toString(), body: company.name, check: false}
+            })
 }
 
 export const filterSidebarAirplaneData: filterSideType[] = [
@@ -40,8 +41,11 @@ export const filterSidebarAirplaneData: filterSideType[] = [
             {
                 id: 1,
                 title: "نوع بلیط",
-                AccorDetail: [{ id: 2, type: 'shopping', body: "سیستمی", label: 'systematic', check: false },
-                    { id: 3, type: 'shopping', body: "چارتری", label: 'chartered', check: false }]
+                AccorDetail:
+                    [
+                        { id: 2, type: 'shopping', body: "سیستمی", label: 'systematic', check: false },
+                        { id: 3, type: 'shopping', body: "چارتری", label: 'chartered', check: false }
+                    ]
             },
             {
                 id: 2,
@@ -66,8 +70,11 @@ export const filterSidebarAirplaneTwoData: filterSideType[] = [
             {
                 id: 1,
                 title: " نوع بلیط",
-                AccorDetail: [{id: 2, type: 'shopping', body: "سیستمی", label: 'systematic', check: false},
-                    {id: 3, type: 'shopping', body: "چارتری", label: 'chartered', check: false}],
+                AccorDetail:
+                    [
+                        {id: 2, type: 'shopping', body: "سیستمی", label: 'systematic', check: false},
+                        {id: 3, type: 'shopping', body: "چارتری", label: 'chartered', check: false}
+                    ],
             },
             {
                 id: 2,
@@ -85,7 +92,9 @@ export const filterSidebarTrainData: filterSideType[] = [
         transportTypeId: 2,
         title: "قطار",
         Accor: [
-            { id: 1, title: "شرکت های ریلی",
+            {
+                id: 1,
+                title: "شرکت های ریلی",
                 AccorDetail: getCompanies(2)
                     // [
                     // { id: 1, type: 'company', label: '', body: "فدک", check: false },
@@ -107,7 +116,9 @@ export const filterSidebarBusData: filterSideType[] = [
         title: "اتوبوس",
         transportTypeId: 3,
         Accor: [
-            { id: 1, title: "شرکت های اتوبوسرانی",
+            {
+                id: 1,
+                title: "شرکت های اتوبوسرانی",
                 AccorDetail: getCompanies(3)
                     // [
                     // { id: 2, type: 'company', label: 'آسیاسفر', body: "آسیاسفر تهران ترمینال غرب", check: false },
