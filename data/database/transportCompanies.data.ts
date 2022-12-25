@@ -1,7 +1,7 @@
 export const transport_companies = [
     {id: 1, transport_type_id: 0, name: 'ایران ایر', image: '', }, // name : {fa: 'ایران ایر', en: 'iran air'}
-    {id: 2, transport_type_id: 0, name: 'ایران ایر', image: '', },
-    {id: 3, transport_type_id: 0, name: 'ایران ایر', image: '', },
+    {id: 2, transport_type_id: 0, name: 'هواپیمایی هما', image: '', },
+    {id: 3, transport_type_id: 0, name: 'ایران پیما', image: '', },
 
     {id: 4, transport_type_id: 1, name: '', image: '', },
     {id: 5, transport_type_id: 1, name: '', image: '', },

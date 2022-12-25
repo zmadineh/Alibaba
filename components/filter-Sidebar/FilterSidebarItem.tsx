@@ -12,7 +12,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 
-import { filterSideType } from "../../data/filterSidebarData"
+import {filterSideItemDetailType, filterSideType} from "../../data/filterSidebarData";
+import {filterStatesPropsType} from "../../model/filter/filterStateType";
 
 import ButtonGroup from '@mui/material/ButtonGroup';
 
@@ -22,57 +23,101 @@ import SliderItem from './SliderItem';
 import ButtonGroupItem from './ButtonGroupItem';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import {transport_companies} from "../../data/database/transportCompanies.data";
 
-const FilterSidebarItem = ({ item }: { item: filterSideType }) => {
+
+interface FilterSidebarItemPropsType {
+    item: filterSideType,
+    filterStateProps: filterStatesPropsType,
+    resetFunction: () => void,
+    ticketCount: number,
+}
+
+const FilterSidebarItem = ({ item, filterStateProps, resetFunction, ticketCount }: FilterSidebarItemPropsType) => {
+    const {
+        allCompanies,
+        setAllCompanies,
+        companies,
+        setCompanies,
+        showAvailable,
+        setShowAvailable,
+        shoppingType,
+        setShoppingType,
+        priceRange,
+        setPriceRange,
+        departureTime,
+        setDepartureTime,
+        transportTypeId,
+    } = filterStateProps
+
     const [state, setState] = useState(item)
-    console.log(state)
     const [value2, setValue2] = useState<number[]>([2, 29]);
     const [btnFilter, setBtnFilter] = useState<string>("none")
-    const [companies, setCompanies] = useState<string[]>([])
-    const [showAvailable, setShowAvailable] = useState<boolean>(false)
-    const [shoppingType, setShoppingType] = useState<string>("all")
-    const [priceRange, setPriceRange] = useState<number[]>([0, 10000000000])
-    const [departureTime, setDepartureTime] = useState<number[]>([6, 23])
-
-    const [sistemch, setsistemch] = useState<boolean>(false)
-    const [avch, setavch] = useState<boolean>(false)
 
 
-
-    // handleclicBtnFilter
-    const handleclicBtnFilter = () => {
+    // handleClickBtnFilter
+    const handleClickBtnFilter = () => {
         setBtnFilter("none")
-        setDepartureTime([6, 23])
         setValue2([2, 29])
-        setPriceRange([22550000, 70507000])
-        setCompanies([])
-        setShowAvailable(false)
-        setShoppingType("all")
+        resetFunction();
     }
+
+    const shoppingCheck = (label: string) => {
+        if (label === 'systematic')
+            return shoppingType['systematic']
+        else if (label === 'chartered')
+            return shoppingType['chartered']
+    }
+
+    const companyCheck = (label: string) => {
+        return companies.includes(Number(label))
+    }
+
     //checkbox
+    const handleChange = (accorDetail: filterSideItemDetailType) => {
 
+        if(accorDetail.type === 'shopping'){
+            setShoppingType({...shoppingType, [accorDetail.label]: !shoppingCheck(accorDetail.label)})
+        }
+        else if (accorDetail.type === 'company'){
+            const accorCompanyId = Number(accorDetail.label)
 
-    const handleChange = (id: number) => {
-        const t: any = state?.Accor?.map(accor => accor.AccorDetail?.map(accorDetail => accorDetail.id === id ? { ...accorDetail, check: !accorDetail.check } : accorDetail))
-        console.log(t)
-        // setState(state.Accor.map(accor => accor.AccorDetail?.map(accorDetail => accorDetail.id === id ? { ...accorDetail, check: !accorDetail.check } : accorDetail)))      
+            if (!companyCheck(accorDetail.label)){
+                setCompanies([...companies, accorCompanyId])
+            }
+            else if(companyCheck(accorDetail.label)){
+                const companyIndex = companies.findIndex(coItem => coItem === accorCompanyId)
+
+                if(companyIndex !== -1){
+                    setCompanies(companies.filter(coId => coId !== accorCompanyId))
+                }
+            }
+
+                setAllCompanies(false)
+        }
+
+        setBtnFilter("flex")
     }
+
 
     {/* Slider1 departureTime */ }
-    const handleChange1 = (event: Event, newValue: number | number[]) => {
-        setDepartureTime(newValue as number[]);
+    const handleChange1 = (event: Event, newValue: number[]) => {
+        setDepartureTime({min: {hours: newValue[0], minutes: 0}, max:{hours: newValue[1], minutes: 59}})
         setBtnFilter("flex")
-    };
+    }
+
+
     {/* Slider2  price*/ }
     const handleChange2 = (event: Event, newValue: number | number[]) => {
         setValue2(newValue as number[]);
         setBtnFilter("flex")
-    };
-    {/* Slider3 tour */ }
-    const handleChange3 = (event: Event, newValue: number | number[]) => {
-        setPriceRange(newValue as number[]);
-        setBtnFilter("flex")
+    }
 
+
+    {/* Slider3 tour */ }
+    const handleChange3 = (event: Event, newValue: number[]) => {
+        setPriceRange({min: newValue[0], max: newValue[1]});
+        setBtnFilter("flex")
     };
 
     const top100Films = [
@@ -98,55 +143,57 @@ const FilterSidebarItem = ({ item }: { item: filterSideType }) => {
 
         },]
     return (
-        <Grid container width={300} sx={{ border: 2, borderRadius: '10px 10px 10px 10px', borderColor: 'divider' }} m={2}>
+        <Grid container width={'100%'}  bgcolor={'#fff'} sx={{ border: 2, borderRadius: '10px', borderColor: 'divider'}}>
             <Grid item xs={12} my={2} p={1} display={"flex"} >
-                <Grid item xs={6}  ><Typography>نتایج:15</Typography></Grid>
-                <Grid item xs={6} display={btnFilter} justifyContent={"flex-end"}><Button onClick={handleclicBtnFilter} sx={{ color: "secondary.300", borderRadius: 5, '&:hover': { backgroundColor: "secondary.100" } }}><Typography sx={{ fontSize: 12 }}>لغو فیلتر ها</Typography></Button></Grid>
+                <Grid item xs={6}>
+                    <Typography>نتایج: {ticketCount}</Typography>
+                </Grid>
+                <Grid item xs={6} display={btnFilter} justifyContent={"flex-end"}>
+                    <Button onClick={handleClickBtnFilter} sx={{ color: "secondary.300", borderRadius: 5, '&:hover': { backgroundColor: "secondary.100" } }}>
+                        <Typography sx={{ fontSize: 12 }}>لغو فیلتر ها</Typography>
+                    </Button>
+                </Grid>
             </Grid>
             <Grid item xs={12} borderTop={1} sx={{ borderColor: 'divider' }}>
                 {/* Slider1 */}
                 {state.silider2 ? "" :
-                    <SliderItem title={"ساعت حرکت"} value={departureTime} min={6} max={23} handleChange={handleChange1} />}
+                    <SliderItem title={"ساعت حرکت"} value={[departureTime.min.hours, departureTime.max.hours]} min={0} max={23} handleChange={handleChange1} />}
                 {/* Slider1 */}
-                {/* Slider2 aireplan2 */}
+                {/* Slider2 airplane2 */}
                 {state.silider ?
                     <SliderItem title={"مدت زمان سفر"} value={value2} min={2} max={29} handleChange={handleChange2} /> : ""}
-                {/* Slider2 aireplan2*/}
-                {state.Accor?.map((accor, index) => (
+                {/* Slider2 airplane2*/}
+                {state.Accor.map((accor, accorIndex) => (
+                    (accor.AccorDetail.length) > 0 &&
 
-                    <Accordion key={index} sx={{ boxShadow: "none" }}>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel2a-content"
-                            id="panel2a-header"
-                        >
-                            <Typography>{accor.title}</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails >
-                            {/* <FormGroup> */}
-                            {accor.AccorDetail?.map(
-                                (accorDetail, index) =>
-                                    // <FormControlLabel key={index} sx={{ '& 	.Mui-checked .MuiSvgIcon-root': { color: "secondary.main" } }} control={<Checkbox checked={accorDetail.check ? false : true}
-                                    //     onClick={() => handleChange(accorDetail.id)}
-                                    //     inputProps={{ 'aria-label': 'controlled' }} />} label={accorDetail.body}
+                        <Accordion key={accorIndex} sx={{boxShadow: "none"}}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon/>}
+                                aria-controls="panel2a-content"
+                                id="panel2a-header"
+                            >
+                                <Typography>{accor.title}</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                {accor.AccorDetail.map(
+                                    (accorDetail, detailIndex) =>
+                                        <Box key={detailIndex} sx={{color: 'grey.300'}}>
+                                            <Button onClick={() => handleChange(accorDetail)}>
 
-                                    // />
-                                    // </FormGroup>
-                                    <Box key={index}>
-                                        <Button onClick={() => handleChange(accorDetail.id)} sx={{ color: "grey" }}><CheckBoxOutlineBlankIcon /> {accorDetail.body}</Button>
-                                        <Button sx={{ color: "secondary.main" }}><CheckBoxIcon />
-                                            <Typography sx={{ color: "grey" }}>
-                                                {accorDetail.body}
-                                            </Typography>
-                                        </Button>
-                                    </Box>
+                                                {(accorDetail.type === 'shopping' && shoppingCheck(accorDetail.label)) ||
+                                                (accorDetail.type === 'company' && companyCheck(accorDetail.label))
+                                                    ?
+                                                    <CheckBoxIcon color={"secondary"}/> :
+                                                    <CheckBoxOutlineBlankIcon color={'secondary'}/>
+                                                }
 
+                                                <Typography color={'gray'}>{accorDetail.body}</Typography>
+                                            </Button>
+                                        </Box>
+                                )}
+                            </AccordionDetails>
+                        </Accordion>
 
-
-                            )}
-
-                        </AccordionDetails>
-                    </Accordion>
                 ))}
                 {state.title === "تور" ?
                     <>

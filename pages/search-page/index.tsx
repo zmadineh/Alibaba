@@ -4,8 +4,11 @@ import {useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import OrderingFilter from "../../components/common/ordering-filter/OrderingFilter";
 import Typography from "@mui/material/Typography/Typography";
-// import {trips} from "../../data/database.data";
 import {trips} from "../../data/database/trips.data";
+import FilterSidebar from "../../components/filter-Sidebar/FilterSidebar";
+import {priceRangeType, shoppingObjType} from "../../model/filter/filterStateType";
+import {timeRangeType} from "../../model/filter/filterStateType";
+import {filterStatesPropsType} from "../../model/filter/filterStateType";
 
 const orderingFilterTitleData = [
     {
@@ -35,7 +38,7 @@ const defaultFilterValue = {
     allCompanies: true,
     companies: [],
     showAvailable: true,
-    shoppingType: 'all', // systematic or chartered or all
+    shoppingType: {systematic: false, chartered: false},
     priceRange: {min: 0, max: 1000000000},
     departureTime: {min: {hours: 0, minutes: 0}, max: {hours: 23, minutes: 59}},
     departureDate: new Date(1401,9,29,11,23,0)
@@ -43,21 +46,6 @@ const defaultFilterValue = {
 
 const headerHeight = 70;
 
-/////////////////////////////////////////////////////////////////////////
-
-interface priceRangeType {
-    min: number,
-    max: number,
-}
-
-interface timeRangeType {
-    min: {hours: number, minutes: number},
-    max: {hours: number, minutes: number},
-}
-
-interface SearchPageProps {
-    transportTypeId: number,
-}
 
 export default function SearchPage() {
 
@@ -70,7 +58,7 @@ export default function SearchPage() {
     const tabletMatch = useMediaQuery(theme.breakpoints.down('md'));
 
     const currentTrips = trips.filter(trip => trip.transport_type_id === transportTypeId);
-    console.log(currentTrips)
+    // console.log(currentTrips)
 
     // states:
     // order ->
@@ -84,7 +72,7 @@ export default function SearchPage() {
     const [showAvailable, setShowAvailable] = useState(defaultFilterValue.showAvailable) // remaining_seats > 0
 
     // shopping type ->
-    const [shoppingType, setShoppingType] = useState(defaultFilterValue.shoppingType) // systematic or chartered or all
+    const [shoppingType, setShoppingType] = useState<shoppingObjType>(defaultFilterValue.shoppingType) // systematic or chartered or all
 
     // price ->
     const [priceRange, setPriceRange] = useState<priceRangeType>(defaultFilterValue.priceRange)
@@ -94,6 +82,9 @@ export default function SearchPage() {
 
     // departure date ->
     const [departureDate, setDepartureDate] = useState<Date>(defaultFilterValue.departureDate)
+
+    // number of tickets
+    const [ticketCount, seTicketCount] = useState(currentTrips.length)
 
     const resetFilters = useCallback(() => {
         setOrderFilterIndex(defaultFilterValue.orderFilterIndex)
@@ -106,9 +97,18 @@ export default function SearchPage() {
         setDepartureDate(defaultFilterValue.departureDate)
     }, [])
 
+    const shoppingCheck = () => {
+        if (!((shoppingType.systematic && shoppingType.chartered) || (!shoppingType.systematic && !shoppingType.chartered))) {
+            if (shoppingType.systematic)
+                return 'systematic'
+            else if (shoppingType.chartered)
+                return 'chartered'
+        }
+        else return 'all'
+    }
+
     const filter = useCallback(() => {
         let filteredData = currentTrips
-        console.log('filters: 1 ', filteredData)
         if (filteredData.length > 0) {
 
             filteredData = filteredData.filter(data =>
@@ -127,17 +127,14 @@ export default function SearchPage() {
                         data.departure_date.getMinutes() > departureTime.min.minutes)) &&
                 (data.departure_date.getHours() < departureTime.max.hours ||
                     (data.departure_date.getHours() === departureTime.max.hours &&
-                        data.departure_date.getMinutes() < departureTime.max.minutes))
+                        data.departure_date.getMinutes() < departureTime.max.minutes)) &&
+
+                (shoppingCheck() !== 'all' ? data.shopping_type === shoppingCheck() : true) &&
+
+                (showAvailable ? data.remaining_seats > 0 : true) &&  // available tickets
+
+                (companies.length === 0 ? true : companies.includes(data.transport_company_id))  // reset to all when none of companies selected
             );
-
-            if (!allCompanies)
-                filteredData = filteredData.filter(data => companies.findIndex(company => company === data.transport_company_id) !== -1)
-
-            if (showAvailable)
-                filteredData = filteredData.filter(data => data.remaining_seats > 0)
-
-            if (shoppingType !== 'all')
-                filteredData = filteredData.filter(data => data.shopping_type === shoppingType)
 
             if (orderingFilterTitleData[orderFilterIndex].filterLabel === 'earliest_departure_time')
                 filteredData = filteredData.sort((a,b) => (a.departure_date.getHours() - b.departure_date.getHours()))
@@ -152,7 +149,7 @@ export default function SearchPage() {
                 filteredData = filteredData.sort((a,b) =>  (a.price - b.price))
         }
 
-        console.log('filters: ', filteredData, orderingFilterTitleData[orderFilterIndex].filterLabel)
+        // seTicketCount(filteredData.length)
         return filteredData
     } , [currentTrips, orderFilterIndex])
 
@@ -169,7 +166,9 @@ export default function SearchPage() {
         priceRange,
         setPriceRange,
         departureTime,
-        setDepartureTime
+        setDepartureTime,
+        transportTypeId,
+        // ticketCount,
     }
 
     // array of tripsData and transport type id
@@ -194,11 +193,14 @@ export default function SearchPage() {
                       justifyContent={"center"}
                 >
                     {!mobileMatch &&
-                        <Grid item xs={12} sm={3} bgcolor={'blue'}>
-                            <Grid position={"sticky"} top={`${headerHeight+10}px`} bottom={'100px'} bgcolor={'magenta'} height={'400px'}>
-                                SIDE FILTER
-
-                                {/*<SideFilter {...stateProps} resetFunction={resetFilters}*/}
+                        <Grid item xs={12} sm={3}>
+                            <Grid position={"sticky"} top={`${headerHeight+10}px`} bottom={'100px'}>
+                                <FilterSidebar
+                                    filterStateProps={stateProps}
+                                    travelType={transportTypeId}
+                                    resetFunction={resetFilters}
+                                    ticketCount={filter().length}
+                                />
                                 {/*--------------------------------------------------------*/}
                             </Grid>
                         </Grid>
