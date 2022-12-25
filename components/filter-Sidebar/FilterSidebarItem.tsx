@@ -134,7 +134,7 @@ const FilterSidebarItem = ({ item, filterStateProps, resetFunction, ticketCount 
             <Grid item xs={12} borderTop={1} sx={{ borderColor: 'divider' }}>
 
                 {/* Slider1 */}
-                {state.silider2 ? "" :
+                {state.slider2 ? "" :
                     <SliderItem title={"ساعت حرکت"} value={[departureTime.min.hours, departureTime.max.hours]} min={0} max={23} handleChange={handleChange1} />}
                 {/* Slider1 */}
 
