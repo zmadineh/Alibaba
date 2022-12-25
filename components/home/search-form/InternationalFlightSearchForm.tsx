@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 import {searchFromValue} from "../../../model/searchFormValue.type";
 import {swappableInputsDetailType} from "../../../model/swappableInputsDetail.type";
-import {externalAirports} from "../../../data/externalAirports.data";
+import {externalAirports} from "../../../data/form/externalAirports.data";
 
 import SwappableInput from "../../common/search-form/input-components/swappable-inputs/SwappableInput";
 import ToggleInputs from "../../common/search-form/input-components/ToggleInputs";
@@ -10,7 +10,7 @@ import PassengerCountInput from "../../common/search-form/input-components/Passe
 
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import {emptySearchFormData} from "../../../data/emptySearchForm.data";
+import {emptySearchFormData} from "../../../data/form/emptySearchForm.data";
 
 const swappableInputsDetails: swappableInputsDetailType[] = [
     {
