@@ -1,13 +1,16 @@
-import { Grid } from '@mui/material'
 import React from 'react'
+
+import Grid from '@mui/material/Grid'
+
+import {filterStatesPropsType} from "../../model/filter/filterStateType";
+
 import FilterSidebarItem from './FilterSidebarItem';
 import { filterSidebarAirplaneData } from "../../data/filterSidebarData"
-import { filterSidebarAirplanetwoData } from "../../data/filterSidebarData"
+import { filterSidebarAirplaneTwoData } from "../../data/filterSidebarData"
 import { filterSidebarTrainData } from "../../data/filterSidebarData"
 import { filterSidebarBusData } from "../../data/filterSidebarData"
 import { filterSidebarTourData } from "../../data/filterSidebarData"
-import { useState } from 'react';
-import {filterStatesPropsType} from "../../model/filter/filterStateType";
+
 
 interface FilterSidebarProps {
     travelType: number,
@@ -17,7 +20,6 @@ interface FilterSidebarProps {
 }
 
 const FilterSidebar = ({travelType, resetFunction, filterStateProps, ticketCount} : FilterSidebarProps) => {
-    const [page, setPage] = useState<number>(1)
     return (
         <Grid container width={'100%'}>
             <Grid display={(travelType === 0 ? "block" : "none")}>
@@ -25,7 +27,7 @@ const FilterSidebar = ({travelType, resetFunction, filterStateProps, ticketCount
                     <FilterSidebarItem item={item} key={index} filterStateProps={filterStateProps} resetFunction={resetFunction} ticketCount={ticketCount}/>
                 ))} </Grid>
             <Grid display={(travelType === 1 ? "block" : "none")}>
-                {filterSidebarAirplanetwoData.map((item, index) => (
+                {filterSidebarAirplaneTwoData.map((item, index) => (
                     <FilterSidebarItem item={item} key={index} filterStateProps={filterStateProps} resetFunction={resetFunction} ticketCount={ticketCount}/>
                 ))} </Grid>
             <Grid display={(travelType === 2 ? "block" : "none")}>

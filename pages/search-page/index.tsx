@@ -1,14 +1,18 @@
 import React, {useCallback, useState} from "react";
+
+import OrderingFilter from "../../components/common/ordering-filter/OrderingFilter";
+import FilterSidebar from "../../components/filter-Sidebar/FilterSidebar";
+
+import {trips} from "../../data/database/trips.data";
+
+import {priceRangeType, shoppingObjType} from "../../model/filter/filterStateType";
+import {timeRangeType} from "../../model/filter/filterStateType";
+
 import Grid from "@mui/material/Grid";
 import {useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import OrderingFilter from "../../components/common/ordering-filter/OrderingFilter";
 import Typography from "@mui/material/Typography/Typography";
-import {trips} from "../../data/database/trips.data";
-import FilterSidebar from "../../components/filter-Sidebar/FilterSidebar";
-import {priceRangeType, shoppingObjType} from "../../model/filter/filterStateType";
-import {timeRangeType} from "../../model/filter/filterStateType";
-import {filterStatesPropsType} from "../../model/filter/filterStateType";
+
 
 const orderingFilterTitleData = [
     {
@@ -49,16 +53,18 @@ const headerHeight = 70;
 
 export default function SearchPage() {
 
+    //--------------------------------------------------------------------------------------------//
+
     const transportTypeId = 0;
     const startPoint = 1;
     const destination = 2;
+    const currentTrips = trips.filter(trip => trip.transport_type_id === transportTypeId);
+
+    //--------------------------------------------------------------------------------------------//
 
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
     const tabletMatch = useMediaQuery(theme.breakpoints.down('md'));
-
-    const currentTrips = trips.filter(trip => trip.transport_type_id === transportTypeId);
-    // console.log(currentTrips)
 
     // states:
     // order ->
@@ -82,9 +88,6 @@ export default function SearchPage() {
 
     // departure date ->
     const [departureDate, setDepartureDate] = useState<Date>(defaultFilterValue.departureDate)
-
-    // number of tickets
-    const [ticketCount, seTicketCount] = useState(currentTrips.length)
 
     const resetFilters = useCallback(() => {
         setOrderFilterIndex(defaultFilterValue.orderFilterIndex)
@@ -149,7 +152,6 @@ export default function SearchPage() {
                 filteredData = filteredData.sort((a,b) =>  (a.price - b.price))
         }
 
-        // seTicketCount(filteredData.length)
         return filteredData
     } , [currentTrips, orderFilterIndex])
 
@@ -168,12 +170,7 @@ export default function SearchPage() {
         departureTime,
         setDepartureTime,
         transportTypeId,
-        // ticketCount,
     }
-
-    // array of tripsData and transport type id
-    // {data: filterdata, type_id: type}
-
 
     return (
         <Grid container flexDirection={"column"} alignItems={"center"} bgcolor={'background.default'}>

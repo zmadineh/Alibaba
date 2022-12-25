@@ -1,29 +1,24 @@
 import React, { useState } from 'react'
+
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import AccordionDetails from '@mui/material/AccordionDetails';
-
 import Box from '@mui/material/Box';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Accordion from '@mui/material/Accordion';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 
 import {filterSideItemDetailType, filterSideType} from "../../data/filterSidebarData";
 import {filterStatesPropsType} from "../../model/filter/filterStateType";
 
-import ButtonGroup from '@mui/material/ButtonGroup';
-
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
 import SliderItem from './SliderItem';
 import ButtonGroupItem from './ButtonGroupItem';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import {transport_companies} from "../../data/database/transportCompanies.data";
 
 
 interface FilterSidebarItemPropsType {
@@ -73,7 +68,7 @@ const FilterSidebarItem = ({ item, filterStateProps, resetFunction, ticketCount 
         return companies.includes(Number(label))
     }
 
-    //checkbox
+    // checkboxes
     const handleChange = (accorDetail: filterSideItemDetailType) => {
 
         if(accorDetail.type === 'shopping'){
@@ -82,18 +77,14 @@ const FilterSidebarItem = ({ item, filterStateProps, resetFunction, ticketCount 
         else if (accorDetail.type === 'company'){
             const accorCompanyId = Number(accorDetail.label)
 
-            if (!companyCheck(accorDetail.label)){
+            if (!companyCheck(accorDetail.label))
                 setCompanies([...companies, accorCompanyId])
-            }
             else if(companyCheck(accorDetail.label)){
                 const companyIndex = companies.findIndex(coItem => coItem === accorCompanyId)
-
-                if(companyIndex !== -1){
+                if(companyIndex !== -1)
                     setCompanies(companies.filter(coId => coId !== accorCompanyId))
-                }
             }
-
-                setAllCompanies(false)
+            setAllCompanies(false)
         }
 
         setBtnFilter("flex")
@@ -123,27 +114,12 @@ const FilterSidebarItem = ({ item, filterStateProps, resetFunction, ticketCount 
     const top100Films = [
         { label: 'The Shawshank Redemption' },
         { label: 'The Godfather' },
-        { label: 'The Godfather: Part II' },
-        { label: 'The Dark Knight' },
-        { label: '12 Angry Men' },
-        { label: "Schindler's List" },
-        { label: 'Pulp Fiction' },
-        {
-            label: 'The Lord of the Rings: The Return of the King',
+    ]
 
-        },
-        { label: 'The Good, the Bad and the Ugly' },
-        { label: 'Fight Club' },
-        {
-            label: 'The Lord of the Rings: The Fellowship of the Ring',
 
-        },
-        {
-            label: 'Star Wars: Episode V - The Empire Strikes Back',
-
-        },]
     return (
         <Grid container width={'100%'}  bgcolor={'#fff'} sx={{ border: 2, borderRadius: '10px', borderColor: 'divider'}}>
+
             <Grid item xs={12} my={2} p={1} display={"flex"} >
                 <Grid item xs={6}>
                     <Typography>نتایج: {ticketCount}</Typography>
@@ -154,18 +130,21 @@ const FilterSidebarItem = ({ item, filterStateProps, resetFunction, ticketCount 
                     </Button>
                 </Grid>
             </Grid>
+
             <Grid item xs={12} borderTop={1} sx={{ borderColor: 'divider' }}>
+
                 {/* Slider1 */}
                 {state.silider2 ? "" :
                     <SliderItem title={"ساعت حرکت"} value={[departureTime.min.hours, departureTime.max.hours]} min={0} max={23} handleChange={handleChange1} />}
                 {/* Slider1 */}
+
                 {/* Slider2 airplane2 */}
-                {state.silider ?
+                {state.slider ?
                     <SliderItem title={"مدت زمان سفر"} value={value2} min={2} max={29} handleChange={handleChange2} /> : ""}
                 {/* Slider2 airplane2*/}
+
                 {state.Accor.map((accor, accorIndex) => (
                     (accor.AccorDetail.length) > 0 &&
-
                         <Accordion key={accorIndex} sx={{boxShadow: "none"}}>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon/>}
@@ -193,8 +172,8 @@ const FilterSidebarItem = ({ item, filterStateProps, resetFunction, ticketCount 
                                 )}
                             </AccordionDetails>
                         </Accordion>
-
                 ))}
+
                 {state.title === "تور" ?
                     <>
                         <Accordion sx={{ boxShadow: "none" }}>

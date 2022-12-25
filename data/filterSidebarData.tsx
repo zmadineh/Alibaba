@@ -15,13 +15,8 @@ export interface filterSideType {
     title: string,
     title2?: string,
     Accor: {AccorDetail: filterSideItemDetailType[], id: number, title: string }[],
-    // AccorDetail: filterSideItemDetailType[],
-    // body?: string,
-    // label?: string,
-
-    silider?: boolean,
-    silider2?: boolean,
-    // check?: boolean,
+    slider?: boolean,
+    slider2?: boolean,
 }
 
 const getCompanies = (type: number) => {
@@ -61,19 +56,25 @@ export const filterSidebarAirplaneData: filterSideType[] = [
         ]
     },
 ]
-export const filterSidebarAirplanetwoData: filterSideType[] = [
+export const filterSidebarAirplaneTwoData: filterSideType[] = [
     {
         id: 2,
         transportTypeId: 1,
         title: "پرواز خارجی",
-        silider: true,
+        slider: true,
         Accor: [
             {
                 id: 1,
                 title: " نوع بلیط",
                 AccorDetail: [{id: 2, type: 'shopping', body: "سیستمی", label: 'systematic', check: false},
                     {id: 3, type: 'shopping', body: "چارتری", label: 'chartered', check: false}],
-            }]
+            },
+            {
+                id: 2,
+                title: "شرکت های هواپیمایی خارجی",
+                AccorDetail: getCompanies(1)
+            },
+        ]
     },
 ]
 
@@ -85,16 +86,16 @@ export const filterSidebarTrainData: filterSideType[] = [
         title: "قطار",
         Accor: [
             { id: 1, title: "شرکت های ریلی",
-                AccorDetail: //getCompanies(2)
-                    [
-                    { id: 1, type: 'company', label: '', body: "فدک", check: false },
-                    { id: 2, type: 'company', label: '', body: "بن ریل", check: false },
-                    { id: 3, type: 'company', label: '', body: "جوپار", check: false },
-                    { id: 4, type: 'company', label: '', body: "ریل ترابر سبا ", check: false },
-                    { id: 5, type: 'company', label: '', body: " مهتاب سیر جم", check: false },
-                    { id: 6, type: 'company', label: '', body: "نورالرضا ", check: false },
-                    { id: 7, type: 'company', label: '', body: "پارس لایم", check: false },
-                    ]
+                AccorDetail: getCompanies(2)
+                    // [
+                    // { id: 1, type: 'company', label: '', body: "فدک", check: false },
+                    // { id: 2, type: 'company', label: '', body: "بن ریل", check: false },
+                    // { id: 3, type: 'company', label: '', body: "جوپار", check: false },
+                    // { id: 4, type: 'company', label: '', body: "ریل ترابر سبا ", check: false },
+                    // { id: 5, type: 'company', label: '', body: " مهتاب سیر جم", check: false },
+                    // { id: 6, type: 'company', label: '', body: "نورالرضا ", check: false },
+                    // { id: 7, type: 'company', label: '', body: "پارس لایم", check: false },
+                    // ]
             },
             // { id: 8, title: "موارد دیگر", AccorDetail: [{ id: 1, type: 'available', body: "نمایش  قطارهای موجود ", label: 'availableTickets', check: false }] }]
         ]
@@ -107,17 +108,19 @@ export const filterSidebarBusData: filterSideType[] = [
         transportTypeId: 3,
         Accor: [
             { id: 1, title: "شرکت های اتوبوسرانی",
-                AccorDetail: [
-                    { id: 2, type: 'company', label: 'آسیاسفر', body: "آسیاسفر تهران ترمینال غرب", check: false },
-                    { id: 3, type: 'company', label: 'ایمن سفر', body: "ایمن سفر ایرانیان تهران جنوب", check: false },
-                    { id: 4, type: 'company', label: 'میهن نور', body: "تعاونی 4 میهن نور", check: false },
-                    { id: 5, type: 'company', label: 'رویال سفر', body: "رویال سفر", check: false },
-                    { id: 6, type: 'company', label: 'رویال سفر ایرانیان', body: "رویال سفر ایرانیان", check: false },
-                    { id: 7, type: 'company', label: 'سیر و سفر', body: "سیر و سفر", check: false },
-                    { id: 8, type: 'company', label: 'شرکت تعاونی شماره یک', body: "شرکت تعاونی شماره یک ترمینال غرب", check: false },
-                    { id: 9, type: 'company', label: 'شرکت تی بی تی- تعاونى شماره 15', body: "شرکت تی بی تی- تعاونى شماره 15 پايانه جنوب", check: false },
-                    { id: 10, type: 'company', label: 'همسفر چابکسواران', body: " همسفر چابکسواران پایانه غرب", check: false },]
-            },]
+                AccorDetail: getCompanies(3)
+                    // [
+                    // { id: 2, type: 'company', label: 'آسیاسفر', body: "آسیاسفر تهران ترمینال غرب", check: false },
+                    // { id: 3, type: 'company', label: 'ایمن سفر', body: "ایمن سفر ایرانیان تهران جنوب", check: false },
+                    // { id: 4, type: 'company', label: 'میهن نور', body: "تعاونی 4 میهن نور", check: false },
+                    // { id: 5, type: 'company', label: 'رویال سفر', body: "رویال سفر", check: false },
+                    // { id: 6, type: 'company', label: 'رویال سفر ایرانیان', body: "رویال سفر ایرانیان", check: false },
+                    // { id: 7, type: 'company', label: 'سیر و سفر', body: "سیر و سفر", check: false },
+                    // { id: 8, type: 'company', label: 'شرکت تعاونی شماره یک', body: "شرکت تعاونی شماره یک ترمینال غرب", check: false },
+                    // { id: 9, type: 'company', label: 'شرکت تی بی تی- تعاونى شماره 15', body: "شرکت تی بی تی- تعاونى شماره 15 پايانه جنوب", check: false },
+                    // { id: 10, type: 'company', label: 'همسفر چابکسواران', body: " همسفر چابکسواران پایانه غرب", check: false },]
+            },
+        ]
     },
 ]
 export const filterSidebarTourData: filterSideType[] = [
@@ -125,7 +128,7 @@ export const filterSidebarTourData: filterSideType[] = [
         id: 5,
         transportTypeId: 4,
         title: "تور",
-        silider2: true,
+        slider2: true,
         Accor: [],
     },
 ]
