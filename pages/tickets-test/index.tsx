@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import BusTicket from "../../components/ticket_cards/BusTicket";
 import TrainTicket from "../../components/ticket_cards/TrainTicket";
-import TicketComponent from "../../components/ticket_cards/TicketComponent";
+import TicketContainer from "../../components/ticket_cards/TicketContainer";
 import { getTicket } from "../../data/tickets_data/DataTickets";
 import { filterd_TripData } from "../../data/tickets_data/DataTickets";
 
@@ -26,6 +26,7 @@ export default function Home() {
             trip_des: ['ماهانVIP(مانیتورشخصی)','اکونومی'],
             start_point_city: 'اصفهان',
             destination_city: 'تهران',
+            receive_date : new Date(1401, 5, 25, 17, 20),
             Remaining_seats: 10,
             price: 1320000
         },
@@ -33,7 +34,7 @@ export default function Home() {
     return (
         <Grid display={'flex'} direction={'row'} justifyContent={'center'} alignItems='center' width={'100vw'} height={'100vh'}>
             <Grid width={'1000px'} padding='10px'>
-                <TicketComponent filteredData={filteredData} tripType={3}/>
+                <TicketContainer filteredData={filteredData} tripType={1}/>
             </Grid>
         </Grid>
     )
