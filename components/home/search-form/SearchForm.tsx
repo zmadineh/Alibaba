@@ -5,7 +5,7 @@ import BusTicketSearchForm from "./BusTicketSearchForm";
 import TourSearchForm from "./TourSearchForm";
 import React, {useCallback, useState} from "react";
 import {searchFromValue} from "../../../model/searchFormValue.type";
-import {emptySearchFormData} from "../../../data/emptySearchForm.data";
+import {emptySearchFormData} from "../../../data/form/emptySearchForm.data";
 import Grid from "@mui/material/Grid/Grid";
 
 // const FormsComponent = {

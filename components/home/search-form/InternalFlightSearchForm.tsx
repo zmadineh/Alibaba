@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 import {searchFromValue} from "../../../model/searchFormValue.type";
-import {internalCities} from "../../../data/internalCities.data";
+import {internalCities} from "../../../data/form/internalCities.data";
 import {swappableInputsDetailType} from "../../../model/swappableInputsDetail.type";
 
 import SwappableInput from "../../common/search-form/input-components/swappable-inputs/SwappableInput";
@@ -10,7 +10,7 @@ import PassengerCountInput from "../../common/search-form/input-components/Passe
 
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import {emptySearchFormData} from "../../../data/emptySearchForm.data";
+import {emptySearchFormData} from "../../../data/form/emptySearchForm.data";
 import BooleanSelector from "../../common/search-form/input-components/BooleanSelector";
 
 interface InternalFlightSearchFormProps {

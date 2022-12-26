@@ -1,4 +1,4 @@
-import {data} from "../model/data.type";
+import {data} from "../../model/data.type";
 
 export const internalAirports : data[] = [
     {id: 1, title: 'فرودگاه تهران', description: 'تهران', type: 'airport'},
