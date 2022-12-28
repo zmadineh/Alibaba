@@ -6,12 +6,11 @@ import FiltersDialog from "./FiltersDialog";
 
 import {filterStatesPropsType} from "../../model/filter/filterStateType";
 
-import FilterSidebarItem from './FilterSidebarItem';
 import { filterSidebarAirplaneData } from "../../data/filterSidebarData"
 import { filterSidebarAirplaneTwoData } from "../../data/filterSidebarData"
 import { filterSidebarTrainData } from "../../data/filterSidebarData"
 import { filterSidebarBusData } from "../../data/filterSidebarData"
-import { filterSidebarTourData } from "../../data/filterSidebarData"
+// import { filterSidebarTourData } from "../../data/filterSidebarData"
 
 import Grid from '@mui/material/Grid'
 import {useTheme} from "@mui/material";

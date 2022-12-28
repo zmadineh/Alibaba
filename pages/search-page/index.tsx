@@ -226,6 +226,9 @@ export default function SearchPage() {
 
                                 {!tabletMatch && <Typography fontSize={'14px'} fontWeight={'600'}>مرتب سازی: </Typography> }
                                 <OrderingFilter value={orderFilterIndex} setValue={setOrderFilterIndex} inputs={orderingFilterTitleData}/>
+
+                                {/*--------------------------------------------------------*/}
+
                             </Grid>
                         }
 
@@ -245,15 +248,15 @@ export default function SearchPage() {
                     </Grid>
                 </Grid>
 
-                {!mobileMatch &&
-                    <Grid item container width={'100%'} height={'700px'}
-                          px={{xs: 0, sm: 1}} mt={1}
-                          justifyContent={"center"} bgcolor={'purple'}
-                    >
-                        common questions
-                        {/*--------------------------------------------------------*/}
-                    </Grid>
-                }
+                {/*{!mobileMatch &&*/}
+                {/*    <Grid item container width={'100%'} height={'700px'}*/}
+                {/*          px={{xs: 0, sm: 1}} mt={1}*/}
+                {/*          justifyContent={"center"} bgcolor={'purple'}*/}
+                {/*    >*/}
+                {/*        common questions*/}
+                {/*        /!*--------------------------------------------------------*!/*/}
+                {/*    </Grid>*/}
+                {/*}*/}
             </Grid>
 
             {/* desktop footer */}

@@ -1,24 +1,19 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import ButtonGroup from '@mui/material/ButtonGroup';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Accordion from '@mui/material/Accordion';
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
 
 import {filterSideItemDetailType, filterSideType} from "../../data/filterSidebarData";
 import {filterStatesPropsType} from "../../model/filter/filterStateType";
 
 import SliderItem from './SliderItem';
-import ButtonGroupItem from './ButtonGroupItem';
 
 
 interface FilterSidebarItemPropsType {
@@ -49,6 +44,10 @@ const FilterSidebarItem = ({ item, filterStateProps, resetFunction, ticketCount 
     const [value2, setValue2] = useState<number[]>([2, 29]);
     const [btnFilter, setBtnFilter] = useState<string>("none")
 
+    // useEffect(() => {
+    //     console.log(state.priceRange)
+    //     setPriceRange(state.priceRange)
+    // })
 
     // handleClickBtnFilter
     const handleClickBtnFilter = () => {
@@ -86,7 +85,6 @@ const FilterSidebarItem = ({ item, filterStateProps, resetFunction, ticketCount 
             }
             setAllCompanies(false)
         }
-
         setBtnFilter("flex")
     }
 
@@ -131,18 +129,21 @@ const FilterSidebarItem = ({ item, filterStateProps, resetFunction, ticketCount 
             <Grid item xs={12} borderTop={1} sx={{ borderColor: 'divider' }}>
 
                 {/* Slider1 */}
-                {state.slider2 ? "" :
+                {state.slider ?
                     <SliderItem
                         title={"ساعت حرکت"}
                         value={[departureTime.min.hours, departureTime.max.hours]}
                         min={0}
                         max={23}
                         handleChange={handleChange1}
-                    />}
+                    />
+                    :
+                    ""
+                }
                 {/* Slider1 */}
 
                 {/* Slider2 airplane2 */}
-                {state.slider ?
+                {!state.slider ?
                     <SliderItem
                         title={"مدت زمان سفر"}
                         value={value2}
@@ -155,14 +156,17 @@ const FilterSidebarItem = ({ item, filterStateProps, resetFunction, ticketCount 
                 {/* Slider2 airplane2*/}
 
                 {/* Slider3 price range*/}
-                {state.slider ? "" :
+                {state.slider ?
                     <SliderItem
                         title={"بازه قیمت"}
                         value={[priceRange.min, priceRange.max]}
-                        min={0}
-                        max={1000000}
+                        min={state.priceRange.min}
+                        max={state.priceRange.max}
                         handleChange={handleChange3}
-                    />}
+                    />
+                    :
+                    ""
+                }
                 {/* Slider1 */}
 
                 {state.Accor.map((accor, accorIndex) => (
