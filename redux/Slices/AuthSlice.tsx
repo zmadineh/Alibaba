@@ -44,7 +44,7 @@ export const AuthSlice = createSlice({
             state.loading = true;
         })
         builder.addCase(AuthAsyncThunk.fulfilled,(state:AuthStateType,action:any)=>{
-            const payload = action
+            const {payload} = action
             state.isLogin = true
             state.name=payload.name
             state.number=payload.number

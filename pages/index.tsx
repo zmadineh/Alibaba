@@ -12,6 +12,7 @@ import SearchForm from "../components/home/search-form/SearchForm";
 import TabPanel from "../components/home/tabview/TabPanel";
 import Desk_header from '../components/desktop_header/Desk_header';
 import HeaderMobile from '../components/layout/layoutMobile/HeaderMobile';
+import DateFilter from '../components/common/date-filter/DateFilter';
 const pagesFaName = ['پرواز داخلی', 'پرواز خارجی', 'قطار', 'اتوبوس', 'تور']
 export default function FirstPage() {
     const [page, setPage] = useState<number>(0);
