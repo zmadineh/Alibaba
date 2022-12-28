@@ -1,11 +1,8 @@
 import { Grid, SvgIcon, Typography, Divider, Button } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import Link from 'next/link';
 import { filterd_TripData } from '../../data/tickets_data/DataTickets';
 import Image from "next/image";
 import { numberWithCommas } from "../../utils/functions/numberWithCommas";
-import { getTicket } from '../../data/tickets_data/DataTickets';
 import TicketIcon from './TicketIcon';
 
 export default function TicketComponent(props: { item: filterd_TripData, matches: boolean,tripType:number }) {
@@ -97,7 +94,7 @@ export default function TicketComponent(props: { item: filterd_TripData, matches
                     <Typography sx={{ color: 'grey.600', fontSize: '13px' }}>ریال</Typography>
                 </Grid>
                 <Button variant="contained" color='secondary' disableElevation sx={{ fontSize: '.875rem', paddingLeft: '1.5rem', paddingRight: '1.5rem', maxWidth: '150px', display: { xs: 'none', sm: 'block' } }}>انتخاب بلیط</Button>
-                <Typography sx={{ color: item.Remaining_seats >= 10 ? 'GrayText' : 'red', fontSize: '11px', fontWeight: '500' }}>{item.Remaining_seats} صندلی باقی مانده</Typography>
+                <Typography sx={{ color: item.remaining_seats >= 10 ? 'GrayText' : 'red', fontSize: '11px', fontWeight: '500' }}>{item.remaining_seats} صندلی باقی مانده</Typography>
             </Grid>
         </Grid>
 
