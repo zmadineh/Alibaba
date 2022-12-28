@@ -25,7 +25,7 @@ const TrainCardThree = () => {
                 </Grid>
             </Grid >
             {/* mobile */}
-            <Grid sx={{ overflowX: "scroll", display: { xs: "flex", md: "none" }, marginLeft: "1rem", width: { xs: 310 } }} gap={"1rem"} >
+            <Grid sx={{ overflowX: "scroll", display: { xs: "flex", md: "none" }, marginLeft: "1rem", width: { xs: "100%" } }} gap={"1rem"} >
                 {trainCardDataThree.map((item, index) => (
                     <Grid item key={index} width={"100%"} height={250} sx={{ border: 1, borderRadius: '10px 10px 10px 10px', borderColor: 'divider',bgcolor: 'common.white' }}  >
                         <TrainItem item={item} />
