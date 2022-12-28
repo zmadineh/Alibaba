@@ -9,12 +9,14 @@ import {priceRangeType, shoppingObjType} from "../../model/filter/filterStateTyp
 import {timeRangeType} from "../../model/filter/filterStateType";
 
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography/Typography";
 import {useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Typography from "@mui/material/Typography/Typography";
+import Box from "@mui/material/Box";
 import {useRouter} from "next/router";
 import {cities} from "../../data/database/cities.data";
+import DateFilter from "../../components/common/date-filter/DateFilter";
+
 
 
 const orderingFilterTitleData = [
@@ -58,16 +60,17 @@ export default function SearchPage() {
 
     //--------------------------------------------------------------------------------------------//
 
+
     const router = useRouter()
     const {  transportType,
-            currStartPoint,
-            currDestinationPoint,
-            currDepartureDate,
-            returnDate,
-            roundWay,
-            adultCount,
-            childCount,
-            babyCount} = router.query
+        currStartPoint,
+        currDestinationPoint,
+        currDepartureDate,
+        returnDate,
+        roundWay,
+        adultCount,
+        childCount,
+        babyCount} = router.query
 
 
     console.log(transportType,
@@ -229,9 +232,9 @@ export default function SearchPage() {
                         </Grid>
                     }
 
-                    <Grid item container gap={1} pl={{xs: 0, sm: 1}} flexDirection={"column"} xs={12} md={9}>
+                    <Grid item container gap={1} pl={{xs: 0, sm: 1}} flexDirection={"column"} xs={12} sm={9}>
                         <Grid item height={'100px'} bgcolor={'yellow'}>
-                            date
+                            <DateFilter/>
                             {/*--------------------------------------------------------*/}
                         </Grid>
 
@@ -248,11 +251,8 @@ export default function SearchPage() {
                                         />
                                     </Box>
                                 }
-
                                 {!tabletMatch && <Typography fontSize={'14px'} fontWeight={'600'}>مرتب سازی: </Typography> }
                                 <OrderingFilter value={orderFilterIndex} setValue={setOrderFilterIndex} inputs={orderingFilterTitleData}/>
-
-                                {/*--------------------------------------------------------*/}
 
                             </Grid>
                         }
