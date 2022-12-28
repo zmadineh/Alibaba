@@ -66,8 +66,8 @@ function buildFilteredType(props: { cat: 1, filteredData: Trip_type[] } | { cat:
     }
 }
 
-export async function getTicket(startCity:number, desCity:number , type_id: number, travelerCount: number,date: Date,returnDate:Date|undefined=undefined):Promise<filterd_TripData[]> {
-    return await new Promise((resolve,reject)=>{
+export function getTicket(startCity:number, desCity:number , type_id: number, travelerCount: number,date: Date,returnDate:Date|undefined=undefined):Promise<filterd_TripData[]> {
+    return new Promise((resolve,reject)=>{
         setTimeout(() => {
             if (returnDate===undefined) {
                 let filteredData: Trip_type[];
