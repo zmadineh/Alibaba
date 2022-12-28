@@ -3,32 +3,22 @@ import React, {useState} from "react";
 import InputSelector from "../InputSelector";
 import SwappableTemplate from "./SwappableTemplate";
 
-import {searchFromValue} from "../../../../../model/searchFormValue.type";
-import {data} from "../../../../../model/data.type";
+
 import {swappableInputsDetailType} from "../../../../../model/swappableInputsDetail.type";
 
 interface SwappableInputProps {
     details: swappableInputsDetailType[],
-    firstValue: string,
-    secValue: string,
-    setFirstValue: React.Dispatch<React.SetStateAction<string>>,
-    setSecValue: React.Dispatch<React.SetStateAction<string>>,
-    // firstInputName: string,
-    // secondInputName: string,
-    // firstData: data[],
-    // secondData: data[],
-    // firstLabel: string,
-    // secondLabel: string,
-    handleChange: (name: string, value: string) => void,
-    form: searchFromValue,
-    setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
-    // iconName: string,
+    values: {[key: string]: string},
     flipData: () => void
+    listWidth?: string,
+    error: {[key: string]: boolean},
+    errorMessage: string,
+    validationData: (name:string, value: string) => boolean,
 }
 
 export default function MobileSwappableInput(props : SwappableInputProps) {
 
-    const {details, handleChange, form, setForm, firstValue, setFirstValue, secValue, setSecValue, flipData} = props
+    const {details, flipData, error, errorMessage, validationData, values} = props
 
     const [openFirst, setOpenFirst] = useState<boolean>(false);
     const [openSec, setOpenSec] = useState<boolean>(false);
@@ -40,14 +30,10 @@ export default function MobileSwappableInput(props : SwappableInputProps) {
                     detail={details[0]}
                     open={openFirst}
                     setOpen={setOpenFirst}
-                    value={firstValue}
-                    setValue={setFirstValue}
-                    // data={firstData}
-                    // label={firstLabel}
-                    // name={firstInputName}
-                    handleChange={handleChange}
-                    form={form}
-                    // iconName={iconName}
+                    values={values}
+                    error={error[details[0].name]}
+                    errorMessage={errorMessage}
+                    validationData={validationData}
                 />
             }
             children2={
@@ -55,14 +41,10 @@ export default function MobileSwappableInput(props : SwappableInputProps) {
                     detail={details[1]}
                     open={openSec}
                     setOpen={setOpenSec}
-                    value={secValue}
-                    setValue={setSecValue}
-                    // data={secondData}
-                    // label={secondLabel}
-                    // name={secondInputName}
-                    handleChange={handleChange}
-                    form={form}
-                    // iconName={iconName}
+                    values={values}
+                    error={error[details[1].name]}
+                    errorMessage={errorMessage}
+                    validationData={validationData}
                 />
             }
             flipData={flipData}

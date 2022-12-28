@@ -3,7 +3,6 @@ import React from 'react';
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import InputAdornment from "@mui/material/InputAdornment";
-import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import VerticalFlip from "../../../public/svg/VerticalFlip-icon.svg";
 
 

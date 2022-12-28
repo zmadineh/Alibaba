@@ -12,6 +12,9 @@ interface CustomDropDownProps {
     borderRadius: string,
     variant: "standard" | "filled" | "outlined" | undefined,
     bgColor?: string,
+    disable: boolean,
+    error: boolean,
+    errorMessage: string,
 }
 
 const CustomDropDown = (props: CustomDropDownProps) => {
@@ -33,6 +36,10 @@ const CustomDropDown = (props: CustomDropDownProps) => {
             variant={"outlined"}
             size={"small"}
 
+            error={(!props.disable && props.error)}
+            helperText={(!props.disable && props.error) && props.errorMessage}
+
+            disabled={props.disable}
             InputProps={{
                 startAdornment: (
                     <InputAdornment position="start" >
@@ -42,6 +49,7 @@ const CustomDropDown = (props: CustomDropDownProps) => {
                 ),
             }}
             sx={{
+                    height: '2.5rem',
                     minHeight: 0,
                     '& .MuiSelect-icon': {
                         display: 'none',
@@ -58,13 +66,13 @@ const CustomDropDown = (props: CustomDropDownProps) => {
                         backgroundColor: props.bgColor,
                     },
 
-                    '& .MuiInputBase-root::before': {
-                        borderColor: "grey.200",
-                    },
-
-                    '& .MuiInput-root::after': {
-                        borderColor: "grey.300",
-                    },
+                    // '& .MuiInputBase-root::before': {
+                    //     borderColor: "grey.200",
+                    // },
+                    //
+                    // '& .MuiInput-root::after': {
+                    //     borderColor: "grey.300",
+                    // },
 
                     '& .MuiOutlinedInput-root.Mui-focused': {
                         '& .MuiOutlinedInput-notchedOutline': {
@@ -73,9 +81,9 @@ const CustomDropDown = (props: CustomDropDownProps) => {
                         },
                     },
 
-                    '& .MuiInputLabel-root.Mui-focused': {
-                        color: 'secondary.100'
-                    },
+                    // '& .MuiInputLabel-root.Mui-focused': {
+                    //     color: 'secondary.100'
+                    // },
 
                     '& .MuiInput-input': {
                         height: '2.4rem',

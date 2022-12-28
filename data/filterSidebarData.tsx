@@ -35,7 +35,6 @@ const getPriceRange = (type: number) => {
     // promise ====>
     const baseTripsPrice = trips.filter(trip => (trip.transport_type_id === type )).map(item => item.price).sort((a, b) => a - b)
     const tripsLength = baseTripsPrice.length
-    console.log(baseTripsPrice, tripsLength, baseTripsPrice[0], baseTripsPrice[tripsLength-1])
     return {min: baseTripsPrice[0], max: baseTripsPrice[tripsLength-1]}
 }
 

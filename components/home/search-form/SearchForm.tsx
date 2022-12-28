@@ -1,11 +1,12 @@
-import InternalFlightSearchForm from "./InternalFlightSearchForm";
-import InternationalFlightSearchForm from "./InternationalFlightSearchForm";
-import TrainTicketSearchForm from "./TrainTicketSearchForm";
-import BusTicketSearchForm from "./BusTicketSearchForm";
-import TourSearchForm from "./TourSearchForm";
 import React, {useCallback, useState} from "react";
-import {searchFromValue} from "../../../model/searchFormValue.type";
+
+import TourSearchForm from "./TourSearchForm";
+
 import {emptySearchFormData} from "../../../data/form/emptySearchForm.data";
+import {searchFromValue} from "../../../model/searchFormValue.type";
+import {getInputDetailsByType} from "../../../data/search-form/serchFormInputDetails";
+import SearchFormTemplates from "./SerchFormTemplate";
+
 import Grid from "@mui/material/Grid/Grid";
 
 // const FormsComponent = {
@@ -27,25 +28,20 @@ export default function SearchForm({index, searches, setSearches} : SearchFormPr
     const [mainForm, setMainForm] = useState<searchFromValue>({...emptySearchFormData, formType: 0})
 
     const mainHandleSubmit = (form : searchFromValue) => {
+        console.log(form)
         setMainForm(form);
         const searchesTemp = searches
         const repeatedDataIndex = searchesTemp.findIndex(item => JSON.stringify(item) === JSON.stringify(form) )
         if (repeatedDataIndex !== -1){
             searchesTemp.splice(repeatedDataIndex, 1)
         }
-        console.log('repeated ', repeatedDataIndex)
         searchesTemp.unshift(form)
         setSearches(searchesTemp)
-        console.log('search', JSON.stringify(searches))
     }
 
     return (
         <Grid zIndex={1000} py={2}>
-            {index === 0 && <InternalFlightSearchForm submit={mainHandleSubmit}/>}
-            {index === 1 && <InternationalFlightSearchForm submit={mainHandleSubmit}/>}
-            {index === 2 && <TrainTicketSearchForm submit={mainHandleSubmit}/>}
-            {index === 3 && <BusTicketSearchForm submit={mainHandleSubmit}/>}
-            {index === 4 && <TourSearchForm submit={mainHandleSubmit}/>}
+            <SearchFormTemplates submit={mainHandleSubmit} formType={index} inputDetails={getInputDetailsByType(index)} />
         </Grid>
     )
 }

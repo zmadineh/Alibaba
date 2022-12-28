@@ -7,6 +7,7 @@ import TabletSwappableInput from "./TabletSwappableInput";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {useTheme} from "@mui/material";
+import MobileSwappableInput from "./MobileSwappableInput";
 
 
 interface SwappableInputProps {
@@ -70,16 +71,16 @@ export default function SwappableInput(props : SwappableInputProps) {
 
     return (
         <>
-            {/*{mobileMatch &&*/}
-            {/*    <MobileSwappableInput*/}
-            {/*        {...props}*/}
-            {/*        firstValue={firstValue}*/}
-            {/*        setFirstValue={setFirstValue}*/}
-            {/*        secValue={secValue}*/}
-            {/*        setSecValue={setSecValue}*/}
-            {/*        flipData={flipData}*/}
-            {/*    />*/}
-            {/*}*/}
+            {mobileMatch &&
+                <MobileSwappableInput
+                    {...props}
+                    values={values}
+                    flipData={flipData}
+                    error={error}
+                    errorMessage={errorMessage}
+                    validationData={validationData}
+                />
+            }
 
             {!mobileMatch && tabletMatch &&
                 <TabletSwappableInput
@@ -96,7 +97,6 @@ export default function SwappableInput(props : SwappableInputProps) {
                 <LaptopSwappableInput
                     {...props}
                     values={values}
-                    setValues={setValues}
                     flipData={flipData}
                     error={error}
                     errorMessage={errorMessage}

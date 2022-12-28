@@ -11,7 +11,6 @@ import {swappableInputsDetailType} from "../../../../../model/swappableInputsDet
 interface SwappableInputProps {
     details: swappableInputsDetailType[],
     values: {[key: string]: string},
-    setValues: React.Dispatch<React.SetStateAction<{[key: string]: string}>>,
     flipData: () => void
     listWidth?: string,
     error: {[key: string]: boolean},
@@ -21,7 +20,7 @@ interface SwappableInputProps {
 
 export default function LaptopSwappableInput(props : SwappableInputProps) {
 
-    const {details, flipData, listWidth = '100%', error, errorMessage, validationData, values, setValues} = props
+    const {details, flipData, listWidth = '100%', error, errorMessage, validationData, values} = props
 
     const borderRadius = {r1: "0 8px 8px 0", r2: "8px 0 0 8px"};
 

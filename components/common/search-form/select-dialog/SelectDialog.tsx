@@ -28,29 +28,30 @@ const Transition = React.forwardRef(function Transition(
 
 interface selectDialogProps {
     open: boolean,
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>,
     data: data[],
-    selectedValue: string,
     onClose: (value: string) => void,
     label: string,
 }
 
-export default function SelectDialog({open, data, onClose, selectedValue, label} : selectDialogProps) {
+export default function SelectDialog({open, setOpen, data, onClose, label} : selectDialogProps) {
 
     const [search, setSearch] = useState<string>('');
 
     const handleClose = () => {
-        onClose(selectedValue);
+        // onClose(selectedValue);
+        setOpen(false)
     };
 
     const handelItemClick = (value : string) => {
-        console.log(value, selectedValue)
+        console.log(value)
         onClose(value);
     };
 
     return (
         <div>
             <Dialog
-                onClose={handleClose}
+                // onClose={handleClose}
                 open={open}
                 role={"presentation"}
                 TransitionComponent={Transition}
