@@ -8,13 +8,13 @@ export const transport_companies = [
     {id: 5, transport_type_id: 1, name: 'Meraj Airlines', image: 'https://cdn.alibaba.ir/static/img/airlines/JI.png', },
     {id: 6, transport_type_id: 1, name: 'Qeshm Air', image: 'https://cdn.alibaba.ir/static/img/airlines/QB.png', },
 
-    {id: 7, transport_type_id: 2, name: 'رویال سفر', image: 'https://cdn.alibaba.ir/static/img/bus/RO.jpg', },
-    {id: 8, transport_type_id: 2, name: 'سیر و سفر', image: 'https://cdn.alibaba.ir/static/img/bus/SS.jpg', },
-    {id: 9, transport_type_id: 2, name: 'همسفر چابكسواران', image: 'https://cdn.alibaba.ir/static/img/bus/HMSFR.jpg', },
+    {id: 7, transport_type_id: 3, name: 'رویال سفر', image: 'https://cdn.alibaba.ir/static/img/bus/RO.jpg',score:4.2 },
+    {id: 8, transport_type_id: 3, name: 'سیر و سفر', image: 'https://cdn.alibaba.ir/static/img/bus/SS.jpg',score:4 },
+    {id: 9, transport_type_id: 3, name: 'همسفر چابكسواران', image: 'https://cdn.alibaba.ir/static/img/bus/HMSFR.jpg',score:3.4 },
 
-    {id: 10, transport_type_id: 3, name: 'ريل ترابر سبا', image: 'https://cdn.alibaba.ir/static/img/train/train_15.png', },
-    {id: 11, transport_type_id: 3, name: 'جوپار', image: 'https://cdn.alibaba.ir/static/img/train/train_31.png', },
-    {id: 12, transport_type_id: 3, name: 'بن ريل', image: 'https://cdn.alibaba.ir/static/img/train/train_-2.png', },
+    {id: 10, transport_type_id: 2, name: 'ريل ترابر سبا', image: 'https://cdn.alibaba.ir/static/img/train/train_15.png', },
+    {id: 11, transport_type_id: 2, name: 'جوپار', image: 'https://cdn.alibaba.ir/static/img/train/train_31.png', },
+    {id: 12, transport_type_id: 2, name: 'بن ريل', image: 'https://cdn.alibaba.ir/static/img/train/train_-2.png', },
 
     {id: 13, transport_type_id: 4, name: '', image: '', },
 ]
