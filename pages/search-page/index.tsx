@@ -9,9 +9,10 @@ import {priceRangeType, shoppingObjType} from "../../model/filter/filterStateTyp
 import {timeRangeType} from "../../model/filter/filterStateType";
 
 import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography/Typography";
 import {useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Typography from "@mui/material/Typography/Typography";
 
 
 const orderingFilterTitleData = [
@@ -118,8 +119,8 @@ export default function SearchPage() {
                 data.start_point_city_id === startPoint &&
                 data.destination_city_id === destination &&
 
-                data.price > priceRange.min &&
-                data.price < priceRange.max &&
+                data.price >= priceRange.min &&
+                data.price <= priceRange.max &&
 
                 data.departure_date.getFullYear() === departureDate.getFullYear() &&
                 data.departure_date.getMonth() === departureDate.getMonth() &&
@@ -189,8 +190,8 @@ export default function SearchPage() {
                 <Grid item container width={'100%'} height={'100%'}
                       justifyContent={"center"}
                 >
-                    {!mobileMatch &&
-                        <Grid item xs={12} sm={3}>
+                    {!mobileMatch && !tabletMatch &&
+                        <Grid item xs={12} sm={4} md={3}>
                             <Grid position={"sticky"} top={`${headerHeight+10}px`} bottom={'100px'}>
                                 <FilterSidebar
                                     filterStateProps={stateProps}
@@ -203,7 +204,7 @@ export default function SearchPage() {
                         </Grid>
                     }
 
-                    <Grid item container gap={1} pl={{xs: 0, sm: 1}} flexDirection={"column"} xs={12} sm={9}>
+                    <Grid item container gap={1} pl={{xs: 0, sm: 1}} flexDirection={"column"} xs={12} md={9}>
                         <Grid item height={'100px'} bgcolor={'yellow'}>
                             date
                             {/*--------------------------------------------------------*/}
@@ -212,9 +213,19 @@ export default function SearchPage() {
                         {!mobileMatch &&
                             <Grid item display={"flex"} alignItems={"center"} gap={2}>
 
+                                {tabletMatch &&
+                                    <Box maxWidth={'130px'}>
+                                        <FilterSidebar
+                                            filterStateProps={stateProps}
+                                            travelType={transportTypeId}
+                                            resetFunction={resetFilters}
+                                            ticketCount={filter().length}
+                                        />
+                                    </Box>
+                                }
+
                                 {!tabletMatch && <Typography fontSize={'14px'} fontWeight={'600'}>مرتب سازی: </Typography> }
                                 <OrderingFilter value={orderFilterIndex} setValue={setOrderFilterIndex} inputs={orderingFilterTitleData}/>
-
                             </Grid>
                         }
 
@@ -262,8 +273,13 @@ export default function SearchPage() {
                             <OrderingFilter value={orderFilterIndex} setValue={setOrderFilterIndex} inputs={orderingFilterTitleData}/>
 
                         </Grid>
-                        <Grid item xs={6} bgcolor={'blue'}>
-                            dialog filter
+                        <Grid item display={"flex"} justifyContent={"center"} alignItems={"center"} xs={6}>
+                            <FilterSidebar
+                                filterStateProps={stateProps}
+                                travelType={transportTypeId}
+                                resetFunction={resetFilters}
+                                ticketCount={filter().length}
+                            />
                             {/*--------------------------------------------------------*/}
                         </Grid>
                     </Grid>

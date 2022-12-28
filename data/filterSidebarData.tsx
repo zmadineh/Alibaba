@@ -49,7 +49,7 @@ export const filterSidebarAirplaneData: filterSideType[] = [
             },
             {
                 id: 2,
-                title: "شرکت های هواپیمایی داخلی",
+                title: "شرکت های هواپیمایی",
                 AccorDetail: getCompanies(0)
             },
             // {
@@ -78,7 +78,7 @@ export const filterSidebarAirplaneTwoData: filterSideType[] = [
             },
             {
                 id: 2,
-                title: "شرکت های هواپیمایی خارجی",
+                title: "شرکت های هواپیمایی",
                 AccorDetail: getCompanies(1)
             },
         ]
