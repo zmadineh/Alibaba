@@ -8,6 +8,7 @@ import {getInputDetailsByType} from "../../../data/search-form/serchFormInputDet
 import SearchFormTemplates from "./SerchFormTemplate";
 
 import Grid from "@mui/material/Grid/Grid";
+import {useRouter} from "next/router";
 
 // const FormsComponent = {
 //     0: InternalFlightSearchForm,
@@ -26,6 +27,7 @@ interface SearchFormProps {
 export default function SearchForm({index, searches, setSearches} : SearchFormProps) {
 
     const [mainForm, setMainForm] = useState<searchFromValue>({...emptySearchFormData, formType: 0})
+    const router = useRouter();
 
     const mainHandleSubmit = (form : searchFromValue) => {
         console.log(form)
@@ -37,6 +39,19 @@ export default function SearchForm({index, searches, setSearches} : SearchFormPr
         }
         searchesTemp.unshift(form)
         setSearches(searchesTemp)
+
+        router.push({ pathname: 'search-page',
+            query: {
+                transportType: index,
+                currStartPoint: form.origin,
+                currDestinationPoint: form.destination,
+                currDepartureDate: form.departureDate,
+                returnDate: form.returnDate,
+                roundWay: form.oneWayRoad,
+                adultCount: form.passengerCount.adult,
+                childCount: form.passengerCount.child,
+                babyCount: form.passengerCount.baby,
+            }});
     }
 
     return (

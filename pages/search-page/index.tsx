@@ -13,6 +13,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography/Typography";
 import {useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import {useRouter} from "next/router";
+import {cities} from "../../data/database/cities.data";
 
 
 const orderingFilterTitleData = [
@@ -56,9 +58,32 @@ export default function SearchPage() {
 
     //--------------------------------------------------------------------------------------------//
 
-    const transportTypeId = 0;
-    const startPoint = 1;
+    const router = useRouter()
+    const {  transportType,
+            currStartPoint,
+            currDestinationPoint,
+            currDepartureDate,
+            returnDate,
+            roundWay,
+            adultCount,
+            childCount,
+            babyCount} = router.query
+
+
+    console.log(transportType,
+        currStartPoint,
+        currDestinationPoint,
+        currDepartureDate,
+        returnDate,
+        roundWay,
+        adultCount,
+        childCount,
+        babyCount);
+
+    const transportTypeId = Number(transportType);
+    const startPoint = 1
     const destination = 2;
+
     const currentTrips = trips.filter(trip => trip.transport_type_id === transportTypeId);
 
     //--------------------------------------------------------------------------------------------//
