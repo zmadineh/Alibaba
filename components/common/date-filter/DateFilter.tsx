@@ -13,30 +13,34 @@ interface DateFilterPropsTyp {
 
 export default function DateFilter ({departureDate, setDepartureDate}:DateFilterPropsTyp) {
 
-    const days = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه'];
+    const days = ['یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه'];
 
     const dateOptionCreator = () => {
-        const today = new Date(departureDate);
+        // const today = new Date(departureDate);
         let index = 0;
-        let dateOption = [{id: index++, title: today.toLocaleDateString(), day: days[today.getDay()]}];
+        let dateOption = [];
 
         for (let i=1; i<=5; ++i){
             let tomorrow = new Date(departureDate);
             tomorrow.setDate(tomorrow.getDate() - i)
             dateOption.push({id: index++, title: tomorrow.toLocaleDateString(), day: days[tomorrow.getDay()]})
         }
+
+        const today = new Date(departureDate);
+        dateOption.push({id: index++, title: today.toLocaleDateString(), day: days[today.getDay()]});
+
         for (let i=1; i<=5; ++i){
             let tomorrow = new Date(departureDate);
             tomorrow.setDate(tomorrow.getDate() + i)
             dateOption.push({id: index++, title: tomorrow.toLocaleDateString(), day: days[tomorrow.getDay()]})
         }
 
-        console.log(dateOption)
+        console.log(dateOption.length)
         return dateOption
     }
 
 
-    const [value, setValue] = useState(6);
+    const [value, setValue] = useState(dateOptionCreator().length-1/2);
 
     const handleClick = (id:number) => {
         setValue(id);
