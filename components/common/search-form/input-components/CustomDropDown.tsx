@@ -6,7 +6,7 @@ import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined
 interface CustomDropDownProps {
     label: string,
     name: string,
-    values : Array<{value : string,label : string}>,
+    values : {value : Date,label : string}[],
     currentValue : string,
     setCurrentValue: React.Dispatch<React.SetStateAction<string>>,
     borderRadius: string,
@@ -90,8 +90,8 @@ const CustomDropDown = (props: CustomDropDownProps) => {
                     },
                 }}
         >
-            {props.values.map(option => (
-                <MenuItem key={option.value} value={option.value}
+            {props.values.map((option, index) => (
+                <MenuItem key={index} value={option.value.toLocaleDateString()}
                 sx={{
                     '&:hover, &.Mui-selected:hover, &.Mui-selected ': {
                         backgroundColor: 'secondary.100',

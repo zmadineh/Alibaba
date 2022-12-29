@@ -111,8 +111,8 @@ export async function getTicket(startCity:number, desCity:number , type_id: numb
 
 
 export const trips: Trip_type[] = [
-    { id: 1, transport_type_id: 0, transport_company_id: 1, start_point_city_id: 1, destination_city_id: 2, remaining_seats: 10, price: 1230000, round_trip: false, departure_date: new Date(1401, 9, 29, 11, 23, 0), receive_date: new Date(1401, 9, 30, 11, 0, 0), shopping_type: 'systematic', trip_des: [''] },
-    { id: 2, transport_type_id: 0, transport_company_id: 2, start_point_city_id: 1, destination_city_id: 2, remaining_seats: 15, price: 177300, round_trip: false, departure_date: new Date(1401, 9, 29, 6, 23, 0), receive_date: new Date(1401, 9, 29, 11, 40, 0), shopping_type: 'chartered', trip_des: [''] },
+    { id: 1, transport_type_id: 0, transport_company_id: 1, start_point_city_id: 1, destination_city_id: 2, remaining_seats: 10, price: 1230000, round_trip: false, departure_date: new Date(), receive_date: new Date(1401, 9, 30, 11, 0, 0), shopping_type: 'systematic', trip_des: [''] },
+    { id: 2, transport_type_id: 0, transport_company_id: 2, start_point_city_id: 1, destination_city_id: 2, remaining_seats: 15, price: 177300, round_trip: false, departure_date: new Date(2022, 1, 1, 6, 23, 0), receive_date: new Date(1401, 9, 29, 11, 40, 0), shopping_type: 'chartered', trip_des: [''] },
     { id: 3, transport_type_id: 0, transport_company_id: 3, start_point_city_id: 1, destination_city_id: 2, remaining_seats: 1, price: 123600, round_trip: false, departure_date: new Date(1401, 9, 29, 3, 23, 0), receive_date: new Date(1401, 9, 29, 11, 50, 0), shopping_type: 'chartered', trip_des: [''] },
     { id: 4, transport_type_id: 0, transport_company_id: 1, start_point_city_id: 1, destination_city_id: 2, remaining_seats: 5, price: 150000, round_trip: false, departure_date: new Date(1401, 9, 29, 18, 23, 0), receive_date: new Date(1401, 9, 29, 19, 23, 0), shopping_type: 'systematic', trip_des: [''] },
 

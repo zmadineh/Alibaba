@@ -35,14 +35,14 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
 
     const dateOptionCreator = () => {
         const today = new Date();
-        let dateOption = [{label: today.toLocaleDateString(), value: today.toLocaleDateString()}];
+        let dateOption = [{label: today.toLocaleDateString('fa-IR'), value: today}];
 
         for (let i=1; i<10; ++i){
             let tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + i)
-            dateOption.push({label: tomorrow.toLocaleDateString(), value: tomorrow.toLocaleDateString()})
+            dateOption.push({label: tomorrow.toLocaleDateString('fa-IR'), value: tomorrow})
         }
-        console.log(dateOption)
+        console.log('toggle: ', dateOption)
         return dateOption
     }
 
@@ -137,8 +137,8 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                            },
                        }}
                     >
-                        {dateOptionCreator().map(option => (
-                            <MenuItem key={option.value} value={option.value}
+                        {dateOptionCreator().map((option, index) => (
+                            <MenuItem key={index} value={option.value.toLocaleDateString()}
                                       sx={{
                                           '&:hover, &.Mui-selected:hover, &.Mui-selected ': {
                                               backgroundColor: 'secondary.100',
@@ -188,8 +188,8 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                            },
                        }}
                     >
-                        {dateOptionCreator().map(option => (
-                            <MenuItem key={option.value} value={option.value} // onClick={(event) => console.log(event.currentTarget)}
+                        {dateOptionCreator().map((option, index) => (
+                            <MenuItem key={index} value={option.value.toLocaleDateString()} // onClick={(event) => console.log(event.currentTarget)}
                                       sx={{
                                           '&:hover, &.Mui-selected:hover, &.Mui-selected ': {
                                               backgroundColor: 'secondary.100',

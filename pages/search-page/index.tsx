@@ -84,12 +84,16 @@ export default function SearchPage() {
 
     const transportTypeId = Number(transportType);
     const currDepartureDate_  = (currDepartureDate ? new Date(currDepartureDate.toString()) : new Date());
+    // console.log('currDepartureDate_: ', currDepartureDate_.toLocaleDateString(), currDepartureDate_.getFullYear())
     const startPoint = 1;
     const destination = 2;
 
     const currentTrips = trips.filter(trip => trip.transport_type_id === transportTypeId);
 
+    console.log('currDepartureDate_: ', currDepartureDate_.toLocaleDateString(), 'trips : ', currentTrips[0].departure_date.toLocaleDateString())
+
     //--------------------------------------------------------------------------------------------//
+
 
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
@@ -232,8 +236,8 @@ export default function SearchPage() {
                         </Grid>
                     }
 
-                    <Grid item container gap={1} pl={{xs: 0, sm: 1}} flexDirection={"column"} xs={12} sm={9}>
-                        <Grid item height={'100px'}>
+                    <Grid item container gap={1} pl={{xs: 0, sm: 1}} flexDirection={"column"} xs={12} md={9}>
+                        <Grid item container height={'100px'}>
                             <DateFilter departureDate={departureDate} setDepartureDate={setDepartureDate}/>
                             {/*--------------------------------------------------------*/}
                         </Grid>
@@ -313,6 +317,7 @@ export default function SearchPage() {
                     </Grid>
                     <Grid item xs={6} bgcolor={'orange'}>
                         next and prev day
+                        
                     {/*--------------------------------------------------------*/}
                     </Grid>
                 </Grid>
