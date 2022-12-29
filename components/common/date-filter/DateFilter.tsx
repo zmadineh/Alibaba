@@ -4,26 +4,43 @@ import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { Divider } from '@mui/material';
+import {searchFromValue} from "../../../model/searchFormValue.type";
 
-type Props = {}
+interface DateFilterPropsTyp {
+    departureDate: Date,
+    setDepartureDate: React.Dispatch<React.SetStateAction<Date>>,
+}
 
-const DateFilter = (props: Props) => {
+export default function DateFilter ({departureDate, setDepartureDate}:DateFilterPropsTyp) {
 
-    const [value, setValue] = useState(0);
-    const Date =[
-        {id:0,title:'پنجشنبه - 1/10'},
-        {id:1,title:'جمعه - 2/10'},
-        {id:2,title:'شنبه - 3/10'},
-        {id:3,title:'یکشنبه - 4/10'},
-        {id:4,title:'دوشنبه - 5/10'},
-        {id:5,title:'سه شنبه - 6/10'},
-        {id:6,title:'چهارشنبه - 7/10'},
-        {id:7,title:'پنجشنبه - 8/10'},
-        {id:8,title:'جمعه - 9/10'},
-    ]
+    const days = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه'];
+
+    const dateOptionCreator = () => {
+        const today = new Date(departureDate);
+        let index = 0;
+        let dateOption = [{id: index++, title: today.toLocaleDateString(), day: days[today.getDay()]}];
+
+        for (let i=1; i<=5; ++i){
+            let tomorrow = new Date(departureDate);
+            tomorrow.setDate(tomorrow.getDate() - i)
+            dateOption.push({id: index++, title: tomorrow.toLocaleDateString(), day: days[tomorrow.getDay()]})
+        }
+        for (let i=1; i<=5; ++i){
+            let tomorrow = new Date(departureDate);
+            tomorrow.setDate(tomorrow.getDate() + i)
+            dateOption.push({id: index++, title: tomorrow.toLocaleDateString(), day: days[tomorrow.getDay()]})
+        }
+
+        console.log(dateOption)
+        return dateOption
+    }
+
+
+    const [value, setValue] = useState(6);
+
     const handleClick = (id:number) => {
-    setValue(id);
-  };
+        setValue(id);
+      };
 
   return (
     <Box sx={{ bgcolor:'grey.900',display:'flex',justifyContent:'center' }}>
@@ -40,14 +57,14 @@ const DateFilter = (props: Props) => {
           }}
         
       >
-        {Date.map((item:any)=>(
+        {dateOptionCreator().map((item:any)=>(
           <Tab 
-          key={item.id} 
-          label={item.title}
-          onClick={()=>handleClick(item.id)}
-          sx={{width:'116px',height:'62px',borderLeft:'1px solid',borderColor:'divider',fontWeight:'bold',
-                '&.Mui-selected':{border:'2px solid',borderColor:'secondary',borderRadius:'5px'}
-              }}
+              key={item.id}
+              label={`${item.title} ${item.day}`}
+              onClick={()=>handleClick(item.id)}
+              sx={{width:'116px',height:'62px',borderLeft:'1px solid',borderColor:'divider',fontWeight:'bold',
+                    '&.Mui-selected':{border:'2px solid',borderColor:'secondary',borderRadius:'5px'}
+                }}
           />
 
         ))}
@@ -56,5 +73,3 @@ const DateFilter = (props: Props) => {
     </Box>
   )
 }
-
-export default DateFilter

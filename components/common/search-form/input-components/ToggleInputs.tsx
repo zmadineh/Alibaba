@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import CustomTextField from "./CustomTextField";
 
 import {searchFromValue} from "../../../../model/searchFormValue.type";
@@ -26,22 +26,25 @@ interface ToggleInputsProps {
     formError: any,
 }
 
-const dateOptions = [
-    {label: '1 دی', value: ' 1 دی'},
-    {label: '2 دی', value: '2 دی'},
-    {label: '3 دی', value: '3 دی'},
-    {label: '4 دی', value: '4 دی'},
-    {label: '5 دی', value: '5 دی'},
-    {label: '6 دی', value: '6 دی'},
-    {label: '7 دی', value: '7 دی'},
-]
-
 export default function ToggleInputs({firstLabel, secondLabel, firstName, secondName, oneWayRoad, formError,
                                          iconName, firstValue, setFirstValue, setSecValue, secValue} : ToggleInputsProps) {
 
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
     const tabletMatch = useMediaQuery(theme.breakpoints.down('md'));
+
+    const dateOptionCreator = () => {
+        const today = new Date();
+        let dateOption = [{label: today.toLocaleDateString(), value: today.toLocaleDateString()}];
+
+        for (let i=1; i<10; ++i){
+            let tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + i)
+            dateOption.push({label: tomorrow.toLocaleDateString(), value: tomorrow.toLocaleDateString()})
+        }
+        console.log(dateOption)
+        return dateOption
+    }
 
     const onChange = (event: any) => {
         const name = event.target.name
@@ -66,7 +69,7 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                 <CustomDropDown
                                  label={firstLabel}
                                  name={firstName}
-                                 values={dateOptions}
+                                 values={dateOptionCreator()}
                                  currentValue={firstValue}
                                  setCurrentValue={setFirstValue}
                                  borderRadius={'8px 0 0 8px'}
@@ -81,7 +84,7 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                 <CustomDropDown
                                  label={secondLabel}
                                  name={secondName}
-                                 values={dateOptions}
+                                 values={dateOptionCreator()}
                                  currentValue={secValue}
                                  setCurrentValue={setSecValue}
                                  borderRadius={'0 8px 8px 0'}
@@ -134,7 +137,7 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                            },
                        }}
                     >
-                        {dateOptions.map(option => (
+                        {dateOptionCreator().map(option => (
                             <MenuItem key={option.value} value={option.value}
                                       sx={{
                                           '&:hover, &.Mui-selected:hover, &.Mui-selected ': {
@@ -185,7 +188,7 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                            },
                        }}
                     >
-                        {dateOptions.map(option => (
+                        {dateOptionCreator().map(option => (
                             <MenuItem key={option.value} value={option.value} // onClick={(event) => console.log(event.currentTarget)}
                                       sx={{
                                           '&:hover, &.Mui-selected:hover, &.Mui-selected ': {

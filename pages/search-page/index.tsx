@@ -60,7 +60,6 @@ export default function SearchPage() {
 
     //--------------------------------------------------------------------------------------------//
 
-
     const router = useRouter()
     const {  transportType,
         currStartPoint,
@@ -70,7 +69,7 @@ export default function SearchPage() {
         roundWay,
         adultCount,
         childCount,
-        babyCount} = router.query
+        babyCount } = router.query
 
 
     console.log(transportType,
@@ -84,7 +83,8 @@ export default function SearchPage() {
         babyCount);
 
     const transportTypeId = Number(transportType);
-    const startPoint = 1
+    const currDepartureDate_  = (currDepartureDate ? new Date(currDepartureDate.toString()) : new Date());
+    const startPoint = 1;
     const destination = 2;
 
     const currentTrips = trips.filter(trip => trip.transport_type_id === transportTypeId);
@@ -116,7 +116,7 @@ export default function SearchPage() {
     const [departureTime, setDepartureTime] = useState<timeRangeType>(defaultFilterValue.departureTime)
 
     // departure date ->
-    const [departureDate, setDepartureDate] = useState<Date>(defaultFilterValue.departureDate)
+    const [departureDate, setDepartureDate] = useState<Date>(currDepartureDate_)
 
     const resetFilters = useCallback(() => {
         setOrderFilterIndex(defaultFilterValue.orderFilterIndex)
@@ -233,8 +233,8 @@ export default function SearchPage() {
                     }
 
                     <Grid item container gap={1} pl={{xs: 0, sm: 1}} flexDirection={"column"} xs={12} sm={9}>
-                        <Grid item height={'100px'} bgcolor={'yellow'}>
-                            <DateFilter/>
+                        <Grid item height={'100px'}>
+                            <DateFilter departureDate={departureDate} setDepartureDate={setDepartureDate}/>
                             {/*--------------------------------------------------------*/}
                         </Grid>
 

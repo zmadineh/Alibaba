@@ -40,6 +40,9 @@ export default function SearchForm({index, searches, setSearches} : SearchFormPr
         searchesTemp.unshift(form)
         setSearches(searchesTemp)
 
+        let startPoint = 0
+        if(index === 0 || index === 1)
+
         router.push({ pathname: 'search-page',
             query: {
                 transportType: index,

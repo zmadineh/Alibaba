@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 import {searchFromValue} from "../../../model/searchFormValue.type";
-import {internalCities} from "../../../data/form/internalCities.data";
+import {internalCities} from "../../../data/database/internalCities.data";
 import {swappableInputsDetailType} from "../../../model/swappableInputsDetail.type";
 
 import SwappableInput from "../../common/search-form/input-components/swappable-inputs/SwappableInput";

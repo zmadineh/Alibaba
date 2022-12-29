@@ -1,6 +1,6 @@
 import {swappableInputsDetailType} from "../../model/swappableInputsDetail.type";
-import {internalCities} from "../form/internalCities.data";
-import {externalAirports} from "../form/externalAirports.data";
+import {internalCities} from "../database/internalCities.data";
+import {externalAirports} from "../database/externalAirports.data";
 
 export const internalFlightInputDetails: swappableInputsDetailType[] = [
     {

@@ -1,5 +1,6 @@
+const today = new Date()
 export const dateOptions = [
-    {label: '1401/10/01', value: '1401/10/01'},
+    {label: new Date(), value: '1401/10/01'},
     {label: '1401/10/02', value: '1401/10/02'},
     {label: '1401/10/03', value: '1401/10/03'},
     {label: '1401/10/04', value: '1401/10/04'},

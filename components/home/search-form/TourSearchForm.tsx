@@ -4,7 +4,7 @@ import {searchFromValue} from "../../../model/searchFormValue.type";
 import {swappableInputsDetailType} from "../../../model/swappableInputsDetail.type";
 
 import {emptySearchFormData} from "../../../data/form/emptySearchForm.data";
-import {internalCities} from "../../../data/form/internalCities.data";
+import {internalCities} from "../../../data/database/internalCities.data";
 
 import SwappableInput from "../../common/search-form/input-components/swappable-inputs/SwappableInput";
 import ToggleInputs from "../../common/search-form/input-components/ToggleInputs";
