@@ -11,7 +11,7 @@ export default function TicketComponent(props: { item: filterd_TripData, matches
         <Grid container bgcolor={'white'} marginBottom={'20px'} borderRadius={1} width='100%' boxShadow={'0 2px 5px -1px rgba(0, 0, 0, .08)'}>
             <Grid item xs={12} sm={9} padding={'16px 16px 16px 16px'} sx={{ border: '0px solid', borderRightWidth: { sm: '1px' }, borderBottomWidth: { xs: '1px', sm: '0px' }, borderColor: 'grey.200' }}>
                 <Grid>
-                    <Grid display={'flex'} direction={'column'}>
+                    <Grid container direction={'column'}>
                         <Grid display={'flex'} paddingBottom={'9px'}>
                             <Grid paddingX={'12px'} sx={{
                                 marginRight: {
@@ -19,9 +19,9 @@ export default function TicketComponent(props: { item: filterd_TripData, matches
                                     xs: '10px'
                                 }
                             }}>
-                                <Grid display={'flex'} direction={'column'} width={'fit-content'} padding={'8px'} border='1px solid' borderColor={'grey.400'} borderRadius='50%'><Image src={`${item.company_image}`} alt='logo' width={matches ? 38 : 22} height={matches ? 38 : 22} /></Grid>
+                                <Grid container direction={'column'} width={'fit-content'} padding={'8px'} border='1px solid' borderColor={'grey.400'} borderRadius='50%'><Image src={`${item.company_image}`} alt='logo' width={matches ? 38 : 22} height={matches ? 38 : 22} /></Grid>
                             </Grid>
-                            <Grid display={'flex'} direction={'column'} gap={1} flexGrow='1'>
+                            <Grid container direction={'column'} gap={1} flexGrow='1'>
                                 <Grid display={matches ? 'flex' : 'block'} alignItems='center'>
 
                                     {item.company_Score && (
@@ -56,15 +56,15 @@ export default function TicketComponent(props: { item: filterd_TripData, matches
                         </Grid>
                     </Grid>
                     <Grid display={matches ? 'flex' : 'none'}>
-                        <Link href={'#'}><Typography sx={{ padding: '8px 16px', color: 'secondary.main', fontSize: '11px', fontWeight: '700' }}>نقشه صندلی ها</Typography></Link >
+                        {/* <Link href={'#'}><Typography sx={{ padding: '8px 16px', color: 'secondary.main', fontSize: '11px', fontWeight: '700' }}>نقشه صندلی ها</Typography></Link >
                         <Link href={'#'}><Typography sx={{ padding: '8px 16px', color: 'secondary.main', fontSize: '11px', fontWeight: '700' }}>اطلاعات اتوبوس و سفر</Typography></Link >
-                        <Link href={'#'}><Typography sx={{ padding: '8px 16px', color: 'secondary.main', fontSize: '11px', fontWeight: '700' }}>قوانین جریمه و استرداد</Typography></Link >
+                        <Link href={'#'}><Typography sx={{ padding: '8px 16px', color: 'secondary.main', fontSize: '11px', fontWeight: '700' }}>قوانین جریمه و استرداد</Typography></Link > */}
                     </Grid>
                     <Grid gap={2} display={matches ? 'none' : 'flex'} alignItems={'center'}>
                         <Typography variant="h2" sx={{ color: "grey.700", fontSize: '20px', fontWeight: '700' }}>{`${item.departure_date.getHours()}:${item.departure_date.getMinutes()}`}</Typography>
                         <Typography sx={{ color: "grey.800", fontSize: '15px' }}>{item.start_point_city}</Typography>
                         <Grid display={'flex'} alignItems={'center'} sx={{ maxWidth: '150px', flexGrow: '1' }}>
-                            <SvgIcon sx={{ width: '14px', height: '14px', color: 'grey.400' }}><path d="M5.873 20.031c.212.095.462.15.729.15h2.773v.86c0 .749-.54 1.365-1.237 1.45l-.163.009h-.7c-.718 0-1.31-.563-1.39-1.288l-.01-.17-.002-1.01Zm12.252.123v.888c0 .748-.54 1.364-1.237 1.448l-.163.01h-.7c-.718 0-1.31-.563-1.39-1.288l-.01-.17v-.861h3.177l.163-.007c.055-.004.108-.011.16-.02ZM15.702 1.5a3.702 3.702 0 0 1 3.702 3.702L19.396 5h1.651c.778 0 1.418.604 1.478 1.374V9.68c0 .368-.41.727-.927.727-.473 0-.866-.324-.919-.648l-.009-.079v-3.2h-1.268l.002 10.57a2.221 2.221 0 0 1-2.007 2.21l-.214.01H6.817a2.221 2.221 0 0 1-2.22-2.22L4.596 6.48H3.355v3.2l-.009.079c-.052.324-.446.647-.918.647-.517 0-.928-.358-.928-.726V6.374C1.56 5.604 2.2 5 2.978 5h1.624a3.702 3.702 0 0 1 3.696-3.5h7.404Zm1.151 13.65h-1.931a.984.984 0 1 0 0 1.969h1.931a.984.984 0 0 0 0-1.969Zm-7.8 0H7.122a.984.984 0 1 0 0 1.969h1.931a.984.984 0 0 0 0-1.969Zm5.908-10.688H9.038l-.086.005a.74.74 0 0 0 .086 1.475h5.923l.087-.005a.74.74 0 0 0-.087-1.475Z" fill-rule="evenodd"></path></SvgIcon>
+                            <SvgIcon sx={{ width: '14px', height: '14px', color: 'grey.400' }}><path d="M5.873 20.031c.212.095.462.15.729.15h2.773v.86c0 .749-.54 1.365-1.237 1.45l-.163.009h-.7c-.718 0-1.31-.563-1.39-1.288l-.01-.17-.002-1.01Zm12.252.123v.888c0 .748-.54 1.364-1.237 1.448l-.163.01h-.7c-.718 0-1.31-.563-1.39-1.288l-.01-.17v-.861h3.177l.163-.007c.055-.004.108-.011.16-.02ZM15.702 1.5a3.702 3.702 0 0 1 3.702 3.702L19.396 5h1.651c.778 0 1.418.604 1.478 1.374V9.68c0 .368-.41.727-.927.727-.473 0-.866-.324-.919-.648l-.009-.079v-3.2h-1.268l.002 10.57a2.221 2.221 0 0 1-2.007 2.21l-.214.01H6.817a2.221 2.221 0 0 1-2.22-2.22L4.596 6.48H3.355v3.2l-.009.079c-.052.324-.446.647-.918.647-.517 0-.928-.358-.928-.726V6.374C1.56 5.604 2.2 5 2.978 5h1.624a3.702 3.702 0 0 1 3.696-3.5h7.404Zm1.151 13.65h-1.931a.984.984 0 1 0 0 1.969h1.931a.984.984 0 0 0 0-1.969Zm-7.8 0H7.122a.984.984 0 1 0 0 1.969h1.931a.984.984 0 0 0 0-1.969Zm5.908-10.688H9.038l-.086.005a.74.74 0 0 0 .086 1.475h5.923l.087-.005a.74.74 0 0 0-.087-1.475Z" fillRule="evenodd"></path></SvgIcon>
                             <Divider sx={{ border: '0 0 6px 0', borderColor: 'grey.400', flexGrow: '1' }} />
                             <Grid sx={{ width: '0.5rem', height: '0.5rem', borderRadius: '50%', margin: '0.5rem 1px 0.5rem 0', border: 'solid 1px', borderColor: 'grey.500' }} />
                         </Grid>
@@ -72,8 +72,7 @@ export default function TicketComponent(props: { item: filterd_TripData, matches
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid gap={1} direction={matches ? 'column' : 'row-reverse'} justifyContent={matches ? 'center' : 'space-between'} xs={12} sm={3} sx={{
-                display: 'flex',
+            <Grid container item gap={1} direction={matches ? 'column' : 'row-reverse'} justifyContent={matches ? 'center' : 'space-between'} xs={12} sm={3} sx={{
                 alignItems: 'center',
                 padding: {
                     xs: '15px',

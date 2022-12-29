@@ -14,7 +14,7 @@ export interface helpCardType {
 
 }
 export const hlepCardData: helpCardType[] = [
-    { id: 1, icon: <Darkhat />, title: "درخواست استرداد", body: "سریع ترین راه برای کنسلی و   لغو رزرو", body2: "سفرهای من", icon2: <Arrrow />, href: "/" },
-    { id: 2, icon: <Rahnama />, title: "راهنمای سفر", body: "راهنمای خرید واسترداد قوانین و پرسش ها", body2: "مرکز پشتیبانی آنلاین", icon2: <Arrrow />, href: "/" },
-    { id: 3, icon: <Poshtibani />, title: "درخواست پشتیبانی", body: "سریع ترین راه برای بررسی مشکلات شما", body2: "درخواست پشتیبانی", icon2: <Arrrow />, href: "/" },
+    { id: 1, icon: <Darkhat />, title: "درخواست استرداد", body: "سریع ترین راه برای کنسلی و   لغو رزرو", body2: "سفرهای من", icon2: <Arrrow />, href: "https://www.alibaba.ir/login?redirect=/profile/orders" },
+    { id: 2, icon: <Rahnama />, title: "راهنمای سفر", body: "راهنمای خرید واسترداد قوانین و پرسش ها", body2: "مرکز پشتیبانی آنلاین", icon2: <Arrrow />, href: "https://www.alibaba.ir/help-center" },
+    { id: 3, icon: <Poshtibani />, title: "درخواست پشتیبانی", body: "سریع ترین راه برای بررسی مشکلات شما", body2: "درخواست پشتیبانی", icon2: <Arrrow />, href: "https://www.alibaba.ir/login?redirect=/profile/ticketing" },
 ]

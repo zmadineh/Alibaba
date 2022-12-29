@@ -15,7 +15,7 @@ const DawnloadCardMobile = (): JSX.Element => {
             <Grid item display={"flex"} flexDirection={"column"} justifyContent={"space-evenly"} height={175} p={1}>
                 <Grid item ><Typography variant='h6' sx={{ fontSize: "1rem", fontWeight: 700 }}>اپلیکیشن علی بابا</Typography></Grid>
                 <Grid item><Typography sx={{ fontSize: ".8rem", fontWeight: "400", color: "grey.500" }}> همه سفرها در جیب شماست</Typography></Grid>
-                <Grid item width={110}><Link href={"/"}><Button variant='Button2'  ><Typography sx={{ fontSize: ".75rem", fontWeight: "600" }} >راهنمای نصب</Typography ></Button></Link></Grid>
+                <Grid item width={110}><Link href={"https://www.alibaba.ir/app"}><Button variant='Button2'  ><Typography sx={{ fontSize: ".75rem", fontWeight: "600" }} >راهنمای نصب</Typography ></Button></Link></Grid>
             </Grid>
             <Grid item width={200} height={120}  >
                 <Image src={Download} alt="علی بابا" style={{ width: "100%", height: "100%" }} />
