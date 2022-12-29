@@ -1,9 +1,8 @@
 import { Grid } from "@mui/material";
 import TicketContainer from "../../components/ticket_cards/TicketContainer";
-import { getTicket } from "../../data/database/trips.data";
+import { getCompanies_type, getTicket } from "../../data/database/trips.data";
 import { filterd_TripData } from "../../data/tickets_data/DataTickets";
 import { useEffect, useState } from "react";
-import { getCompanies_type } from "../../data/database/transportCompanies.data";
 
 export default function Home() {
     const [tickets,setTickets] = useState<filterd_TripData[]>([]);
@@ -13,7 +12,7 @@ export default function Home() {
           setTickets(data);
         }
         fetchData()
-          .catch(console.error);;
+          .catch(console.error);
       }, [])
 
     return (

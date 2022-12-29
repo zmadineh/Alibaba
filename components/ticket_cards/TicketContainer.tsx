@@ -6,14 +6,14 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function TicketContainer(props: { filteredData: filterd_TripData[], tripType: number }) {
     const { filteredData, tripType } = props;
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up('sm'));
     if (filteredData.length != 0) {
-        const theme = useTheme();
-        const matches = useMediaQuery(theme.breakpoints.up('sm'));
         return (
             <>
-                <Grid display={'flex'} direction='column'>
+                <Grid container direction='column'>
                     {filteredData.map((item, index) => (
-                        <TicketComponent item={item} matches={matches} key={index} tripType={tripType}/>
+                        <TicketComponent item={item} matches={matches} key={index} tripType={tripType} />
                     ))}
                 </Grid>
             </>
