@@ -1,21 +1,25 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 
 import OrderingFilter from "../../components/common/ordering-filter/OrderingFilter";
 import FilterSidebar from "../../components/filter-Sidebar/FilterSidebar";
 
-import {trips} from "../../data/database/trips.data";
+import {getTicket, trips} from "../../data/database/trips.data";
 
 import {priceRangeType, shoppingObjType} from "../../model/filter/filterStateType";
 import {timeRangeType} from "../../model/filter/filterStateType";
 
 import Grid from "@mui/material/Grid";
-import {useTheme} from "@mui/material";
+import {IconButton, useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Typography from "@mui/material/Typography/Typography";
 import Box from "@mui/material/Box";
 import {useRouter} from "next/router";
 import {cities} from "../../data/database/cities.data";
 import DateFilter from "../../components/common/date-filter/DateFilter";
+import {filterd_TripData} from "../../data/tickets_data/DataTickets";
+import TicketContainer from "../../components/ticket_cards/TicketContainer";
+import Footer from "../../components/layout/Footer";
+import Desk_header from "../../components/desktop_header/Desk_header";
 
 
 
@@ -50,7 +54,7 @@ const defaultFilterValue = {
     shoppingType: {systematic: false, chartered: false},
     priceRange: {min: 0, max: 1000000000},
     departureTime: {min: {hours: 0, minutes: 0}, max: {hours: 23, minutes: 59}},
-    departureDate: new Date(1401,9,29,11,23,0)
+    departureDate: new Date(2022,11,29,11,23,0)
 }
 
 const headerHeight = 70;
@@ -72,25 +76,21 @@ export default function SearchPage() {
         babyCount } = router.query
 
 
-    console.log(transportType,
-        currStartPoint,
-        currDestinationPoint,
-        currDepartureDate,
-        returnDate,
-        roundWay,
-        adultCount,
-        childCount,
-        babyCount);
+    // console.log(transportType,
+    //     currStartPoint,
+    //     currDestinationPoint,
+    //     currDepartureDate,
+    //     returnDate,
+    //     roundWay,
+    //     adultCount,
+    //     childCount,
+    //     babyCount);
 
     const transportTypeId = Number(transportType);
     const currDepartureDate_  = (currDepartureDate ? new Date(currDepartureDate.toString()) : new Date());
-    // console.log('currDepartureDate_: ', currDepartureDate_.toLocaleDateString(), currDepartureDate_.getFullYear())
+    const travelerCount = Number(adultCount) + Number(childCount) + Number(babyCount)
     const startPoint = 1;
     const destination = 2;
-
-    const currentTrips = trips.filter(trip => trip.transport_type_id === transportTypeId);
-
-    console.log('currDepartureDate_: ', currDepartureDate_.toLocaleDateString(), 'trips : ', currentTrips[0].departure_date.toLocaleDateString())
 
     //--------------------------------------------------------------------------------------------//
 
@@ -98,6 +98,7 @@ export default function SearchPage() {
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
     const tabletMatch = useMediaQuery(theme.breakpoints.down('md'));
+    const desktopMatches = useMediaQuery(theme.breakpoints.up('sm'));
 
     // states:
     // order ->
@@ -121,6 +122,27 @@ export default function SearchPage() {
 
     // departure date ->
     const [departureDate, setDepartureDate] = useState<Date>(currDepartureDate_)
+
+    // trips ->
+    const [currentTrips, setCurrentTrips] = useState<filterd_TripData[]>([])
+
+    useEffect( () => {
+
+        const fetchData = async () => {
+            const data = await getTicket(
+                1,
+                2,
+                transportTypeId,
+                travelerCount,
+                currDepartureDate_,
+            )
+            setCurrentTrips(data)
+        }
+
+        fetchData().catch(console.error);
+
+    }, [transportTypeId, travelerCount, currDepartureDate_,])
+
 
     const resetFilters = useCallback(() => {
         setOrderFilterIndex(defaultFilterValue.orderFilterIndex)
@@ -148,8 +170,11 @@ export default function SearchPage() {
         if (filteredData.length > 0) {
 
             filteredData = filteredData.filter(data =>
-                data.start_point_city_id === startPoint &&
-                data.destination_city_id === destination &&
+                // data.start_point_city === startPoint &&
+                // data.destination_city === destination &&
+
+                // data.start_point_city_id === startPoint &&
+                // data.destination_city_id === destination &&
 
                 data.price >= priceRange.min &&
                 data.price <= priceRange.max &&
@@ -207,16 +232,28 @@ export default function SearchPage() {
 
     return (
         <Grid container flexDirection={"column"} alignItems={"center"} bgcolor={'background.default'}>
-            <Grid item container bgcolor={"gray"} height={`${headerHeight}px`} position={"fixed"} top={0} zIndex={2000}>
-                HEADER
-                {/*--------------------------------------------------------*/}
-            </Grid>
+            {!mobileMatch &&
+                <Grid item container height={`${headerHeight}px`} position={"fixed"} top={0} zIndex={2000}>
+                    <Desk_header res={desktopMatches}/>
+                </Grid>
+            }
+
+            {mobileMatch &&
+                <Grid item container alignItems={"center"} bgcolor={'#fff'} height={`${headerHeight}px`} position={"fixed"} top={0} zIndex={2000}>
+                    <IconButton>
+                        
+                    </IconButton>
+                    <Typography>
+                        صفحه اصلی
+                    </Typography>
+                </Grid>
+            }
 
             <Grid item container
                   flexDirection={"column"}
                   width={'100%'}
                   sx={{maxWidth: {lg: '1200px', sm: '100%'}}}
-                  mt={{xs: `${headerHeight}px`, sm: `${headerHeight+10}px`}}
+                  mt={{xs: `${headerHeight+20}px`, sm: `${headerHeight+20}px`}}
                   alignItems={"center"}
             >
                 <Grid item container width={'100%'} height={'100%'}
@@ -261,39 +298,18 @@ export default function SearchPage() {
                             </Grid>
                         }
 
-                        <Grid item container height={'800px'} bgcolor={'green'}>
-                            tickets
-                            <Grid item width={'100%'} p={2}>
-                                {filter().map(data => (
-                                    <Grid key={data.id}>
-                                        {data.price}
-                                    </Grid>
-                                ))}
-                            </Grid>
+                        <Grid item container minHeight={'500px'}>
+                            <TicketContainer filteredData={filter()} tripType={transportTypeId}/>
 
-                            {/*<Tickets data={filter()} transportTypeId={transportTypeId} />*/}
                             {/*--------------------------------------------------------*/}
                         </Grid>
                     </Grid>
                 </Grid>
-
-                {/*{!mobileMatch &&*/}
-                {/*    <Grid item container width={'100%'} height={'700px'}*/}
-                {/*          px={{xs: 0, sm: 1}} mt={1}*/}
-                {/*          justifyContent={"center"} bgcolor={'purple'}*/}
-                {/*    >*/}
-                {/*        common questions*/}
-                {/*        /!*--------------------------------------------------------*!/*/}
-                {/*    </Grid>*/}
-                {/*}*/}
             </Grid>
 
             {/* desktop footer */}
             {!mobileMatch &&
-                <Grid item container bgcolor={"gray"} minHeight={'60px'}>
-                    footer
-                    {/*--------------------------------------------------------*/}
-                </Grid>
+                <Footer />
             }
 
             {/* mobile footer */}

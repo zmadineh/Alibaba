@@ -4,7 +4,6 @@ import { GetPages } from '../components/get_pages_func/GetPages';
 import Tabview from '../components/home/tabview/Tabview';
 import HelpCard from './../components/home/help-card/HelpCard';
 import DownloadCard from './../components/home/download-card/DownloadCard';
-import FlightDetails from '../components/common/flight-details/FlightDetails';
 import Footer from '../components/layout/Footer';
 import SearchCardContainer from "../components/common/recent-searchs/SearchCardContainer";
 import { searchFromValue } from "../model/searchFormValue.type";
@@ -12,7 +11,8 @@ import SearchForm from "../components/home/search-form/SearchForm";
 import TabPanel from "../components/home/tabview/TabPanel";
 import Desk_header from '../components/desktop_header/Desk_header';
 import HeaderMobile from '../components/layout/layoutMobile/HeaderMobile';
-import DateFilter from '../components/common/date-filter/DateFilter';
+
+
 const pagesFaName = ['پرواز داخلی', 'پرواز خارجی', 'قطار', 'اتوبوس', 'تور']
 export default function FirstPage() {
     const [page, setPage] = useState<number>(0);
