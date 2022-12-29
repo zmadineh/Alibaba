@@ -1,11 +1,12 @@
 import React from 'react'
-import { useState, useEffect } from "react"
+import { useState,useEffect } from "react"
 import Link from 'next/link';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { footerMobileData } from "../../../data/footer-mobileData"
-import LoginHeader from "../../desktop_header/LoginHeader"
+import HomeSVG from "../../../public/svg/home-icon.svg"
+import FooterDialogLogin from "./FooterDialogLogin"
+
 const FooterMobile = () => {
   const [display, setDisplay] = useState<string>("none")
   useEffect(() => {
@@ -24,22 +25,17 @@ const FooterMobile = () => {
   return (
     <Grid display={display}>
       <Grid width={"100%"} height={53} alignItems={"center"} justifyContent={" space-around"} position={"fixed"} bgcolor={'common.white'} sx={{ zIndex: 2, bottom: 0, right: 0, left: 0, display: { xs: "flex", md: "none" }, boxShadow: '0px 0px 5px 3px #00000036' }}>
-        {footerMobileData.map((item, index) => (
-          <Button key={index} sx={{ color: "common.black", '&:hover': { color: "secondary.300" } }} >
-            {item.href ?
-              <Link href={item.href}>
-                <Grid item display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
-                  {item.icon}
-                  <Typography sx={{ fontSize: 12, fontWeight: 600 }}>{item.title}</Typography>
-                </Grid>
-              </Link> :
-              <Grid item display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
-                {item.icon}
-                <Typography sx={{ fontSize: 12, fontWeight: 600 }}>{item.title}</Typography>
-              </Grid>
-            }
-          </Button>
-        ))}
+        <Button sx={{ color: "common.black", '&:hover': { color: "secondary.300" } }} >
+          <Link href={"/"}>
+            <Grid item display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
+              <HomeSVG />
+              <Typography sx={{ fontSize: 12 }}>خانه</Typography>
+            </Grid>
+          </Link>
+        </Button>
+        <Grid item>
+      <FooterDialogLogin/>
+        </Grid>
       </Grid>
     </Grid>
   )
