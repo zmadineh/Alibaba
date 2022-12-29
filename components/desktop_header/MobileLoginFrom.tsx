@@ -57,8 +57,8 @@ const MobileLoginFrom = (props: Props) => {
         );
       }
   return (
-    <Grid container display={'flex'} flexDirection={'column'}>
-            <Grid textAlign={'center'}>
+    <Grid p={"1px"} style={{width:"100%"}} container  display={'flex'} flexDirection={'column'}>
+            <Grid item style={{width:"98%"}} textAlign={'center'}>
                             <Typography  variant='h6' fontWeight={'bold'}color={'grey.700'}>
                                     {'ورود یا ثبت نام'}
                             </Typography>
@@ -66,13 +66,15 @@ const MobileLoginFrom = (props: Props) => {
                                     {'شماره موبایل یا آدرس ایمیل به همراه کلمه عبور خود را وارد کنید.'}
                             </Typography>
             </Grid>
+          
             <form onSubmit={handleSubmit}>
-                            <Grid display={'flex'} flexDirection={'column'} alignItems={'center'} justifyContent={'center'}pt={1}>
-                                <TextField  color={'info'} type={'text'} sx={{width:'326px',marginBottom:2,paddingTop:1}} label={'آدرس ایمیل یا شماره موبایل'} variant='outlined' name='userName'value={form.userName} onChange={handleChange}/>
-                                <TextField  color={'info'} type={'password'} sx={{width:'326px',marginBottom:2}} label={'رمز عبور'} variant='outlined' name='passWord'value={form.passWord} onChange={handleChange}/>
-                                <Button disabled={auth.loading} variant='contained'type='submit' color={'secondary'} sx={{width:'326px',marginTop:4}}>ورود به علی بابا</Button>
+                            <Grid style={{width:"98%"}} display={'flex'} flexDirection={'column'} alignItems={'center'} justifyContent={'center'}pt={1}>
+                                <TextField  color={'info'} type={'text'} sx={{marginBottom:2,paddingTop:1}} label={'آدرس ایمیل یا شماره موبایل'} variant='outlined' name='userName'value={form.userName} onChange={handleChange}/>
+                                <TextField  color={'info'} type={'password'} sx={{marginBottom:2}} label={'رمز عبور'} variant='outlined' name='passWord'value={form.passWord} onChange={handleChange}/>
+                                <Button disabled={auth.loading} variant='contained'type='submit' color={'secondary'} sx={{marginTop:4}}>ورود به علی بابا</Button>
                             </Grid>
             </form>
+      
     </Grid>
   )
 }

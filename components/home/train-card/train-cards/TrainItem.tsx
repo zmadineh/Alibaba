@@ -20,7 +20,7 @@ const TrainItem = ({ item }: { item: trainCardType }) => {
                 <Grid item><Typography sx={{ fontSize: 15, fontWeight: 600 }}>{item.title3}</Typography></Grid>
                 <Grid item><Arrrow /></Grid>
             </Grid>
-            <Grid item sx={{ padding: "1rem" }} height={300} width={"100%"} justifyContent={"center"}>
+            <Grid item sx={{ padding: "1rem" }} height={"auto"} width={"100%"} justifyContent={"center"}>
                 <Grid item display={item.title2 ? "flex" : "none"} alignItems={"stretch"} gap={"1px"}>
                     <Grid item><Svg /></Grid>
                     <Grid item><Typography sx={{ fontSize: 10, color: "grey.500" }}>مجله ی گردشگری علی بابا</Typography></Grid>
