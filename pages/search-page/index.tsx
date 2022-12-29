@@ -12,6 +12,7 @@ import Grid from "@mui/material/Grid";
 import {useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Typography from "@mui/material/Typography/Typography";
+import DateFilter from "../../components/common/date-filter/DateFilter";
 
 
 const orderingFilterTitleData = [
@@ -204,8 +205,8 @@ export default function SearchPage() {
                     }
 
                     <Grid item container gap={1} pl={{xs: 0, sm: 1}} flexDirection={"column"} xs={12} sm={9}>
-                        <Grid item height={'100px'} bgcolor={'yellow'}>
-                            date
+                        <Grid item height={'100px'}>
+                            <DateFilter/>
                             {/*--------------------------------------------------------*/}
                         </Grid>
 

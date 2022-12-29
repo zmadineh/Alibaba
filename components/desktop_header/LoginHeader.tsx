@@ -41,9 +41,7 @@ const LoginHeader = (props: Props) => {
         const handleChange = (e: { target: { name: string; value: string; }; }) =>{
             setForm({...form,[e.target.name]:e.target.value})
         }
-        useEffect(() => {
-          console.log(auth)
-        }, [auth])
+
         
         const handleSubmit = (e: { preventDefault: () => void; }) =>{
             e.preventDefault()
