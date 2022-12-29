@@ -2,6 +2,20 @@ import { Trip_type } from "../tickets_data/DataTickets";
 import { ReturnTrip_type } from "../tickets_data/DataTickets";
 import { filterd_TripData } from "../tickets_data/DataTickets";
 import { transport_companies } from "./transportCompanies.data";
+
+export function getCompanies_type(index:number){
+    return new Promise((resolve,reject)=>{
+        if(index===5){
+            reject([]);
+        }
+        setTimeout(() => {
+            let arr1 = trips.filter(item=>(item.transport_type_id===index));
+            let arr2 = return_trips.filter(item=>(item.transport_type_id===index));
+            resolve(arr1.concat(arr2));
+        }, 500);
+    })
+}
+
 import { cities } from "./cities.data";
 function getCompanies(index: number) {
     let findedIndex = transport_companies.findIndex(item => (item.id === index))

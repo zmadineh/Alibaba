@@ -1,13 +1,4 @@
-export function getCompanies_type(index:number){
-    return new Promise((resolve,reject)=>{
-        if(index===0){
-            reject([]);
-        }
-        setTimeout(() => {
-            resolve(transport_companies.filter(item=>(item.transport_type_id===index)));
-        }, 500);
-    })
-}
+
 
 export const transport_companies = [
 
