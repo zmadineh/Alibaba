@@ -40,7 +40,7 @@ export default function OrderingFilter({inputs, value, setValue} : TripleSorting
     }
 
     return (
-        <Box >
+        <Box>
             {laptopMatch &&
                 <Tabs
                     value={value * 2}

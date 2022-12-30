@@ -1,4 +1,4 @@
-import {searchFromValue} from "../../model/searchFormValue.type";
+import {searchFromValue} from "../../model/form/searchFormValue.type";
 
 export const emptySearchFormData = {
     origin: '',

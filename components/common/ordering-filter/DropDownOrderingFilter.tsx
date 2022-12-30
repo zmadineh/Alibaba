@@ -3,7 +3,6 @@ import React from 'react';
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import InputAdornment from "@mui/material/InputAdornment";
-import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import VerticalFlip from "../../../public/svg/VerticalFlip-icon.svg";
 
 
@@ -40,7 +39,7 @@ export default function DropDownOrderingFilter({inputs, value, setValue} : Tripl
             InputProps={{
                 startAdornment: (
                     <InputAdornment position="start">
-                        <VerticalFlip />
+                        <VerticalFlip color={'secondary'}/>
                         {/*{iconMap.find(item => item.iconName === iconName).icon}*/}
                     </InputAdornment>
                 ),
@@ -82,6 +81,7 @@ export default function DropDownOrderingFilter({inputs, value, setValue} : Tripl
 
                 '& .MuiInput-input': {
                     height: '2.4rem',
+                    borderColor: "secondary.main",
                 },
             }}
 

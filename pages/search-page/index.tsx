@@ -1,18 +1,28 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 
 import OrderingFilter from "../../components/common/ordering-filter/OrderingFilter";
 import FilterSidebar from "../../components/filter-Sidebar/FilterSidebar";
 
-import {trips} from "../../data/database/trips.data";
+import {getTicket, trips} from "../../data/database/trips.data";
 
 import {priceRangeType, shoppingObjType} from "../../model/filter/filterStateType";
 import {timeRangeType} from "../../model/filter/filterStateType";
 
 import Grid from "@mui/material/Grid";
-import {useTheme} from "@mui/material";
+import {IconButton, useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Typography from "@mui/material/Typography/Typography";
+import Box from "@mui/material/Box";
+import {useRouter} from "next/router";
+import {cities} from "../../data/database/cities.data";
 import DateFilter from "../../components/common/date-filter/DateFilter";
+import {filterd_TripData} from "../../data/tickets_data/DataTickets";
+import TicketContainer from "../../components/ticket_cards/TicketContainer";
+import Footer from "../../components/layout/Footer";
+import Desk_header from "../../components/desktop_header/Desk_header";
+import Link from "next/link";
+import {ArrowBackIos, ArrowForward, ArrowForwardIos} from "@mui/icons-material";
+
 
 
 const orderingFilterTitleData = [
@@ -46,7 +56,7 @@ const defaultFilterValue = {
     shoppingType: {systematic: false, chartered: false},
     priceRange: {min: 0, max: 1000000000},
     departureTime: {min: {hours: 0, minutes: 0}, max: {hours: 23, minutes: 59}},
-    departureDate: new Date(1401,9,29,11,23,0)
+    departureDate: new Date(2022,11,29,11,23,0)
 }
 
 const headerHeight = 70;
@@ -56,16 +66,41 @@ export default function SearchPage() {
 
     //--------------------------------------------------------------------------------------------//
 
-    const transportTypeId = 0;
-    const startPoint = 1;
-    const destination = 2;
-    const currentTrips = trips.filter(trip => trip.transport_type_id === transportTypeId);
+    const router = useRouter()
+    const {  transportType,
+        currStartPoint,
+        currDestinationPoint,
+        currDepartureDate,
+        returnDate,
+        roundWay,
+        adultCount,
+        childCount,
+        babyCount } = router.query
+
+
+    // console.log(transportType,
+    //     currStartPoint,
+    //     currDestinationPoint,
+    //     currDepartureDate,
+    //     returnDate,
+    //     roundWay,
+    //     adultCount,
+    //     childCount,
+    //     babyCount);
+
+    const transportTypeId = Number(transportType);
+    const currDepartureDate_  = (currDepartureDate ? new Date(currDepartureDate.toString()) : new Date());
+    const travelerCount = Number(adultCount) + Number(childCount) + Number(babyCount)
+    const startPoint = currStartPoint;
+    const destination = currDestinationPoint;
 
     //--------------------------------------------------------------------------------------------//
+
 
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
     const tabletMatch = useMediaQuery(theme.breakpoints.down('md'));
+    const desktopMatches = useMediaQuery(theme.breakpoints.up('sm'));
 
     // states:
     // order ->
@@ -88,7 +123,41 @@ export default function SearchPage() {
     const [departureTime, setDepartureTime] = useState<timeRangeType>(defaultFilterValue.departureTime)
 
     // departure date ->
-    const [departureDate, setDepartureDate] = useState<Date>(defaultFilterValue.departureDate)
+    const [departureDate, setDepartureDate] = useState<Date>(currDepartureDate_)
+
+    // trips ->
+    const [currentTrips, setCurrentTrips] = useState<filterd_TripData[]>([])
+
+    // loading ->
+    const [loadingTicket, setLoadingTicket] = useState(true)
+
+    // defaultPriceRange ->
+    const [defaultPriceRange, setDefaultPriceRange] = useState<priceRangeType>(defaultFilterValue.priceRange)
+
+
+    useEffect( () => {
+
+        const fetchData = async () => {
+             const data = await getTicket(
+                    1,
+                    2,
+                    transportTypeId,
+                    travelerCount,
+                    currDepartureDate_,
+                    // (roundWay === 'true' ? (returnDate ? new Date(returnDate.toString()) : new Date()) : undefined)
+                )
+            setCurrentTrips(data)
+            setLoadingTicket(false)
+            const baseTripsPrice = data.map(item => item.price).sort((a, b) => a - b)
+            const tripsLength = baseTripsPrice.length
+            if(tripsLength > 0)
+                setDefaultPriceRange({min: (baseTripsPrice[0]-100 > 0 ? baseTripsPrice[0]-100 : 0), max: baseTripsPrice[tripsLength-1]+100})
+        }
+
+        fetchData().catch(console.error);
+
+    }, [transportTypeId, travelerCount, currDepartureDate_,])
+
 
     const resetFilters = useCallback(() => {
         setOrderFilterIndex(defaultFilterValue.orderFilterIndex)
@@ -96,7 +165,7 @@ export default function SearchPage() {
         setCompanies(defaultFilterValue.companies)
         setShowAvailable(defaultFilterValue.showAvailable)
         setShoppingType(defaultFilterValue.shoppingType)
-        setPriceRange(defaultFilterValue.priceRange)
+        setPriceRange(defaultPriceRange)
         setDepartureTime(defaultFilterValue.departureTime)
         setDepartureDate(defaultFilterValue.departureDate)
     }, [])
@@ -112,15 +181,18 @@ export default function SearchPage() {
     }
 
     const filter = useCallback(() => {
+        // console.log(startPoint, destination, currentTrips);
+
         let filteredData = currentTrips
         if (filteredData.length > 0) {
 
             filteredData = filteredData.filter(data =>
-                data.start_point_city_id === startPoint &&
-                data.destination_city_id === destination &&
 
-                data.price > priceRange.min &&
-                data.price < priceRange.max &&
+                data.start_point_city === startPoint &&
+                data.destination_city === destination &&
+
+                data.price >= priceRange.min &&
+                data.price <= priceRange.max &&
 
                 data.departure_date.getFullYear() === departureDate.getFullYear() &&
                 data.departure_date.getMonth() === departureDate.getMonth() &&
@@ -156,6 +228,18 @@ export default function SearchPage() {
         return filteredData
     } , [currentTrips, orderFilterIndex])
 
+    const nextDay = () => {
+        let tomorrow = new Date();
+        tomorrow.setDate(departureDate.getDate() + 1)
+        setDepartureDate(tomorrow)
+    }
+
+    const prevDay = () => {
+        let tomorrow = new Date();
+        tomorrow.setDate(departureDate.getDate() - 1)
+        setDepartureDate(tomorrow)
+    }
+
 
     const stateProps = {
         allCompanies,
@@ -171,27 +255,44 @@ export default function SearchPage() {
         departureTime,
         setDepartureTime,
         transportTypeId,
+        defaultPriceRange,
     }
 
     return (
         <Grid container flexDirection={"column"} alignItems={"center"} bgcolor={'background.default'}>
-            <Grid item container bgcolor={"gray"} height={`${headerHeight}px`} position={"fixed"} top={0} zIndex={2000}>
-                HEADER
-                {/*--------------------------------------------------------*/}
-            </Grid>
+            {!mobileMatch &&
+                <Grid item container height={`${headerHeight}px`} position={"fixed"} top={0} zIndex={2000}>
+                    <Desk_header res={desktopMatches}/>
+                </Grid>
+            }
+
+            {mobileMatch &&
+                <Grid item container alignItems={"center"} bgcolor={'#fff'} height={`${headerHeight}px`} position={"fixed"} top={0} zIndex={2000}>
+                    <Link href={'/'}>
+                        <Grid display={"flex"} alignItems={"center"}>
+                            <IconButton>
+                                <ArrowForwardIos />
+                            </IconButton>
+                            <Typography>
+                                صفحه اصلی
+                            </Typography>
+                        </Grid>
+                    </Link>
+                </Grid>
+            }
 
             <Grid item container
                   flexDirection={"column"}
                   width={'100%'}
                   sx={{maxWidth: {lg: '1200px', sm: '100%'}}}
-                  mt={{xs: `${headerHeight}px`, sm: `${headerHeight+10}px`}}
+                  mt={{xs: `${headerHeight+20}px`, sm: `${headerHeight+20}px`}}
                   alignItems={"center"}
             >
                 <Grid item container width={'100%'} height={'100%'}
                       justifyContent={"center"}
                 >
-                    {!mobileMatch &&
-                        <Grid item xs={12} sm={3}>
+                    {!mobileMatch && !tabletMatch &&
+                        <Grid item xs={12} sm={4} md={3}>
                             <Grid position={"sticky"} top={`${headerHeight+10}px`} bottom={'100px'}>
                                 <FilterSidebar
                                     filterStateProps={stateProps}
@@ -199,59 +300,53 @@ export default function SearchPage() {
                                     resetFunction={resetFilters}
                                     ticketCount={filter().length}
                                 />
-                                {/*--------------------------------------------------------*/}
                             </Grid>
                         </Grid>
                     }
 
-                    <Grid item container gap={1} pl={{xs: 0, sm: 1}} flexDirection={"column"} xs={12} sm={9}>
-                        <Grid item height={'100px'}>
-                            <DateFilter/>
-                            {/*--------------------------------------------------------*/}
+                    <Grid item container gap={1} pl={{xs: 0, sm: 1}} flexDirection={"column"} xs={12} md={9}>
+                        <Grid item container height={'100px'}>
+                            <DateFilter departureDate={departureDate} setDepartureDate={setDepartureDate}/>
                         </Grid>
 
                         {!mobileMatch &&
                             <Grid item display={"flex"} alignItems={"center"} gap={2}>
 
+                                {tabletMatch &&
+                                    <Box maxWidth={'130px'}>
+                                        <FilterSidebar
+                                            filterStateProps={stateProps}
+                                            travelType={transportTypeId}
+                                            resetFunction={resetFilters}
+                                            ticketCount={filter().length}
+                                        />
+                                    </Box>
+                                }
                                 {!tabletMatch && <Typography fontSize={'14px'} fontWeight={'600'}>مرتب سازی: </Typography> }
                                 <OrderingFilter value={orderFilterIndex} setValue={setOrderFilterIndex} inputs={orderingFilterTitleData}/>
 
                             </Grid>
                         }
 
-                        <Grid item container height={'800px'} bgcolor={'green'}>
-                            tickets
-                            <Grid item width={'100%'} p={2}>
-                                {filter().map(data => (
-                                    <Grid key={data.id}>
-                                        {data.price}
-                                    </Grid>
-                                ))}
-                            </Grid>
-
-                            {/*<Tickets data={filter()} transportTypeId={transportTypeId} />*/}
-                            {/*--------------------------------------------------------*/}
+                        <Grid item container minHeight={'500px'}>
+                            {loadingTicket &&
+                                <Grid display={"flex"} justifyContent={"center"} alignItems={"center"}>
+                                    <Typography>
+                                        ... loading
+                                    </Typography>
+                                </Grid>
+                            }
+                            {!loadingTicket &&
+                                <TicketContainer filteredData={filter()} tripType={transportTypeId}/>
+                            }
                         </Grid>
                     </Grid>
                 </Grid>
-
-                {!mobileMatch &&
-                    <Grid item container width={'100%'} height={'700px'}
-                          px={{xs: 0, sm: 1}} mt={1}
-                          justifyContent={"center"} bgcolor={'purple'}
-                    >
-                        common questions
-                        {/*--------------------------------------------------------*/}
-                    </Grid>
-                }
             </Grid>
 
             {/* desktop footer */}
             {!mobileMatch &&
-                <Grid item container bgcolor={"gray"} minHeight={'60px'}>
-                    footer
-                    {/*--------------------------------------------------------*/}
-                </Grid>
+                <Footer />
             }
 
             {/* mobile footer */}
@@ -263,14 +358,33 @@ export default function SearchPage() {
                             <OrderingFilter value={orderFilterIndex} setValue={setOrderFilterIndex} inputs={orderingFilterTitleData}/>
 
                         </Grid>
-                        <Grid item xs={6} bgcolor={'blue'}>
-                            dialog filter
-                            {/*--------------------------------------------------------*/}
+                        <Grid item display={"flex"} justifyContent={"center"} alignItems={"center"} xs={6}>
+                            <FilterSidebar
+                                filterStateProps={stateProps}
+                                travelType={transportTypeId}
+                                resetFunction={resetFilters}
+                                ticketCount={filter().length}
+                            />
                         </Grid>
                     </Grid>
-                    <Grid item xs={6} bgcolor={'orange'}>
-                        next and prev day
-                    {/*--------------------------------------------------------*/}
+
+                    <Grid item display={"flex"} alignItems={"center"} justifyContent={"center"} gap={2.5} xs={6}>
+                        <Grid display={"flex"} alignItems={"center"} onClick={prevDay}>
+                            <IconButton>
+                                <ArrowForwardIos />
+                            </IconButton>
+                            <Typography fontWeight={600} color={'grey.600'}>
+                                روز قبل
+                            </Typography>
+                        </Grid>
+                        <Grid display={"flex"} alignItems={"center"} onClick={nextDay}>
+                            <Typography fontWeight={600} color={'grey.600'}>
+                                روز بعد
+                            </Typography>
+                            <IconButton>
+                                <ArrowBackIos />
+                            </IconButton>
+                        </Grid>
                     </Grid>
                 </Grid>
             }

@@ -1,20 +1,22 @@
-import InternalFlightSearchForm from "./InternalFlightSearchForm";
-import InternationalFlightSearchForm from "./InternationalFlightSearchForm";
-import TrainTicketSearchForm from "./TrainTicketSearchForm";
-import BusTicketSearchForm from "./BusTicketSearchForm";
-import TourSearchForm from "./TourSearchForm";
-import React, {useCallback, useState} from "react";
-import {searchFromValue} from "../../../model/searchFormValue.type";
-import {emptySearchFormData} from "../../../data/form/emptySearchForm.data";
-import Grid from "@mui/material/Grid/Grid";
+import React, {useCallback, useEffect, useState} from "react";
+import {useSearchesSelector} from "../../../redux/AuthHooks";
+import {useDispatch} from "react-redux";
+import {addRecent} from "../../../redux/Slices/SearchSlice";
+import {useRouter} from "next/router";
 
-// const FormsComponent = {
-//     0: InternalFlightSearchForm,
-//     1: InternationalFlightSearchForm,
-//     2: TrainTicketSearchForm,
-//     3: BusTicketSearchForm,
-//     4: TourSearchForm,
-// }
+import {emptySearchFormData} from "../../../data/search-form/emptySearchForm.data";
+import {getInputDetailsByType} from "../../../data/search-form/serchFormInputDetails";
+
+import {searchFromValue} from "../../../model/form/searchFormValue.type";
+
+import SearchFormTemplates from "./SerchFormTemplate";
+
+import Grid from "@mui/material/Grid/Grid";
+import {getTicket} from "../../../data/database/trips.data";
+import {swappableInputsDetailType} from "../../../model/swappableInputsDetail.type";
+import SearchCardContainer from "../../common/recent-searchs/SearchCardContainer";
+import {useMediaQuery, useTheme} from "@mui/material";
+
 
 interface SearchFormProps {
     index: number,
@@ -24,28 +26,52 @@ interface SearchFormProps {
 
 export default function SearchForm({index, searches, setSearches} : SearchFormProps) {
 
-    const [mainForm, setMainForm] = useState<searchFromValue>({...emptySearchFormData, formType: 0})
+    const router = useRouter();
+    const dispatch = useDispatch();
+    const theme = useTheme();
+
+    const laptopMatch = useMediaQuery(theme.breakpoints.up('md'));
+    const recentData = useSearchesSelector((state) => state.searches);
+
+    const [mainForm, setMainForm] = useState<searchFromValue>({...emptySearchFormData, formType: index})
+    const [inputDetails, setInputDetails] = useState<swappableInputsDetailType[]>([])
 
     const mainHandleSubmit = (form : searchFromValue) => {
+        console.log(form)
         setMainForm(form);
-        const searchesTemp = searches
-        const repeatedDataIndex = searchesTemp.findIndex(item => JSON.stringify(item) === JSON.stringify(form) )
-        if (repeatedDataIndex !== -1){
-            searchesTemp.splice(repeatedDataIndex, 1)
-        }
-        console.log('repeated ', repeatedDataIndex)
-        searchesTemp.unshift(form)
-        setSearches(searchesTemp)
-        console.log('search', JSON.stringify(searches))
+        dispatch(addRecent(form))
+
+        // let startPoint = 0
+        // if(index === 0 || index === 1)
+
+        router.push({ pathname: 'search-page',
+            query: {
+                transportType: index,
+                currStartPoint: form.origin,
+                currDestinationPoint: form.destination,
+                currDepartureDate: form.departureDate,
+                returnDate: form.returnDate,
+                roundWay: form.oneWayRoad,
+                adultCount: form.passengerCount.adult,
+                childCount: form.passengerCount.child,
+                babyCount: form.passengerCount.baby,
+            }
+        });
     }
+
+    useEffect( () => {
+        const fetchData = async () => {
+            const data = await getInputDetailsByType(index)
+            setInputDetails(data)
+        }
+        fetchData().catch(console.error);
+    })
 
     return (
         <Grid zIndex={1000} py={2}>
-            {index === 0 && <InternalFlightSearchForm submit={mainHandleSubmit}/>}
-            {index === 1 && <InternationalFlightSearchForm submit={mainHandleSubmit}/>}
-            {index === 2 && <TrainTicketSearchForm submit={mainHandleSubmit}/>}
-            {index === 3 && <BusTicketSearchForm submit={mainHandleSubmit}/>}
-            {index === 4 && <TourSearchForm submit={mainHandleSubmit}/>}
+            <SearchFormTemplates submit={mainHandleSubmit} formType={index} inputDetails={inputDetails} />
+
+            {!laptopMatch && <SearchCardContainer categoryIndex={index} searches={searches} setSearches={setSearches} />}
         </Grid>
     )
 }

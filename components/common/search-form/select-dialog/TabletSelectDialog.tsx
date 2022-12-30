@@ -100,7 +100,7 @@ export default function TabletSelectDialog( props : selectDialogProps) {
         }
 
         setSearch('')
-        onClose(value);
+        // onClose(value);
     };
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {

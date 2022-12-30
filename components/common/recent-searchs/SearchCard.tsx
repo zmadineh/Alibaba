@@ -1,6 +1,6 @@
 import React from "react";
 
-import {passengersCount} from "../../../model/passengerCount.type";
+import {passengersCount} from "../../../model/form/passengerCount.type";
 import FlipIcon from "../../../public/svg/Flip-icon.svg";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -15,9 +15,12 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import AirlineSeatReclineExtraOutlinedIcon from '@mui/icons-material/AirlineSeatReclineExtraOutlined';
+import {useRouter} from "next/router";
+import Link from "next/link";
 
 
 interface searchCardProps {
+    formType: number
     origin: string,
     destination: string,
     oneWayRoad?: boolean,
@@ -26,12 +29,31 @@ interface searchCardProps {
     passengerCount: passengersCount,
 }
 
-export default function SearchCard({origin, destination, oneWayRoad = false, departureDate, returnDate, passengerCount} : searchCardProps) {
+export default function SearchCard({formType, origin, destination, oneWayRoad = false, departureDate, returnDate, passengerCount} : searchCardProps) {
 
     const theme = useTheme();
+    const router = useRouter();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'))
 
+    console.log('formType', formType)
+
+    const url = { pathname: 'search-page',
+        query: {
+            transportType: formType,
+            currStartPoint: origin,
+            currDestinationPoint: destination,
+            currDepartureDate: departureDate,
+            returnDate: returnDate,
+            roundWay: oneWayRoad,
+            adultCount: passengerCount.adult,
+            childCount: passengerCount.child,
+            babyCount: passengerCount.baby,
+        }
+    };
+
+
     return (
+        <Link href={url}>
         <Card
             variant="outlined"
             sx={{borderRadius: '8px', cursor: 'pointer'}}
@@ -52,7 +74,7 @@ export default function SearchCard({origin, destination, oneWayRoad = false, dep
                         <Grid container gap={1} color={'grey.500'} textOverflow={'ellipsis'} flexWrap={"nowrap"}>
                             <CalendarMonthOutlinedIcon />
                             <Typography variant="body2" noWrap textOverflow={'ellipsis'}>
-                                {departureDate}
+                                {new Date(departureDate).toLocaleDateString()}
                             </Typography>
                             {!oneWayRoad &&
                                 <Typography variant="body2" noWrap textOverflow={'ellipsis'}>
@@ -61,7 +83,7 @@ export default function SearchCard({origin, destination, oneWayRoad = false, dep
                             }
                             {!oneWayRoad &&
                                 <Typography variant="body2" noWrap textOverflow={'ellipsis'}>
-                                    {returnDate}
+                                    {new Date(returnDate).toLocaleDateString()}
                                 </Typography>
                             }
                         </Grid>
@@ -77,5 +99,6 @@ export default function SearchCard({origin, destination, oneWayRoad = false, dep
                 </CardContent>
             </CardActionArea>
         </Card>
+        </Link>
     )
 }

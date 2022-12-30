@@ -21,7 +21,7 @@ const DownloadCardPc = (): JSX.Element => {
                     <Typography variant='h6' sx={{ fontSize: "1.25rem", fontWeight: 700 }}>اپلیکیشن علی بابا</Typography>
                     <Typography sx={{ fontSize: "1.125rem", }}>سریع تر و مطمئن تر به سفر بروید</Typography></Grid>
                 <Grid item>
-                    <Link href={"/"}>
+                    <Link href={"https://www.alibaba.ir/app"}>
                         <Button sx={{ color: "secondary.300", borderRadius: "10px", "&:hover": { backgroundColor: "secondary.100" } }}>
                             <Grid item> <Typography variant='h6' sx={{ marginBottom: "14px", fontWeight: 400, color: 'secondary.main', fontSize: 16 }}  >مشاهده لینک های دانلود</Typography></Grid>
                             <Grid item sx={{ color: 'secondary.main' }}> <Arrow /></Grid>

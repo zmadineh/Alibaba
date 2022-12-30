@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 
 import React from "react";
-import {passengersCount} from "../../../../model/passengerCount.type";
+import {passengersCount} from "../../../../model/form/passengerCount.type";
 
 import Typography from "@mui/material/Typography/Typography";
 import FaceOutlinedIcon from '@mui/icons-material/FaceOutlined';

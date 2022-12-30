@@ -52,13 +52,17 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
           onChange={(event, newValue) => onChangeValue(event, (newValue === null ? '' : newValue))}
           inputValue={input}
           onInputChange={(event, newInputValue) => onInputChange(event, newInputValue)}
+
           fullWidth
           disableClearable
           forcePopupIcon={false}
+
           sx={{
               height: '2.5rem',
             }}
           options={getTitleArray(detail.data)}
+          isOptionEqualToValue={(option, value) => option === value}
+
           renderInput={(params) => (
               <TextField
                   {...params}
@@ -67,8 +71,13 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
                   helperText={(error ? errorMessage : '')}
                   size={"small"}
                   sx={{
+
                       color: "grey.400",
                       borderColor: "grey.200",
+
+                      '& .MuiOutlinedInput-notchedOutline': {
+                          padding: '0 10px',
+                      },
 
                       "& .MuiOutlinedInput-root.Mui-error": {
                           '& .MuiOutlinedInput-notchedOutline': {
@@ -86,6 +95,7 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
                       '& .MuiInputBase-root': {
                             borderRadius: borderRadius,
                             borderColor: "grey.200",
+                          padding: '0 10px',
                       },
 
                       '& .MuiInputLabel-root.Mui-focused': {
@@ -94,14 +104,14 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
                       },
 
                       '& .MuiInputLabel-root': {
-                          padding: '0 10px',
+                          // padding: '0 10px',
                       }
 
                   }}
               />
           )}
 
-          renderOption={(props, option) => {
+          renderOption={(ind, option) => {
               const index = detail.data.findIndex(item => item.title === option)
               return (
                   <Grid container px={1} key={option}>

@@ -1,22 +1,26 @@
 import React, {useState} from "react";
-import {passengersCount} from "../../../../model/passengerCount.type";
 
-import Grid from "@mui/material/Grid";
-import {Popover, TextField, useTheme} from "@mui/material";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import PassengerCountPopover from "../passenger-count/PassengerCountPopover";
 import SwipeableEdgeDrawer from "../passenger-count/SwipeableEdgeDrawer";
+
+import {searchFromValue} from "../../../../model/form/searchFormValue.type";
+import {passengersCount} from "../../../../model/form/passengerCount.type";
+
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import {useTheme} from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 import InputAdornment from "@mui/material/InputAdornment";
 import AirlineSeatReclineExtraOutlinedIcon from '@mui/icons-material/AirlineSeatReclineExtraOutlined';
-import {searchFromValue} from "../../../../model/searchFormValue.type";
 
 interface PassengerCountInput {
-    form: searchFromValue,
-    setForm: React.Dispatch<React.SetStateAction<searchFromValue>>,
+    passengerCount: passengersCount,
+    setPassengerCount: React.Dispatch<React.SetStateAction<passengersCount>>,
     name: string,
 }
 
-export default function PassengerCountInput({form, setForm, name}: PassengerCountInput) {
+export default function PassengerCountInput({passengerCount, setPassengerCount, name}: PassengerCountInput) {
 
     const theme = useTheme();
     const tabletMatch = useMediaQuery(theme.breakpoints.down('md'));
@@ -27,6 +31,7 @@ export default function PassengerCountInput({form, setForm, name}: PassengerCoun
     const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(null);
 
     const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        console.log('in open ')
         setOpen(true)
         setAnchorEl(event.currentTarget);
     };
@@ -34,7 +39,8 @@ export default function PassengerCountInput({form, setForm, name}: PassengerCoun
     const handleClose = () => {
         setAnchorEl(null);
         setOpen(false)
-        setForm({...form, passengerCount: count})
+        console.log(count)
+        setPassengerCount(count)
     };
 
     return (
@@ -47,8 +53,8 @@ export default function PassengerCountInput({form, setForm, name}: PassengerCoun
             width={'100%'}
             sx={{margin: 0}}
         >
-            {tabletMatch &&
-                <SwipeableEdgeDrawer count={count} setCount={setCount} open={open} setOpen={setOpen} />
+            {(tabletMatch || mobileMatch) &&
+                <SwipeableEdgeDrawer count={count} setCount={setCount} open={open} setOpen={setOpen} handleClose={handleClose} />
             }
 
             {mobileMatch &&
@@ -83,7 +89,7 @@ export default function PassengerCountInput({form, setForm, name}: PassengerCoun
                 />
             }
 
-            {!tabletMatch &&
+            {!tabletMatch && !mobileMatch &&
                 <PassengerCountPopover count={count} setCount={setCount} open={open} setOpen={setOpen} anchorEl={anchorEl} handleClose={handleClose} />
             }
 

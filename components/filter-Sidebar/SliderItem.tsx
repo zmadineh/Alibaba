@@ -26,7 +26,7 @@ const SliderItem = ({ title, handleChange, value, min, max }: SliderItemProps) =
                 <Typography>{title}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-                <Box sx={{ width: 250 }} >
+                <Box sx={{ width: '100%', padding: 1}} >
                     <Grid display={"flex"} width={"100%"} justifyContent={"space-between"} >
                         <Typography >
                             {value[0]}
