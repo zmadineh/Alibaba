@@ -4,6 +4,8 @@ import Flight_box from "./Flight_box";
 import Logo from '../../public/Assets/Images/desktop_header/logo_deskNav.svg'
 import Logo1 from '../../public/Assets/Images/desktop_header/logo_deskNav1.svg'
 import LoginHeader from "./LoginHeader";
+import Router from 'next/router'
+
 
 interface Props {
     children: React.ReactElement;
@@ -20,6 +22,12 @@ function HideOnScroll(props: Props) {
     );
 }
 
+const handleclick = (a:number) => {
+    Router.push({
+        pathname: '/',
+        query: { index: a },
+    })
+}
 
 export default function Desk_header(props: { res: boolean }) {
     const [open, setOpen] = useState(false)
@@ -65,20 +73,14 @@ export default function Desk_header(props: { res: boolean }) {
                                         </ListItem>
                                         <Divider orientation="vertical" variant="middle" flexItem sx={{ marginY: '15px' }} />
                                         <ListItem sx={{ paddingX: '4px' }}>
-                                            <ListItemButton>
+                                            <ListItemButton onClick={()=>handleclick(2)}>
                                                 <Typography fontWeight={'500'} variant="body1" color={'grey.700'}> قطار </Typography>
                                             </ListItemButton>
                                         </ListItem>
                                         <Divider orientation="vertical" variant="middle" flexItem sx={{ marginY: '15px' }} />
                                         <ListItem sx={{ paddingX: '4px' }}>
-                                            <ListItemButton>
+                                            <ListItemButton onClick={()=>handleclick(3)}>
                                                 <Typography fontWeight={'500'} variant="body1" color={'grey.700'}> اتوبوس </Typography>
-                                            </ListItemButton>
-                                        </ListItem>
-                                        <Divider orientation="vertical" variant="middle" flexItem sx={{ marginY: '15px' }} />
-                                        <ListItem sx={{ paddingX: '4px' }}>
-                                            <ListItemButton>
-                                                <Typography variant="body1" color={'grey.700'}> تور </Typography>
                                             </ListItemButton>
                                         </ListItem>
                                     </List>

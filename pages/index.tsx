@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 
 import { searchFromValue } from "../model/form/searchFormValue.type";
 
@@ -12,6 +12,7 @@ import SearchForm from "../components/home/search-form/SearchForm";
 import TabPanel from "../components/home/tabview/TabPanel";
 import Desk_header from '../components/desktop_header/Desk_header';
 import HeaderMobile from '../components/layout/layoutMobile/HeaderMobile';
+import { useRouter } from 'next/router'
 
 import { Dialog, DialogContent, Grid, IconButton, SvgIcon, Typography, useMediaQuery, useTheme } from '@mui/material';
 
@@ -22,11 +23,14 @@ const pagesFaName = ['پرواز داخلی', 'پرواز خارجی', 'قطار
 export default function FirstPage() {
     const [page, setPage] = useState<number>(0);
     const [searches, setSearches] = useState<searchFromValue[]>([])
-
+    const router = useRouter()
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('sm'));
     const laptopMatches = useMediaQuery(theme.breakpoints.up('md'));
-
+    useEffect(()=>{
+        console.log('router : ' ,router.query.index);
+        setPage(router.query.index===undefined ? 0 : + router.query.index)
+    },[router.query])
     return (
         <Grid>
           
