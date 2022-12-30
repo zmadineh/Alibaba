@@ -20,6 +20,8 @@ import {filterd_TripData} from "../../data/tickets_data/DataTickets";
 import TicketContainer from "../../components/ticket_cards/TicketContainer";
 import Footer from "../../components/layout/Footer";
 import Desk_header from "../../components/desktop_header/Desk_header";
+import Link from "next/link";
+import {ArrowBackIos, ArrowForward, ArrowForwardIos} from "@mui/icons-material";
 
 
 
@@ -126,17 +128,42 @@ export default function SearchPage() {
     // trips ->
     const [currentTrips, setCurrentTrips] = useState<filterd_TripData[]>([])
 
+    // loading ->
+    const [loadingTicket, setLoadingTicket] = useState(true)
+
+    // defaultPriceRange ->
+    const [defaultPriceRange, setDefaultPriceRange] = useState<priceRangeType>(defaultFilterValue.priceRange)
+
+    //
+
     useEffect( () => {
 
         const fetchData = async () => {
-            const data = await getTicket(
-                1,
-                2,
-                transportTypeId,
-                travelerCount,
-                currDepartureDate_,
-            )
+            // let data = []
+            // if(roundWay === 'true')
+            //     data = await getTicket(
+            //         1,
+            //         2,
+            //         transportTypeId,
+            //         travelerCount,
+            //         currDepartureDate_,
+            //         (roundWay === 'true' ? (returnDate ? new Date(returnDate.toString()) : new Date()) : undefined)
+            //     )
+            // else
+             const data = await getTicket(
+                    1,
+                    2,
+                    transportTypeId,
+                    travelerCount,
+                    currDepartureDate_,
+                    // (roundWay === 'true' ? (returnDate ? new Date(returnDate.toString()) : new Date()) : undefined)
+                )
             setCurrentTrips(data)
+            setLoadingTicket(false)
+            const baseTripsPrice = data.map(item => item.price).sort((a, b) => a - b)
+            const tripsLength = baseTripsPrice.length
+            if(tripsLength > 0)
+                setDefaultPriceRange({min: (baseTripsPrice[0]-100 > 0 ? baseTripsPrice[0]-100 : 0), max: baseTripsPrice[tripsLength-1]+100})
         }
 
         fetchData().catch(console.error);
@@ -150,7 +177,7 @@ export default function SearchPage() {
         setCompanies(defaultFilterValue.companies)
         setShowAvailable(defaultFilterValue.showAvailable)
         setShoppingType(defaultFilterValue.shoppingType)
-        setPriceRange(defaultFilterValue.priceRange)
+        setPriceRange(defaultPriceRange)
         setDepartureTime(defaultFilterValue.departureTime)
         setDepartureDate(defaultFilterValue.departureDate)
     }, [])
@@ -228,6 +255,7 @@ export default function SearchPage() {
         departureTime,
         setDepartureTime,
         transportTypeId,
+        defaultPriceRange,
     }
 
     return (
@@ -240,12 +268,16 @@ export default function SearchPage() {
 
             {mobileMatch &&
                 <Grid item container alignItems={"center"} bgcolor={'#fff'} height={`${headerHeight}px`} position={"fixed"} top={0} zIndex={2000}>
-                    <IconButton>
-                        
-                    </IconButton>
-                    <Typography>
-                        صفحه اصلی
-                    </Typography>
+                    <Link href={'/'}>
+                        <Grid display={"flex"} alignItems={"center"}>
+                            <IconButton>
+                                <ArrowForwardIos />
+                            </IconButton>
+                            <Typography>
+                                صفحه اصلی
+                            </Typography>
+                        </Grid>
+                    </Link>
                 </Grid>
             }
 
@@ -268,7 +300,6 @@ export default function SearchPage() {
                                     resetFunction={resetFilters}
                                     ticketCount={filter().length}
                                 />
-                                {/*--------------------------------------------------------*/}
                             </Grid>
                         </Grid>
                     }
@@ -276,7 +307,6 @@ export default function SearchPage() {
                     <Grid item container gap={1} pl={{xs: 0, sm: 1}} flexDirection={"column"} xs={12} md={9}>
                         <Grid item container height={'100px'}>
                             <DateFilter departureDate={departureDate} setDepartureDate={setDepartureDate}/>
-                            {/*--------------------------------------------------------*/}
                         </Grid>
 
                         {!mobileMatch &&
@@ -299,9 +329,16 @@ export default function SearchPage() {
                         }
 
                         <Grid item container minHeight={'500px'}>
-                            <TicketContainer filteredData={filter()} tripType={transportTypeId}/>
-
-                            {/*--------------------------------------------------------*/}
+                            {loadingTicket &&
+                                <Grid display={"flex"} justifyContent={"center"} alignItems={"center"}>
+                                    <Typography>
+                                        ... loading
+                                    </Typography>
+                                </Grid>
+                            }
+                            {!loadingTicket &&
+                                <TicketContainer filteredData={filter()} tripType={transportTypeId}/>
+                            }
                         </Grid>
                     </Grid>
                 </Grid>
@@ -328,13 +365,26 @@ export default function SearchPage() {
                                 resetFunction={resetFilters}
                                 ticketCount={filter().length}
                             />
-                            {/*--------------------------------------------------------*/}
                         </Grid>
                     </Grid>
-                    <Grid item xs={6} bgcolor={'orange'}>
-                        next and prev day
-                        
-                    {/*--------------------------------------------------------*/}
+
+                    <Grid item display={"flex"} alignItems={"center"} justifyContent={"center"} gap={2.5} xs={6}>
+                        <Grid display={"flex"} alignItems={"center"}>
+                            <IconButton>
+                                <ArrowForwardIos />
+                            </IconButton>
+                            <Typography fontWeight={600} color={'grey.600'}>
+                                روز قبل
+                            </Typography>
+                        </Grid>
+                        <Grid display={"flex"} alignItems={"center"}>
+                            <Typography fontWeight={600} color={'grey.600'}>
+                                روز بعد
+                            </Typography>
+                            <IconButton>
+                                <ArrowBackIos />
+                            </IconButton>
+                        </Grid>
                     </Grid>
                 </Grid>
             }

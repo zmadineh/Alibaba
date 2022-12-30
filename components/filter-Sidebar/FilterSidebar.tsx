@@ -6,20 +6,18 @@ import FiltersDialog from "./FiltersDialog";
 
 import {filterStatesPropsType} from "../../model/filter/filterStateType";
 
-import { filterSidebarAirplaneData } from "../../data/filterSidebarData"
-import { filterSidebarAirplaneTwoData } from "../../data/filterSidebarData"
-import { filterSidebarTrainData } from "../../data/filterSidebarData"
-import { filterSidebarBusData } from "../../data/filterSidebarData"
-// import { filterSidebarTourData } from "../../data/filterSidebarData"
+import { filterSidebarAirplaneData } from "../../data/filters/filterSidebarData"
+import { filterSidebarAirplaneTwoData } from "../../data/filters/filterSidebarData"
+import { filterSidebarTrainData } from "../../data/filters/filterSidebarData"
+import { filterSidebarBusData } from "../../data/filters/filterSidebarData"
 
-import Grid from '@mui/material/Grid'
 import {useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Grid from '@mui/material/Grid'
 import Button from "@mui/material/Button";
 import GradingIcon from "@mui/icons-material/Grading";
 import Typography from "@mui/material/Typography";
 import Drawer from '@mui/material/Drawer';
-
 
 
 interface FilterSidebarProps {

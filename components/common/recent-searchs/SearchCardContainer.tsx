@@ -1,4 +1,6 @@
 import React, {useCallback, useState} from "react";
+import {useDispatch} from "react-redux";
+import {useSearchesSelector} from "../../../redux/AuthHooks";
 
 import {searchFromValue} from "../../../model/searchFormValue.type";
 
@@ -7,33 +9,9 @@ import SearchCard from "./SearchCard";
 import Grid from "@mui/material/Grid/Grid";
 import Button from "@mui/material/Button/Button";
 import Typography from "@mui/material/Typography/Typography";
+import {removeAll} from "../../../redux/Slices/SearchSlice";
 
-const input = [
-    {
-        origin: 'تهران',
-        destination: 'اصفهان',
-        oneWayRoad: true,
-        departureDate: ' 29 آذر',
-        returnDate: '',
-        passengerCount: {adult: 1, child: 0, baby: 0}
-    },
-    {
-        origin: 'تهران',
-        destination: 'شیراز',
-        oneWayRoad: false,
-        departureDate: ' 29 آذر',
-        returnDate: '1 دی',
-        passengerCount: {adult: 1, child: 2, baby: 0}
-    },
-    {
-        origin: 'تهران',
-        destination: 'رشت',
-        oneWayRoad: false,
-        departureDate: ' 21 آذر',
-        returnDate: '1 دی',
-        passengerCount: {adult: 2, child: 1, baby: 0}
-    }
-]
+
 
 interface SearchCardContainerProps {
     categoryIndex: number,
@@ -43,11 +21,15 @@ interface SearchCardContainerProps {
 
 export default function SearchCardContainer({categoryIndex, searches, setSearches} : SearchCardContainerProps) {
 
-    const counter = searches.filter(search => search.formType === categoryIndex).length
+    const dispatch = useDispatch();
+    const recentData = useSearchesSelector((state) => state.searches);
+
+    const counter = recentData.filter(search => search.formType === categoryIndex).length
     console.log(categoryIndex)
 
     const removeAllSearches = useCallback(() => {
-        setSearches([])
+        // setSearches([])
+        dispatch(removeAll())
     }, []);
 
     return (
@@ -62,7 +44,7 @@ export default function SearchCardContainer({categoryIndex, searches, setSearche
             }
 
                 <Grid item container flexDirection={"column"} overflow={"scroll"} alignContent={"flex-start"} maxHeight={'250px'} gap={2} mt={4}>
-                    {searches.filter(search => search.formType === categoryIndex).map((search , index) => (
+                    {recentData.filter(search => search.formType === categoryIndex).map((search , index) => (
                         <SearchCard key={index} {...search}/>
                     ))}
 

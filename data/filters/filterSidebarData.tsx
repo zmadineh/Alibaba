@@ -1,5 +1,5 @@
-import {trips} from "./database/trips.data";
-import {transport_companies} from "./database/transportCompanies.data";
+import {trips} from "../database/trips.data";
+import {transport_companies} from "../database/transportCompanies.data";
 
 export interface filterSideItemDetailType {
     id: number,

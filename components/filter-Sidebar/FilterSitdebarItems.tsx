@@ -3,7 +3,7 @@ import React from 'react'
 import Grid from '@mui/material/Grid'
 
 import {filterStatesPropsType} from "../../model/filter/filterStateType";
-import {filterSideType} from "../../data/filterSidebarData";
+import {filterSideType} from "../../data/filters/filterSidebarData";
 
 import FilterSidebarItem from './FilterSidebarItem';
 

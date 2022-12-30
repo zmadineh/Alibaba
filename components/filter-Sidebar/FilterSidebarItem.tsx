@@ -10,7 +10,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Accordion from '@mui/material/Accordion';
 
-import {filterSideItemDetailType, filterSideType} from "../../data/filterSidebarData";
+import {filterSideItemDetailType, filterSideType} from "../../data/filters/filterSidebarData";
 import {filterStatesPropsType} from "../../model/filter/filterStateType";
 
 import SliderItem from './SliderItem';
@@ -38,16 +38,13 @@ const FilterSidebarItem = ({ item, filterStateProps, resetFunction, ticketCount 
         departureTime,
         setDepartureTime,
         transportTypeId,
+        defaultPriceRange,
     } = filterStateProps
 
     const [state, setState] = useState(item)
     const [value2, setValue2] = useState<number[]>([2, 29]);
     const [btnFilter, setBtnFilter] = useState<string>("none")
 
-    // useEffect(() => {
-    //     console.log(state.priceRange)
-    //     setPriceRange(state.priceRange)
-    // })
 
     // handleClickBtnFilter
     const handleClickBtnFilter = () => {
@@ -118,9 +115,12 @@ const FilterSidebarItem = ({ item, filterStateProps, resetFunction, ticketCount 
                     <Typography>نتایج: {ticketCount}</Typography>
                 </Grid>
                 <Grid item xs={6} display={"flex"} justifyContent={"flex-end"} sx={{width: '80px', height: '30px'}}>
-                    <Button onClick={handleClickBtnFilter}
-                            sx={{backgroundColor: 'inherit', color: "secondary.300", borderRadius: 5, display: btnFilter,
-                                '&:hover': { backgroundColor: "secondary.100"}}}>
+                    <Button
+                        onClick={handleClickBtnFilter}
+                        sx={{backgroundColor: 'inherit', color: "secondary.300",
+                            borderRadius: 5, display: btnFilter,
+                            '&:hover': { backgroundColor: "secondary.100"}}}
+                    >
                         <Typography sx={{fontSize: 12 }}>لغو فیلتر ها</Typography>
                     </Button>
                 </Grid>
@@ -140,7 +140,6 @@ const FilterSidebarItem = ({ item, filterStateProps, resetFunction, ticketCount 
                     :
                     ""
                 }
-                {/* Slider1 */}
 
                 {/* Slider2 airplane2 */}
                 {!state.slider ?
@@ -153,21 +152,19 @@ const FilterSidebarItem = ({ item, filterStateProps, resetFunction, ticketCount 
                     />
                     : ""
                 }
-                {/* Slider2 airplane2*/}
 
                 {/* Slider3 price range*/}
                 {state.slider ?
                     <SliderItem
                         title={"بازه قیمت"}
                         value={[priceRange.min, priceRange.max]}
-                        min={state.priceRange.min}
-                        max={state.priceRange.max}
+                        min={defaultPriceRange.min}
+                        max={defaultPriceRange.max}
                         handleChange={handleChange3}
                     />
                     :
                     ""
                 }
-                {/* Slider1 */}
 
                 {state.Accor.map((accor, accorIndex) => (
                     (accor.AccorDetail.length) > 0 &&
