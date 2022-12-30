@@ -3,8 +3,8 @@ import React, {useState} from "react";
 import PassengerCountPopover from "../passenger-count/PassengerCountPopover";
 import SwipeableEdgeDrawer from "../passenger-count/SwipeableEdgeDrawer";
 
-import {searchFromValue} from "../../../../model/searchFormValue.type";
-import {passengersCount} from "../../../../model/passengerCount.type";
+import {searchFromValue} from "../../../../model/form/searchFormValue.type";
+import {passengersCount} from "../../../../model/form/passengerCount.type";
 
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";

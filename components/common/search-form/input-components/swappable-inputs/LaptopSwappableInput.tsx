@@ -2,7 +2,7 @@ import React, {useCallback, useState} from "react";
 import CustomAutocomplete from "../CustomAutocomplete";
 import SwappableTemplate from "./SwappableTemplate";
 
-import {searchFromValue} from "../../../../../model/searchFormValue.type";
+import {searchFromValue} from "../../../../../model/form/searchFormValue.type";
 import {data} from "../../../../../model/data.type";
 import {getTitleArray} from "../../../../../helper/getTitleArray.helper";
 import {swappableInputsDetailType} from "../../../../../model/swappableInputsDetail.type";

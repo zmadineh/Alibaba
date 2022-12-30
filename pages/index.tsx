@@ -6,7 +6,7 @@ import HelpCard from './../components/home/help-card/HelpCard';
 import DownloadCard from './../components/home/download-card/DownloadCard';
 import Footer from '../components/layout/Footer';
 import SearchCardContainer from "../components/common/recent-searchs/SearchCardContainer";
-import { searchFromValue } from "../model/searchFormValue.type";
+import { searchFromValue } from "../model/form/searchFormValue.type";
 import SearchForm from "../components/home/search-form/SearchForm";
 import TabPanel from "../components/home/tabview/TabPanel";
 import Desk_header from '../components/desktop_header/Desk_header';

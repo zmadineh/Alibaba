@@ -1,6 +1,7 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 
 import {swappableInputsDetailType} from "../../../../../model/swappableInputsDetail.type";
+import {formErrorType} from "../../../../../model/form/fromErrorType.type";
 
 import LaptopSwappableInput from "./LaptopSwappableInput";
 import TabletSwappableInput from "./TabletSwappableInput";
@@ -15,11 +16,12 @@ interface SwappableInputProps {
     setSecValue: React.Dispatch<React.SetStateAction<string>>,
     details: swappableInputsDetailType[],
     listWidth?: string,
+    formError: formErrorType,
 }
 
 export default function SwappableInput(props : SwappableInputProps) {
 
-    const {details, setFirstValue, setSecValue} = props;
+    const {details, setFirstValue, setSecValue, formError} = props;
 
     const firstInputName = details[0].name
     const secondInputName = details[1].name
@@ -30,8 +32,16 @@ export default function SwappableInput(props : SwappableInputProps) {
     const laptopMatch = useMediaQuery(theme.breakpoints.up('md'));
 
     const [values, setValues] = useState({[firstInputName]: '', [secondInputName]: ''})
-    const [error, setError] = useState({[firstInputName]: false, [secondInputName]: false})
+    const [error, setError] = useState<{[key: string]: boolean}>({[firstInputName]: false, [secondInputName]: false})
     const [errorMessage, setErrorMessage] = useState<string>('');
+
+    useEffect(() => {
+        // @ts-ignore
+        setError({[firstInputName]: formError[firstInputName], [secondInputName]: formError[secondInputName]})
+        // @ts-ignore
+        if(formError[firstInputName] || formError[secondInputName])
+            setErrorMessage(`${details[0].label} یا ${details[1].label} را پر کنید.`)
+    })
 
     const validationData = useCallback((name: string, value: string) => {
         let otherName: string = '';
@@ -43,6 +53,8 @@ export default function SwappableInput(props : SwappableInputProps) {
             otherName = firstInputName;
             setSecValue(value)
         }
+        setError({...error, [name]: false})
+
 
         if(values[otherName] === value && values[otherName] !== '') {
             setError({[name]: false, [otherName]: true})

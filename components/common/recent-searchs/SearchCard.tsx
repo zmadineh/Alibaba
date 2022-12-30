@@ -1,6 +1,6 @@
 import React from "react";
 
-import {passengersCount} from "../../../model/passengerCount.type";
+import {passengersCount} from "../../../model/form/passengerCount.type";
 import FlipIcon from "../../../public/svg/Flip-icon.svg";
 
 import useMediaQuery from "@mui/material/useMediaQuery";

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-import {searchFromValue} from "../../../model/searchFormValue.type";
+import {searchFromValue} from "../../../model/form/searchFormValue.type";
 import {swappableInputsDetailType} from "../../../model/swappableInputsDetail.type";
 
 import {emptySearchFormData} from "../../../data/form/emptySearchForm.data";

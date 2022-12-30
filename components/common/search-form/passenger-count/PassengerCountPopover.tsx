@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-import {passengersCount} from "../../../../model/passengerCount.type";
+import {passengersCount} from "../../../../model/form/passengerCount.type";
 import PassengerCountContent from "./PassengerCountContent";
 
 import Grid from "@mui/material/Grid";

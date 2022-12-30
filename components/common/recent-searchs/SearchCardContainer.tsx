@@ -2,7 +2,7 @@ import React, {useCallback, useState} from "react";
 import {useDispatch} from "react-redux";
 import {useSearchesSelector} from "../../../redux/AuthHooks";
 
-import {searchFromValue} from "../../../model/searchFormValue.type";
+import {searchFromValue} from "../../../model/form/searchFormValue.type";
 
 import SearchCard from "./SearchCard";
 

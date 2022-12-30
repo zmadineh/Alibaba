@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import CustomTextField from "./CustomTextField";
 
-import {searchFromValue} from "../../../../model/searchFormValue.type";
+import {searchFromValue} from "../../../../model/form/searchFormValue.type";
 
 import {MenuItem, useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -10,6 +10,7 @@ import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import CustomDropDown from "./CustomDropDown";
+import {dateOptionCreator} from "../../../../helper/dateOptionCreator.helper";
 
 
 interface ToggleInputsProps {
@@ -32,19 +33,6 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
     const tabletMatch = useMediaQuery(theme.breakpoints.down('md'));
-
-    const dateOptionCreator = () => {
-        const today = new Date();
-        let dateOption = [{label: today.toLocaleDateString('fa-IR'), value: today}];
-
-        for (let i=1; i<10; ++i){
-            let tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + i)
-            dateOption.push({label: tomorrow.toLocaleDateString('fa-IR'), value: tomorrow})
-        }
-        console.log('toggle: ', dateOption)
-        return dateOption
-    }
 
     const onChange = (event: any) => {
         const name = event.target.name
@@ -106,7 +94,7 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                         value={firstValue}
 
                         error={formError[firstName]}
-                        helperText={(formError[firstName] && '')}
+                        helperText={(formError[firstName] && `${firstLabel} را پر کنید. `)}
 
                         disabled={false}
                         variant={"standard"}
@@ -158,7 +146,7 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                        onChange={onChange}
 
                        error={formError[secondName]}
-                       helperText={(formError[secondName] && '')}
+                       helperText={(formError[secondName] && `${secondLabel} را پر کنید. `)}
 
                        disabled={!oneWayRoad}
                        variant={"standard"}

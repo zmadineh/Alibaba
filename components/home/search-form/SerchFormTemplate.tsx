@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-import {searchFromValue} from "../../../model/searchFormValue.type";
+import {searchFromValue} from "../../../model/form/searchFormValue.type";
 import {internalCities} from "../../../data/database/internalCities.data";
 import {swappableInputsDetailType} from "../../../model/swappableInputsDetail.type";
 
@@ -44,38 +44,40 @@ export default function SearchFormTemplates({submit, formType, inputDetails} : I
     const handleSubmit = (event : React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
+        let originError = false;
+        let destinationError = false;
+        let departureDateError = false;
+        let returnDateError = false;
+        let passengerCountError = false;
         let haveError = false
+
         console.log('departureDate ', departureDate === '')
 
         if (origin === '') {
-            setFormError({...formError, origin: true})
+            originError = true
             haveError = true
-            console.log(origin)
-        } else setFormError({...formError, origin: false})
+        }
 
         if (destination === '') {
-            setFormError({...formError, destination: true})
+            destinationError = true
             haveError = true
-            console.log(destination)
-        } else setFormError({...formError, destination: false})
+        }
 
         if (departureDate === '') {
-            setFormError({...formError, departureDate: !formError.departureDate})
+            departureDateError = true
             haveError = true
-            console.log('departureDate ', departureDate)
-        } else setFormError({...formError, departureDate: false})
-
+        }
         if (formType!== 3 && !oneWayRoad && returnDate === '') {
-            setFormError({...formError, returnDate: true})
+            returnDateError = true
             haveError = true
-            console.log(returnDate)
-        } else setFormError({...formError, returnDate: false})
+        }
+
+        setFormError({...formError, origin: originError, destination: destinationError, departureDate: departureDateError, returnDate: returnDateError})
+
+        console.log(formError, originError)
 
 
-        console.log(formError)
-
-
-        // if(!haveError)
+        if(!haveError)
             submit({...form,
                 origin: origin,
                 destination: destination,
@@ -105,6 +107,7 @@ export default function SearchFormTemplates({submit, formType, inputDetails} : I
                             details={inputDetails}
                             setFirstValue={setOrigin}
                             setSecValue={setDestination}
+                            formError={formError}
                         />
                     </Grid>
 
@@ -116,6 +119,7 @@ export default function SearchFormTemplates({submit, formType, inputDetails} : I
                                     value={departureDate}
                                     setValue={setDepartureDate}
                                     iconName={'calender'}
+                                    formError={formError}
                                 />
                             }
                             {(formType !== 3) && // bus

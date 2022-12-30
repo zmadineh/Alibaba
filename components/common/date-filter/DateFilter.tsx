@@ -4,7 +4,7 @@ import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { Divider } from '@mui/material';
-import {searchFromValue} from "../../../model/searchFormValue.type";
+import {searchFromValue} from "../../../model/form/searchFormValue.type";
 import Grid from "@mui/material/Grid";
 
 interface DateFilterPropsTyp {

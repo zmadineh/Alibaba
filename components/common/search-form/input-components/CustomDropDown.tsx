@@ -1,4 +1,4 @@
-import React, {SyntheticEvent} from "react";
+import React, {SyntheticEvent, useEffect, useState} from "react";
 import {MenuItem, TextField} from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
@@ -19,9 +19,16 @@ interface CustomDropDownProps {
 
 const CustomDropDown = (props: CustomDropDownProps) => {
 
+    const [textError, setTextError] = useState<boolean>(false)
+
+    useEffect(() => {
+        setTextError(props.error)
+    })
+
     const onChange = (event: any) => {
         console.log('select : ', event.target.value)
         props.setCurrentValue(event.target.value)
+        setTextError(false)
     }
 
     return (
@@ -36,8 +43,8 @@ const CustomDropDown = (props: CustomDropDownProps) => {
             variant={"outlined"}
             size={"small"}
 
-            error={(!props.disable && props.error)}
-            helperText={(!props.disable && props.error) && props.errorMessage}
+            error={(!props.disable && props.error && textError)}
+            helperText={(!props.disable && props.error && textError) && props.errorMessage}
 
             disabled={props.disable}
             InputProps={{

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import PassengerCountContent from "./PassengerCountContent";
-import {passengersCount} from "../../../../model/passengerCount.type";
+import {passengersCount} from "../../../../model/form/passengerCount.type";
 
 import { Global } from '@emotion/react';
 import { styled } from '@mui/material/styles';

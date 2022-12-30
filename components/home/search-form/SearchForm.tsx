@@ -3,7 +3,7 @@ import React, {useCallback, useState} from "react";
 import TourSearchForm from "./TourSearchForm";
 
 import {emptySearchFormData} from "../../../data/form/emptySearchForm.data";
-import {searchFromValue} from "../../../model/searchFormValue.type";
+import {searchFromValue} from "../../../model/form/searchFormValue.type";
 import {getInputDetailsByType} from "../../../data/search-form/serchFormInputDetails";
 import SearchFormTemplates from "./SerchFormTemplate";
 
@@ -40,16 +40,8 @@ export default function SearchForm({index, searches, setSearches} : SearchFormPr
         setMainForm(form);
         dispatch(addRecent(form))
 
-        // const searchesTemp = searches
-        // const repeatedDataIndex = searchesTemp.findIndex(item => JSON.stringify(item) === JSON.stringify(form) )
-        // if (repeatedDataIndex !== -1){
-        //     searchesTemp.splice(repeatedDataIndex, 1)
-        // }
-        // searchesTemp.unshift(form)
-        // setSearches(searchesTemp)
-
-        let startPoint = 0
-        if(index === 0 || index === 1)
+        // let startPoint = 0
+        // if(index === 0 || index === 1)
 
         router.push({ pathname: 'search-page',
             query: {
