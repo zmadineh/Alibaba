@@ -20,7 +20,7 @@ export const listOption: listType[] = [
     {
         id: 3, title: "اتوبوس", icon: <Busicon />, href: "/"
     },
-    { id: 4, title: "تور", icon: <Tour />, href: "/" },
+    // { id: 4, title: "تور", icon: <Tour />, href: "/" },
 
 
 ]

@@ -11,10 +11,11 @@ import HederMobileMain from './heder-mobile/HederMobileMain';
 import HederMobileScrll from './heder-mobile/HederMobileScrll';
 
 interface HeaderMobileProps{
-    setPage:Dispatch<React.SetStateAction<number>>,
+    setPage: Dispatch<React.SetStateAction<number>>,
+    setOpenDialog: Dispatch<React.SetStateAction<boolean>>,
 }
 
-const HeaderMobile = ({setPage}:HeaderMobileProps): JSX.Element => {
+const HeaderMobile = ({setPage, setOpenDialog}:HeaderMobileProps): JSX.Element => {
     const [display, setDisplay] = useState<string>("header1")
 
     useEffect(() => {
@@ -43,14 +44,14 @@ const HeaderMobile = ({setPage}:HeaderMobileProps): JSX.Element => {
                 {/* header1 */}
                 <Grid item xs={12} display={display === "header1" ? "flex" : "none"} justifyContent={"center"} alignItems={"cnter"} flexDirection={"row"} sx={{ cursor: "pointer" }}>
                     <Grid item xs={12} container display={"grid"} overflow={"hidden"} sx={{ gridTemplateColumns: "repeat(2,1fr)", gridTemplateRows: "repeat(2,1fr)", border: "solid 1px", cursor: "pointer", borderRadius: '10px 10px 10px 10px', borderColor: 'divider' }} bgcolor={"white"} height={130} position={"relative"} boxShadow={1} >
-                        {listOption.map((item) => (<HederMobileMain setPage={setPage} item={item} key={item.id} />
+                        {listOption.map((item) => (<HederMobileMain setOpenDialog={setOpenDialog} setPage={setPage} item={item} key={item.id} />
                         ))}
                     </Grid>
                 </Grid>
                 {/* header2 */}
                 <Grid item container xs={12} display={display === "header1" ? "none" : "flex"} justifyContent={'center'} alignItems={"cnter"}>
                     <Grid item xs={12} height={"50px"} display={"flex"} justifyContent={"space-evenly"} alignItems={"cnter"} flexDirection={"row"} bgcolor={"common.white"} sx={{ borderRadius: '10px 10px 10px 10px', borderColor: 'divider' }} boxShadow={1} gap={1} overflow={"hidden"}>
-                        {listOption.map(item => (<HederMobileScrll item={item} key={item.id} setPage={setPage}/>
+                        {listOption.map(item => (<HederMobileScrll setOpenDialog={setOpenDialog} item={item} key={item.id} setPage={setPage}/>
 
                         ))}
                     </Grid>
