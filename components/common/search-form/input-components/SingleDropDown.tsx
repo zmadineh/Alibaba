@@ -3,7 +3,7 @@ import CustomTextField from "./CustomTextField";
 import CustomDropDown from "./CustomDropDown";
 
 import {searchFromValue} from "../../../../model/form/searchFormValue.type";
-import {dateOptions} from "../../../../data/form/dateOptions.data";
+import {dateOptions} from "../../../../data/search-form/dateOptions.data";
 
 import {useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";

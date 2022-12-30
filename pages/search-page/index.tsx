@@ -91,8 +91,8 @@ export default function SearchPage() {
     const transportTypeId = Number(transportType);
     const currDepartureDate_  = (currDepartureDate ? new Date(currDepartureDate.toString()) : new Date());
     const travelerCount = Number(adultCount) + Number(childCount) + Number(babyCount)
-    const startPoint = 1;
-    const destination = 2;
+    const startPoint = currStartPoint;
+    const destination = currDestinationPoint;
 
     //--------------------------------------------------------------------------------------------//
 
@@ -134,22 +134,10 @@ export default function SearchPage() {
     // defaultPriceRange ->
     const [defaultPriceRange, setDefaultPriceRange] = useState<priceRangeType>(defaultFilterValue.priceRange)
 
-    //
 
     useEffect( () => {
 
         const fetchData = async () => {
-            // let data = []
-            // if(roundWay === 'true')
-            //     data = await getTicket(
-            //         1,
-            //         2,
-            //         transportTypeId,
-            //         travelerCount,
-            //         currDepartureDate_,
-            //         (roundWay === 'true' ? (returnDate ? new Date(returnDate.toString()) : new Date()) : undefined)
-            //     )
-            // else
              const data = await getTicket(
                     1,
                     2,
@@ -193,12 +181,15 @@ export default function SearchPage() {
     }
 
     const filter = useCallback(() => {
+        // console.log(startPoint, destination, currentTrips);
+
         let filteredData = currentTrips
         if (filteredData.length > 0) {
 
             filteredData = filteredData.filter(data =>
-                // data.start_point_city === startPoint &&
-                // data.destination_city === destination &&
+
+                data.start_point_city === startPoint &&
+                data.destination_city === destination &&
 
                 // data.start_point_city_id === startPoint &&
                 // data.destination_city_id === destination &&

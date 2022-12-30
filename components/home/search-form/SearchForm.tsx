@@ -1,23 +1,20 @@
-import React, {useCallback, useState} from "react";
-
-import {emptySearchFormData} from "../../../data/form/emptySearchForm.data";
-import {searchFromValue} from "../../../model/form/searchFormValue.type";
-import {getInputDetailsByType} from "../../../data/search-form/serchFormInputDetails";
-import SearchFormTemplates from "./SerchFormTemplate";
-
-import Grid from "@mui/material/Grid/Grid";
-import {useRouter} from "next/router";
+import React, {useCallback, useEffect, useState} from "react";
 import {useSearchesSelector} from "../../../redux/AuthHooks";
 import {useDispatch} from "react-redux";
 import {addRecent} from "../../../redux/Slices/SearchSlice";
+import {useRouter} from "next/router";
 
-// const FormsComponent = {
-//     0: InternalFlightSearchForm,
-//     1: InternationalFlightSearchForm,
-//     2: TrainTicketSearchForm,
-//     3: BusTicketSearchForm,
-//     4: TourSearchForm,
-// }
+import {emptySearchFormData} from "../../../data/search-form/emptySearchForm.data";
+import {getInputDetailsByType} from "../../../data/search-form/serchFormInputDetails";
+
+import {searchFromValue} from "../../../model/form/searchFormValue.type";
+
+import SearchFormTemplates from "./SerchFormTemplate";
+
+import Grid from "@mui/material/Grid/Grid";
+import {getTicket} from "../../../data/database/trips.data";
+import {swappableInputsDetailType} from "../../../model/swappableInputsDetail.type";
+
 
 interface SearchFormProps {
     index: number,
@@ -32,6 +29,7 @@ export default function SearchForm({index, searches, setSearches} : SearchFormPr
     const recentData = useSearchesSelector((state) => state.searches);
 
     const [mainForm, setMainForm] = useState<searchFromValue>({...emptySearchFormData, formType: 0})
+    const [inputDetails, setInputDetails] = useState<swappableInputsDetailType[]>([])
 
     const mainHandleSubmit = (form : searchFromValue) => {
         console.log(form)
@@ -55,9 +53,17 @@ export default function SearchForm({index, searches, setSearches} : SearchFormPr
             }});
     }
 
+    useEffect( () => {
+        const fetchData = async () => {
+            const data = await getInputDetailsByType(index)
+            setInputDetails(data)
+        }
+        fetchData().catch(console.error);
+    })
+
     return (
         <Grid zIndex={1000} py={2}>
-            <SearchFormTemplates submit={mainHandleSubmit} formType={index} inputDetails={getInputDetailsByType(index)} />
+            <SearchFormTemplates submit={mainHandleSubmit} formType={index} inputDetails={inputDetails} />
         </Grid>
     )
 }

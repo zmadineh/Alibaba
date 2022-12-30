@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { Login , LoginProps } from "../../data/auth/Login-Promise";
 import { LoginType, AuthStateType } from "../../model/AuthType";
 import {searchFromValue} from "../../model/form/searchFormValue.type";
-import {emptySearchFormData} from "../../data/form/emptySearchForm.data";
+import {emptySearchFormData} from "../../data/search-form/emptySearchForm.data";
 
 
 const initialState: searchFromValue[] = []

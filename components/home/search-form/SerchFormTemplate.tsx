@@ -1,7 +1,6 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import {searchFromValue} from "../../../model/form/searchFormValue.type";
-import {internalCities} from "../../../data/database/internalCities.data";
 import {swappableInputsDetailType} from "../../../model/swappableInputsDetail.type";
 
 import SwappableInput from "../../common/search-form/input-components/swappable-inputs/SwappableInput";
@@ -10,7 +9,7 @@ import PassengerCountInput from "../../common/search-form/input-components/Passe
 
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import {emptySearchFormData} from "../../../data/form/emptySearchForm.data";
+import {emptySearchFormData} from "../../../data/search-form/emptySearchForm.data";
 import BooleanSelector from "../../common/search-form/input-components/BooleanSelector";
 import SingleDropDown from "../../common/search-form/input-components/SingleDropDown";
 
@@ -23,6 +22,7 @@ interface InternalFlightSearchFormProps {
 
 export default function SearchFormTemplates({submit, formType, inputDetails} : InternalFlightSearchFormProps) {
 
+    const [loadingDetails, setLoadingDetails] = useState(true)
     const [form, setForm] = useState<searchFromValue>({...emptySearchFormData, formType: formType});
     const [origin, setOrigin] = useState<string>('');
     const [destination, setDestination] = useState<string>('');
@@ -40,6 +40,10 @@ export default function SearchFormTemplates({submit, formType, inputDetails} : I
             passengerCount: false
         })
 
+    useEffect(() => {
+        if(inputDetails.length > 0)
+            setLoadingDetails(false)
+    })
 
     const handleSubmit = (event : React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -90,28 +94,31 @@ export default function SearchFormTemplates({submit, formType, inputDetails} : I
 
     return (
         <Grid padding={1}>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                {(formType !== 3) && // bus
-                    <Grid container maxWidth={'150px'} mb={3} mt={0}>
-                        <BooleanSelector
-                            name={'oneWayRoad'}
-                            options={['یک طرفه', 'رفت و برگشت']}
-                            setValue={setOneWayRoad}
-                        />
-                    </Grid>
-                }
-                <Grid container spacing={2} flexWrap={"nowrap"} flexDirection={{xs: 'column', md: 'row'}} width={'100%'}>
+            {loadingDetails ? null :
+                <form onSubmit={(e) => handleSubmit(e)}>
+                    {(formType !== 3) && // bus
+                        <Grid container maxWidth={'150px'} mb={3} mt={0}>
+                            <BooleanSelector
+                                name={'oneWayRoad'}
+                                options={['یک طرفه', 'رفت و برگشت']}
+                                setValue={setOneWayRoad}
+                            />
+                        </Grid>
+                    }
+                    <Grid container spacing={2} flexWrap={"nowrap"} flexDirection={{xs: 'column', md: 'row'}}
+                          width={'100%'}>
 
-                    <Grid item xs={12} md={4}>
-                        <SwappableInput
-                            details={inputDetails}
-                            setFirstValue={setOrigin}
-                            setSecValue={setDestination}
-                            formError={formError}
-                        />
-                    </Grid>
+                        <Grid item xs={12} md={4}>
+                            <SwappableInput
+                                details={inputDetails}
+                                setFirstValue={setOrigin}
+                                setSecValue={setDestination}
+                                formError={formError}
+                                listWidth={(formType === 1 ? '200%' : '100%')}
+                            />
+                        </Grid>
 
-                    <Grid item xs={12} md={4}>
+                        <Grid item xs={12} md={4}>
                             {(formType === 3) && // bus
                                 <SingleDropDown
                                     firstLabel={'تاریخ حرکت'}
@@ -137,21 +144,23 @@ export default function SearchFormTemplates({submit, formType, inputDetails} : I
                                     formError={formError}
                                 />
                             }
-                    </Grid>
-                    {(formType !== 3) && // bus
-                        <Grid item xs={12} md={2.5}>
-                            <PassengerCountInput
-                                passengerCount={passengerCount}
-                                setPassengerCount={setPassengerCount}
-                                name={'passengerCount'}
-                            />
                         </Grid>
-                    }
-                    <Grid item xs={12} md={1.5}>
-                        <Button type={"submit"} variant={"contained"} size={"medium"} sx={{height: '100%', width: '100%', borderRadius: '10px'}}>{`جستجو`}</Button>
+                        {(formType !== 3) && // bus
+                            <Grid item xs={12} md={2.5}>
+                                <PassengerCountInput
+                                    passengerCount={passengerCount}
+                                    setPassengerCount={setPassengerCount}
+                                    name={'passengerCount'}
+                                />
+                            </Grid>
+                        }
+                        <Grid item xs={12} md={1.5}>
+                            <Button type={"submit"} variant={"contained"} size={"medium"}
+                                    sx={{height: '100%', width: '100%', borderRadius: '10px'}}>{`جستجو`}</Button>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </form>
+                </form>
+            }
         </Grid>
     );
 }
