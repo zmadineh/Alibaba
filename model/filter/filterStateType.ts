@@ -29,5 +29,6 @@ export interface filterStatesPropsType {
     departureTime: timeRangeType,
     setDepartureTime: React.Dispatch<React.SetStateAction<timeRangeType>>,
     transportTypeId: number,
+    defaultPriceRange: priceRangeType,
     // ticketCount: number,
 }

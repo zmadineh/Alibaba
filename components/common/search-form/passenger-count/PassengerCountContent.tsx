@@ -1,6 +1,6 @@
 import React from "react";
 
-import {passengersCount} from "../../../../model/passengerCount.type";
+import {passengersCount} from "../../../../model/form/passengerCount.type";
 import PassengerCountItem from "./passengerCountItem";
 
 import Grid from "@mui/material/Grid";

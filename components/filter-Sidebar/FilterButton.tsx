@@ -1,9 +1,8 @@
 import React from 'react';
 
 import TextField from "@mui/material/TextField";
-import MenuItem from "@mui/material/MenuItem";
 import InputAdornment from "@mui/material/InputAdornment";
-import VerticalFlip from "../../../public/svg/VerticalFlip-icon.svg";
+import GradingIcon from "@mui/icons-material/Grading";
 
 
 interface FilterDataType {
@@ -11,27 +10,19 @@ interface FilterDataType {
     filterLabel: string,
 }
 
-interface TripleSortingFilterProps {
-    inputs: FilterDataType[]
-    value: number,
-    setValue: React.Dispatch<React.SetStateAction<number>>,
+interface FilterButtonPropsType {
+   onClick: () => void,
 }
 
-export default function DropDownOrderingFilter({inputs, value, setValue} : TripleSortingFilterProps) {
-
-    const onChange = (event: any) => {
-        console.log(value)
-        setValue(event.target.value)
-    }
+export default function FilterButton({onClick} : FilterButtonPropsType) {
 
     return (
         <TextField
-            select
             // label={label}
-            name={'ordering_filter'}
-            onChange={onChange}
-            value={value}
+            name={'side_filter'}
+            onClick={onClick}
 
+            value={'فیلترها'}
             fullWidth
             variant={"outlined"}
             size={"small"}
@@ -39,7 +30,7 @@ export default function DropDownOrderingFilter({inputs, value, setValue} : Tripl
             InputProps={{
                 startAdornment: (
                     <InputAdornment position="start">
-                        <VerticalFlip color={'secondary'}/>
+                        <GradingIcon color={'secondary'}/>
                         {/*{iconMap.find(item => item.iconName === iconName).icon}*/}
                     </InputAdornment>
                 ),
@@ -81,25 +72,10 @@ export default function DropDownOrderingFilter({inputs, value, setValue} : Tripl
 
                 '& .MuiInput-input': {
                     height: '2.4rem',
-                    borderColor: "secondary.main",
                 },
             }}
 
         >
-            {inputs.map((option, index) => (
-                <MenuItem key={index} value={index}
-                sx={{
-                    '&:hover, &.Mui-selected:hover': {
-                        backgroundColor: 'secondary.100',
-                    },
-                    '&.Mui-selected ': {
-                        backgroundColor: 'secondary.100',
-                        color: 'secondary.main'
-                    },
-                }}>
-                    {option.label}
-                </MenuItem>
-            ))}
         </TextField>
     );
 }

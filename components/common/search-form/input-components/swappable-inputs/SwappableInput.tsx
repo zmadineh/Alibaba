@@ -1,12 +1,14 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 
 import {swappableInputsDetailType} from "../../../../../model/swappableInputsDetail.type";
+import {formErrorType} from "../../../../../model/form/fromErrorType.type";
 
 import LaptopSwappableInput from "./LaptopSwappableInput";
 import TabletSwappableInput from "./TabletSwappableInput";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {useTheme} from "@mui/material";
+import MobileSwappableInput from "./MobileSwappableInput";
 
 
 interface SwappableInputProps {
@@ -14,11 +16,12 @@ interface SwappableInputProps {
     setSecValue: React.Dispatch<React.SetStateAction<string>>,
     details: swappableInputsDetailType[],
     listWidth?: string,
+    formError: formErrorType,
 }
 
 export default function SwappableInput(props : SwappableInputProps) {
 
-    const {details, setFirstValue, setSecValue} = props;
+    const {details, setFirstValue, setSecValue, formError} = props;
 
     const firstInputName = details[0].name
     const secondInputName = details[1].name
@@ -29,8 +32,18 @@ export default function SwappableInput(props : SwappableInputProps) {
     const laptopMatch = useMediaQuery(theme.breakpoints.up('md'));
 
     const [values, setValues] = useState({[firstInputName]: '', [secondInputName]: ''})
-    const [error, setError] = useState({[firstInputName]: false, [secondInputName]: false})
+    const [error, setError] = useState<{[key: string]: boolean}>({[firstInputName]: false, [secondInputName]: false})
     const [errorMessage, setErrorMessage] = useState<string>('');
+
+    useEffect(() => {
+        if((values[firstInputName] === '' || values[secondInputName] === ''))
+            // @ts-ignore
+            setError({[firstInputName]: formError[firstInputName], [secondInputName]: formError[secondInputName]})
+
+        // @ts-ignore
+        if((formError[firstInputName] || formError[secondInputName]) && (values[firstInputName] === '' || values[secondInputName] === ''))
+            setErrorMessage(`${details[0].label} یا ${details[1].label} را پر کنید.`)
+    })
 
     const validationData = useCallback((name: string, value: string) => {
         let otherName: string = '';
@@ -52,7 +65,7 @@ export default function SwappableInput(props : SwappableInputProps) {
         else {
             const newV = value
             setValues({...values, [name]: newV})
-            setError({[name]: false, [otherName]: false})
+            setError({[firstInputName]: false, [secondInputName]: false})
             setErrorMessage('')
             return true;
         }
@@ -70,16 +83,16 @@ export default function SwappableInput(props : SwappableInputProps) {
 
     return (
         <>
-            {/*{mobileMatch &&*/}
-            {/*    <MobileSwappableInput*/}
-            {/*        {...props}*/}
-            {/*        firstValue={firstValue}*/}
-            {/*        setFirstValue={setFirstValue}*/}
-            {/*        secValue={secValue}*/}
-            {/*        setSecValue={setSecValue}*/}
-            {/*        flipData={flipData}*/}
-            {/*    />*/}
-            {/*}*/}
+            {mobileMatch &&
+                <MobileSwappableInput
+                    {...props}
+                    values={values}
+                    flipData={flipData}
+                    error={error}
+                    errorMessage={errorMessage}
+                    validationData={validationData}
+                />
+            }
 
             {!mobileMatch && tabletMatch &&
                 <TabletSwappableInput
@@ -96,7 +109,6 @@ export default function SwappableInput(props : SwappableInputProps) {
                 <LaptopSwappableInput
                     {...props}
                     values={values}
-                    setValues={setValues}
                     flipData={flipData}
                     error={error}
                     errorMessage={errorMessage}

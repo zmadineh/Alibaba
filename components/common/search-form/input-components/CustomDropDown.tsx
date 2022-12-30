@@ -1,4 +1,4 @@
-import React, {SyntheticEvent} from "react";
+import React, {SyntheticEvent, useEffect, useState} from "react";
 import {MenuItem, TextField} from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
@@ -6,19 +6,31 @@ import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined
 interface CustomDropDownProps {
     label: string,
     name: string,
-    values : Array<{value : string,label : string}>,
+    values : {value : Date,label : string}[],
     currentValue : string,
     setCurrentValue: React.Dispatch<React.SetStateAction<string>>,
     borderRadius: string,
     variant: "standard" | "filled" | "outlined" | undefined,
     bgColor?: string,
+    disable: boolean,
+    error: boolean,
+    errorMessage: string,
 }
 
 const CustomDropDown = (props: CustomDropDownProps) => {
 
+    const [textError, setTextError] = useState<boolean>(false)
+
+    useEffect(() => {
+        console.log('in useEffect ', props.error)
+        if(props.currentValue === '')
+            setTextError(props.error)
+    }, [props.error])
+
     const onChange = (event: any) => {
         console.log('select : ', event.target.value)
         props.setCurrentValue(event.target.value)
+        setTextError(false)
     }
 
     return (
@@ -33,6 +45,10 @@ const CustomDropDown = (props: CustomDropDownProps) => {
             variant={"outlined"}
             size={"small"}
 
+            error={(!props.disable && props.error && textError)}
+            helperText={(!props.disable && props.error && textError) && props.errorMessage}
+
+            disabled={props.disable}
             InputProps={{
                 startAdornment: (
                     <InputAdornment position="start" >
@@ -42,6 +58,7 @@ const CustomDropDown = (props: CustomDropDownProps) => {
                 ),
             }}
             sx={{
+                    height: '2.5rem',
                     minHeight: 0,
                     '& .MuiSelect-icon': {
                         display: 'none',
@@ -58,13 +75,13 @@ const CustomDropDown = (props: CustomDropDownProps) => {
                         backgroundColor: props.bgColor,
                     },
 
-                    '& .MuiInputBase-root::before': {
-                        borderColor: "grey.200",
-                    },
-
-                    '& .MuiInput-root::after': {
-                        borderColor: "grey.300",
-                    },
+                    // '& .MuiInputBase-root::before': {
+                    //     borderColor: "grey.200",
+                    // },
+                    //
+                    // '& .MuiInput-root::after': {
+                    //     borderColor: "grey.300",
+                    // },
 
                     '& .MuiOutlinedInput-root.Mui-focused': {
                         '& .MuiOutlinedInput-notchedOutline': {
@@ -73,17 +90,17 @@ const CustomDropDown = (props: CustomDropDownProps) => {
                         },
                     },
 
-                    '& .MuiInputLabel-root.Mui-focused': {
-                        color: 'secondary.100'
-                    },
+                    // '& .MuiInputLabel-root.Mui-focused': {
+                    //     color: 'secondary.100'
+                    // },
 
                     '& .MuiInput-input': {
                         height: '2.4rem',
                     },
                 }}
         >
-            {props.values.map(option => (
-                <MenuItem key={option.value} value={option.value}
+            {props.values.map((option, index) => (
+                <MenuItem key={index} value={option.value.toLocaleDateString()}
                 sx={{
                     '&:hover, &.Mui-selected:hover, &.Mui-selected ': {
                         backgroundColor: 'secondary.100',

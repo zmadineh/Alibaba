@@ -6,14 +6,14 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 //data
-import { listType } from './../../../../data/listOption';
+import { listType } from '../../../../data/listOption';
 
-interface HederMobileMainPtops {
+interface HeaderMobileMainProps {
     item: listType;
     setPage: Dispatch<React.SetStateAction<number>>;
 }
 
-function HederMobileMain({ item, setPage }: HederMobileMainPtops): JSX.Element {
+function HederMobileMain({ item, setPage }: HeaderMobileMainProps): JSX.Element {
     return (
         <Grid key={item.id} xs={12} item display={"flex"} justifyContent={"flex-start"} alignItems={"center"} sx={{ border: "0.1px solid", borderColor: 'divider' }}>
             <Button variant='Button1' onClick={() => setPage(item.id)} >
@@ -23,7 +23,7 @@ function HederMobileMain({ item, setPage }: HederMobileMainPtops): JSX.Element {
                         {item.icon}
                     </Grid>
                     <Grid item sx={{ marginBottom: "8px" }}>
-                        <Typography variant='h6' sx={{ textDecoriarion: "none solid grey.700", fontSize: 16 }}><strong>{item.title}</strong></Typography>
+                        <Typography variant='h6' sx={{ textDecoration: "none solid grey.700", fontSize: 16 }}><strong>{item.title}</strong></Typography>
                     </Grid>
                 </Grid>
 

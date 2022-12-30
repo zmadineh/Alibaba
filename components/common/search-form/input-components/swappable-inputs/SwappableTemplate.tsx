@@ -3,6 +3,9 @@ import React, {ReactNode} from "react";
 import Box from "@mui/system/Box";
 import IconButton from "@mui/material/IconButton";
 import FlipIcon from "../../../../../public/svg/Flip-icon.svg";
+import {useTheme} from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import VerticalFlip from "../../../../../public/svg/VerticalFlip-icon.svg";
 
 interface swappableTemplateProps {
     children1: ReactNode,
@@ -11,6 +14,10 @@ interface swappableTemplateProps {
 }
 
 export default function SwappableTemplate({children1, children2, flipData} : swappableTemplateProps) {
+
+
+    const theme = useTheme();
+    const laptopMatch = useMediaQuery(theme.breakpoints.up('md'));
 
     return (
         <Grid
@@ -27,7 +34,7 @@ export default function SwappableTemplate({children1, children2, flipData} : swa
                 <IconButton sx={{width: '30px', height: '30px'}}
                             onClick={flipData}
                 >
-                    <FlipIcon />
+                    {laptopMatch ? <FlipIcon /> : <VerticalFlip /> }
                 </IconButton>
             </Box>
 

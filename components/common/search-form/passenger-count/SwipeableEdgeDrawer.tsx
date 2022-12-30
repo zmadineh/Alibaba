@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import PassengerCountContent from "./PassengerCountContent";
-import {passengersCount} from "../../../../model/passengerCount.type";
+import {passengersCount} from "../../../../model/form/passengerCount.type";
 
 import { Global } from '@emotion/react';
 import { styled } from '@mui/material/styles';
@@ -23,6 +23,7 @@ interface Props {
     open: boolean,
     setOpen: React.Dispatch<React.SetStateAction<boolean>>,
     window?: () => Window;
+    handleClose: () => void,
 }
 
 const Root = styled('div')(({ theme }) => ({
@@ -78,6 +79,7 @@ export default function SwipeableEdgeDrawer(props: Props) {
                     keepMounted: true,
                 }}
                 sx={{
+                    zIndex: 2000,
                     '& .MuiPaper-root': {
                         borderRadius: '10px 10px 0 0'
                     }
@@ -100,7 +102,7 @@ export default function SwipeableEdgeDrawer(props: Props) {
                         <PassengerCountContent count={props.count} setCount={props.setCount} open={props.open} setOpen={props.setOpen} />
 
                         <Button sx={{backgroundColor: 'secondary.main', color: '#fff', width: '100%', height: '40px', borderRadius: '10px'}}
-                                onClick={() => props.setOpen(false)}>
+                                onClick={() => props.handleClose()}>
                             تایید
                         </Button>
                     </Grid>

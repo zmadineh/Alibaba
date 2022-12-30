@@ -2,6 +2,9 @@ import { Trip_type } from "../tickets_data/DataTickets";
 import { ReturnTrip_type } from "../tickets_data/DataTickets";
 import { filterd_TripData } from "../tickets_data/DataTickets";
 import { transport_companies } from "./transportCompanies.data";
+import { cities } from "./cities.data";
+import {internalAirports} from "./internalAirports.data";
+import {externalAirports} from "./externalAirports.data";
 
 export function getCompanies_type(index:number){
     return new Promise((resolve,reject)=>{
@@ -16,23 +19,33 @@ export function getCompanies_type(index:number){
     })
 }
 
-import { cities } from "./cities.data";
 function getCompanies(index: number) {
     let findedIndex = transport_companies.findIndex(item => (item.id === index))
     return transport_companies[findedIndex];
 }
-function getCities(start: number, des: number) {
-    let finded_start_point = cities[cities.findIndex(item => (item.id === start))].name;
-    let finded_des_point = cities[cities.findIndex(item => (item.id === des))].name;
-    return { start_point: finded_start_point, des_point: finded_des_point };
+function getCities(start: number, des: number, type_id: number) {
+
+    if(type_id === 0 || type_id === 1){
+        const data = (type_id ? externalAirports : internalAirports)
+        let finded_start_point = data[data.findIndex(item => (item.id === start))].name;
+        let finded_des_point = data[data.findIndex(item => (item.id === des))].name;
+        return { start_point: finded_start_point, des_point: finded_des_point };
+    }
+    else {
+        let data = cities
+        let finded_start_point = data[data.findIndex(item => (item.id === start))].name;
+        let finded_des_point = data[data.findIndex(item => (item.id === des))].name;
+        return { start_point: finded_start_point, des_point: finded_des_point };
+    }
+
 }
 
-function buildFilteredType(props: { cat: 1, filteredData: Trip_type[] } | { cat: 2, filteredData: ReturnTrip_type[] }):filterd_TripData[] {
+function buildFilteredType(props: { cat: 1, filteredData: Trip_type[], type_id: number } | { cat: 2, filteredData: ReturnTrip_type[], type_id: number }):filterd_TripData[] {
     if (props.cat === 1) {
         let filteredData_fin: filterd_TripData[];
         filteredData_fin = props.filteredData.map(item => {
             let company = getCompanies(item.id);
-            let cities = getCities(item.start_point_city_id, item.destination_city_id)
+            let cities = getCities(item.start_point_city_id, item.destination_city_id, props.type_id)
             return {
                 transport_company_id: item.transport_company_id,
                 company_name: company.name,
@@ -55,7 +68,7 @@ function buildFilteredType(props: { cat: 1, filteredData: Trip_type[] } | { cat:
         filteredData_fin = props.filteredData.map(item => {
             let company = getCompanies(item.transport_company_id);
             let return_company = getCompanies(item.return_transport_company_id)
-            let cities = getCities(item.start_point_city_id, item.destination_city_id)
+            let cities = getCities(item.start_point_city_id, item.destination_city_id, props.type_id)
             return {
                 transport_company_id: item.transport_company_id,
                 company_name: company.name,
@@ -88,14 +101,14 @@ export function getTicket(startCity:number, desCity:number , type_id: number, tr
                 let finded_data: Trip_type[];
                 filteredData = trips.filter(item => (item.transport_type_id === type_id))
                 finded_data = filteredData.filter(item => (item.destination_city_id===desCity) && (item.start_point_city_id===startCity) && (item.remaining_seats >= travelerCount) && (item.departure_date.getDate() === date.getDate()) && (item.departure_date.getFullYear() === date.getFullYear()) && (item.departure_date.getMonth() === date.getMonth()));
-                resolve(buildFilteredType({cat:1,filteredData:finded_data}))
+                resolve(buildFilteredType({cat:1, filteredData:finded_data, type_id}))
             }
             else if(returnDate!=undefined){
                 let finded_data: ReturnTrip_type[];
                 let filteredData: ReturnTrip_type[];
                 filteredData = return_trips.filter(item => (item.transport_type_id === type_id))
                 finded_data = filteredData.filter(item => (item.remaining_seats >= travelerCount) && (item.departure_date.getDate() === date.getDate()) && (item.departure_date.getFullYear() === date.getFullYear()) && (item.departure_date.getMonth() === date.getMonth()) && (item.return_date.getDate() === returnDate.getDate()) && (item.return_date.getFullYear() === returnDate.getFullYear()) && (item.return_date.getMonth() === returnDate.getMonth()));
-                resolve(buildFilteredType({cat:2,filteredData:finded_data}))
+                resolve(buildFilteredType({cat:2, filteredData:finded_data, type_id}))
             }
             else{
                 reject([])
@@ -125,8 +138,8 @@ export function getTicket(startCity:number, desCity:number , type_id: number, tr
 
 
 export const trips: Trip_type[] = [
-    { id: 1, transport_type_id: 0, transport_company_id: 1, start_point_city_id: 1, destination_city_id: 2, remaining_seats: 10, price: 1230000, round_trip: false, departure_date: new Date(1401, 9, 29, 11, 23, 0), receive_date: new Date(1401, 9, 30, 11, 0, 0), shopping_type: 'systematic', trip_des: [''] },
-    { id: 2, transport_type_id: 0, transport_company_id: 2, start_point_city_id: 1, destination_city_id: 2, remaining_seats: 15, price: 177300, round_trip: false, departure_date: new Date(1401, 9, 29, 6, 23, 0), receive_date: new Date(1401, 9, 29, 11, 40, 0), shopping_type: 'chartered', trip_des: [''] },
+    { id: 1, transport_type_id: 0, transport_company_id: 1, start_point_city_id: 1, destination_city_id: 2, remaining_seats: 10, price: 1230000, round_trip: false, departure_date: new Date(), receive_date: new Date(1401, 9, 30, 11, 0, 0), shopping_type: 'systematic', trip_des: [''] },
+    { id: 2, transport_type_id: 0, transport_company_id: 2, start_point_city_id: 1, destination_city_id: 2, remaining_seats: 15, price: 177300, round_trip: false, departure_date: new Date(2022, 1, 1, 6, 23, 0), receive_date: new Date(1401, 9, 29, 11, 40, 0), shopping_type: 'chartered', trip_des: [''] },
     { id: 3, transport_type_id: 0, transport_company_id: 3, start_point_city_id: 1, destination_city_id: 2, remaining_seats: 1, price: 123600, round_trip: false, departure_date: new Date(1401, 9, 29, 3, 23, 0), receive_date: new Date(1401, 9, 29, 11, 50, 0), shopping_type: 'chartered', trip_des: [''] },
     { id: 4, transport_type_id: 0, transport_company_id: 1, start_point_city_id: 1, destination_city_id: 2, remaining_seats: 5, price: 150000, round_trip: false, departure_date: new Date(1401, 9, 29, 18, 23, 0), receive_date: new Date(1401, 9, 29, 19, 23, 0), shopping_type: 'systematic', trip_des: [''] },
 
@@ -152,6 +165,7 @@ export const trips: Trip_type[] = [
     // {id: 21, transport_type_id: 4, transport_company_id: 13, start_point_city_id: 1, destination_city_id: 2,  remaining_seats: 24, price: 232434, round_trip: false, departure_date: new Date(1401,9,29,11,23,0), receive_date: '', return_date: '', shopping_type: '', trip_des: ['']},
     // {id: 22, transport_type_id: 4, transport_company_id: 13, start_point_city_id: 1, destination_city_id: 2,  remaining_seats: 11, price: 4348768, round_trip: false, departure_date: new Date(1401,9,29,11,23,0), receive_date: '', return_date: '', shopping_type: '', trip_des: ['']},
 ];
+
 export const return_trips: ReturnTrip_type[] = [
     { id: 1, transport_type_id: 0, transport_company_id: 1, start_point_city_id: 1, destination_city_id: 2, remaining_seats: 10, price: 1230000, round_trip: false, departure_date: new Date(1401, 9, 29, 11, 23, 0), receive_date: new Date(1401, 9, 30, 11, 0, 0), return_date: new Date(1401, 9, 30, 12, 2, 34), return_receive_date: new Date(1401, 9, 30, 13, 21, 0), return_transport_company_id: 1, shopping_type: 'systematic', trip_des: [''] },
     { id: 2, transport_type_id: 0, transport_company_id: 2, start_point_city_id: 1, destination_city_id: 2, remaining_seats: 15, price: 177300, round_trip: false, departure_date: new Date(1401, 9, 29, 6, 23, 0), receive_date: new Date(1401, 9, 29, 11, 40, 0), return_date: new Date(1401, 9, 34, 12, 2, 34), return_receive_date: new Date(1401, 9, 30, 13, 21, 0), return_transport_company_id: 1, shopping_type: 'chartered', trip_des: [''] },

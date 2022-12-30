@@ -2,12 +2,13 @@ import React, {SyntheticEvent, useState} from "react";
 import {MenuItem, TextField} from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
-import {searchFromValue} from "../../../../model/searchFormValue.type";
+import {searchFromValue} from "../../../../model/form/searchFormValue.type";
 
 interface CustomDropDownProps {
     name: string,
     options: string[],
     setValue: React.Dispatch<React.SetStateAction<boolean>>,
+    // formError: any,
 }
 
 const BooleanSelector = (props: CustomDropDownProps) => {
