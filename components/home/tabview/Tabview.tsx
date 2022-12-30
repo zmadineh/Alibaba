@@ -48,7 +48,7 @@ const Tabview = ({children, value, setValue,}: Props) => {
     { id: 1, title: 'پرواز خارجی', icon: <ExternalFlightIcon />, component: 'کامپوننت پرواز خارجی ' },
     { id: 2, title: 'قطار', icon: <TrainIcon />, component: 'کامپوننت قطار' },
     { id: 3, title: 'اتوبوس', icon: <BusIcon />, component: 'کامپوننت اتوبوس ' },
-    { id: 4, title: 'تور', icon: <TourIcon />, component: 'کامپوننت تور' }
+    // { id: 4, title: 'تور', icon: <TourIcon />, component: 'کامپوننت تور' }
   ]
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {

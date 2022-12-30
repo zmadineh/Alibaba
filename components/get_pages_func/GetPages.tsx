@@ -25,9 +25,9 @@ export const GetPages = (index: number) => {
             <Bus_page/>
         )
     }
-    else if (index == 4) {
-        return (
-            <Tour_page/>
-        )
-    }
+    // else if (index == 4) {
+    //     return (
+    //         <Tour_page/>
+    //     )
+    // }
 }
