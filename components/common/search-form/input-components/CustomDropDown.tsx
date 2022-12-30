@@ -22,8 +22,10 @@ const CustomDropDown = (props: CustomDropDownProps) => {
     const [textError, setTextError] = useState<boolean>(false)
 
     useEffect(() => {
-        setTextError(props.error)
-    })
+        console.log('in useEffect ', props.error)
+        if(props.currentValue === '')
+            setTextError(props.error)
+    }, [props.error])
 
     const onChange = (event: any) => {
         console.log('select : ', event.target.value)

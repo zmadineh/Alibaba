@@ -36,10 +36,12 @@ export default function SwappableInput(props : SwappableInputProps) {
     const [errorMessage, setErrorMessage] = useState<string>('');
 
     useEffect(() => {
+        if((values[firstInputName] === '' || values[secondInputName] === ''))
+            // @ts-ignore
+            setError({[firstInputName]: formError[firstInputName], [secondInputName]: formError[secondInputName]})
+
         // @ts-ignore
-        setError({[firstInputName]: formError[firstInputName], [secondInputName]: formError[secondInputName]})
-        // @ts-ignore
-        if(formError[firstInputName] || formError[secondInputName])
+        if((formError[firstInputName] || formError[secondInputName]) && (values[firstInputName] === '' || values[secondInputName] === ''))
             setErrorMessage(`${details[0].label} یا ${details[1].label} را پر کنید.`)
     })
 
@@ -53,8 +55,6 @@ export default function SwappableInput(props : SwappableInputProps) {
             otherName = firstInputName;
             setSecValue(value)
         }
-        setError({...error, [name]: false})
-
 
         if(values[otherName] === value && values[otherName] !== '') {
             setError({[name]: false, [otherName]: true})
@@ -65,7 +65,7 @@ export default function SwappableInput(props : SwappableInputProps) {
         else {
             const newV = value
             setValues({...values, [name]: newV})
-            setError({[name]: false, [otherName]: false})
+            setError({[firstInputName]: false, [secondInputName]: false})
             setErrorMessage('')
             return true;
         }

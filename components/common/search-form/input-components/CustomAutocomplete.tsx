@@ -67,6 +67,7 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
                   helperText={(error ? errorMessage : '')}
                   size={"small"}
                   sx={{
+
                       color: "grey.400",
                       borderColor: "grey.200",
 
@@ -86,6 +87,7 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
                       '& .MuiInputBase-root': {
                             borderRadius: borderRadius,
                             borderColor: "grey.200",
+                          padding: '0 10px',
                       },
 
                       '& .MuiInputLabel-root.Mui-focused': {
@@ -94,7 +96,7 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
                       },
 
                       '& .MuiInputLabel-root': {
-                          padding: '0 10px',
+                          // padding: '0 10px',
                       }
 
                   }}

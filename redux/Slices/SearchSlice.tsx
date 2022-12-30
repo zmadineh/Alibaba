@@ -5,7 +5,7 @@ import {searchFromValue} from "../../model/form/searchFormValue.type";
 import {emptySearchFormData} from "../../data/form/emptySearchForm.data";
 
 
-const initialState: searchFromValue[] = [{...emptySearchFormData, formType: 0}]
+const initialState: searchFromValue[] = []
 
 
 
