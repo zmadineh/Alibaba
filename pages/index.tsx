@@ -17,20 +17,24 @@ const pagesFaName = ['پرواز داخلی', 'پرواز خارجی', 'قطار
 export default function FirstPage() {
     const [page, setPage] = useState<number>(0);
     const [searches, setSearches] = useState<searchFromValue[]>([])
+
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('sm'));
+    const laptopMatches = useMediaQuery(theme.breakpoints.up('md'));
+
     return (
         <Grid>
           
             <Grid id='layout' bgcolor='grey.900' >
        
-                <Desk_header res={matches}/>
+                <Desk_header res={laptopMatches}/>
                 
                 <Tabview value={page} setValue={setPage}>
                     <TabPanel value={page} index={page}>
                         <SearchForm searches={searches} setSearches={setSearches} index={page} />
                     </TabPanel>
                 </Tabview>
+
                 <Grid container marginX={'auto'} direction={'column'} width={'100%'} flexWrap={"nowrap"} sx={{
                     maxWidth: {
                         lg: '1200px',
@@ -39,14 +43,15 @@ export default function FirstPage() {
                     padding:'0 16px',
                 }}>
                       
-                      <HeaderMobile setPage={setPage}/>
+                    <HeaderMobile setPage={setPage}/>
                     <Grid>
-                        <SearchCardContainer categoryIndex={page} searches={searches} setSearches={setSearches} />
+                        {laptopMatches && <SearchCardContainer categoryIndex={page} searches={searches} setSearches={setSearches} />}
                         <HelpCard />
                         <DownloadCard />
                     </Grid>
                     {GetPages(page)}
                 </Grid>
+
                 {!matches && (
                     <Dialog fullScreen open={page != 0}>
                         <Grid display={'flex'} alignItems={'center'} padding={'4px'}>
@@ -55,7 +60,7 @@ export default function FirstPage() {
                             </IconButton>
                             <Typography>{pagesFaName[page]}</Typography>
                         </Grid>
-                        <DialogContent sx={{ padding: '16px' }}>
+                        <DialogContent  sx={{padding: 0}}>
                             <Grid>
                                 <SearchForm searches={searches} setSearches={setSearches} index={page} />
                                 {GetPages(page)}

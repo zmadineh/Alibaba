@@ -7,6 +7,6 @@ export const dateOptionCreator = () => {
         tomorrow.setDate(tomorrow.getDate() + i)
         dateOption.push({label: tomorrow.toLocaleDateString('fa-IR'), value: tomorrow})
     }
-    console.log('toggle: ', dateOption)
+    // console.log('toggle: ', dateOption)
     return dateOption
 }

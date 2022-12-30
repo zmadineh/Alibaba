@@ -191,9 +191,6 @@ export default function SearchPage() {
                 data.start_point_city === startPoint &&
                 data.destination_city === destination &&
 
-                // data.start_point_city_id === startPoint &&
-                // data.destination_city_id === destination &&
-
                 data.price >= priceRange.min &&
                 data.price <= priceRange.max &&
 
@@ -230,6 +227,18 @@ export default function SearchPage() {
 
         return filteredData
     } , [currentTrips, orderFilterIndex])
+
+    const nextDay = () => {
+        let tomorrow = new Date();
+        tomorrow.setDate(departureDate.getDate() + 1)
+        setDepartureDate(tomorrow)
+    }
+
+    const prevDay = () => {
+        let tomorrow = new Date();
+        tomorrow.setDate(departureDate.getDate() - 1)
+        setDepartureDate(tomorrow)
+    }
 
 
     const stateProps = {
@@ -360,7 +369,7 @@ export default function SearchPage() {
                     </Grid>
 
                     <Grid item display={"flex"} alignItems={"center"} justifyContent={"center"} gap={2.5} xs={6}>
-                        <Grid display={"flex"} alignItems={"center"}>
+                        <Grid display={"flex"} alignItems={"center"} onClick={prevDay}>
                             <IconButton>
                                 <ArrowForwardIos />
                             </IconButton>
@@ -368,7 +377,7 @@ export default function SearchPage() {
                                 روز قبل
                             </Typography>
                         </Grid>
-                        <Grid display={"flex"} alignItems={"center"}>
+                        <Grid display={"flex"} alignItems={"center"} onClick={nextDay}>
                             <Typography fontWeight={600} color={'grey.600'}>
                                 روز بعد
                             </Typography>

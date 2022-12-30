@@ -15,9 +15,12 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import AirlineSeatReclineExtraOutlinedIcon from '@mui/icons-material/AirlineSeatReclineExtraOutlined';
+import {useRouter} from "next/router";
+import Link from "next/link";
 
 
 interface searchCardProps {
+    formType: number
     origin: string,
     destination: string,
     oneWayRoad?: boolean,
@@ -26,12 +29,31 @@ interface searchCardProps {
     passengerCount: passengersCount,
 }
 
-export default function SearchCard({origin, destination, oneWayRoad = false, departureDate, returnDate, passengerCount} : searchCardProps) {
+export default function SearchCard({formType, origin, destination, oneWayRoad = false, departureDate, returnDate, passengerCount} : searchCardProps) {
 
     const theme = useTheme();
+    const router = useRouter();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'))
 
+    console.log('formType', formType)
+
+    const url = { pathname: 'search-page',
+        query: {
+            transportType: formType,
+            currStartPoint: origin,
+            currDestinationPoint: destination,
+            currDepartureDate: departureDate,
+            returnDate: returnDate,
+            roundWay: oneWayRoad,
+            adultCount: passengerCount.adult,
+            childCount: passengerCount.child,
+            babyCount: passengerCount.baby,
+        }
+    };
+
+
     return (
+        <Link href={url}>
         <Card
             variant="outlined"
             sx={{borderRadius: '8px', cursor: 'pointer'}}
@@ -77,5 +99,6 @@ export default function SearchCard({origin, destination, oneWayRoad = false, dep
                 </CardContent>
             </CardActionArea>
         </Card>
+        </Link>
     )
 }

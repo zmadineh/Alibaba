@@ -14,6 +14,8 @@ import SearchFormTemplates from "./SerchFormTemplate";
 import Grid from "@mui/material/Grid/Grid";
 import {getTicket} from "../../../data/database/trips.data";
 import {swappableInputsDetailType} from "../../../model/swappableInputsDetail.type";
+import SearchCardContainer from "../../common/recent-searchs/SearchCardContainer";
+import {useMediaQuery, useTheme} from "@mui/material";
 
 
 interface SearchFormProps {
@@ -26,9 +28,12 @@ export default function SearchForm({index, searches, setSearches} : SearchFormPr
 
     const router = useRouter();
     const dispatch = useDispatch();
+    const theme = useTheme();
+
+    const laptopMatch = useMediaQuery(theme.breakpoints.up('md'));
     const recentData = useSearchesSelector((state) => state.searches);
 
-    const [mainForm, setMainForm] = useState<searchFromValue>({...emptySearchFormData, formType: 0})
+    const [mainForm, setMainForm] = useState<searchFromValue>({...emptySearchFormData, formType: index})
     const [inputDetails, setInputDetails] = useState<swappableInputsDetailType[]>([])
 
     const mainHandleSubmit = (form : searchFromValue) => {
@@ -50,7 +55,8 @@ export default function SearchForm({index, searches, setSearches} : SearchFormPr
                 adultCount: form.passengerCount.adult,
                 childCount: form.passengerCount.child,
                 babyCount: form.passengerCount.baby,
-            }});
+            }
+        });
     }
 
     useEffect( () => {
@@ -64,6 +70,8 @@ export default function SearchForm({index, searches, setSearches} : SearchFormPr
     return (
         <Grid zIndex={1000} py={2}>
             <SearchFormTemplates submit={mainHandleSubmit} formType={index} inputDetails={inputDetails} />
+
+            {!laptopMatch && <SearchCardContainer categoryIndex={index} searches={searches} setSearches={setSearches} />}
         </Grid>
     )
 }

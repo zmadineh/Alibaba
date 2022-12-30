@@ -21,7 +21,7 @@ export default function DateFilter ({departureDate, setDepartureDate}:DateFilter
         let index = 0;
         let dateOption = [];
 
-        for (let i=1; i<=4; ++i){
+        for (let i=4; i>=1; --i){
             let tomorrow = new Date(departureDate);
             tomorrow.setDate(tomorrow.getDate() - i)
             dateOption.push({id: index++, value: tomorrow, title: tomorrow.toLocaleDateString('fa-IR'), dayNum: tomorrow.getDay(), day: days[tomorrow.getDay()], month: months[tomorrow.getMonth()]})

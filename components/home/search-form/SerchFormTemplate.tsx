@@ -23,7 +23,6 @@ interface InternalFlightSearchFormProps {
 export default function SearchFormTemplates({submit, formType, inputDetails} : InternalFlightSearchFormProps) {
 
     const [loadingDetails, setLoadingDetails] = useState(true)
-    const [form, setForm] = useState<searchFromValue>({...emptySearchFormData, formType: formType});
     const [origin, setOrigin] = useState<string>('');
     const [destination, setDestination] = useState<string>('');
     const [oneWayRoad, setOneWayRoad] = useState<boolean>(true);
@@ -78,11 +77,12 @@ export default function SearchFormTemplates({submit, formType, inputDetails} : I
 
         setFormError({...formError, origin: originError, destination: destinationError, departureDate: departureDateError, returnDate: returnDateError})
 
-        console.log(formError, originError)
+        console.log(formError, originError, formType)
 
 
         if(!haveError)
-            submit({...form,
+            submit({
+                formType: formType,
                 origin: origin,
                 destination: destination,
                 oneWayRoad: oneWayRoad,

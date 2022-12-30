@@ -25,10 +25,9 @@ export default function SearchCardContainer({categoryIndex, searches, setSearche
     const recentData = useSearchesSelector((state) => state.searches);
 
     const counter = recentData.filter(search => search.formType === categoryIndex).length
-    console.log(categoryIndex)
+    console.log('categoryIndex ', categoryIndex)
 
     const removeAllSearches = useCallback(() => {
-        // setSearches([])
         dispatch(removeAll())
     }, []);
 

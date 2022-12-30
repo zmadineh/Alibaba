@@ -52,13 +52,17 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
           onChange={(event, newValue) => onChangeValue(event, (newValue === null ? '' : newValue))}
           inputValue={input}
           onInputChange={(event, newInputValue) => onInputChange(event, newInputValue)}
+
           fullWidth
           disableClearable
           forcePopupIcon={false}
+
           sx={{
               height: '2.5rem',
             }}
           options={getTitleArray(detail.data)}
+          isOptionEqualToValue={(option, value) => option === value}
+
           renderInput={(params) => (
               <TextField
                   {...params}
@@ -107,7 +111,7 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
               />
           )}
 
-          renderOption={(props, option) => {
+          renderOption={(ind, option) => {
               const index = detail.data.findIndex(item => item.title === option)
               return (
                   <Grid container px={1} key={option}>
