@@ -9,5 +9,5 @@ export const externalAirports: startDesPointType[] = [
     { id: 5, name: 'فرانکوفرت همه فرودگاه ها', city_id: 15, type: 'airport' },
     { id: 6, name: 'میلان همه فرودگاه ها', city_id: 20, type: 'airport' },
     { id: 7, name: 'لندن همه فرودگاه ها', city_id: 19, type: 'airport' },
-    { id: 8, name: ' فرودگاه  بین المللی امام خمینی', city_id: 21, type: 'airport' },
+    { id: 8, name: 'فرودگاه  بین المللی امام خمینی', city_id: 21, type: 'airport' },
 ]
