@@ -1,7 +1,5 @@
 import React, {useCallback, useState} from "react";
 
-import TourSearchForm from "./TourSearchForm";
-
 import {emptySearchFormData} from "../../../data/form/emptySearchForm.data";
 import {searchFromValue} from "../../../model/form/searchFormValue.type";
 import {getInputDetailsByType} from "../../../data/search-form/serchFormInputDetails";
