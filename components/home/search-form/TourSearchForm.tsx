@@ -37,7 +37,7 @@ interface InternalFlightSearchFormProps {
 }
 
 export default function TourSearchForm({submit} : InternalFlightSearchFormProps) {
-    
+
     return(
         <Grid>
             tour form
