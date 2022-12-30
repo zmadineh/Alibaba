@@ -71,6 +71,10 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
                       color: "grey.400",
                       borderColor: "grey.200",
 
+                      '& .MuiOutlinedInput-notchedOutline': {
+                          padding: '0 10px',
+                      },
+
                       "& .MuiOutlinedInput-root.Mui-error": {
                           '& .MuiOutlinedInput-notchedOutline': {
                               borderColor: 'error.300',
