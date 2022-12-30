@@ -20,11 +20,19 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
+
     '& .MuiToggleButtonGroup-grouped': {
         margin: theme.spacing(0.5),
-        border: 0,
+        height: '45px',
+
         '&.Mui-disabled': {
             border: 0,
+            borderRadius: '10px',
+        },
+        '&.Mui-selected': {
+            color: '#fff',
+            backgroundColor: theme.palette.primary.main,
+            borderRadius: '10px',
         },
         '&:not(:first-of-type)': {
             borderRadius: theme.shape.borderRadius,
@@ -102,31 +110,37 @@ export default function FirstPage() {
                             <Typography>{pagesFaName[page]}</Typography>
                         </Grid>
                         <DialogContent sx={{padding: 0}}>
-                            <Grid>
+                            {/*<Grid>*/}
 
                                 {(page === 0 || page === 1) &&
-                                    <Grid container width={'100%'} mt={1}>
-                                        <ToggleButtonGroup
+
+                                        <StyledToggleButtonGroup
                                             size="small"
                                             value={flightMode}
                                             exclusive
                                             onChange={handleFlightMode}
                                             aria-label="flight mode"
+                                            fullWidth
+                                            sx={{padding: 1}}
                                         >
                                             <ToggleButton value={0} aria-label="internal">
-                                                پرواز داخلی
+                                                <Typography fontWeight={600}>
+                                                    پرواز داخلی
+                                                </Typography>
                                             </ToggleButton>
                                             <ToggleButton value={1} aria-label="international">
-                                                پرواز خارجی
+                                                <Typography fontWeight={600}>
+                                                    پرواز خارجی
+                                                </Typography>
                                             </ToggleButton>
-                                        </ToggleButtonGroup>
-                                    </Grid>
+                                        </StyledToggleButtonGroup>
+
                                 }
                                 <SearchForm searches={searches} setSearches={setSearches} index={page} />
                                 {GetPages(page)}
-                            </Grid>
+                            {/*</Grid>*/}
                         </DialogContent>
-                    </Dialog >
+                    </Dialog>
                 )}
                 <Footer />
             </Grid>
