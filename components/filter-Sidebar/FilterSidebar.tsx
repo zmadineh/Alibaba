@@ -96,6 +96,7 @@ const FilterSidebar = ({travelType, resetFunction, filterStateProps, ticketCount
                         onClose={() => setOpenFilterDialog(!openFilterDialog)}
                         fullScreen={true}
                     >
+                       
                         <FilterSidebarItems
                             getData={getFiltersDataArray}
                             travelType={travelType}
@@ -103,6 +104,9 @@ const FilterSidebar = ({travelType, resetFunction, filterStateProps, ticketCount
                             resetFunction={resetFunction}
                             ticketCount={ticketCount}
                         />
+                            <Grid width={"90%"} p={2}>
+                            <Button variant="Button2" onClick={() => setOpenFilterDialog(!openFilterDialog)} > بازگشت</Button>
+                            </Grid>
                     </FiltersDialog>
                 </>
             }

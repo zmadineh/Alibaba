@@ -12,7 +12,7 @@ import SearchForm from "../components/home/search-form/SearchForm";
 import TabPanel from "../components/home/tabview/TabPanel";
 import Desk_header from '../components/desktop_header/Desk_header';
 import HeaderMobile from '../components/layout/layoutMobile/HeaderMobile';
-
+import FooterMobile from '../components/layout/layoutMobile/FooterMobile';
 import {styled} from "@mui/material/styles";
 import { Dialog, DialogContent, Grid, IconButton, SvgIcon, Typography, useMediaQuery, useTheme } from '@mui/material';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -95,6 +95,7 @@ export default function FirstPage() {
                         {laptopMatches && <SearchCardContainer categoryIndex={page} searches={searches} setSearches={setSearches} />}
                         <HelpCard />
                         <DownloadCard />
+                        <FooterMobile/>
                     </Grid>
                     {GetPages(page)}
                 </Grid>
