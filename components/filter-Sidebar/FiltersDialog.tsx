@@ -1,9 +1,9 @@
 import React, {ReactNode} from 'react';
-
+import Grid from '@mui/material/Grid'
 import Dialog from '@mui/material/Dialog';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
-
+import Button from '@mui/material/Button';
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -25,6 +25,7 @@ interface FiltersDialogPropsType {
 
 export default function FiltersDialog({open, onClose, children, fullScreen = false} : FiltersDialogPropsType) {
 
+   
     return (
         <Dialog
             onClose={onClose}
@@ -35,6 +36,7 @@ export default function FiltersDialog({open, onClose, children, fullScreen = fal
             sx={{zIndex: 2000}}
         >
             {children}
+       
         </Dialog>
     );
 }

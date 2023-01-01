@@ -74,7 +74,7 @@ export default function SearchCard({formType, origin, destination, oneWayRoad = 
                         <Grid container gap={1} color={'grey.500'} textOverflow={'ellipsis'} flexWrap={"nowrap"}>
                             <CalendarMonthOutlinedIcon />
                             <Typography variant="body2" noWrap textOverflow={'ellipsis'}>
-                                {new Date(departureDate).toLocaleDateString()}
+                                {new Date(departureDate).toLocaleDateString('fa-IR')}
                             </Typography>
                             {!oneWayRoad &&
                                 <Typography variant="body2" noWrap textOverflow={'ellipsis'}>
@@ -83,7 +83,7 @@ export default function SearchCard({formType, origin, destination, oneWayRoad = 
                             }
                             {!oneWayRoad &&
                                 <Typography variant="body2" noWrap textOverflow={'ellipsis'}>
-                                    {new Date(returnDate).toLocaleDateString()}
+                                    {new Date(returnDate).toLocaleDateString('fa-IR')}
                                 </Typography>
                             }
                         </Grid>

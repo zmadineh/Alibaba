@@ -68,7 +68,7 @@ export default function SearchForm({index, searches, setSearches} : SearchFormPr
     })
 
     return (
-        <Grid zIndex={1000} py={2}>
+        <Grid zIndex={2000} py={2}>
             <SearchFormTemplates submit={mainHandleSubmit} formType={index} inputDetails={inputDetails} />
 
             {!laptopMatch && <SearchCardContainer categoryIndex={index} searches={searches} setSearches={setSearches} />}

@@ -3,7 +3,7 @@ import React, {useCallback, useEffect, useState} from "react";
 import OrderingFilter from "../../components/common/ordering-filter/OrderingFilter";
 import FilterSidebar from "../../components/filter-Sidebar/FilterSidebar";
 
-import {getTicket, trips} from "../../data/database/trips.data";
+import {getLocationByType, getTicket, trips} from "../../data/database/trips.data";
 
 import {priceRangeType, shoppingObjType} from "../../model/filter/filterStateType";
 import {timeRangeType} from "../../model/filter/filterStateType";
@@ -26,10 +26,6 @@ import {ArrowBackIos, ArrowForward, ArrowForwardIos} from "@mui/icons-material";
 
 
 const orderingFilterTitleData = [
-    {
-        label: 'پیشنهاد علی بابا',
-        filterLabel: 'alibaba_offer'
-    },
     {
         label: 'زودترین',
         filterLabel: 'earliest_departure_time'
@@ -56,7 +52,7 @@ const defaultFilterValue = {
     shoppingType: {systematic: false, chartered: false},
     priceRange: {min: 0, max: 1000000000},
     departureTime: {min: {hours: 0, minutes: 0}, max: {hours: 23, minutes: 59}},
-    departureDate: new Date(2022,11,29,11,23,0)
+    departureDate: new Date()
 }
 
 const headerHeight = 70;
@@ -138,14 +134,19 @@ export default function SearchPage() {
     useEffect( () => {
 
         const fetchData = async () => {
+            const startPointId = await getLocationByType(transportTypeId, (startPoint ? startPoint : ''));
+            const destPointId = await getLocationByType(transportTypeId, (destination ? destination : ''));
+
              const data = await getTicket(
-                    1,
-                    2,
+                    startPointId,
+                    destPointId,
                     transportTypeId,
                     travelerCount,
                     currDepartureDate_,
                     // (roundWay === 'true' ? (returnDate ? new Date(returnDate.toString()) : new Date()) : undefined)
-                )
+                );
+            console.log(startPoint, destination, startPointId, destPointId, currDepartureDate_, travelerCount, data)
+
             setCurrentTrips(data)
             setLoadingTicket(false)
             const baseTripsPrice = data.map(item => item.price).sort((a, b) => a - b)
@@ -156,7 +157,7 @@ export default function SearchPage() {
 
         fetchData().catch(console.error);
 
-    }, [transportTypeId, travelerCount, currDepartureDate_,])
+    }, [transportTypeId, travelerCount, currDepartureDate_, departureDate])
 
 
     const resetFilters = useCallback(() => {
@@ -229,15 +230,15 @@ export default function SearchPage() {
     } , [currentTrips, orderFilterIndex])
 
     const nextDay = () => {
-        let tomorrow = new Date();
+        let tomorrow = new Date(departureDate);
         tomorrow.setDate(departureDate.getDate() + 1)
         setDepartureDate(tomorrow)
     }
 
     const prevDay = () => {
-        let tomorrow = new Date();
-        tomorrow.setDate(departureDate.getDate() - 1)
-        setDepartureDate(tomorrow)
+        let prev = new Date(departureDate);
+        prev.setDate(departureDate.getDate() - 1)
+        setDepartureDate(prev)
     }
 
 

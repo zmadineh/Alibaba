@@ -65,7 +65,7 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                                  bgColor={(tabletMatch ? 'grey.100' : '#fff')}
                                  disable={false}
                                  error={formError[firstName]}
-                                 errorMessage={`${firstLabel} را پر کنید. `}
+                                 errorMessage={(!tabletMatch ? `${firstLabel} را پر کنید. ` : '')}
                 />
             }
             {!mobileMatch &&
@@ -80,7 +80,7 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                                  bgColor={(tabletMatch ? 'grey.100' : '#fff')}
                                  disable={oneWayRoad}
                                  error={formError[secondName]}
-                                 errorMessage={`${secondLabel} را پر کنید. `}
+                                 errorMessage={(!tabletMatch ? `${secondLabel} را پر کنید. ` : '')}
                 />
             }
 
@@ -112,13 +112,13 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                        sx={{
                            padding: 1,
 
-                           '& .MuiInputBase-root::before': {
-                               borderColor: "grey.200",
-                           },
-
-                           '& .MuiInput-root::after': {
-                               borderColor: "grey.300",
-                           },
+                           // '& .MuiInputBase-root::before': {
+                           //     borderColor: "grey.200",
+                           // },
+                           //
+                           // '& .MuiInput-root::after': {
+                           //     borderColor: "grey.300",
+                           // },
 
                            '& .MuiInput-input': {
                                height: '2.4rem',
@@ -148,7 +148,7 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                        error={formError[secondName]}
                        helperText={(formError[secondName] && `${secondLabel} را پر کنید. `)}
 
-                       disabled={!oneWayRoad}
+                       disabled={oneWayRoad}
                        variant={"standard"}
                        size={"medium"}
                        fullWidth
@@ -163,13 +163,13 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
                        sx={{
                            padding: 1,
 
-                           '& .MuiInputBase-root::before': {
-                               borderColor: "grey.200",
-                           },
-
-                           '& .MuiInput-root::after': {
-                               borderColor: "grey.300",
-                           },
+                           // '& .MuiInputBase-root::before': {
+                           //     borderColor: "grey.200",
+                           // },
+                           //
+                           // '& .MuiInput-root::after': {
+                           //     borderColor: "grey.300",
+                           // },
 
                            '& .MuiInput-input': {
                                height: '2.4rem',

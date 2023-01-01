@@ -85,13 +85,17 @@ const CustomDropDown = (props: CustomDropDownProps) => {
 
                     '& .MuiOutlinedInput-root.Mui-focused': {
                         '& .MuiOutlinedInput-notchedOutline': {
-                            borderColor: "grey.400",
+                            // borderColor: "grey.400",
                             borderWidth: '0.5px',
                         },
                     },
 
-                    // '& .MuiInputLabel-root.Mui-focused': {
-                    //     color: 'secondary.100'
+                    '& .MuiInputLabel-root.Mui-focused': {
+                        color: 'secondary.100'
+                    },
+
+                    // '& .MuiInputLabel-root.Mui-error': {
+                    //     color: 'error',
                     // },
 
                     '& .MuiInput-input': {
