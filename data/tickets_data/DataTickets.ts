@@ -15,6 +15,7 @@ export interface Trip_type {
     trip_des: string[]
 }
 export interface filterd_TripData {
+    trip_id:number,
     transport_company_id: number,
     company_name: string,
     company_Score?: number,
