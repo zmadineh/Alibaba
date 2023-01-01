@@ -1,7 +1,5 @@
 import { Grid } from "@mui/material";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useRouter } from 'next/router';
-import { getTrip } from '../../data/database/trips.data';
+import { Dispatch, SetStateAction, useState } from "react";
 import { filterd_TripData } from '../../data/tickets_data/DataTickets';
 import Information from "./Information";
 
@@ -13,19 +11,8 @@ export interface formType {
     idCode: string
 }
 
-export default function Steps(props: { res: boolean, step: number, setStep: Dispatch<SetStateAction<number>> }) {
+export default function Steps(props: { res: boolean, step: number, setStep: Dispatch<SetStateAction<number>>,information:filterd_TripData | undefined ,numPass:number,type_id:number}) {
     const [forms, setForms] = useState<formType[]>([]);
-    const [information, setInformation] = useState<filterd_TripData>()
-    const router = useRouter();
-    useEffect(() => {
-        const fetchData = async () => {
-            await getTrip(Number(18), Number(0)).then((a) => {
-                console.log(router.query.);
-                setInformation(a)
-            }).catch(() => { console.log('error from steps') });
-        }
-        fetchData();
-    }, [])
     if (props.step === 0) {
         return (
             // <AmirComponent forms={forms} setForms={setForms} numberOfPassengers={number}>
@@ -34,7 +21,7 @@ export default function Steps(props: { res: boolean, step: number, setStep: Disp
     }
     else if (props.step === 1) {
         return (
-            <Information res={props.res} forms={forms} infomation={information} />
+            <Information res={props.res} forms={forms} infomation={props.information} type_id={props.type_id} numPass={props.numPass}/>
         )
     }
     else {

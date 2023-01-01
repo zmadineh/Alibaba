@@ -63,6 +63,7 @@ export default function SearchPage() {
     //--------------------------------------------------------------------------------------------//
 
     const router = useRouter()
+    console.log('router IS : ',router.query);
     const {  transportType,
         currStartPoint,
         currDestinationPoint,

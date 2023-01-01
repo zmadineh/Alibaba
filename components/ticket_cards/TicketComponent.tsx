@@ -4,13 +4,13 @@ import { filterd_TripData } from '../../data/tickets_data/DataTickets';
 import Image from "next/image";
 import { numberWithCommas } from "../../utils/functions/numberWithCommas";
 import TicketIcon from './TicketIcon';
-import Router from 'next/router'
+import {useRouter} from "next/router";
 
 export default function TicketComponent(props: { item: filterd_TripData, matches: boolean,tripType:number ,numOfPass:number}) {
     const { item, matches,tripType,numOfPass } = props;
-    
+    const router = useRouter();
     const handleSelect = () => {
-        Router.push({
+        router.push({
             pathname: '/confirmation',
             query: { trip : item.trip_id,numPass: numOfPass,type_id: tripType},
         })
