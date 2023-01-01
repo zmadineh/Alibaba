@@ -21,7 +21,7 @@ export function getTrip(index: number, type_id: number):Promise<filterd_TripData
                 resolve(buildFilteredType({ cat: 2, filteredData: findTrip, type_id: type_id })[0])
             }
             resolve(buildFilteredType({ cat: 1, filteredData: findTrip, type_id: type_id })[0])
-        }, 500);})}
+        }, 100);})}
 
 export function getLocationByType(type_id: number, locationName: any) : Promise<number> {
     return new Promise((resolve, reject) => {
@@ -51,7 +51,7 @@ export function getCompanies_type(index: number) {
             let arr1 = trips.filter(item => (item.transport_type_id === index));
             let arr2 = return_trips.filter(item => (item.transport_type_id === index));
             resolve(arr1.concat(arr2));
-        }, 500);
+        }, 100);
     })
 }
 
@@ -142,14 +142,14 @@ export function getTicket(startCity: number, desCity: number, type_id: number, t
                 let filteredData: Trip_type[];
                 let finded_data: Trip_type[];
                 filteredData = trips.filter(item => (item.transport_type_id === type_id))
-                console.log('in database if: ', filteredData)
+                // console.log('in database if: ', filteredData)
 
                 finded_data = filteredData.filter(item => (item.destination_city_id === desCity) &&
                     (item.start_point_city_id === startCity) && (item.remaining_seats >= travelerCount) &&
                     (item.departure_date.getDate() === date.getDate()) &&
                     (item.departure_date.getFullYear() === date.getFullYear())
                     && (item.departure_date.getMonth() === date.getMonth()));
-                console.log('in database if: ', finded_data)
+                // console.log('in database if: ', finded_data)
 
                 resolve(buildFilteredType({ cat: 1, filteredData: finded_data, type_id }))
             }
@@ -163,7 +163,7 @@ export function getTicket(startCity: number, desCity: number, type_id: number, t
             else {
                 reject([])
             }
-        }, 500);
+        }, 100);
 
     })
 

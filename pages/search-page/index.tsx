@@ -63,7 +63,7 @@ export default function SearchPage() {
     //--------------------------------------------------------------------------------------------//
 
     const router = useRouter()
-    console.log('router IS : ',router.query);
+    // console.log('router IS : ',router.query);
     const {  transportType,
         currStartPoint,
         currDestinationPoint,
@@ -146,7 +146,7 @@ export default function SearchPage() {
                     currDepartureDate_,
                     // (roundWay === 'true' ? (returnDate ? new Date(returnDate.toString()) : new Date()) : undefined)
                 );
-            console.log(startPoint, destination, startPointId, destPointId, currDepartureDate_, travelerCount, data)
+            // console.log(startPoint, destination, startPointId, destPointId, currDepartureDate_, travelerCount, data)
 
             setCurrentTrips(data)
             setLoadingTicket(false)
@@ -156,9 +156,10 @@ export default function SearchPage() {
                 setDefaultPriceRange({min: (baseTripsPrice[0]-100 > 0 ? baseTripsPrice[0]-100 : 0), max: baseTripsPrice[tripsLength-1]+100})
         }
 
+        console.log('useEffect')
         fetchData().catch(console.error);
 
-    }, [transportTypeId, travelerCount, currDepartureDate_, departureDate])
+    }, [departureDate, startPoint, destination])
 
 
     const resetFilters = useCallback(() => {
@@ -169,7 +170,7 @@ export default function SearchPage() {
         setShoppingType(defaultFilterValue.shoppingType)
         setPriceRange(defaultPriceRange)
         setDepartureTime(defaultFilterValue.departureTime)
-        setDepartureDate(defaultFilterValue.departureDate)
+        // setDepartureDate(defaultFilterValue.departureDate)
     }, [])
 
     const shoppingCheck = () => {
@@ -183,7 +184,7 @@ export default function SearchPage() {
     }
 
     const filter = useCallback(() => {
-        // console.log(startPoint, destination, currentTrips);
+        console.log('filter');
 
         let filteredData = currentTrips
         if (filteredData.length > 0) {
@@ -228,7 +229,7 @@ export default function SearchPage() {
         }
 
         return filteredData
-    } , [currentTrips, orderFilterIndex])
+    } , [currentTrips, orderFilterIndex, departureDate, departureTime, companies, shoppingType, priceRange])
 
     const nextDay = () => {
         let tomorrow = new Date(departureDate);
