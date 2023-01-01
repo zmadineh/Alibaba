@@ -4,11 +4,19 @@ import { filterd_TripData } from '../../data/tickets_data/DataTickets';
 import Image from "next/image";
 import { numberWithCommas } from "../../utils/functions/numberWithCommas";
 import TicketIcon from './TicketIcon';
+import Router from 'next/router'
 
-export default function TicketComponent(props: { item: filterd_TripData, matches: boolean,tripType:number }) {
-    const { item, matches,tripType } = props;
+export default function TicketComponent(props: { item: filterd_TripData, matches: boolean,tripType:number ,numOfPass:number}) {
+    const { item, matches,tripType,numOfPass } = props;
+    
+    const handleSelect = () => {
+        Router.push({
+            pathname: '/confirmation',
+            query: { trip : item.trip_id,numPass: numOfPass,type_id: tripType},
+        })
+    }
     return (
-        <Grid container bgcolor={'white'} marginBottom={'20px'} borderRadius={1} width='100%' boxShadow={'0 2px 5px -1px rgba(0, 0, 0, .08)'}>
+        <Grid container bgcolor={'white'} marginBottom={'20px'} borderRadius={1} width='100%' boxShadow={'0 2px 5px -1px rgba(0, 0, 0, .08)'} onClick={matches?()=>{}:handleSelect}>
             <Grid item xs={12} sm={9} padding={'16px 16px 16px 16px'} sx={{ border: '0px solid', borderRightWidth: { sm: '1px' }, borderBottomWidth: { xs: '1px', sm: '0px' }, borderColor: 'grey.200' }}>
                 <Grid>
                     <Grid container direction={'column'}>
@@ -92,7 +100,7 @@ export default function TicketComponent(props: { item: filterd_TripData, matches
                     <Typography sx={{ fontWeight: '700', fontSize: '20px', color: 'secondary.main' }}>{numberWithCommas(item.price)}</Typography>
                     <Typography sx={{ color: 'grey.600', fontSize: '13px' }}>ریال</Typography>
                 </Grid>
-                <Button variant="contained" color='secondary' disableElevation sx={{ fontSize: '.875rem', paddingLeft: '1.5rem', paddingRight: '1.5rem', maxWidth: '150px', display: { xs: 'none', sm: 'block' } }}>انتخاب بلیط</Button>
+                <Button variant="contained" color='secondary' onClick={handleSelect} disableElevation sx={{ fontSize: '.875rem', paddingLeft: '1.5rem', paddingRight: '1.5rem', maxWidth: '150px', display: { xs: 'none', sm: 'block' } }}>انتخاب بلیط</Button>
                 <Typography sx={{ color: item.remaining_seats >= 10 ? 'GrayText' : 'red', fontSize: '11px', fontWeight: '500' }}>{item.remaining_seats} صندلی باقی مانده</Typography>
             </Grid>
         </Grid>

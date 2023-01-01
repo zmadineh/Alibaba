@@ -337,7 +337,7 @@ export default function SearchPage() {
                                 </Grid>
                             }
                             {!loadingTicket &&
-                                <TicketContainer filteredData={filter()} tripType={transportTypeId}/>
+                                <TicketContainer filteredData={filter()} tripType={transportTypeId} numOfPass={travelerCount}/>
                             }
                         </Grid>
                     </Grid>

@@ -18,7 +18,7 @@ export default function Home() {
     return (
         <Grid container direction={'row'} justifyContent={'center'} alignItems='center' width={'100vw'} height={'100vh'}>
             <Grid width={'1000px'} padding='10px'>
-                <TicketContainer filteredData={tickets} tripType={1}/>
+                <TicketContainer filteredData={tickets} tripType={1} numOfPass={2}/>
             </Grid>
         </Grid>
     )
