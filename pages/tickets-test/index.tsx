@@ -8,7 +8,7 @@ export default function Home() {
     const [tickets,setTickets] = useState<filterd_TripData[]>([]);
     useEffect(() => {
         const fetchData = async () => {
-          const data = await getTicket(1,2,0,2,new Date(2023, 0, 1, 11, 23, 0)).then();
+          const data = await getTicket(1,2,0,2,new Date(2023, 0, 1, 11, 23, 0),new Date(2023, 1, 4, 12, 2, 34)).then();
           setTickets(data);
         }
         fetchData()
