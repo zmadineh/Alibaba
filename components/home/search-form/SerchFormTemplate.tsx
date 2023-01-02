@@ -3,22 +3,23 @@ import React, {useEffect, useState} from "react";
 import {searchFromValue} from "../../../model/form/searchFormValue.type";
 import {swappableInputsDetailType} from "../../../model/form/swappableInputsDetail.type";
 
+import {emptySearchFormData} from "../../../data/search-form/emptySearchForm.data";
+
 import SwappableInput from "../../common/search-form/input-components/swappable-inputs/SwappableInput";
 import ToggleInputs from "../../common/search-form/input-components/ToggleInputs";
 import PassengerCountInput from "../../common/search-form/input-components/PassengerCountInput";
+import BooleanSelector from "../../common/search-form/input-components/BooleanSelector";
+import SingleDropDown from "../../common/search-form/input-components/SingleDropDown";
 
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import {emptySearchFormData} from "../../../data/search-form/emptySearchForm.data";
-import BooleanSelector from "../../common/search-form/input-components/BooleanSelector";
-import SingleDropDown from "../../common/search-form/input-components/SingleDropDown";
+
 
 interface InternalFlightSearchFormProps {
     submit: (form: searchFromValue) => void
     formType: number,
     inputDetails: swappableInputsDetailType[]
 }
-
 
 export default function SearchFormTemplates({submit, formType, inputDetails} : InternalFlightSearchFormProps) {
 
@@ -42,7 +43,7 @@ export default function SearchFormTemplates({submit, formType, inputDetails} : I
     useEffect(() => {
         if(inputDetails.length > 0)
             setLoadingDetails(false)
-    })
+    }, [inputDetails.length])
 
     const handleSubmit = (event : React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -54,19 +55,25 @@ export default function SearchFormTemplates({submit, formType, inputDetails} : I
         let passengerCountError = false;
         let haveError = false
 
-        console.log('departureDate ', departureDate === '')
+        // console.log('departureDate ', departureDate === '')
 
-        if (origin === '') {
+        if (origin === '' || origin == null) {
             originError = true
             haveError = true
         }
 
-        if (destination === '') {
+        if (destination === '' || destination == null) {
             destinationError = true
             haveError = true
         }
 
-        if (departureDate === '') {
+        if (origin === destination){
+            haveError = true
+            destinationError = true
+            originError = true
+        }
+
+        if (departureDate === '' || departureDate == null) {
             departureDateError = true
             haveError = true
         }
@@ -77,7 +84,7 @@ export default function SearchFormTemplates({submit, formType, inputDetails} : I
 
         setFormError({...formError, origin: originError, destination: destinationError, departureDate: departureDateError, returnDate: returnDateError})
 
-        console.log(formError, originError, formType)
+        // console.log(formError, originError, formType)
 
 
         if(!haveError)

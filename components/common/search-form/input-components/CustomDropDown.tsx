@@ -39,7 +39,7 @@ const CustomDropDown = (props: CustomDropDownProps) => {
             label={props.label}
             name={props.name}
             onChange={onChange}
-            value={props.currentValue}
+            value={(props.currentValue === ' ' ? null : props.currentValue)}
 
             fullWidth
             variant={"outlined"}

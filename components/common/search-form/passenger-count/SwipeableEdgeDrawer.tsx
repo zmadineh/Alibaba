@@ -79,7 +79,7 @@ export default function SwipeableEdgeDrawer(props: Props) {
                     keepMounted: true,
                 }}
                 sx={{
-                    zIndex: 2000,
+                    zIndex: 1500,
                     '& .MuiPaper-root': {
                         borderRadius: '10px 10px 0 0'
                     }
