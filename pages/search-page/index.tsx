@@ -156,7 +156,7 @@ export default function SearchPage() {
                 setDefaultPriceRange({min: (baseTripsPrice[0]-100 > 0 ? baseTripsPrice[0]-100 : 0), max: baseTripsPrice[tripsLength-1]+100})
         }
 
-        console.log('useEffect')
+        // console.log('useEffect')
         fetchData().catch(console.error);
 
     }, [departureDate, startPoint, destination])
@@ -184,7 +184,7 @@ export default function SearchPage() {
     }
 
     const filter = useCallback(() => {
-        console.log('filter');
+        // console.log('filter');
 
         let filteredData = currentTrips
         if (filteredData.length > 0) {
