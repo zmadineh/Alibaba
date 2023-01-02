@@ -96,7 +96,7 @@ export default function SearchFormTemplates({submit, formType, inputDetails} : I
         <Grid padding={1}>
             {loadingDetails ? null :
                 <form onSubmit={(e) => handleSubmit(e)}>
-                    {(formType !== 3) && // bus
+                    {(formType === 0 || formType === 1) &&
                         <Grid container maxWidth={'150px'} mb={3} mt={0}>
                             <BooleanSelector
                                 name={'oneWayRoad'}
@@ -108,7 +108,7 @@ export default function SearchFormTemplates({submit, formType, inputDetails} : I
                     <Grid container spacing={2} flexWrap={"nowrap"} flexDirection={{xs: 'column', md: 'row'}}
                           width={'100%'}>
 
-                        <Grid item xs={12} md={4}>
+                        <Grid item xs={12} md={(formType === 3 ? 5.5 : 4)}>
                             <SwappableInput
                                 details={inputDetails}
                                 setFirstValue={setOrigin}
@@ -118,7 +118,7 @@ export default function SearchFormTemplates({submit, formType, inputDetails} : I
                             />
                         </Grid>
 
-                        <Grid item xs={12} md={4}>
+                        <Grid item xs={12} md={(formType === 3 ? 4.5 : 4)}>
                             {(formType === 3) && // bus
                                 <SingleDropDown
                                     firstLabel={'تاریخ حرکت'}
@@ -154,7 +154,7 @@ export default function SearchFormTemplates({submit, formType, inputDetails} : I
                                 />
                             </Grid>
                         }
-                        <Grid item xs={12} md={1.5}>
+                        <Grid item xs={12} md={(formType === 3 ? 2 : 1.5)}>
                             <Button type={"submit"} variant={"contained"} size={"medium"}
                                     sx={{height: '100%', width: '100%', borderRadius: '10px'}}>{`جستجو`}</Button>
                         </Grid>

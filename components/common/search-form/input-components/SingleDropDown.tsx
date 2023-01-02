@@ -5,7 +5,7 @@ import CustomDropDown from "./CustomDropDown";
 import {searchFromValue} from "../../../../model/form/searchFormValue.type";
 import {dateOptions} from "../../../../data/search-form/dateOptions.data";
 
-import {useTheme} from "@mui/material";
+import {MenuItem, useTheme} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
@@ -29,6 +29,10 @@ export default function SingleDropDown({firstLabel, firstName, value , setValue,
     const theme = useTheme();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'));
 
+    const onChange = (event: any) => {
+        setValue(event.target.value)
+    }
+
     return (
         <Grid
             display={"flex"}
@@ -45,7 +49,7 @@ export default function SingleDropDown({firstLabel, firstName, value , setValue,
                     values={dateOptionCreator()}
                     currentValue={value}
                     setCurrentValue={setValue}
-                    borderRadius={'8px 0 0 8px'}
+                    borderRadius={'8px'}
                     variant={"outlined"}
                     disable={false}
                     error={formError[firstName]}
@@ -55,12 +59,16 @@ export default function SingleDropDown({firstLabel, firstName, value , setValue,
 
             {mobileMatch &&
                 <TextField
+                    select
                     placeholder={firstLabel}
                     name={firstName}
+                    onChange={onChange}
+                    value={value}
 
                     error={formError[firstName]}
                     helperText={(formError[firstName] && `${firstLabel} را پر کنید. `)}
 
+                    disabled={false}
                     variant={"standard"}
                     size={"medium"}
                     fullWidth
@@ -76,22 +84,31 @@ export default function SingleDropDown({firstLabel, firstName, value , setValue,
                     sx={{
                         padding: 1,
 
-                        '& .MuiInputBase-root::before': {
-                            borderColor: "grey.200",
-                        },
-
-                        '& .MuiInput-root::after': {
-                            borderColor: "grey.300",
-                        },
+                        // '& .MuiInputBase-root::before': {
+                        //     borderColor: "grey.200",
+                        // },
+                        //
+                        // '& .MuiInput-root::after': {
+                        //     borderColor: "grey.300",
+                        // },
 
                         '& .MuiInput-input': {
                             height: '2.4rem',
                         },
                     }}
-
-                />
+                >
+                    {dateOptionCreator().map((option, index) => (
+                        <MenuItem key={index} value={option.value.toLocaleDateString()}
+                                  sx={{
+                                      '&:hover, &.Mui-selected:hover, &.Mui-selected ': {
+                                          backgroundColor: 'secondary.100',
+                                      },
+                                  }}>
+                            {option.label}
+                        </MenuItem>
+                    ))}
+                </TextField>
             }
-
         </Grid>
     )
 }

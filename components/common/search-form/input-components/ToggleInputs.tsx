@@ -139,6 +139,7 @@ export default function ToggleInputs({firstLabel, secondLabel, firstName, second
 
                     <TextField
                        select
+                       // label={secondLabel}
                        placeholder={secondLabel}
                        name={secondName}
 
