@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState ,Dispatch ,SetStateAction} from 'react'
 
 import PassengerIcon from '../../../public/Assets/Images/common/passenger-info/PassengerIcon.svg'
 
