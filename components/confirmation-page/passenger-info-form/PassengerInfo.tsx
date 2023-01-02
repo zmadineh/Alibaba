@@ -39,7 +39,7 @@ const PassengerInfo = (props: PassengerInfo) => {
                 setForm({...form,[e.target.name]:e.target.value})
         }
         const handleSubmit = (e:any)=>{
-                
+                e.preventDefault()
                 props.setForms([...props.forms,form])
                 props.setActiveStep(1)
         }
