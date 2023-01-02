@@ -4,7 +4,7 @@ import InputSelector from "../InputSelector";
 import SwappableTemplate from "./SwappableTemplate";
 
 
-import {swappableInputsDetailType} from "../../../../../model/swappableInputsDetail.type";
+import {swappableInputsDetailType} from "../../../../../model/form/swappableInputsDetail.type";
 
 interface SwappableInputProps {
     details: swappableInputsDetailType[],

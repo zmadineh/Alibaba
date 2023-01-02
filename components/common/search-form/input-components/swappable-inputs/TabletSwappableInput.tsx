@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from "react";
 
-import {data} from "../../../../../model/data.type";
-import {swappableInputsDetailType} from "../../../../../model/swappableInputsDetail.type";
+import {data} from "../../../../../model/form/data.type";
+import {swappableInputsDetailType} from "../../../../../model/form/swappableInputsDetail.type";
 
 import SwappableTemplate from "./SwappableTemplate";
 import TabletSelectDialog from "../../select-dialog/TabletSelectDialog";

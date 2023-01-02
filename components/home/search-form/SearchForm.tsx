@@ -13,7 +13,7 @@ import SearchFormTemplates from "./SerchFormTemplate";
 
 import Grid from "@mui/material/Grid/Grid";
 import {getTicket} from "../../../data/database/trips.data";
-import {swappableInputsDetailType} from "../../../model/swappableInputsDetail.type";
+import {swappableInputsDetailType} from "../../../model/form/swappableInputsDetail.type";
 import SearchCardContainer from "../../common/recent-searchs/SearchCardContainer";
 import {useMediaQuery, useTheme} from "@mui/material";
 

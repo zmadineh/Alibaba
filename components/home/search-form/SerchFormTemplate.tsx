@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 
 import {searchFromValue} from "../../../model/form/searchFormValue.type";
-import {swappableInputsDetailType} from "../../../model/swappableInputsDetail.type";
+import {swappableInputsDetailType} from "../../../model/form/swappableInputsDetail.type";
 
 import SwappableInput from "../../common/search-form/input-components/swappable-inputs/SwappableInput";
 import ToggleInputs from "../../common/search-form/input-components/ToggleInputs";

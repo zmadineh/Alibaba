@@ -1,4 +1,4 @@
-import {descriptionParaType} from "../../model/descriptionPara.type" ;
+import {descriptionParaType} from "../../model/tour/descriptionPara.type" ;
 
 export const tourData : descriptionParaType[]  = [
     {

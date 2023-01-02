@@ -8,7 +8,7 @@ import 'swiper/css/scrollbar';
 import CustomParagraph from "./CustomParagraph";
 
 import {tourData} from "../../../data/tour-page/tour-page-description.data";
-import {SlideType} from "../../../model/slideType";
+import {SlideType} from "../../../model/tour/slideType";
 
 import Grid from "@mui/material/Grid";
 

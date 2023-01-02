@@ -1,6 +1,6 @@
 import React from "react";
 
-import {data} from "../../../../model/data.type";
+import {data} from "../../../../model/form/data.type";
 
 import SelectDialogListItem from "./SelectDialogListItem";
 

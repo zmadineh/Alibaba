@@ -1,4 +1,4 @@
-import {data} from "../../model/data.type";
+import {data} from "../../model/form/data.type";
 
 export const internalCities : data[] = [
     {id: 1, title: 'تهران', description: 'تهران', type: 'city'},

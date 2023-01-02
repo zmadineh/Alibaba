@@ -1,4 +1,4 @@
-import { data } from "../../model/data.type";
+import { data } from "../../model/form/data.type";
 import { startDesPointType } from "../../model/database/startDesPoint.typ";
 
 export const externalAirports: startDesPointType[] = [

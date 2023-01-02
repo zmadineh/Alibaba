@@ -1,7 +1,7 @@
 import React, {SyntheticEvent, useCallback, useState} from "react";
 
 import {getTitleArray} from "../../../../helper/getTitleArray.helper";
-import {swappableInputsDetailType} from "../../../../model/swappableInputsDetail.type";
+import {swappableInputsDetailType} from "../../../../model/form/swappableInputsDetail.type";
 
 import SelectDialogListItem from "../select-dialog/SelectDialogListItem";
 
