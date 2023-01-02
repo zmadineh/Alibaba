@@ -1,11 +1,10 @@
 import React from 'react'
 // material ui
 import Grid from '@mui/material/Grid';
-
-
 // data
 import { trainCardDataTwo } from '../../../../data/traincards/train-card-data';
 import TrainItem from './TrainItem';
+
 const TrainCardTwo = () => {
     return (
         <>
