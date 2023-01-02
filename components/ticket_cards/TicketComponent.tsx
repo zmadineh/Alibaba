@@ -40,11 +40,13 @@ export default function TicketComponent(props: { item: filterd_TripData, matches
                                     )}
                                     <Typography sx={{ color: "grey.500", fontSize: '14px' }}>{item.company_name}</Typography>
                                 </Grid>
-                                <Grid display={'flex'}>
+                                {item.trip_des.length>0 && (
+                                    <Grid display={'flex'} justifyContent={'flex-start'}>
                                     {item.trip_des.map((des, index) => (
-                                        <Typography key={index} variant="h2" sx={{ color: "grey.700", fontSize: '9px', fontWeight: '700', marginBottom: '8px', marginLeft: '8px', backgroundColor: 'grey.200', padding: '8px', borderRadius: '10px' }}>{des}</Typography>
+                                        <Typography key={index} variant="h2" sx={{ color: "grey.700", fontSize: '10px', fontWeight: '700', marginBottom: '8px', marginRight: '8px', backgroundColor: 'grey.200', padding: '8px', borderRadius: '10px' }}>{des}</Typography>
                                     ))}
                                 </Grid>
+                                )}
                                 <Grid gap={2} display={matches ? 'flex' : 'none'} alignItems={'center'}>
                                     <Typography variant="h2" sx={{ color: "grey.700", fontSize: matches ? '20px' : '18px', fontWeight: '700' }}>{`${item.departure_date.getHours()}:${item.departure_date.getMinutes()}`}</Typography>
                                     <Typography sx={{ color: "grey.800", fontSize: '15px' }}>{item.start_point_city}</Typography>
@@ -60,6 +62,23 @@ export default function TicketComponent(props: { item: filterd_TripData, matches
                                     )}
                                     <Typography sx={{ color: "grey.800", fontSize: matches ? '15px' : '12px' }}>{item.destination_city}</Typography>
                                 </Grid>
+                                {item.return_date && (
+                                    <Grid gap={2} display={matches ? 'flex' : 'none'} alignItems={'center'}>
+                                    <Typography variant="h2" sx={{ color: "grey.700", fontSize: matches ? '20px' : '18px', fontWeight: '700' }}>{`${item.return_date.getHours()}:${item.return_date.getMinutes()}`}</Typography>
+                                    <Typography sx={{ color: "grey.800", fontSize: '15px' }}>{item.destination_city}</Typography>
+                                    <Grid display={'flex'} alignItems={'center'} sx={{ maxWidth: '150px', minWidth: '100px', flexGrow: '1' }}>
+                                        <SvgIcon sx={{ width: '14px', height: '14px', color: 'grey.400' }}>
+                                            <TicketIcon tripType={tripType} />
+                                        </SvgIcon>
+                                        <Divider sx={{ border: '0 0 6px 0', borderColor: 'grey.400', flexGrow: '1' }} />
+                                        <Grid sx={{ width: '0.5rem', height: '0.5rem', borderRadius: '50%', margin: '0.5rem 1px 0.5rem 0', border: 'solid 1px', borderColor: 'grey.500' }} />
+                                    </Grid>
+                                    {item.receive_date && (
+                                        <Typography variant="h2" sx={{ color: "grey.700", fontSize: matches ? '20px' : '18px', fontWeight: '700' }}>{`${item.return_receive_date?.getHours()}:${item.return_receive_date?.getMinutes()}`}</Typography>
+                                    )}
+                                    <Typography sx={{ color: "grey.800", fontSize: matches ? '15px' : '12px' }}>{item.start_point_city}</Typography>
+                                </Grid>
+                                )}
                             </Grid>
                         </Grid>
                     </Grid>
