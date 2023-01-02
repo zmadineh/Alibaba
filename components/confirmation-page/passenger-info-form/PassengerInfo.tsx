@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState ,Dispatch ,SetStateAction} from 'react'
 
 import PassengerIcon from '../../../public/Assets/Images/common/passenger-info/PassengerIcon.svg'
 
@@ -9,13 +9,18 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button/Button';
+import { formType } from '../Steps';
 
 
-type Props = {}
+interface PassengerInfo  {
+        forms:Array<formType>,
+        setForms:Dispatch<SetStateAction<Array<formType>>>,
+        setActiveStep:Dispatch<SetStateAction<number>>,
+}
 
-const PassengerInfo = (props: Props) => {
-        const [form,setForm]=useState<any>({
-             firstname:'',
+const PassengerInfo = (props: PassengerInfo) => {
+        const [form,setForm]=useState<formType>({
+             firstName:'',
              lastName:'',
              gender:'مرد',
              phone:'',
@@ -30,15 +35,17 @@ const PassengerInfo = (props: Props) => {
         ]
 
         const handleChange = (e:any)=>{
+                
                 setForm({...form,[e.target.name]:e.target.value})
         }
         const handleSubmit = (e:any)=>{
-                e.preventdefault()
-
+                e.preventDefault()
+                props.setForms([...props.forms,form])
+                props.setActiveStep(1)
         }
   return (
         <Grid container display={'flex'} justifyContent={'center'} alignItems={'center'}>
-                <Grid item container display={'flex'} md={11} sm={12} m={2} border={2}borderColor={'divider'}borderRadius={2}>
+                <Grid item container bgcolor={'common.white'} display={'flex'} md={11} sm={12} m={2} border={2}borderColor={'divider'}borderRadius={2}>
                         <Grid item display={'inline-flex'} color={'grey.600'} py={2}>
                                 {/* <span style={{height:'48',width:'8px',backgroundColor:'#4b5259',borderRadius:'2px 0 0 2px'}}></span> */}
                                 <Divider sx={{height:'40px',width:'4px',backgroundColor:'#4b5259',borderRadius:'0px 2px 2px 0px'}}/>
@@ -70,7 +77,7 @@ const PassengerInfo = (props: Props) => {
                                                         </Select>
                                                 </Grid>
                                                 <Grid item>
-                                                        <Button sx={{margin:'8px',height:'56px',width:'264px'}} variant="contained" color="secondary" type={'submit'}>تایید و ادامه خرید</Button>
+                                                        <Button sx={{margin:'8px',height:'56px',width:'264px'}} variant="contained" color="secondary" type={'submit'} disabled={!(form.firstName && form.lastName && form.idCode && form.phone)}>تایید و ادامه خرید</Button>
                                                 </Grid>
                                         </Grid>
                                 </form>

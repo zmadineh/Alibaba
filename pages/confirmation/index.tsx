@@ -8,7 +8,7 @@ import { getTrip } from '../../data/database/trips.data';
 import { filterd_TripData } from '../../data/tickets_data/DataTickets';
 
 export default function Confirmation() {
-    const [activeStep, setActiveStep] = useState(1);
+    const [activeStep, setActiveStep] = useState(0);
     const [information, setInformation] = useState<filterd_TripData>();
     const [numPass,setNumPass] = useState<number>(0)
     const theme = useTheme();
@@ -38,7 +38,7 @@ export default function Confirmation() {
             <HeaderOnconfir res={matches} activeStep={activeStep} setActiveStep={setActiveStep}/>
             <Grid height={'150px'}></Grid>
             <Grid padding={'48px 0'}>
-                <Steps res={matches} step={activeStep} setStep={setActiveStep} information={information} numPass={numPass} type_id={type_id1}/>
+                <Steps res={matches} activeStep={activeStep} setActiveStep={setActiveStep} information={information} numPass={numPass} type_id={type_id1}/>
             </Grid>
         
 
