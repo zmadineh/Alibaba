@@ -10,15 +10,15 @@ import DetailCard from "./DetailCard";
 interface CardsContainerPropsType {
     // cardsData: cardDataType[]
     children: ReactNode,
+    maxHeight: {xs: string, sm: string}
 }
 
-export default function CardsContainer({children} : CardsContainerPropsType) {
+export default function CardsContainer({children, maxHeight} : CardsContainerPropsType) {
 
     return (
-        <Grid container flexDirection={"column"} spacing={1} my={3}>
-            <Grid item container flexDirection={"column"} overflow={"scroll"} alignContent={"flex-start"} maxHeight={'250px'} gap={2} mt={4}>
-                {children}
-            </Grid>
+        <Grid item container flexDirection={"column"} overflow={"scroll"} maxHeight={maxHeight} gap={2} mt={4}>
+            {children}
         </Grid>
+
     )
 }

@@ -1,17 +1,15 @@
-import { Grid } from "@mui/material";
 import Questions from '../../common_questions/Quetions'
+import BusDetails from "../../home/bus-page/BusDetails";
+
+import {busTicketSectionData} from "../../../data/bus-page/busSections.data";
+
+import Grid from "@mui/material/Grid";
 
 export default function Bus_page() {
     return (
         <>
             <Grid><Questions category={'bus-ticket'}/></Grid>
-            <Grid>بلیط اتوبوس ...</Grid>
-            <Grid>
-                information carts 1
-            </Grid>
-            <Grid>استرداد بلیط اتوبوس ...</Grid>
-            <Grid>information carts 2</Grid>
-            <Grid>some texts</Grid>
+            <BusDetails sections={busTicketSectionData} />
         </>
     )
 
