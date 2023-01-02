@@ -114,7 +114,7 @@ export default function SearchPage() {
                     destPointId,
                     transportTypeId,
                     travelerCount,
-                    currDepartureDate_,
+                 departureDate,
                     // (roundWay === 'true' ? returnDate_ : undefined),
                 );
 
@@ -126,7 +126,7 @@ export default function SearchPage() {
                 setDefaultPriceRange({min: (baseTripsPrice[0]-100 > 0 ? baseTripsPrice[0]-100 : 0), max: baseTripsPrice[tripsLength-1]+100})
         }
 
-        // console.log('useEffect')
+        // console.log('useEffect', departureDate.toLocaleDateString())
         fetchData().catch(console.error);
 
     }, [departureDate, startPoint, destination])
