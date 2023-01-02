@@ -93,7 +93,7 @@ export default function FirstPage() {
                         lg: '1200px',
                         md: '800px'
                     },
-                    padding:'0 16px',
+                    // padding:'0 16px',
                 }}>
                       
                     <HeaderMobile setPage={setPage} setOpenDialog={setOpenDialog}/>

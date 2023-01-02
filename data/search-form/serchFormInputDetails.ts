@@ -1,4 +1,4 @@
-import {swappableInputsDetailType} from "../../model/swappableInputsDetail.type";
+import {swappableInputsDetailType} from "../../model/form/swappableInputsDetail.type";
 import {internalCities} from "../database/internalCities.data";
 import {externalAirports} from "../database/externalAirports.data";
 import {createPointList, createPointListByCity} from "../../helper/database/createPointList";

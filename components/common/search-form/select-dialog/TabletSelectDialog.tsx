@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from "react";
 
-import {data} from "../../../../model/data.type";
+import {data} from "../../../../model/form/data.type";
 
 import SelectDialogListItem from "./SelectDialogListItem";
 import CustomTextField from "../input-components/CustomTextField";
@@ -18,7 +18,7 @@ import {ListItem} from "@mui/material";
 import Typography from "@mui/material/Typography/Typography";
 import DataList from "./DataList";
 import InputWithPlaceholder from "../input-components/InputWithPlaceholder";
-import {swappableInputsDetailType} from "../../../../model/swappableInputsDetail.type";
+import {swappableInputsDetailType} from "../../../../model/form/swappableInputsDetail.type";
 
 
 const Transition = React.forwardRef(function Transition(

@@ -13,7 +13,7 @@ import SearchFormTemplates from "./SerchFormTemplate";
 
 import Grid from "@mui/material/Grid/Grid";
 import {getTicket} from "../../../data/database/trips.data";
-import {swappableInputsDetailType} from "../../../model/swappableInputsDetail.type";
+import {swappableInputsDetailType} from "../../../model/form/swappableInputsDetail.type";
 import SearchCardContainer from "../../common/recent-searchs/SearchCardContainer";
 import {useMediaQuery, useTheme} from "@mui/material";
 
@@ -68,7 +68,7 @@ export default function SearchForm({index, searches, setSearches} : SearchFormPr
     })
 
     return (
-        <Grid zIndex={2000} py={2}>
+        <Grid py={2}>
             <SearchFormTemplates submit={mainHandleSubmit} formType={index} inputDetails={inputDetails} />
 
             {!laptopMatch && <SearchCardContainer categoryIndex={index} searches={searches} setSearches={setSearches} />}

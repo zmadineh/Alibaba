@@ -1,48 +1,30 @@
 import React, {useCallback, useEffect, useState} from "react";
+import {useRouter} from "next/router";
+import Link from "next/link";
 
 import OrderingFilter from "../../components/common/ordering-filter/OrderingFilter";
 import FilterSidebar from "../../components/filter-Sidebar/FilterSidebar";
+import DateFilter from "../../components/common/date-filter/DateFilter";
+import TicketContainer from "../../components/ticket_cards/TicketContainer";
+import Footer from "../../components/layout/Footer";
+import Desk_header from "../../components/desktop_header/Desk_header";
 
-import {getLocationByType, getTicket, trips} from "../../data/database/trips.data";
+import {getLocationByType, getTicket} from "../../data/database/trips.data";
+import {orderingFilterTitleData} from "../../data/filters/orderingFilter.data";
+import {filterd_TripData} from "../../data/tickets_data/DataTickets";
 
 import {priceRangeType, shoppingObjType} from "../../model/filter/filterStateType";
 import {timeRangeType} from "../../model/filter/filterStateType";
 
 import Grid from "@mui/material/Grid";
-import {IconButton, useTheme} from "@mui/material";
+import {useTheme} from "@mui/material";
+import IconButton from "@mui/material/IconButton";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Typography from "@mui/material/Typography/Typography";
 import Box from "@mui/material/Box";
-import {useRouter} from "next/router";
-import {cities} from "../../data/database/cities.data";
-import DateFilter from "../../components/common/date-filter/DateFilter";
-import {filterd_TripData} from "../../data/tickets_data/DataTickets";
-import TicketContainer from "../../components/ticket_cards/TicketContainer";
-import Footer from "../../components/layout/Footer";
-import Desk_header from "../../components/desktop_header/Desk_header";
-import Link from "next/link";
-import {ArrowBackIos, ArrowForward, ArrowForwardIos} from "@mui/icons-material";
+import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIos from "@mui/icons-material/ArrowBackIos";
 
-
-
-const orderingFilterTitleData = [
-    {
-        label: 'زودترین',
-        filterLabel: 'earliest_departure_time'
-    },
-    {
-        label: 'دیرترین',
-        filterLabel: 'latest_departure_time'
-    },
-    {
-        label: 'گرانترین',
-        filterLabel: 'highest_price'
-    },
-    {
-        label: 'ارزان ترین',
-        filterLabel: 'lowest_price'
-    },
-]
 
 const defaultFilterValue = {
     orderFilterIndex: 0,
@@ -57,13 +39,11 @@ const defaultFilterValue = {
 
 const headerHeight = 70;
 
-
 export default function SearchPage() {
 
     //--------------------------------------------------------------------------------------------//
 
     const router = useRouter()
-    // console.log('router IS : ',router.query);
     const {  transportType,
         currStartPoint,
         currDestinationPoint,
@@ -75,18 +55,9 @@ export default function SearchPage() {
         babyCount } = router.query
 
 
-    // console.log(transportType,
-    //     currStartPoint,
-    //     currDestinationPoint,
-    //     currDepartureDate,
-    //     returnDate,
-    //     roundWay,
-    //     adultCount,
-    //     childCount,
-    //     babyCount);
-
     const transportTypeId = Number(transportType);
     const currDepartureDate_  = (currDepartureDate ? new Date(currDepartureDate.toString()) : new Date());
+    const returnDate_  = (returnDate ? new Date(returnDate.toString()) : new Date());
     const travelerCount = Number(adultCount) + Number(childCount) + Number(babyCount)
     const startPoint = currStartPoint;
     const destination = currDestinationPoint;
@@ -144,9 +115,8 @@ export default function SearchPage() {
                     transportTypeId,
                     travelerCount,
                     currDepartureDate_,
-                    // (roundWay === 'true' ? (returnDate ? new Date(returnDate.toString()) : new Date()) : undefined)
+                    // (roundWay === 'true' ? returnDate_ : undefined),
                 );
-            // console.log(startPoint, destination, startPointId, destPointId, currDepartureDate_, travelerCount, data)
 
             setCurrentTrips(data)
             setLoadingTicket(false)

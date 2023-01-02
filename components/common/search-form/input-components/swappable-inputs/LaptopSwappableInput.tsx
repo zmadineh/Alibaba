@@ -3,9 +3,9 @@ import CustomAutocomplete from "../CustomAutocomplete";
 import SwappableTemplate from "./SwappableTemplate";
 
 import {searchFromValue} from "../../../../../model/form/searchFormValue.type";
-import {data} from "../../../../../model/data.type";
+import {data} from "../../../../../model/form/data.type";
 import {getTitleArray} from "../../../../../helper/getTitleArray.helper";
-import {swappableInputsDetailType} from "../../../../../model/swappableInputsDetail.type";
+import {swappableInputsDetailType} from "../../../../../model/form/swappableInputsDetail.type";
 
 
 interface SwappableInputProps {

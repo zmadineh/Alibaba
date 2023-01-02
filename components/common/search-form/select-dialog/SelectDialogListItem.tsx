@@ -5,7 +5,7 @@ import LocationDataCard from "../LocationDataCard/LocationDataCard";
 import Grid from "@mui/material/Grid";
 import ListItemButton from "@mui/material/ListItemButton";
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
-import {data} from "../../../../model/data.type";
+import {data} from "../../../../model/form/data.type";
 
 
 interface SelectDialogListItemProps {

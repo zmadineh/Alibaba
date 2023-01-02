@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import {data} from "../../../../model/data.type";
+import {data} from "../../../../model/form/data.type";
 
 import SelectDialogHeader from "./SelectDialogHeader";
 

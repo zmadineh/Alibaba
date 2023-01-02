@@ -39,7 +39,7 @@ const CustomDropDown = (props: CustomDropDownProps) => {
             label={props.label}
             name={props.name}
             onChange={onChange}
-            value={props.currentValue}
+            value={(props.currentValue === ' ' ? null : props.currentValue)}
 
             fullWidth
             variant={"outlined"}
@@ -71,32 +71,19 @@ const CustomDropDown = (props: CustomDropDownProps) => {
 
                     '& .MuiInputBase-root': {
                         borderRadius: props.borderRadius,
-                        borderColor: "grey.200",
                         backgroundColor: props.bgColor,
                     },
 
-                    // '& .MuiInputBase-root::before': {
-                    //     borderColor: "grey.200",
-                    // },
-                    //
-                    // '& .MuiInput-root::after': {
-                    //     borderColor: "grey.300",
-                    // },
-
                     '& .MuiOutlinedInput-root.Mui-focused': {
                         '& .MuiOutlinedInput-notchedOutline': {
-                            // borderColor: "grey.400",
                             borderWidth: '0.5px',
+                            borderColor: "grey.300",
                         },
                     },
 
                     '& .MuiInputLabel-root.Mui-focused': {
-                        color: 'secondary.100'
+                        color: 'grey.400',
                     },
-
-                    // '& .MuiInputLabel-root.Mui-error': {
-                    //     color: 'error',
-                    // },
 
                     '& .MuiInput-input': {
                         height: '2.4rem',

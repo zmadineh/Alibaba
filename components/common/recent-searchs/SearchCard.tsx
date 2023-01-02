@@ -35,7 +35,7 @@ export default function SearchCard({formType, origin, destination, oneWayRoad = 
     const router = useRouter();
     const mobileMatch = useMediaQuery(theme.breakpoints.down('sm'))
 
-    console.log('formType', formType)
+    // console.log('formType', formType)
 
     const url = { pathname: 'search-page',
         query: {
@@ -54,51 +54,51 @@ export default function SearchCard({formType, origin, destination, oneWayRoad = 
 
     return (
         <Link href={url}>
-        <Card
-            variant="outlined"
-            sx={{borderRadius: '8px', cursor: 'pointer'}}
-        >
-            <CardActionArea>
-                <CardContent>
-                    <Grid container flexDirection={"column"} gap={1.5}>
-                        <Grid container gap={1} alignItems={"center"} textOverflow={'ellipsis'} flexWrap={"nowrap"}>
-                            <Typography gutterBottom variant="body1" noWrap textOverflow={'ellipsis'}>
-                                {origin}
-                            </Typography>
-                            {oneWayRoad ? <KeyboardArrowLeftIcon fontSize={"medium"}/> : <FlipIcon />}
-                            <Typography gutterBottom variant="body1" noWrap textOverflow={'ellipsis'}>
-                                {destination}
-                            </Typography>
-                        </Grid>
-
-                        <Grid container gap={1} color={'grey.500'} textOverflow={'ellipsis'} flexWrap={"nowrap"}>
-                            <CalendarMonthOutlinedIcon />
-                            <Typography variant="body2" noWrap textOverflow={'ellipsis'}>
-                                {new Date(departureDate).toLocaleDateString('fa-IR')}
-                            </Typography>
-                            {!oneWayRoad &&
-                                <Typography variant="body2" noWrap textOverflow={'ellipsis'}>
-                                    تا {oneWayRoad}
+            <Card
+                variant="outlined"
+                sx={{borderRadius: '8px', cursor: 'pointer'}}
+            >
+                <CardActionArea>
+                    <CardContent>
+                        <Grid container flexDirection={"column"} gap={1.5}>
+                            <Grid container gap={1} alignItems={"center"} textOverflow={'ellipsis'} flexWrap={"nowrap"}>
+                                <Typography gutterBottom variant="body1" noWrap textOverflow={'ellipsis'}>
+                                    {origin}
                                 </Typography>
-                            }
-                            {!oneWayRoad &&
-                                <Typography variant="body2" noWrap textOverflow={'ellipsis'}>
-                                    {new Date(returnDate).toLocaleDateString('fa-IR')}
+                                {oneWayRoad ? <KeyboardArrowLeftIcon fontSize={"medium"}/> : <FlipIcon />}
+                                <Typography gutterBottom variant="body1" noWrap textOverflow={'ellipsis'}>
+                                    {destination}
                                 </Typography>
-                            }
-                        </Grid>
+                            </Grid>
+
+                            <Grid container gap={1} color={'grey.500'} textOverflow={'ellipsis'} flexWrap={"nowrap"}>
+                                <CalendarMonthOutlinedIcon />
+                                <Typography variant="body2" noWrap textOverflow={'ellipsis'}>
+                                    {new Date(departureDate).toLocaleDateString('fa-IR')}
+                                </Typography>
+                                {!oneWayRoad &&
+                                    <Typography variant="body2" noWrap textOverflow={'ellipsis'}>
+                                        تا {oneWayRoad}
+                                    </Typography>
+                                }
+                                {!oneWayRoad &&
+                                    <Typography variant="body2" noWrap textOverflow={'ellipsis'}>
+                                        {new Date(returnDate).toLocaleDateString('fa-IR')}
+                                    </Typography>
+                                }
+                            </Grid>
 
 
-                        <Grid container gap={1} color={'grey.500'} textOverflow={'ellipsis'} flexWrap={"nowrap"}>
-                            <AirlineSeatReclineExtraOutlinedIcon />
-                            <Typography variant="body2" noWrap textOverflow={'ellipsis'}>
-                                {`${passengerCount.adult} بزرگسال`}{passengerCount.child > 0 ? ( ' ،' + `${passengerCount.child} کودک` ): null}{passengerCount.baby > 0 ? (' ،' + `${passengerCount.baby} نوزاد`): null }
-                            </Typography>
+                            <Grid container gap={1} color={'grey.500'} textOverflow={'ellipsis'} flexWrap={"nowrap"}>
+                                <AirlineSeatReclineExtraOutlinedIcon />
+                                <Typography variant="body2" noWrap textOverflow={'ellipsis'}>
+                                    {`${passengerCount.adult} بزرگسال`}{passengerCount.child > 0 ? ( ' ،' + `${passengerCount.child} کودک` ): null}{passengerCount.baby > 0 ? (' ،' + `${passengerCount.baby} نوزاد`): null }
+                                </Typography>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </CardContent>
-            </CardActionArea>
-        </Card>
+                    </CardContent>
+                </CardActionArea>
+            </Card>
         </Link>
     )
 }

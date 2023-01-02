@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from "react";
 
-import {swappableInputsDetailType} from "../../../../../model/swappableInputsDetail.type";
+import {swappableInputsDetailType} from "../../../../../model/form/swappableInputsDetail.type";
 import {formErrorType} from "../../../../../model/form/fromErrorType.type";
 
 import LaptopSwappableInput from "./LaptopSwappableInput";

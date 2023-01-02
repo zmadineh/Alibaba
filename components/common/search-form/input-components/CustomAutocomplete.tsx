@@ -1,7 +1,7 @@
 import React, {SyntheticEvent, useCallback, useState} from "react";
 
 import {getTitleArray} from "../../../../helper/getTitleArray.helper";
-import {swappableInputsDetailType} from "../../../../model/swappableInputsDetail.type";
+import {swappableInputsDetailType} from "../../../../model/form/swappableInputsDetail.type";
 
 import SelectDialogListItem from "../select-dialog/SelectDialogListItem";
 
@@ -9,6 +9,13 @@ import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid/Grid";
+
+const ELEMENT_TO_SHOW = 5;
+// import { createFilterOptions, FilterOptionsState } from '@material-ui/lab';
+//
+// const defaultFilterOptions = createFilterOptions<string>();
+// const filterOptions = (options: string[], state: FilterOptionsState) =>
+//     defaultFilterOptions(options, state).slice(0, 100);
 
 
 interface autocompleteProps {
@@ -25,6 +32,7 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
                                                listWidth = '100%', detail, error, validationData} : autocompleteProps) {
 
     const [input, setInput] = useState<string>('');
+    const [value, setValue] = useState<string | null>(null);
 
     const onChangeValue = (event : SyntheticEvent, newValue: string) => {
         console.log('onChangeValue')
@@ -41,6 +49,7 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
         }
         else {
             setInput(newValue)
+            setValue(values[detail.name])
             console.log('validate')
         }
     }
@@ -48,7 +57,7 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
     return(
       <Autocomplete
           id={detail.name}
-          value={values[detail.name]}
+          value={(values[detail.name] !== '' ? values[detail.name] : null)}
           onChange={(event, newValue) => onChangeValue(event, (newValue === null ? '' : newValue))}
           inputValue={input}
           onInputChange={(event, newInputValue) => onInputChange(event, newInputValue)}
@@ -59,7 +68,12 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
 
           sx={{
               height: '2.5rem',
-            }}
+              '&  .MuiOutlinedInput-root.MuiInputBase-sizeSmall': {
+                  paddingRight: '15px',
+                  paddingLeft: '15px',
+              },
+
+          }}
           options={getTitleArray(detail.data)}
           isOptionEqualToValue={(option, value) => option === value}
 
@@ -74,10 +88,6 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
 
                       color: "grey.400",
                       borderColor: "grey.200",
-
-                      '& .MuiOutlinedInput-notchedOutline': {
-                          padding: '0 10px',
-                      },
 
                       "& .MuiOutlinedInput-root.Mui-error": {
                           '& .MuiOutlinedInput-notchedOutline': {
@@ -95,20 +105,15 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
                       '& .MuiInputBase-root': {
                             borderRadius: borderRadius,
                             borderColor: "grey.200",
-                          padding: '0 10px',
                       },
 
                       '& .MuiInputLabel-root.Mui-focused': {
                           color: "grey.400",
-                          padding: 0,
                       },
-
-                      '& .MuiInputLabel-root': {
-                          // padding: '0 10px',
-                      }
 
                   }}
               />
+
           )}
 
           renderOption={(ind, option) => {
@@ -134,5 +139,6 @@ export default function CustomAutocomplete({values, borderRadius, errorMessage,
               }
           }}
           />
+
     )
 }
