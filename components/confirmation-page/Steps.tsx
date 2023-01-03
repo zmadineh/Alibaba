@@ -13,16 +13,7 @@ export interface formType {
 }
 
 export default function Steps(props: { res: boolean, activeStep: number, setActiveStep: Dispatch<SetStateAction<number>>,information:filterd_TripData | undefined ,numPass:number,type_id:number}) {
-    const [forms, setForms] = useState<Array<formType>>([
-        {
-            firstName:'',
-            lastName:'',
-            gender:'مرد',
-            phone:'',
-            idCode:''
-
-       },
-    ]);
+    const [forms, setForms] = useState<Array<formType>>([]);
     if (props.activeStep === 1) {
         return (
             <PassengerInfo forms={forms} setForms={setForms} setActiveStep={props.setActiveStep}/>

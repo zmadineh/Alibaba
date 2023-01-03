@@ -49,6 +49,8 @@ export default function Information(props: { res: boolean, forms: formType[], in
                     paddingBottom: '30px',
                     borderRadius: '8px',
                     backgroundColor: '#ffff',
+                    marginBottom: '20px',
+
                     //paddingBottom: '24px'
                 }}>
                     <SuccessSlider>
@@ -136,8 +138,8 @@ export default function Information(props: { res: boolean, forms: formType[], in
                         }}>اطلاعات مسافرین</Typography>
                     </SuccessSlider>
                     <Grid paddingX={'30px'}>
-                        <Table aria-label="simple table" sx={{ borderRight: '1px solid', borderLeft: '1px solid', borderTop: '1px solid', borderColor: 'grey.200' }}>
-                            <TableBody>
+                        <Grid sx={{ borderRight: '1px solid', borderLeft: '1px solid', borderTop: '1px solid', borderColor: 'grey.200',overflowX: 'scroll'  }}>
+                            <Table aria-label="simple table" sx={{minWidth: '500px'}}>
                                 <TableHead>
                                     <TableRow>
                                         <TableCell align="center">نام</TableCell>
@@ -146,16 +148,19 @@ export default function Information(props: { res: boolean, forms: formType[], in
                                         <TableCell align="center">شماره همراه</TableCell>
                                     </TableRow>
                                 </TableHead>
-                                {props.forms.map((item, index) => (
-                                    <TableRow key={index}>
-                                        <TableCell align="center">{item.firstName}</TableCell>
-                                        <TableCell align="center">{item.lastName}</TableCell>
-                                        <TableCell align="center">{item.idCode}</TableCell>
-                                        <TableCell align="center">{item.phone}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
+                                <TableBody>
+
+                                    {props.forms.map((item, index) => (
+                                        <TableRow key={index}>
+                                            <TableCell align="center">{item.firstName}</TableCell>
+                                            <TableCell align="center">{item.lastName}</TableCell>
+                                            <TableCell align="center">{item.idCode}</TableCell>
+                                            <TableCell align="center">{item.phone}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </Grid>
                     </Grid>
                 </Box>
             </>

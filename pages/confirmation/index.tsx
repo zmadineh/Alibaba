@@ -37,11 +37,9 @@ export default function Confirmation() {
         <>
             <HeaderOnconfir res={matches} activeStep={activeStep} setActiveStep={setActiveStep}/>
             <Grid height={'150px'}></Grid>
-            <Grid padding={'48px 0'}>
+            <Grid padding={'48px 5px'}>
                 <Steps res={matches} activeStep={activeStep} setActiveStep={setActiveStep} information={information} numPass={numPass} type_id={type_id1}/>
             </Grid>
-        
-
             <Footer/>
         </>
     )
