@@ -8,7 +8,7 @@ import { getTrip } from '../../data/database/trips.data';
 import { filterd_TripData } from '../../data/tickets_data/DataTickets';
 
 export default function Confirmation() {
-    const [activeStep, setActiveStep] = useState(0);
+    const [activeStep, setActiveStep] = useState(1);
     const [information, setInformation] = useState<filterd_TripData>();
     const [numPass,setNumPass] = useState<number>(0)
     const theme = useTheme();

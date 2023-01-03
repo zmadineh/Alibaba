@@ -1,5 +1,5 @@
 import { filterd_TripData } from '../../data/tickets_data/DataTickets'
-import { Box, Grid, Table, TableBody, TableCell, TableRow, Typography, SvgIcon } from "@mui/material";
+import { Box, Grid, Table, TableBody, TableCell, TableRow, Typography, SvgIcon, TableHead } from "@mui/material";
 import { formType } from './Steps'
 import styled from '@emotion/styled';
 
@@ -11,7 +11,7 @@ const keys = [
     ['مبدا', 'مقصد', 'تاریخ و ساعت حرکت', 'شرکت مسافربری', 'تعداد صندلی', 'قیمت هر صندلی', 'مشخصات اتوبوس']
 ]
 
-const SuccessSlider = styled(Grid)(({ theme }) => ({
+const SuccessSlider = styled(Grid)(() => ({
     width: '100%',
     display: 'flex',
     alignItems: 'center',
@@ -138,10 +138,20 @@ export default function Information(props: { res: boolean, forms: formType[], in
                     <Grid paddingX={'30px'}>
                         <Table aria-label="simple table" sx={{ borderRight: '1px solid', borderLeft: '1px solid', borderTop: '1px solid', borderColor: 'grey.200' }}>
                             <TableBody>
-                                {props.forms.map((item, index) => (
+                                <TableHead>
                                     <TableRow>
-                                        <TableCell sx={{ backgroundColor: 'grey.200', width: '20%' }} align="center">قیمت کل</TableCell>
-                                        <TableCell align="center">salam</TableCell>
+                                        <TableCell align="center">نام</TableCell>
+                                        <TableCell align="center">نام خانوادگی</TableCell>
+                                        <TableCell align="center">شماره ملی</TableCell>
+                                        <TableCell align="center">شماره همراه</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                {props.forms.map((item, index) => (
+                                    <TableRow key={index}>
+                                        <TableCell align="center">{item.firstName}</TableCell>
+                                        <TableCell align="center">{item.lastName}</TableCell>
+                                        <TableCell align="center">{item.idCode}</TableCell>
+                                        <TableCell align="center">{item.phone}</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>

@@ -5,7 +5,7 @@ import Logo1 from '../../public/Assets/Images/desktop_header/logo_deskNav1.svg'
 interface Props {
     children: React.ReactElement;
 }
-const steps = ['مشخصات مسافران', 'تایید اطلاعات', 'تایید خرید'];
+const steps = ['انتخاب بلیط','مشخصات مسافران', 'تایید اطلاعات'];
 
 function HideOnScroll(props: Props) {
     const { children } = props;

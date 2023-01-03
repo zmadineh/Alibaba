@@ -23,12 +23,12 @@ export default function Steps(props: { res: boolean, activeStep: number, setActi
 
        },
     ]);
-    if (props.activeStep === 0) {
+    if (props.activeStep === 1) {
         return (
             <PassengerInfo forms={forms} setForms={setForms} setActiveStep={props.setActiveStep}/>
         )
     }
-    else if (props.activeStep === 1) {
+    else if (props.activeStep === 2) {
         return (
             <Information res={props.res} forms={forms} infomation={props.information} type_id={props.type_id} numPass={props.numPass}/>
         )

@@ -41,7 +41,7 @@ const PassengerInfo = (props: PassengerInfo) => {
         const handleSubmit = (e:any)=>{
                 e.preventDefault()
                 props.setForms([...props.forms,form])
-                props.setActiveStep(1)
+                props.setActiveStep(2)
         }
   return (
         <Grid container display={'flex'} justifyContent={'center'} alignItems={'center'}>
